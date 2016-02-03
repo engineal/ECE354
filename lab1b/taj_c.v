@@ -881,7 +881,7 @@ module cpu_0_data_master_arbitrator (
   input            reset_n;
   input   [ 15: 0] sdram_0_s1_readdata_from_sa;
   input            sdram_0_s1_waitrequest_from_sa;
-  input   [ 13: 0] seven_seg_pio_s1_readdata_from_sa;
+  input   [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
   input            timer_0_s1_irq_from_sa;
   input   [ 15: 0] timer_0_s1_readdata_from_sa;
 
@@ -3451,10 +3451,10 @@ module seven_seg_pio_s1_arbitrator (
   output           d1_seven_seg_pio_s1_end_xfer;
   output  [  1: 0] seven_seg_pio_s1_address;
   output           seven_seg_pio_s1_chipselect;
-  output  [ 13: 0] seven_seg_pio_s1_readdata_from_sa;
+  output  [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
   output           seven_seg_pio_s1_reset_n;
   output           seven_seg_pio_s1_write_n;
-  output  [ 13: 0] seven_seg_pio_s1_writedata;
+  output  [ 15: 0] seven_seg_pio_s1_writedata;
   input            clk;
   input   [ 24: 0] cpu_0_data_master_address_to_slave;
   input            cpu_0_data_master_read;
@@ -3462,7 +3462,7 @@ module seven_seg_pio_s1_arbitrator (
   input            cpu_0_data_master_write;
   input   [ 31: 0] cpu_0_data_master_writedata;
   input            reset_n;
-  input   [ 13: 0] seven_seg_pio_s1_readdata;
+  input   [ 15: 0] seven_seg_pio_s1_readdata;
 
   wire             cpu_0_data_master_arbiterlock;
   wire             cpu_0_data_master_arbiterlock2;
@@ -3497,7 +3497,7 @@ module seven_seg_pio_s1_arbitrator (
   wire             seven_seg_pio_s1_in_a_write_cycle;
   wire             seven_seg_pio_s1_master_qreq_vector;
   wire             seven_seg_pio_s1_non_bursting_master_requests;
-  wire    [ 13: 0] seven_seg_pio_s1_readdata_from_sa;
+  wire    [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
   reg              seven_seg_pio_s1_reg_firsttransfer;
   wire             seven_seg_pio_s1_reset_n;
   reg              seven_seg_pio_s1_slavearbiterlockenable;
@@ -3506,7 +3506,7 @@ module seven_seg_pio_s1_arbitrator (
   wire             seven_seg_pio_s1_waits_for_read;
   wire             seven_seg_pio_s1_waits_for_write;
   wire             seven_seg_pio_s1_write_n;
-  wire    [ 13: 0] seven_seg_pio_s1_writedata;
+  wire    [ 15: 0] seven_seg_pio_s1_writedata;
   wire    [ 24: 0] shifted_address_to_seven_seg_pio_s1_from_cpu_0_data_master;
   wire             wait_for_seven_seg_pio_s1_counter;
   always @(posedge clk or negedge reset_n)
@@ -4045,7 +4045,7 @@ module taj_c (
   output           LCD_RW_from_the_lcd_display;
   inout   [  7: 0] LCD_data_to_and_from_the_lcd_display;
   output  [  7: 0] out_port_from_the_led_pio;
-  output  [ 13: 0] out_port_from_the_seven_seg_pio;
+  output  [ 15: 0] out_port_from_the_seven_seg_pio;
   output  [ 11: 0] zs_addr_from_the_sdram_0;
   output  [  1: 0] zs_ba_from_the_sdram_0;
   output           zs_cas_n_from_the_sdram_0;
@@ -4190,7 +4190,7 @@ module taj_c (
   wire             led_pio_s1_write_n;
   wire    [  7: 0] led_pio_s1_writedata;
   wire    [  7: 0] out_port_from_the_led_pio;
-  wire    [ 13: 0] out_port_from_the_seven_seg_pio;
+  wire    [ 15: 0] out_port_from_the_seven_seg_pio;
   wire             reset_n_sources;
   wire    [ 21: 0] sdram_0_s1_address;
   wire    [  1: 0] sdram_0_s1_byteenable_n;
@@ -4206,11 +4206,11 @@ module taj_c (
   wire    [ 15: 0] sdram_0_s1_writedata;
   wire    [  1: 0] seven_seg_pio_s1_address;
   wire             seven_seg_pio_s1_chipselect;
-  wire    [ 13: 0] seven_seg_pio_s1_readdata;
-  wire    [ 13: 0] seven_seg_pio_s1_readdata_from_sa;
+  wire    [ 15: 0] seven_seg_pio_s1_readdata;
+  wire    [ 15: 0] seven_seg_pio_s1_readdata_from_sa;
   wire             seven_seg_pio_s1_reset_n;
   wire             seven_seg_pio_s1_write_n;
-  wire    [ 13: 0] seven_seg_pio_s1_writedata;
+  wire    [ 15: 0] seven_seg_pio_s1_writedata;
   wire    [  2: 0] timer_0_s1_address;
   wire             timer_0_s1_chipselect;
   wire             timer_0_s1_irq;
@@ -4768,7 +4768,7 @@ module test_bench
   wire             jtag_uart_0_avalon_jtag_slave_dataavailable_from_sa;
   wire             jtag_uart_0_avalon_jtag_slave_readyfordata_from_sa;
   wire    [  7: 0] out_port_from_the_led_pio;
-  wire    [ 13: 0] out_port_from_the_seven_seg_pio;
+  wire    [ 15: 0] out_port_from_the_seven_seg_pio;
   reg              reset_n;
   wire    [ 11: 0] zs_addr_from_the_sdram_0;
   wire    [  1: 0] zs_ba_from_the_sdram_0;

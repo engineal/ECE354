@@ -99,35 +99,6 @@
          type = "String";
       }
    }
-   element timer_0.s1
-   {
-      datum baseAddress
-      {
-         value = "16781312";
-         type = "long";
-      }
-   }
-   element led_pio.s1
-   {
-      datum _tags
-      {
-         value = "";
-         type = "String";
-      }
-      datum baseAddress
-      {
-         value = "16781360";
-         type = "long";
-      }
-   }
-   element sdram_0.s1
-   {
-      datum baseAddress
-      {
-         value = "8388608";
-         type = "long";
-      }
-   }
    element seven_seg_pio.s1
    {
       datum _tags
@@ -149,6 +120,35 @@
          type = "long";
       }
    }
+   element timer_0.s1
+   {
+      datum baseAddress
+      {
+         value = "16781312";
+         type = "long";
+      }
+   }
+   element sdram_0.s1
+   {
+      datum baseAddress
+      {
+         value = "8388608";
+         type = "long";
+      }
+   }
+   element led_pio.s1
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+      datum baseAddress
+      {
+         value = "16781360";
+         type = "long";
+      }
+   }
    element sdram_0
    {
       datum _sortIndex
@@ -158,7 +158,7 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{}";
+         value = "{output_language=VERILOG, output_directory=C:\\Users\\jmarple\\Desktop\\GitPortable\\Data\\home\\code\\ECE354\\lab1b}";
          type = "String";
       }
    }
@@ -171,9 +171,12 @@
       }
       datum megawizard_uipreferences
       {
-         value = "{output_language=VERILOG, output_directory=C:\\Users\\jmarple\\code\\ece354}";
+         value = "{}";
          type = "String";
       }
+   }
+   element taj_c
+   {
    }
    element timer_0
    {
@@ -194,9 +197,9 @@
  <parameter name="generateLegacySim" value="false" />
  <parameter name="hardcopyCompatible" value="false" />
  <parameter name="hdlLanguage" value="VERILOG" />
- <parameter name="projectName" value="lab1b.quartus" />
- <parameter name="systemHash" value="14098716590" />
- <parameter name="timeStamp" value="1454363106467" />
+ <parameter name="projectName" value="lab1b.qpf" />
+ <parameter name="systemHash" value="14324970298" />
+ <parameter name="timeStamp" value="1454529869728" />
  <module name="clk_0" kind="clock_source" version="9.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -379,7 +382,7 @@
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="14" />
+  <parameter name="width" value="16" />
  </module>
  <connection kind="clock" version="9.1" start="clk_0.clk" end="cpu_0.clk" />
  <connection

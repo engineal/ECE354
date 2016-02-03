@@ -894,10 +894,10 @@
    <SOPCModuleParameter>
     <C>180</C>
     <Name>width</Name>
-    <Value>14</Value>
+    <Value>16</Value>
    </SOPCModuleParameter>
   </SOPCModule>
-  <SystemID>516864652</SystemID>
+  <SystemID>683624764</SystemID>
  </SOPCSystem>
  <SchemaVersion>schema_2009-08-20</SchemaVersion>
 </ProgramExecution>

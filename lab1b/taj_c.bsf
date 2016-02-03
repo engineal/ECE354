@@ -125,8 +125,8 @@
 (port
 (pt 440 384)
 (output)
-(text "out_port_from_the_seven_seg_pio[13..0] " (rect 0 0 197 16)(font "Arial" (font_size 8)))
-(text "out_port_from_the_seven_seg_pio[13..0] " (rect 216 377 413 393)(font "Arial" (font_size 8)))
+(text "out_port_from_the_seven_seg_pio[15..0] " (rect 0 0 197 16)(font "Arial" (font_size 8)))
+(text "out_port_from_the_seven_seg_pio[15..0] " (rect 216 377 413 393)(font "Arial" (font_size 8)))
 (line (pt 424 384)(pt 440 384)(line_width 3))
 )
 (drawing

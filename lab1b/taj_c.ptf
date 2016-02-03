@@ -2864,7 +2864,7 @@ SYSTEM taj_c
             PORT writedata
             {
                type = "writedata";
-               width = "14";
+               width = "16";
                direction = "input";
                Is_Enabled = "1";
             }
@@ -2880,7 +2880,7 @@ SYSTEM taj_c
                Is_Enabled = "1";
                direction = "output";
                type = "readdata";
-               width = "14";
+               width = "16";
             }
          }
          SYSTEM_BUILDER_INFO 
@@ -2901,7 +2901,7 @@ SYSTEM taj_c
             Accepts_Internal_Connections = "1";
             Write_Latency = "0";
             Is_Flash = "0";
-            Data_Width = "14";
+            Data_Width = "16";
             Address_Width = "2";
             Maximum_Burst_Size = "1";
             Register_Incoming_Signals = "0";
@@ -2933,7 +2933,7 @@ SYSTEM taj_c
          PORT out_port
          {
             type = "export";
-            width = "14";
+            width = "16";
             direction = "output";
             Is_Enabled = "1";
          }
@@ -2941,13 +2941,13 @@ SYSTEM taj_c
          {
             direction = "input";
             Is_Enabled = "0";
-            width = "14";
+            width = "16";
          }
          PORT bidir_port
          {
             direction = "inout";
             Is_Enabled = "0";
-            width = "14";
+            width = "16";
          }
       }
       class = "altera_avalon_pio";
@@ -2966,7 +2966,7 @@ SYSTEM taj_c
             MESSAGES 
             {
             }
-            Settings_Summary = " 14-bit PIO using <br>
+            Settings_Summary = " 16-bit PIO using <br>
 					
 					
 					 output pins";
@@ -2980,7 +2980,7 @@ SYSTEM taj_c
          has_out = "1";
          has_in = "0";
          capture = "0";
-         Data_Width = "14";
+         Data_Width = "16";
          reset_value = "0";
          edge_type = "NONE";
          irq_type = "NONE";
