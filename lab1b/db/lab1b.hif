@@ -20,26 +20,6 @@ VHSM_ON
 -- Start VHDL Libraries --
 -- End VHDL Libraries --
 # entity
-lab1b
-# storage
-db|lab1b.(0).cnf
-db|lab1b.(0).cnf
-# case_insensitive
-# source_file
-lab1b.bdf
-3d15a4a2f53e51cddda342fdba1c8e4
-26
-# internal_option {
-BLOCK_DESIGN_NAMING
-AUTO
-}
-# hierarchies {
-|
-}
-# macro_sequence
-
-# end
-# entity
 sdram_pll
 # storage
 db|lab1b.(1).cnf
@@ -10739,6 +10719,26 @@ USR
 # lmf
 |altera|91|quartus|lmf|maxplus2.lmf
 a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+lab1b
+# storage
+db|lab1b.(0).cnf
+db|lab1b.(0).cnf
+# case_insensitive
+# source_file
+lab1b.bdf
+7f7ada903cbda234a29614dcc6be3d5a
+26
+# internal_option {
+BLOCK_DESIGN_NAMING
+AUTO
+}
+# hierarchies {
+|
+}
 # macro_sequence
 
 # end

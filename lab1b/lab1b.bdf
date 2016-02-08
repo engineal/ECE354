@@ -35,6 +35,7 @@ applicable agreement for further details.
 		(line (pt 117 12)(pt 121 8)(line_width 1))
 	)
 	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 864 280 912 296))
 )
 (pin
 	(input)
@@ -51,6 +52,7 @@ applicable agreement for further details.
 		(line (pt 117 12)(pt 121 8)(line_width 1))
 	)
 	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 856 440 920 496))
 )
 (pin
 	(output)
@@ -67,6 +69,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1536 256 1592 272))
 )
 (pin
 	(output)
@@ -83,6 +86,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1784 336 1832 352))
 )
 (pin
 	(output)
@@ -99,6 +103,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1784 368 1832 384))
 )
 (pin
 	(output)
@@ -115,6 +120,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 472 1792 488))
 )
 (pin
 	(output)
@@ -131,6 +137,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 488 1792 504))
 )
 (pin
 	(output)
@@ -147,22 +154,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
-)
-(pin
-	(output)
-	(rect 1568 536 1744 552)
-	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "LEDR[7..0]" (rect 90 0 145 12)(font "Arial" ))
-	(pt 0 8)
-	(drawing
-		(line (pt 0 8)(pt 52 8)(line_width 1))
-		(line (pt 52 4)(pt 78 4)(line_width 1))
-		(line (pt 52 12)(pt 78 12)(line_width 1))
-		(line (pt 52 12)(pt 52 4)(line_width 1))
-		(line (pt 78 4)(pt 82 8)(line_width 1))
-		(line (pt 82 8)(pt 78 12)(line_width 1))
-		(line (pt 78 12)(pt 82 8)(line_width 1))
-	)
+	(annotation_block (location)(rect 1744 504 1792 520))
 )
 (pin
 	(output)
@@ -179,6 +171,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 584 1800 752))
 )
 (pin
 	(output)
@@ -195,6 +188,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 600 1800 632))
 )
 (pin
 	(output)
@@ -211,6 +205,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 616 1800 632))
 )
 (pin
 	(output)
@@ -227,6 +222,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 632 1800 648))
 )
 (pin
 	(output)
@@ -243,6 +239,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 648 1800 664))
 )
 (pin
 	(output)
@@ -259,6 +256,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 680 1800 712))
 )
 (pin
 	(output)
@@ -275,6 +273,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 696 1800 712))
 )
 (pin
 	(output)
@@ -291,6 +290,7 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 712 1800 728))
 )
 (pin
 	(output)
@@ -307,23 +307,24 @@ applicable agreement for further details.
 		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
 	)
+	(annotation_block (location)(rect 1744 744 1808 944))
 )
 (pin
-	(bidir)
-	(rect 1568 504 1744 520)
-	(text "BIDIR" (rect 1 0 25 10)(font "Arial" (font_size 6)))
-	(text "LCD_DATA[7..0]" (rect 90 0 172 12)(font "Arial" ))
+	(output)
+	(rect 1568 536 1744 552)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "LEDR[0..7]" (rect 90 0 145 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
-		(line (pt 56 4)(pt 78 4)(line_width 1))
 		(line (pt 0 8)(pt 52 8)(line_width 1))
-		(line (pt 56 12)(pt 78 12)(line_width 1))
+		(line (pt 52 4)(pt 78 4)(line_width 1))
+		(line (pt 52 12)(pt 78 12)(line_width 1))
+		(line (pt 52 12)(pt 52 4)(line_width 1))
 		(line (pt 78 4)(pt 82 8)(line_width 1))
+		(line (pt 82 8)(pt 78 12)(line_width 1))
 		(line (pt 78 12)(pt 82 8)(line_width 1))
-		(line (pt 56 4)(pt 52 8)(line_width 1))
-		(line (pt 52 8)(pt 56 12)(line_width 1))
 	)
-	(text "VCC" (rect 4 7 24 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 1744 552 1808 664))
 )
 (pin
 	(bidir)
@@ -341,6 +342,25 @@ applicable agreement for further details.
 		(line (pt 52 8)(pt 56 12)(line_width 1))
 	)
 	(text "VCC" (rect 4 7 24 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 1744 664 1800 888))
+)
+(pin
+	(bidir)
+	(rect 1568 504 1745 520)
+	(text "BIDIR" (rect 1 0 25 10)(font "Arial" (font_size 6)))
+	(text "LCD_DATA[7..0]" (rect 90 0 172 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 56 4)(pt 78 4)(line_width 1))
+		(line (pt 0 8)(pt 52 8)(line_width 1))
+		(line (pt 56 12)(pt 78 12)(line_width 1))
+		(line (pt 78 4)(pt 82 8)(line_width 1))
+		(line (pt 78 12)(pt 82 8)(line_width 1))
+		(line (pt 56 4)(pt 52 8)(line_width 1))
+		(line (pt 52 8)(pt 56 12)(line_width 1))
+	)
+	(text "VCC" (rect 4 7 24 17)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect 1744 520 1792 632))
 )
 (symbol
 	(rect 1016 360 1048 376)

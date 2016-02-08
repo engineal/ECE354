@@ -6,8 +6,8 @@
 <includePath path="c:/altera/91/quartus/bin/cygwin/lib/gcc/i686-pc-cygwin/3.4.4/include"/>
 <includePath path="c:/altera/91/quartus/bin/cygwin/usr/include"/>
 <includePath path="c:/altera/91/quartus/bin/cygwin/usr/include/w32api"/>
-<includePath path="C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab1b/count_binary"/>
-<includePath path="c:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab1b/count_binary/count_binary_syslib/Debug/system_description"/>
+<includePath path="C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab1b/software"/>
+<includePath path="c:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab1b/software/count_binary_syslib/Debug/system_description"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/HAL/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_timer/HAL/inc"/>

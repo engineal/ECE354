@@ -1,0 +1,86 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 1.415 ns
+From           : altera_internal_jtag~TMSUTAP
+To             : sld_hub:auto_hub|shadow_irf_reg[3][4]
+From Clock     : --
+To Clock       : altera_internal_jtag~TCKUTAP
+Failed Paths   : 0
+
+Type           : Worst-case tpd
+Slack          : N/A
+Required Time  : None
+Actual Time    : 2.612 ns
+From           : altera_internal_jtag~TDO
+To             : altera_reserved_tdo
+From Clock     : --
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : 2.353 ns
+From           : altera_internal_jtag~TMSUTAP
+To             : sld_hub:auto_hub|sld_shadow_jsm:shadow_jsm|tms_cnt[0]
+From Clock     : --
+To Clock       : altera_internal_jtag~TCKUTAP
+Failed Paths   : 0
+
+Type           : Clock Setup: 'clk_0'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 95.53 MHz ( period = 10.468 ns )
+From           : cpu_0:the_cpu_0|M_shift_rot_result[1]
+To             : cpu_0:the_cpu_0|M_pipe_flush
+From Clock     : clk_0
+To Clock       : clk_0
+Failed Paths   : 0
+
+Type           : Clock Setup: 'altera_internal_jtag~TCKUTAP'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 160.93 MHz ( period = 6.214 ns )
+From           : sld_hub:auto_hub|irsr_reg[0]
+To             : sld_hub:auto_hub|tdo
+From Clock     : altera_internal_jtag~TCKUTAP
+To Clock       : altera_internal_jtag~TCKUTAP
+Failed Paths   : 0
+
+Type           : Clock Setup: 'altera_internal_jtag~CLKDRUSER'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 415.45 MHz ( period = 2.407 ns )
+From           : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|VELJ8121:JDCF0099|AJQN5180[0]
+To             : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|VELJ8121:JDCF0099|DJFL8584[2]
+From Clock     : altera_internal_jtag~CLKDRUSER
+To Clock       : altera_internal_jtag~CLKDRUSER
+Failed Paths   : 0
+
+Type           : Clock Setup: 'altera_internal_jtag~UPDATEUSER'
+Slack          : N/A
+Required Time  : None
+Actual Time    : Restricted to 500.00 MHz ( period = 2.000 ns )
+From           : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|XWDE0671[2]
+To             : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|XWDE0671[1]
+From Clock     : altera_internal_jtag~UPDATEUSER
+To Clock       : altera_internal_jtag~UPDATEUSER
+Failed Paths   : 0
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 0
+
+--------------------------------------------------------------------------------------
+
