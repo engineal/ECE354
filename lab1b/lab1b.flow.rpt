@@ -1,5 +1,5 @@
 Flow report for lab1b
-Wed Feb 03 15:18:07 2016
+Mon Feb 08 11:50:42 2016
 Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Flow Summary                                                                 ;
 +------------------------------------+-----------------------------------------+
-; Flow Status                        ; Successful - Wed Feb 03 15:18:07 2016   ;
+; Flow Status                        ; Successful - Mon Feb 08 11:50:42 2016   ;
 ; Quartus II Version                 ; 9.1 Build 222 10/21/2009 SJ Web Edition ;
 ; Revision Name                      ; lab1b                                   ;
 ; Top-level Entity Name              ; lab1b                                   ;
@@ -46,10 +46,10 @@ applicable agreement for further details.
 ; Device                             ; EP2C35F672C6                            ;
 ; Timing Models                      ; Final                                   ;
 ; Met timing requirements            ; Yes                                     ;
-; Total logic elements               ; 3,082 / 33,216 ( 9 % )                  ;
-;     Total combinational functions  ; 2,827 / 33,216 ( 9 % )                  ;
-;     Dedicated logic registers      ; 1,898 / 33,216 ( 6 % )                  ;
-; Total registers                    ; 1950                                    ;
+; Total logic elements               ; 3,067 / 33,216 ( 9 % )                  ;
+;     Total combinational functions  ; 2,811 / 33,216 ( 8 % )                  ;
+;     Dedicated logic registers      ; 1,881 / 33,216 ( 6 % )                  ;
+; Total registers                    ; 1949                                    ;
 ; Total pins                         ; 80 / 475 ( 17 % )                       ;
 ; Total virtual pins                 ; 0                                       ;
 ; Total memory bits                  ; 46,720 / 483,840 ( 10 % )               ;
@@ -63,7 +63,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/03/2016 15:17:14 ;
+; Start date & time ; 02/08/2016 11:49:35 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lab1b               ;
 +-------------------+---------------------+
@@ -74,7 +74,7 @@ applicable agreement for further details.
 +---------------------------+----------------------------------+---------------+-------------+------------+
 ; Assignment Name           ; Value                            ; Default Value ; Entity Name ; Section Id ;
 +---------------------------+----------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID     ; 152426032762.145453063405524     ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID     ; 152426032767.145495017505696     ; --            ; --          ; --         ;
 ; IP_TOOL_NAME              ; ALTPLL                           ; --            ; --          ; --         ;
 ; IP_TOOL_VERSION           ; 9.1                              ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP    ; 85                               ; --            ; --          ; --         ;
@@ -94,11 +94,11 @@ applicable agreement for further details.
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name             ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis    ; 00:00:21     ; 1.0                     ; 265 MB              ; 00:00:20                           ;
-; Fitter                  ; 00:00:22     ; 1.0                     ; 265 MB              ; 00:00:23                           ;
+; Analysis & Synthesis    ; 00:00:27     ; 1.0                     ; 259 MB              ; 00:00:25                           ;
+; Fitter                  ; 00:00:25     ; 1.0                     ; 264 MB              ; 00:00:24                           ;
 ; Assembler               ; 00:00:03     ; 1.0                     ; 240 MB              ; 00:00:03                           ;
-; Classic Timing Analyzer ; 00:00:02     ; 1.0                     ; 165 MB              ; 00:00:02                           ;
-; Total                   ; 00:00:48     ; --                      ; --                  ; 00:00:48                           ;
+; Classic Timing Analyzer ; 00:00:02     ; 1.0                     ; 166 MB              ; 00:00:02                           ;
+; Total                   ; 00:00:57     ; --                      ; --                  ; 00:00:54                           ;
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -107,10 +107,10 @@ applicable agreement for further details.
 +-------------------------+------------------+---------------+------------+----------------+
 ; Module Name             ; Machine Hostname ; OS Name       ; OS Version ; Processor type ;
 +-------------------------+------------------+---------------+------------+----------------+
-; Analysis & Synthesis    ; ECS-ECELAB15     ; Windows Vista ; 6.1        ; i686           ;
-; Fitter                  ; ECS-ECELAB15     ; Windows Vista ; 6.1        ; i686           ;
-; Assembler               ; ECS-ECELAB15     ; Windows Vista ; 6.1        ; i686           ;
-; Classic Timing Analyzer ; ECS-ECELAB15     ; Windows Vista ; 6.1        ; i686           ;
+; Analysis & Synthesis    ; ECS-ECELAB13     ; Windows Vista ; 6.1        ; i686           ;
+; Fitter                  ; ECS-ECELAB13     ; Windows Vista ; 6.1        ; i686           ;
+; Assembler               ; ECS-ECELAB13     ; Windows Vista ; 6.1        ; i686           ;
+; Classic Timing Analyzer ; ECS-ECELAB13     ; Windows Vista ; 6.1        ; i686           ;
 +-------------------------+------------------+---------------+------------+----------------+
 
 

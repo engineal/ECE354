@@ -15,13 +15,13 @@ obj/count_binary.o: ../count_binary.c ../count_binary.h \
   /cygdrive/c/altera/91/nios2eds/bin/nios2-gnutools/H-i686-pc-cygwin/bin/../lib/gcc/nios2-elf/3.4.6/include/stddef.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/nios2.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab1b/count_binary/count_binary_syslib/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab1b/count_binary/count_binary_syslib/Debug/system_description/system.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/priv/alt_legacy_irq.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab1b/count_binary/count_binary_syslib/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab1b/count_binary/count_binary_syslib/Debug/system_description/system.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/nios2.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab1b/count_binary/count_binary_syslib/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab1b/count_binary/count_binary_syslib/Debug/system_description/system.h \
   /cygdrive/c/altera/91/nios2eds/bin/nios2-gnutools/H-i686-pc-cygwin/bin/../lib/gcc/nios2-elf/3.4.6/../../../../nios2-elf/include/stdio.h \
   /cygdrive/c/altera/91/nios2eds/bin/nios2-gnutools/H-i686-pc-cygwin/bin/../lib/gcc/nios2-elf/3.4.6/../../../../nios2-elf/include/_ansi.h \
   /cygdrive/c/altera/91/nios2eds/bin/nios2-gnutools/H-i686-pc-cygwin/bin/../lib/gcc/nios2-elf/3.4.6/include/stdarg.h \

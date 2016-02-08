@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Wed Feb 03 15:17:35 2016
+Analysis & Synthesis Status : Successful - Mon Feb 08 11:50:03 2016
 Quartus II Version : 9.1 Build 222 10/21/2009 SJ Web Edition
 Revision Name : lab1b
 Top-level Entity Name : lab1b
 Family : Cyclone II
 Total logic elements : 3,242
-    Total combinational functions : 2,822
+    Total combinational functions : 2,806
     Dedicated logic registers : 1,915
 Total registers : 1915
 Total pins : 80

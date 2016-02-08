@@ -1,9 +1,9 @@
 # generated_app.mk
 #
 # Machine generated for a CPU named "cpu_0" as defined in:
-# c:\Users\jmarple\Desktop\GitPortable\Data\home\code\ECE354\lab1b\count_binary\count_binary_syslib\..\..\taj_c.ptf
+# c:\Users\ajlucia\Desktop\GitPortable\Data\home\ECE354\lab1b\count_binary\count_binary_syslib\..\..\taj_c.ptf
 #
-# Generated: 2016-02-03 14:32:54.37
+# Generated: 2016-02-08 12:01:46.76
 
 # DO NOT MODIFY THIS FILE
 #
@@ -16,7 +16,7 @@
 # DO NOT MODIFY THIS FILE
 
 # assuming the Quartus project directory is the same as the PTF directory
-QUARTUS_PROJECT_DIR = C:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab1b
+QUARTUS_PROJECT_DIR = C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab1b
 
 # the simulation directory is a subdirectory of the PTF directory
 SIMDIR = $(QUARTUS_PROJECT_DIR)/taj_c_sim

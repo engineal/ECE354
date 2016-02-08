@@ -5,9 +5,9 @@ Timing Analyzer Summary
 Type           : Worst-case tsu
 Slack          : N/A
 Required Time  : None
-Actual Time    : 6.619 ns
-From           : LCD_DATA[3]
-To             : taj_c:inst|cpu_0:the_cpu_0|d_readdata_d1[3]
+Actual Time    : 6.813 ns
+From           : LCD_DATA[6]
+To             : taj_c:inst|cpu_0:the_cpu_0|d_readdata_d1[6]
 From Clock     : --
 To Clock       : CLOCK_50
 Failed Paths   : 0
@@ -15,8 +15,8 @@ Failed Paths   : 0
 Type           : Worst-case tco
 Slack          : N/A
 Required Time  : None
-Actual Time    : 14.859 ns
-From           : taj_c:inst|cpu_0:the_cpu_0|d_read~reg0
+Actual Time    : 15.204 ns
+From           : taj_c:inst|cpu_0:the_cpu_0|d_write~reg0
 To             : LCD_EN
 From Clock     : CLOCK_50
 To Clock       : --
@@ -35,19 +35,19 @@ Failed Paths   : 0
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
-Actual Time    : 2.438 ns
+Actual Time    : 1.945 ns
 From           : altera_internal_jtag~TDIUTAP
-To             : taj_c:inst|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_jtag_debug_module_wrapper:the_cpu_0_jtag_debug_module_wrapper|cpu_0_jtag_debug_module_tck:the_cpu_0_jtag_debug_module_tck|sr[35]
+To             : taj_c:inst|jtag_uart_0:the_jtag_uart_0|alt_jtag_atlantic:jtag_uart_0_alt_jtag_atlantic|wdata[7]
 From Clock     : --
 To Clock       : altera_internal_jtag~TCKUTAP
 Failed Paths   : 0
 
 Type           : Clock Setup: 'CLOCK_50'
-Slack          : 6.364 ns
+Slack          : 6.270 ns
 Required Time  : 50.00 MHz ( period = 20.000 ns )
-Actual Time    : 73.34 MHz ( period = 13.636 ns )
-From           : taj_c:inst|cpu_0:the_cpu_0|M_ctrl_shift_rot
-To             : taj_c:inst|cpu_0:the_cpu_0|M_pipe_flush
+Actual Time    : 134.05 MHz ( period = 7.460 ns )
+From           : taj_c:inst|cpu_0:the_cpu_0|M_rot_step1[14]
+To             : taj_c:inst|cpu_0:the_cpu_0|Mn_rot_step2[26]
 From Clock     : CLOCK_50
 To Clock       : CLOCK_50
 Failed Paths   : 0
@@ -55,7 +55,7 @@ Failed Paths   : 0
 Type           : Clock Setup: 'altera_internal_jtag~TCKUTAP'
 Slack          : N/A
 Required Time  : None
-Actual Time    : 125.28 MHz ( period = 7.982 ns )
+Actual Time    : 116.39 MHz ( period = 8.592 ns )
 From           : sld_hub:auto_hub|irsr_reg[2]
 To             : sld_hub:auto_hub|tdo
 From Clock     : altera_internal_jtag~TCKUTAP
@@ -65,7 +65,7 @@ Failed Paths   : 0
 Type           : Clock Setup: 'altera_internal_jtag~CLKDRUSER'
 Slack          : N/A
 Required Time  : None
-Actual Time    : 399.20 MHz ( period = 2.505 ns )
+Actual Time    : 398.88 MHz ( period = 2.507 ns )
 From           : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|VELJ8121:JDCF0099|AJQN5180[0]
 To             : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|VELJ8121:JDCF0099|AJQN5180[4]
 From Clock     : altera_internal_jtag~CLKDRUSER
