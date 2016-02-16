@@ -1,0 +1,106 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2009 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II
+# Version 9.0 Build 132 02/25/2009 SJ Web Edition
+# Date created = 13:53:17  August 09, 2011
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		DE2_NIOS_HOST_MOUSE_VGA_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Stratix II"
+set_global_assignment -name DEVICE AUTO
+set_global_assignment -name TOP_LEVEL_ENTITY DE2_NIOS_HOST_MOUSE_VGA
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:53:17  AUGUST 09, 2011"
+set_global_assignment -name LAST_QUARTUS_VERSION 9.1
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name VERILOG_FILE Audio_0.v
+set_global_assignment -name VERILOG_FILE AUDIO_DAC_FIFO.v
+set_global_assignment -name VERILOG_FILE Audio_PLL.v
+set_global_assignment -name VERILOG_FILE button_pio.v
+set_global_assignment -name VERILOG_FILE camera.v
+set_global_assignment -name VERILOG_FILE clock_0.v
+set_global_assignment -name VERILOG_FILE clock_1.v
+set_global_assignment -name SDC_FILE cpu_0.sdc
+set_global_assignment -name VERILOG_FILE cpu_0.v
+set_global_assignment -name VERILOG_FILE cpu_0_jtag_debug_module.v
+set_global_assignment -name VERILOG_FILE cpu_0_jtag_debug_module_sysclk.v
+set_global_assignment -name VERILOG_FILE cpu_0_jtag_debug_module_tck.v
+set_global_assignment -name VERILOG_FILE cpu_0_jtag_debug_module_wrapper.v
+set_global_assignment -name VERILOG_FILE cpu_0_mult_cell.v
+set_global_assignment -name VERILOG_FILE cpu_0_oci_test_bench.v
+set_global_assignment -name VERILOG_FILE cpu_0_test_bench.v
+set_global_assignment -name VERILOG_FILE DE2_NIOS_HOST_MOUSE_VGA.v
+set_global_assignment -name VERILOG_FILE DM9000A.v
+set_global_assignment -name VERILOG_FILE DM9000A_IF.v
+set_global_assignment -name VERILOG_FILE epcs_controller.v
+set_global_assignment -name VERILOG_FILE FIFO_16_256.v
+set_global_assignment -name VERILOG_FILE I2C_AV_Config.v
+set_global_assignment -name VERILOG_FILE I2C_Controller.v
+set_global_assignment -name VERILOG_FILE Img_RAM.v
+set_global_assignment -name VERILOG_FILE ISP1362.v
+set_global_assignment -name VERILOG_FILE ISP1362_IF.v
+set_global_assignment -name VERILOG_FILE jtag_uart.v
+set_global_assignment -name VERILOG_FILE jtag_uart_0.v
+set_global_assignment -name VERILOG_FILE lcd.v
+set_global_assignment -name VERILOG_FILE lcd_16207_0.v
+set_global_assignment -name VERILOG_FILE led_green.v
+set_global_assignment -name VERILOG_FILE led_red.v
+set_global_assignment -name VERILOG_FILE Reset_Delay.v
+set_global_assignment -name VERILOG_FILE SD_CLK.v
+set_global_assignment -name VERILOG_FILE SD_CMD.v
+set_global_assignment -name VERILOG_FILE SD_DAT.v
+set_global_assignment -name VERILOG_FILE sdram_0.v
+set_global_assignment -name VERILOG_FILE sdram_0_test_component.v
+set_global_assignment -name VERILOG_FILE SDRAM_PLL.v
+set_global_assignment -name VERILOG_FILE SEG7_LUT.v
+set_global_assignment -name VERILOG_FILE SEG7_LUT_8.v
+set_global_assignment -name VERILOG_FILE sram_0.v
+set_global_assignment -name VERILOG_FILE SRAM_16Bit_512K.v
+set_global_assignment -name VERILOG_FILE ssram.v
+set_global_assignment -name VERILOG_FILE switch_pio.v
+set_global_assignment -name QUARTUS_PTF_FILE system_0.ptf
+set_global_assignment -name QIP_FILE system_0.qip
+set_global_assignment -name SOURCE_FILE system_0.sopc
+set_global_assignment -name VERILOG_FILE system_0.v
+set_global_assignment -name VERILOG_FILE system_0_clock_0.v
+set_global_assignment -name VERILOG_FILE timer_0.v
+set_global_assignment -name VERILOG_FILE timer_1.v
+set_global_assignment -name VERILOG_FILE uart.v
+set_global_assignment -name VERILOG_FILE uart_0.v
+set_global_assignment -name VERILOG_FILE VGA_0.v
+set_global_assignment -name VERILOG_FILE VGA_Controller.v
+set_global_assignment -name VERILOG_FILE VGA_NIOS_CTRL.v
+set_global_assignment -name VERILOG_FILE VGA_OSD_RAM.v
+set_global_assignment -name SOURCE_FILE VGA_Param.h
+set_global_assignment -name MISC_FILE "C:/Documents and Settings/sudarshan/Desktop/lab2_new camera/DE2_NIOS_HOST_MOUSE_VGA.dpf"

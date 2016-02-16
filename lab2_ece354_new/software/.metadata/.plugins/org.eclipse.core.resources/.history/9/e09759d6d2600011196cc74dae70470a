@@ -1,0 +1,343 @@
+// It is not necessary that you follow the below coding format. It is just given as the sample way to start the project.
+//The functions declared in main functions are declared in file function.c
+// Again some start up code is given in function.c 
+#include "my_includes.h"
+#include "system.h"
+#include "basic_io.h"
+#include "LCD.h"
+#include "sys/alt_irq.h"
+#include "VGA.C"
+#include "HAL4D13.C"
+
+
+#include "isa290.h"
+#include "reg.h"
+#include "buf_man.h"
+#include "port.h"
+#include "usb.h"
+#include "ptd.h"
+#include "cheeyu.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <io.h>
+#include <fcntl.h>
+#include "cheeyu.c"
+#include "ptd.c"
+#include "usb.c"
+#include "buf_man.c"
+#include "reg.c"
+#include "port.c"
+
+
+#include "packet.h"
+#include "function.h"
+//#include "JtagUart.h"
+
+unsigned int		hc_data;
+unsigned int		hc_com;
+unsigned int		dc_data;
+unsigned int		dc_com;
+
+
+void init(void)
+  {
+
+    printf(("\r\n===== DE2 Camera Utility [05/31/2011] =====\r\n"));
+    
+    if (LCD_Open())
+    {
+        LCD_TextOut("Welcome DE2 \nD5M Test\n");
+    }
+    else
+    {
+        printf(("[LCD] open fail\r\n"));
+    }   
+    
+}
+void count(int pos, int num){
+
+ 
+unsigned int a,b,x,y;//x coord
+
+if( pos == 0){
+    x = 610;
+    y = 360;
+} 
+
+if(pos == 1){
+    x = 550;
+    y = 360;
+}
+if(pos == 2){
+    x = 490;
+    y = 360;
+}
+if(pos == 3){
+    x = 430;
+    y = 360;
+}
+if(pos == 4){
+    x = 270;
+    y = 360;
+}
+if(pos == 5){
+    x = 210;
+    y = 360;
+}
+x= x-50;
+if(num == 1){
+for(a = x+10; a < x+20; a++ ){
+
+    for(b = y ; b < y+100 ; b++ ){
+
+
+        Vga_Clr_Pixel(VGA_0_BASE,a,b);
+       
+        
+        }
+    }
+}
+if(num == 0){
+    for(a = x; a < x+50; a++ ){
+
+    for(b = y ; b < y+100 ; b++ ){
+
+
+        Vga_Clr_Pixel(VGA_0_BASE,a,b);
+        
+        }
+    }
+    int c,d;
+    for(c = x+10; c < x+40; c++ ){
+
+    for(d = y+20 ; d < y+80 ; d++ ){
+
+
+        Vga_Set_Pixel(VGA_0_BASE,c,d);
+        
+        }
+    }
+}
+ 
+}
+int main(void)
+{
+    unsigned int counter = 0;
+    alt_u32 time_start, ticks_per_sec;
+    alt_u8 *szPacket; 
+    printf("Application starts\n");
+    init();
+    
+  VGA_Ctrl_Reg vga_ctrl_set;
+  
+  vga_ctrl_set.VGA_Ctrl_Flags.RED_ON    = 1;
+  vga_ctrl_set.VGA_Ctrl_Flags.GREEN_ON  = 1;
+  vga_ctrl_set.VGA_Ctrl_Flags.BLUE_ON   = 1;
+  vga_ctrl_set.VGA_Ctrl_Flags.CURSOR_ON = 1;
+  
+  Vga_Write_Ctrl(VGA_0_BASE, vga_ctrl_set.Value);
+  Set_Pixel_On_Color(1023,1023,1023);
+  Set_Pixel_Off_Color(0,0,0);
+  Set_Cursor_Color(0,1023,0);
+
+
+
+   unsigned int i,j;
+   for(i = 0 ; i < 480 ; i++)
+   {
+        for(j = 0 ; j < 640 ; j++)
+        {
+            if((j % 8) == 0)Vga_Set_Pixel(VGA_0_BASE,j,i);
+            else Vga_Clr_Pixel(VGA_0_BASE,j,i);
+        }
+   }
+
+//  w16(HcReset,0x00F6);//reset      
+//  reset_usb();//config  
+//  mouse();
+
+
+//    szPacket = malloc(PKT_NIOS2PC_MAX_LEN);
+    szPacket = malloc(16*1024);
+    if (!szPacket)
+    {
+        printf(("malloc fail, program is terminated!\r\n"));
+        return 0;
+    }
+    else
+    {
+       printf("malloc for (16K bytes) packet buffer success.\n");
+    }    
+ 
+     ticks_per_sec = alt_ticks_per_second();
+    alt_u8 * pData;
+    pData = (volatile alt_u8 *) CFI_FLASH_0_BASE;
+
+    while(1)
+    {
+//        char cmd[2];
+        short cmd;
+        scanf("%d",&cmd);
+//        gets(cmd);
+        printf("Command : %d \n", cmd);
+        switch(cmd)
+        {
+           case 0:
+                {
+                    camera_capture();
+                    counter++;
+                    break;
+                }
+           case 1:
+                {
+                    printf("Copying RGB data from FIFO to Flash memory\n");
+                    camera_port_read(pData, 640*480);
+                    printf("... Done\n");
+                    break;
+                }
+           case 2:
+                {
+                    alt_flash_fd* fd;
+                    unsigned int offset = 0x10;
+                    char bin_pix;
+                    fd = alt_flash_open_dev(CFI_FLASH_0_NAME);
+                    if (fd==NULL) 
+                    {
+                        printf("Flash memory open failure\n");
+                        return;
+                    }
+                    
+                  printf("Reading binary pixel from flash memory\n");
+                       for(i = 0 ; i < 480 ; i++)
+                       {
+                          for(j = 0 ; j < 640 ; j++)
+                            {
+                                //printf("%d\n", j);
+                                alt_read_flash(fd,offset,&bin_pix,1);
+                                if(!bin_pix)Vga_Set_Pixel(VGA_0_BASE,j,i);
+                                else Vga_Clr_Pixel(VGA_0_BASE,j,i);
+                                offset++;
+                            }
+                       }
+                       printf("... Done\n");
+                    alt_flash_close_dev(CFI_FLASH_0_NAME); 
+                   
+                   
+                        int r;
+                        printf("%d\n", counter);
+                        int temp = counter;
+                        int pos[6] = {32,16,8,4,2,1};
+                        for(r=0;r<6;r++){
+                            //printf("pos[r]: %d\n", pos[r]);
+                            if(temp / pos[r] == 1 ){
+                            printf("1");
+                            temp = temp-pos[r]; 
+                          //  printf("temp:  %d\n", temp);
+                            }
+                            //count(5-r,1);
+                            else
+                            printf("0");
+                           // printf("temp: %d\n", temp);
+                            //count(5-r,0);
+                            }
+                        
+                    count(0,1);
+                    count(1,0);
+                    count(2,1);
+                    count(3,0);
+                    count(4,1);
+                    count(5,0);             
+                    break;
+                }
+          case 3://mirror
+                {
+                    alt_flash_fd* fd;
+                    unsigned int offset = 0x10;
+                    char bin_pix;
+                    fd = alt_flash_open_dev(CFI_FLASH_0_NAME);
+                    if (fd==NULL) 
+                    {
+                        printf("Flash memory open failure\n");
+                        return;
+                    }
+                    
+                  printf("Reading binary pixel from flash memory\n");
+                       for(i = 0 ; i < 480 ; i++)
+                       {
+                          for(j = 639 ; j <=639  ; j--)
+                            {
+                                //printf("%d\n", j);
+                                alt_read_flash(fd,offset,&bin_pix,1);
+                                if(!bin_pix)Vga_Set_Pixel(VGA_0_BASE,j,i);
+                                else Vga_Clr_Pixel(VGA_0_BASE,j,i);
+                  
+                                offset++;
+                            }
+                       }
+                       
+                       printf("... Done\n");
+                    alt_flash_close_dev(CFI_FLASH_0_NAME);                    
+                  break;
+                }
+           case 4://rotate
+                {
+                    alt_flash_fd* fd;
+                    unsigned int offset = 0x10;
+                    char bin_pix;
+                    fd = alt_flash_open_dev(CFI_FLASH_0_NAME);
+                    if (fd==NULL) 
+                    {
+                        printf("Flash memory open failure\n");
+                        return;
+                    }
+                    
+                  printf("Reading binary pixel from flash memory\n");
+                       for(i = 479 ; i <= 479 ; i--)
+                       {
+                         for(j = 0 ; j < 640 ; j++)
+                            {
+                                alt_read_flash(fd,offset,&bin_pix,1);
+                                if(!bin_pix)Vga_Set_Pixel(VGA_0_BASE,j,i);
+                                else Vga_Clr_Pixel(VGA_0_BASE,j,i);
+                                offset++;
+                            }
+                       }
+                       printf("... Done\n");
+                    alt_flash_close_dev(CFI_FLASH_0_NAME);                    
+                    break;
+                }
+           case 5://invert
+                {
+                    alt_flash_fd* fd;
+                    unsigned int offset = 0x10;
+                    char bin_pix;
+                    fd = alt_flash_open_dev(CFI_FLASH_0_NAME);
+                    if (fd==NULL) 
+                    {
+                        printf("Flash memory open failure\n");
+                        return;
+                    }
+                    
+                  printf("Reading binary pixel from flash memory\n");
+                       for(i = 0 ; i < 480 ; i++)
+                       {
+                          for(j = 0 ; j < 640 ; j++)
+                            {
+                                alt_read_flash(fd,offset,&bin_pix,1);
+                                if(!bin_pix)Vga_Clr_Pixel(VGA_0_BASE,j,i);
+                                else Vga_Set_Pixel(VGA_0_BASE,j,i);
+                                offset++;
+                            }
+                       }
+                       printf("... Done\n");
+                    alt_flash_close_dev(CFI_FLASH_0_NAME);                    
+                   
+                }      
+        }
+        }
+    
+ 
+  return 0;
+}
+
