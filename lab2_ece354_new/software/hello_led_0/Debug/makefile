@@ -28,7 +28,7 @@ RM := rm -rf
 # This project
 PROJECT := hello_led_0
 # Location of this project
-APP_DIR :=/cygdrive/c/Users/abhigilbert86/Downloads/lab2_files/lab2_files/lab2_felix_lam/lab2_ece354_new/software/hello_led_0
+APP_DIR :=/cygdrive/c/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/software/hello_led_0
 
 # Configuration for application project
 # The configuration can be changed from C/C++ build property page -> Configuration drop-down box.
@@ -39,14 +39,14 @@ APP_CONFIG := Debug
 # Referenced system library & location. 
 # These can be changed from App Options property page
 SYSTEM_NAME := hello_led_0_syslib_0
-SYSTEM_DIR := /cygdrive/c/Users/abhigilbert86/Downloads/lab2_files/lab2_files/lab2_felix_lam/lab2_ece354_new/software/hello_led_0_syslib_0
+SYSTEM_DIR := /cygdrive/c/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/software/hello_led_0_syslib_0
 
 # Configuration for system library project
 # The configuration can be changed from system library properties -> C/C++ build -> Configuration drop-down box.
 # If changed a new configuration folder (e.g. Release) is generated with all the generated and built files
 SYS_CONFIG := Debug
 
-PTF := C:/Users/abhigilbert86/Downloads/lab2_files/lab2_files/lab2_felix_lam/lab2_ece354_new/system_0.ptf
+PTF := C:/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/system_0.ptf
 
 # Change this setting from Window->Preferences->Nios II Run and Build Settings
 DO_MAKE_OBJDUMP := 0
@@ -87,6 +87,7 @@ endif
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+.metadata/.plugins/org.eclipse.cdt.make.core \
 
 # Include the makefiles for each source subdirectory
 -include ${patsubst %, %/subdir.mk, $(SUBDIRS)}

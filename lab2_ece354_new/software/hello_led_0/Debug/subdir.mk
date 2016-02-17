@@ -10,6 +10,7 @@ ${addprefix ,\
 JtagUart.c \
 LCD.c \
 Uart.c \
+VGA.c \
 debug.c \
 function.c \
 hello_led.c \

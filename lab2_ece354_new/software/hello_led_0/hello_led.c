@@ -6,7 +6,7 @@
 #include "basic_io.h"
 #include "LCD.h"
 #include "sys/alt_irq.h"
-#include "VGA.C"
+
 #include "HAL4D13.C"
 
 
@@ -41,8 +41,7 @@ unsigned int		dc_com;
 
 
 void init(void)
-  {
-
+{
     printf(("\r\n===== DE2 Camera Utility [05/31/2011] =====\r\n"));
     
     if (LCD_Open())
@@ -58,39 +57,39 @@ void init(void)
 
 int main(void)
 {
-        alt_u32 time_start, ticks_per_sec;
+    alt_u32 time_start, ticks_per_sec;
     alt_u8 *szPacket; 
     printf("Application starts\n");
     init();
     
-  VGA_Ctrl_Reg vga_ctrl_set;
+    VGA_Ctrl_Reg vga_ctrl_set;
   
-  vga_ctrl_set.VGA_Ctrl_Flags.RED_ON    = 1;
-  vga_ctrl_set.VGA_Ctrl_Flags.GREEN_ON  = 1;
-  vga_ctrl_set.VGA_Ctrl_Flags.BLUE_ON   = 1;
-  vga_ctrl_set.VGA_Ctrl_Flags.CURSOR_ON = 1;
+    vga_ctrl_set.VGA_Ctrl_Flags.RED_ON    = 1;
+    vga_ctrl_set.VGA_Ctrl_Flags.GREEN_ON  = 1;
+    vga_ctrl_set.VGA_Ctrl_Flags.BLUE_ON   = 1;
+    vga_ctrl_set.VGA_Ctrl_Flags.CURSOR_ON = 1;
   
-  Vga_Write_Ctrl(VGA_0_BASE, vga_ctrl_set.Value);
-  Set_Pixel_On_Color(1023,1023,1023);
-  Set_Pixel_Off_Color(0,0,0);
-  Set_Cursor_Color(0,1023,0);
+    Vga_Write_Ctrl(VGA_0_BASE, vga_ctrl_set.Value);
+    Set_Pixel_On_Color(1023,1023,1023);
+    Set_Pixel_Off_Color(0,0,0);
+    Set_Cursor_Color(0,1023,0);
 
-   unsigned int i,j;
-   for(i = 0 ; i < 480 ; i++)
-   {
+    unsigned int i,j;
+    for(i = 0 ; i < 480 ; i++)
+    {
         for(j = 0 ; j < 640 ; j++)
         {
             if((j % 8) == 0)Vga_Set_Pixel(VGA_0_BASE,j,i);
             else Vga_Clr_Pixel(VGA_0_BASE,j,i);
         }
-   }
+    }
 
 //  w16(HcReset,0x00F6);//reset      
 //  reset_usb();//config  
 //  mouse();
 
 
-//    szPacket = malloc(PKT_NIOS2PC_MAX_LEN);
+//  szPacket = malloc(PKT_NIOS2PC_MAX_LEN);
     szPacket = malloc(16*1024);
     if (!szPacket)
     {
@@ -102,16 +101,16 @@ int main(void)
        printf("malloc for (16K bytes) packet buffer success.\n");
     }    
  
-     ticks_per_sec = alt_ticks_per_second();
+    ticks_per_sec = alt_ticks_per_second();
     alt_u8 * pData;
     pData = (volatile alt_u8 *) CFI_FLASH_0_BASE;
 
     while(1)
     {
-//        char cmd[2];
+//      char cmd[2];
         short cmd;
         scanf("%d",&cmd);
-//        gets(cmd);
+//      gets(cmd);
         printf("Command : %d \n", cmd);
         switch(cmd)
         {
@@ -139,18 +138,18 @@ int main(void)
                         return;
                     }
                     
-                  printf("Reading binary pixel from flash memory\n");
-                       for(i = 0 ; i < 480 ; i++)
-                       {
-                          for(j = 0 ; j < 640 ; j++)
-                            {
-                                alt_read_flash(fd,offset,&bin_pix,1);
-                                if(!bin_pix)Vga_Set_Pixel(VGA_0_BASE,j,i);
-                                else Vga_Clr_Pixel(VGA_0_BASE,j,i);
-                                offset++;
-                            }
-                       }
-                       printf("... Done\n");
+                    printf("Reading binary pixel from flash memory\n");
+                    for(i = 0 ; i < 480 ; i++)
+                    {
+                        for(j = 0 ; j < 640 ; j++)
+                        {
+                            alt_read_flash(fd,offset,&bin_pix,1);
+                            if(!bin_pix)Vga_Set_Pixel(VGA_0_BASE,j,i);
+                            else Vga_Clr_Pixel(VGA_0_BASE,j,i);
+                            offset++;
+                        }
+                    }
+                    printf("... Done\n");
                     alt_flash_close_dev(CFI_FLASH_0_NAME);                    
                     
                 }

@@ -1,9 +1,9 @@
 /* alt_sys_init.c - HAL initialisation source
  *
  * Machine generated for a CPU named "cpu_0" as defined in:
- * c:\Users\abhigilbert86\Downloads\lab2_files\lab2_files\lab2_felix_lam\lab2_ece354_new\software\hello_led_0_syslib_0\..\..\system_0.ptf
+ * c:\Users\tbadams\Desktop\GitPortable\Data\home\ECE354\lab2_ece354_new\software\hello_led_0_syslib_0\..\..\system_0.ptf
  *
- * Generated: 2015-02-06 02:19:53.072
+ * Generated: 2016-02-17 13:56:28.809
  *
  */
 

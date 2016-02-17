@@ -20,11 +20,16 @@
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_lcd_16207/HAL/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_lcd_16207/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_pio/inc"/>
+<includePath path="c:/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/DM9000A/inc"/>
+<includePath path="c:/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/ISP1362/inc"/>
+<includePath path="c:/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/binary_vga_controller/inc"/>
 <includePath path="c:/Users/Felix/Desktop/ECE354/Lab2/lab2_ECE354_NEW/DM9000A/inc"/>
 <includePath path="c:/Users/Felix/Desktop/ECE354/Lab2/lab2_ECE354_NEW/ISP1362/inc"/>
 <includePath path="c:/Users/Felix/Desktop/ECE354/Lab2/lab2_ECE354_NEW/Binary_VGA_Controller/inc"/>
 <includePath path="c:/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc"/>
 <includePath path="c:/altera/91/nios2eds/components/altera_hal/HAL/inc"/>
+<includePath path="C:/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/software/hello_led_0_syslib_0"/>
+<includePath path="C:/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/software/hello_led_0_syslib_0/Debug/system_description"/>
 <definedSymbol symbol="ALTERA_INCLUDES"/>
 <definedSymbol symbol="SYSTEM_BUS_WIDTH=32"/>
 <definedSymbol symbol="ALT_NO_INSTRUCTION_EMULATION"/>

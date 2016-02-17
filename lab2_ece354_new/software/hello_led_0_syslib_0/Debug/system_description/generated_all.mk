@@ -1,9 +1,9 @@
 # generated_all.mk
 #
 # Machine generated for a CPU named "cpu_0" as defined in:
-# c:\Users\abhigilbert86\Downloads\lab2_files\lab2_files\lab2_felix_lam\lab2_ece354_new\software\hello_led_0_syslib_0\..\..\system_0.ptf
+# c:\Users\tbadams\Desktop\GitPortable\Data\home\ECE354\lab2_ece354_new\software\hello_led_0_syslib_0\..\..\system_0.ptf
 #
-# Generated: 2015-02-06 02:18:30.531
+# Generated: 2016-02-17 13:52:42.494
 
 # ******************************************************************************
 # *                                                                            *
@@ -68,9 +68,9 @@ COMPONENTS_DEVICE_DRIVERS := /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/alt
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_timer \
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_lcd_16207 \
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_pio \
-                             /cygdrive/c/Users/abhigilbert86/Downloads/lab2_files/lab2_files/lab2_felix_lam/lab2_ece354_new/DM9000A \
-                             /cygdrive/c/Users/abhigilbert86/Downloads/lab2_files/lab2_files/lab2_felix_lam/lab2_ece354_new/ISP1362 \
-                             /cygdrive/c/Users/abhigilbert86/Downloads/lab2_files/lab2_files/lab2_felix_lam/lab2_ece354_new/binary_vga_controller
+                             /cygdrive/c/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/DM9000A \
+                             /cygdrive/c/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/ISP1362 \
+                             /cygdrive/c/Users/tbadams/Desktop/GitPortable/Data/home/ECE354/lab2_ece354_new/binary_vga_controller
 
 
 CPU = cpu_0

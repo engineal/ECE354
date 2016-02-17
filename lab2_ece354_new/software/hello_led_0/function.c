@@ -40,6 +40,7 @@ bool camera_capture(void){
 ////////////////////////////////////////////////////////////////////////
 ///////////////////// PORT READ ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
+// This function reads the picture capture from the FIFO to the flash memory
 void camera_port_read(alt_u8 *pBuf, alt_u32 num){
     alt_u32 i;
     alt_u32 data;
@@ -67,10 +68,25 @@ void camera_port_read(alt_u8 *pBuf, alt_u32 num){
 //        if((i != 0) && ((i%(640*2)) == 0))
 //        {              
 //        }
-        data = CAMERA_READ();
-       // continue with the code here
+        data = CAMERA_READ(); //reads a pixel
+        if(((data >> 20)&0x3FF) > 0x2ff) //convert from RGB to B&W
+        {
+            bin_pix[pix_idx++] = 1;
+        }
+        else
+        {
+            bin_pix[pix_idx++] = 0;
+        }
+    }
+    
+    //write to flash memory
+    for(i=0;i<num;i++)
+    {
+        alt_write_flash(fd,offset,bin_pix[i],1);
+        offset++;   
+    }
 
 
 
 
-
+}
