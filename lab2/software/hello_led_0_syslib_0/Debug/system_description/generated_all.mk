@@ -1,9 +1,9 @@
 # generated_all.mk
 #
 # Machine generated for a CPU named "cpu_0" as defined in:
-# c:\Users\ajlucia\code\lab2_ece354_new\software\hello_led_0_syslib_0\..\..\system_0.ptf
+# c:\Users\jmarple\Desktop\GitPortable\Data\home\code\ECE354\lab2\software\hello_led_0_syslib_0\..\..\system_0.ptf
 #
-# Generated: 2016-02-20 17:34:58.25
+# Generated: 2016-02-21 13:00:59.171
 
 # ******************************************************************************
 # *                                                                            *
@@ -68,9 +68,9 @@ COMPONENTS_DEVICE_DRIVERS := /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/alt
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_timer \
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_lcd_16207 \
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_pio \
-                             /cygdrive/c/Users/ajlucia/code/lab2_ece354_new/DM9000A \
-                             /cygdrive/c/Users/ajlucia/code/lab2_ece354_new/ISP1362 \
-                             /cygdrive/c/Users/ajlucia/code/lab2_ece354_new/binary_vga_controller
+                             /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/DM9000A \
+                             /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/ISP1362 \
+                             /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/binary_vga_controller
 
 
 CPU = cpu_0

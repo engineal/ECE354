@@ -6,6 +6,8 @@
 <includePath path="c:/altera/91/quartus/bin/cygwin/lib/gcc/i686-pc-cygwin/3.4.4/include"/>
 <includePath path="c:/altera/91/quartus/bin/cygwin/usr/include"/>
 <includePath path="c:/altera/91/quartus/bin/cygwin/usr/include/w32api"/>
+<includePath path="C:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/software"/>
+<includePath path="c:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description"/>
 <includePath path="C:/Users/ajlucia/code/lab2_ece354_new/software"/>
 <includePath path="c:/Users/ajlucia/code/lab2_ece354_new/software/hello_led_0_syslib_0/Debug/system_description"/>
 <includePath path="C:/Users/Felix/Desktop/ECE354/Lab2/lab2_ECE354_NEW/software"/>
@@ -22,6 +24,9 @@
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_lcd_16207/HAL/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_lcd_16207/inc"/>
 <includePath path="c:/altera/91/ip/altera/sopc_builder_ip/altera_avalon_pio/inc"/>
+<includePath path="c:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/DM9000A/inc"/>
+<includePath path="c:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/ISP1362/inc"/>
+<includePath path="c:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/binary_vga_controller/inc"/>
 <includePath path="c:/Users/ajlucia/code/lab2_ece354_new/DM9000A/inc"/>
 <includePath path="c:/Users/ajlucia/code/lab2_ece354_new/ISP1362/inc"/>
 <includePath path="c:/Users/ajlucia/code/lab2_ece354_new/binary_vga_controller/inc"/>
