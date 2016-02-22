@@ -3,9 +3,9 @@
 # generated.sh - shell script fragment - not very useful on its own
 #
 # Machine generated for a CPU named "cpu_0" as defined in:
-# c:\Users\jmarple\Desktop\GitPortable\Data\home\code\ECE354\lab2\software\hello_led_0_syslib_0\..\..\system_0.ptf
+# c:\Users\ajlucia\Desktop\GitPortable\Data\home\ECE354\lab2\software\hello_led_0_syslib_0\..\..\system_0.ptf
 #
-# Generated: 2016-02-21 13:03:27.743
+# Generated: 2016-02-22 14:27:45.427
 
 # DO NOT MODIFY THIS FILE
 #
@@ -18,7 +18,7 @@
 # DO NOT MODIFY THIS FILE
 
 # This variable indicates where the PTF file for this design is located
-ptf=c:\Users\jmarple\Desktop\GitPortable\Data\home\code\ECE354\lab2\software\hello_led_0_syslib_0\..\..\system_0.ptf
+ptf=c:\Users\ajlucia\Desktop\GitPortable\Data\home\ECE354\lab2\software\hello_led_0_syslib_0\..\..\system_0.ptf
 
 # This variable indicates whether there is a CPU debug core
 nios2_debug_core=yes

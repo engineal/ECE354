@@ -1,9 +1,9 @@
 # generated.gdb
 #
 # Machine generated for a CPU named "cpu_0" as defined in:
-# c:\Users\jmarple\Desktop\GitPortable\Data\home\code\ECE354\lab2\software\hello_led_0_syslib_0\..\..\system_0.ptf
+# c:\Users\ajlucia\Desktop\GitPortable\Data\home\ECE354\lab2\software\hello_led_0_syslib_0\..\..\system_0.ptf
 #
-# Generated: 2016-02-21 13:03:30.083
+# Generated: 2016-02-22 14:27:49.14
 
 # DO NOT MODIFY THIS FILE
 #

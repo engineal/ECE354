@@ -37,9 +37,9 @@ obj/hello_led.o: ../hello_led.c ../my_includes.h \
   /cygdrive/c/altera/91/nios2eds/bin/nios2-gnutools/H-i686-pc-cygwin/bin/../lib/gcc/nios2-elf/3.4.6/../../../../nios2-elf/include/sys/errno.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/nios2.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/priv/alt_legacy_irq.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/nios2.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h \
@@ -50,11 +50,11 @@ obj/hello_led.o: ../hello_led.c ../my_includes.h \
   /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_timer/HAL/inc/altera_avalon_timer.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
   /cygdrive/c/altera/91/nios2eds/components/altera_hal/HAL/inc/sys/alt_dev.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_warning.h \
   /cygdrive/c/altera/91/nios2eds/components/altera_hal/HAL/inc/sys/alt_stdio.h \
   ../my_types.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
   /cygdrive/c/altera/91/nios2eds/bin/nios2-gnutools/H-i686-pc-cygwin/bin/../lib/gcc/nios2-elf/3.4.6/../../../../nios2-elf/include/fcntl.h \
   /cygdrive/c/altera/91/nios2eds/bin/nios2-gnutools/H-i686-pc-cygwin/bin/../lib/gcc/nios2-elf/3.4.6/../../../../nios2-elf/include/sys/fcntl.h \
   /cygdrive/c/altera/91/nios2eds/bin/nios2-gnutools/H-i686-pc-cygwin/bin/../lib/gcc/nios2-elf/3.4.6/../../../../nios2-elf/include/sys/stat.h \
@@ -64,16 +64,16 @@ obj/hello_led.o: ../hello_led.c ../my_includes.h \
   ../debug.h ../basic_io.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/io.h \
   ../LCD.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/binary_vga_controller/inc/VGA.C \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/binary_vga_controller/inc/VGA.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/ISP1362/inc/HAL4D13.C \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/binary_vga_controller/inc/VGA.C \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/binary_vga_controller/inc/VGA.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/ISP1362/inc/HAL4D13.C \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0_syslib_0/Debug/system_description/system.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/ISP1362/inc/BasicTyp.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/ISP1362/inc/common.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/ISP1362/inc/usb_irq.h \
-  /cygdrive/c/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/ISP1362/inc/HAL4D13.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/ISP1362/inc/BasicTyp.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/ISP1362/inc/common.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/ISP1362/inc/usb_irq.h \
+  /cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/ISP1362/inc/HAL4D13.h \
   ../isa290.h ../reg.h ../buf_man.h ../port.h ../usb.h ../ptd.h \
   ../cheeyu.h ../cheeyu.c ../ptd.c ../usb.c ../buf_man.c ../reg.c \
   ../port.c \

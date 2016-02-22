@@ -478,7 +478,6 @@ set_global_assignment -name MISC_FILE "C:/Users/ajlucia/Desktop/GitPortable/Data
 set_location_assignment PIN_N2 -to clk_0
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_location_assignment PIN_N25 -to reset_n
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name VERILOG_FILE cpu_0.v
 set_global_assignment -name VERILOG_FILE cpu_0_jtag_debug_module_sysclk.v
 set_global_assignment -name VERILOG_FILE cpu_0_jtag_debug_module_tck.v
@@ -494,3 +493,4 @@ set_global_assignment -name SOURCE_FILE taj_hello.sopcinfo
 set_global_assignment -name VERILOG_FILE taj_hello.v
 set_global_assignment -name VERILOG_FILE timer_0.v
 set_global_assignment -name QIP_FILE taj_hello.qip
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

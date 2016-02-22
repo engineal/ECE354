@@ -1,12 +1,12 @@
 PACKAGE install2 
 {
    # This file informs the Nios II IDE of non-legacy component paths.
-   # Generated 2016.02.21.13:00:00
+   # Generated 2016.02.22.14:26:23
    COMPONENT CAMERA_IF 
    {
       VERSION 1.0 
       {
-         local = "C:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab2/ip/TERASIC_CAMERA";
+         local = "C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/ip/TERASIC_CAMERA";
       }
    }
    COMPONENT alt_vip_clip 

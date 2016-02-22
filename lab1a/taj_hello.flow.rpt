@@ -1,5 +1,5 @@
 Flow report for taj_hello
-Mon Feb 08 16:08:30 2016
+Tue Feb 09 09:49:50 2016
 Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Flow Summary                                                                 ;
 +------------------------------------+-----------------------------------------+
-; Flow Status                        ; Successful - Mon Feb 08 16:08:30 2016   ;
+; Flow Status                        ; Successful - Tue Feb 09 09:49:50 2016   ;
 ; Quartus II Version                 ; 9.1 Build 222 10/21/2009 SJ Web Edition ;
 ; Revision Name                      ; taj_hello                               ;
 ; Top-level Entity Name              ; taj_hello                               ;
@@ -63,7 +63,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/08/2016 16:07:42 ;
+; Start date & time ; 02/09/2016 09:49:01 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; taj_hello           ;
 +-------------------+---------------------+
@@ -74,7 +74,7 @@ applicable agreement for further details.
 +------------------------------------+---------------------------------------------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                    ; Value                                                                     ; Default Value ; Entity Name ; Section Id     ;
 +------------------------------------+---------------------------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID              ; 152426032767.145496566205488                                              ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID              ; 152426032767.145502934104996                                              ; --            ; --          ; --             ;
 ; MAX_CORE_JUNCTION_TEMP             ; 85                                                                        ; --            ; --          ; --             ;
 ; MIN_CORE_JUNCTION_TEMP             ; 0                                                                         ; --            ; --          ; --             ;
 ; MISC_FILE                          ; C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab1a/taj_hello.dpf ; --            ; --          ; --             ;
@@ -90,11 +90,11 @@ applicable agreement for further details.
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name             ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis    ; 00:00:17     ; 1.0                     ; 256 MB              ; 00:00:16                           ;
-; Fitter                  ; 00:00:22     ; 1.0                     ; 262 MB              ; 00:00:20                           ;
-; Assembler               ; 00:00:03     ; 1.0                     ; 239 MB              ; 00:00:03                           ;
-; Classic Timing Analyzer ; 00:00:01     ; 1.0                     ; 162 MB              ; 00:00:01                           ;
-; Total                   ; 00:00:43     ; --                      ; --                  ; 00:00:40                           ;
+; Analysis & Synthesis    ; 00:00:18     ; 1.0                     ; 259 MB              ; 00:00:17                           ;
+; Fitter                  ; 00:00:20     ; 1.0                     ; 263 MB              ; 00:00:21                           ;
+; Assembler               ; 00:00:04     ; 1.0                     ; 239 MB              ; 00:00:03                           ;
+; Classic Timing Analyzer ; 00:00:02     ; 1.0                     ; 162 MB              ; 00:00:02                           ;
+; Total                   ; 00:00:44     ; --                      ; --                  ; 00:00:43                           ;
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

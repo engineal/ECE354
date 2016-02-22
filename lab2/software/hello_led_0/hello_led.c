@@ -66,12 +66,12 @@ int main(void)
     vga_ctrl_set.VGA_Ctrl_Flags.RED_ON    = 1;
     vga_ctrl_set.VGA_Ctrl_Flags.GREEN_ON  = 1;
     vga_ctrl_set.VGA_Ctrl_Flags.BLUE_ON   = 1;
-    vga_ctrl_set.VGA_Ctrl_Flags.CURSOR_ON = 1;
+    vga_ctrl_set.VGA_Ctrl_Flags.CURSOR_ON = 0;
   
     Vga_Write_Ctrl(VGA_0_BASE, vga_ctrl_set.Value);
-    Set_Pixel_On_Color(1023,1023,1023);
+    Set_Pixel_On_Color(179<<2,139<<2,109<<2);
     Set_Pixel_Off_Color(0,0,0);
-    Set_Cursor_Color(0,1023,0);
+    //Set_Cursor_Color(0,1023,0);
 
     int i,j;
     for(i = 0 ; i < 480 ; i++)
@@ -103,11 +103,12 @@ int main(void)
     alt_u8 * pData;
     pData = (volatile alt_u8 *) CFI_FLASH_0_BASE;
     int imageTimeStamp = 0;
+    int imageCounter = 0;
     
     while(1)
     {
-        short cmd;
-        scanf("%d",&cmd);       
+        int cmd;
+        scanf("%d",&cmd);
 
         printf("Command : %d \n", cmd);
         switch(cmd)
@@ -120,7 +121,8 @@ int main(void)
                 
                 // The function "times()" returns how many clock ticks since reset.        
                 struct tms buf; 
-                imageTimeStamp = times(&buf);
+                imageTimeStamp = times(&buf) / ticks_per_sec;
+                imageCounter++;
                 break;
             }
             case 1:
@@ -132,6 +134,7 @@ int main(void)
             }
             case 2:
             {
+                printf("Normal\n");
                 alt_flash_fd* fd;
                 unsigned int offset = 0x10;
                 char bin_pix;
@@ -147,18 +150,20 @@ int main(void)
                 {
                     for(j = 0 ; j < 640 ; j++)
                     {
-                        alt_read_flash(fd,offset++,&bin_pix,1);                        
+                        alt_read_flash(fd,offset++,&bin_pix,1);
                         if(!bin_pix)Vga_Set_Pixel(VGA_0_BASE,j,i);
-                        else Vga_Clr_Pixel(VGA_0_BASE,j,i);                                
+                        else Vga_Clr_Pixel(VGA_0_BASE,j,i);
                     }
                 }               
                 alt_flash_close_dev(CFI_FLASH_0_NAME);  
                 writeTimestamp(imageTimeStamp, 20, 20); 
+                writeTimestamp(imageCounter, 500, 20);
                 printf("... Done\n");
                 break;
             }
             case 3:
             {
+                printf("Flip\n");
                 alt_flash_fd* fd;
                 unsigned int offset = 0x10;
                 char bin_pix;
@@ -176,18 +181,77 @@ int main(void)
                     {
                         alt_read_flash(fd,offset++,&bin_pix,1);                        
                         if(!bin_pix)Vga_Set_Pixel(VGA_0_BASE,j,i);
-                        else Vga_Clr_Pixel(VGA_0_BASE,j,i);                                
+                        else Vga_Clr_Pixel(VGA_0_BASE,j,i);
                     }
                 }
 
                 alt_flash_close_dev(CFI_FLASH_0_NAME);
                 writeTimestamp(imageTimeStamp, 20, 20); 
+                writeTimestamp(imageCounter, 500, 20);
                 printf("... Done\n");
                 break;
             }
             case 4:
             {
-                writeTimestamp(1234, 20, 20);
+                printf("Invert color\n");
+                alt_flash_fd* fd;
+                unsigned int offset = 0x10;
+                char bin_pix;
+                fd = alt_flash_open_dev(CFI_FLASH_0_NAME);
+                if (fd==NULL) 
+                {
+                    printf("Flash memory open failure\n");
+                    return 0;
+                }
+                    
+                printf("Reading binary pixel from flash memory\n");
+                for(i = 0 ; i < 480 ; i++)
+                {
+                    for(j = 0 ; j < 640 ; j++)
+                    {
+                        alt_read_flash(fd,offset++,&bin_pix,1);
+                        if(bin_pix)Vga_Set_Pixel(VGA_0_BASE,j,i);
+                        else Vga_Clr_Pixel(VGA_0_BASE,j,i);                                
+                    }
+                }               
+                alt_flash_close_dev(CFI_FLASH_0_NAME);  
+                writeTimestamp(imageTimeStamp, 20, 20); 
+                writeTimestamp(imageCounter, 500, 20);
+                printf("... Done\n");
+                break;
+            }
+            case 5:
+            {
+                printf("Rotate\n");
+                alt_flash_fd* fd;
+                unsigned int offset = 0x10+80;
+                char bin_pix;
+                fd = alt_flash_open_dev(CFI_FLASH_0_NAME);
+                if (fd==NULL) 
+                {
+                    printf("Flash memory open failure\n");
+                    return 0;
+                }
+                    
+                printf("Reading binary pixel from flash memory\n");
+                for(j = 0; j < 640; j++)
+                {
+                    for(i = 0; i < 480; i++)
+                    {
+                        if (j > 80 && j < 560) {
+                            alt_read_flash(fd,offset++,&bin_pix,1);
+                            if(!bin_pix)Vga_Set_Pixel(VGA_0_BASE,j,i);
+                            else Vga_Clr_Pixel(VGA_0_BASE,j,i);
+                        } else {
+                            Vga_Clr_Pixel(VGA_0_BASE,j,i);
+                        }
+                    }
+                    offset+=160;
+                }               
+                alt_flash_close_dev(CFI_FLASH_0_NAME);  
+                writeTimestamp(imageTimeStamp, 20, 20); 
+                writeTimestamp(imageCounter, 500, 20);
+                printf("... Done\n");
                 break;
             }
         }
@@ -333,7 +397,6 @@ void drawAscii(char letter, int topleftX, int topleftY)
         {0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18},
         {0x00, 0x00, 0xf0, 0x18, 0x18, 0x18, 0x1c, 0x0f, 0x1c, 0x18, 0x18, 0x18, 0xf0},
         {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x8f, 0xf1, 0x60, 0x00, 0x00, 0x00}};  // :126
-        
     int arrayIndex = letter - 32; // Subtract 32 so that the index 0 is the same as ascii "32 (space)"
        
     int x, y;
@@ -359,68 +422,6 @@ void drawAscii(char letter, int topleftX, int topleftY)
             if (pixelOn) Vga_Clr_Pixel(VGA_0_BASE,pixX,pixY);        
             else Vga_Set_Pixel(VGA_0_BASE,pixX,pixY);    
         }
-    }    
+    }
 }
 
-    
- /*
-     while(1){
- //           if (!read_packet(szPacket))
-//                continue;
-                char cmd[2];
-                gets(cmd);
-                printf(" %d %d\n", cmd[0]-48, cmd[1]-48);
-              szPacket[PKT_HEADER_INDEX] = cmd[0] -48;
-              szPacket[PKT_OP_INDEX] = cmd[1] -48;
-              szPacket[PKT_LEN_INDEX] = 0;
-              
-            bool bResponse = TRUE, bSuccess = FALSE;
-            time_start = alt_nticks();
-            alt_u8 OP = szPacket[PKT_OP_INDEX];
-            dump_op_name(OP);
-            switch(OP){
-                case OP_POLLING:
-                    bSuccess = op_polling(szPacket); // ack
-                    break;
-                case OP_CAMERA_CONFIG:
-                    bSuccess = op_camera_config(szPacket);
-                    break;                    
-                case OP_CAMERA_CAPTURE:
-                    bSuccess = op_camera_capture(szPacket);
-                    break;                    
-                case OP_CAMERA_PORT_READ:
-                    bSuccess = op_camera_port_read(szPacket);
-                    break;                                                                                                                                                                                                     
-                case OP_MEMORY_READ:
-                    bSuccess = op_memory_read(szPacket);
-                    break;    
-                case OP_MEMORY_WRITE:
-                    bSuccess = op_memory_write(szPacket);
-                    break;   
-                default:    
-                    bResponse = FALSE;
-                    break; 
-            }  // end of switch
-            if (bResponse){  // report result to PC
-                alt_u32 time_elapsed;
-                PKLEN_TYPE pl_len;
-                alt_u32 pk_len;
-                memcpy(&pl_len, &szPacket[PKT_LEN_INDEX], sizeof(pl_len));  // payload len
-                pk_len = pl_len + PKT_NONEPL_SIZE;
-                if (pk_len > PKT_NIOS2PC_MAX_LEN){ 
-                    printf(("response packet len too long\r\n"));
-                }else{
-                    printf("JTAGUART_Write (len=%d)...\r\n", pk_len);    
-//                    if (!JTAGUART_Write(szPacket, pk_len)){
- //                       printf("send packet fail, len=%d\r\n", pk_len);
- //                   }    
-                        
-                }                    
-                time_elapsed = alt_nticks() - time_start;
-                printf("\r\n%s(OP=%d, %d ms)\r\n", bSuccess?"ok":"ng", OP,  (int)(1000*time_elapsed/ticks_per_sec));    
-                //JTAGUART_ClearInput();            
-             }  // if response
-                        
-        
-    }  // while(1)
-*/
