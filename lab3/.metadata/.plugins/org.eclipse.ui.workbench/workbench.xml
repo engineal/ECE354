@@ -28,12 +28,20 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="2"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.c" partName="hello_led.c" path="C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab3/hello_led_0/hello_led.c" title="hello_led.c" tooltip="hello_led_0/hello_led.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.c" partName="hello_led.c" path="C:/Users/tbadams/Desktop/ECE354/lab3/hello_led_0/hello_led.c" title="hello_led.c" tooltip="hello_led_0/hello_led.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/hello_led.c"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ethernet_layer.h" partName="ethernet_layer.h" path="C:/Users/tbadams/Desktop/ECE354/lab3/hello_led_0/ethernet_layer.h" title="ethernet_layer.h" tooltip="hello_led_0/ethernet_layer.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/ethernet_layer.h"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ethernet_layer.c" partName="ethernet_layer.c" path="C:/Users/tbadams/Desktop/ECE354/lab3/hello_led_0/ethernet_layer.c" title="ethernet_layer.c" tooltip="hello_led_0/ethernet_layer.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/ethernet_layer.c"/>
 </editor>
 </editors>
 <views>
@@ -45,7 +53,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="253" columnWidth1="78" columnWidth2="153" columnWidth3="63" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="256" columnWidth1="81" columnWidth2="156" columnWidth3="66" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -59,10 +67,10 @@
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
 <viewState horizontalPosition="0" verticalPosition="0">
 <expanded>
-<element path="C:\Users\ajlucia\Desktop\GitPortable\Data\home\ECE354\lab3\hello_led_0"/>
+<element path="C:\Users\tbadams\Desktop\ECE354\lab3\hello_led_0"/>
 </expanded>
 <selection>
-<element path="C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab3/hello_led_0"/>
+<element path="C:/Users/tbadams/Desktop/ECE354/lab3/hello_led_0"/>
 </selection>
 <customFilters userDefinedPatternsEnabled="false">
 <xmlDefinedFilters>
@@ -187,162 +195,161 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/hello_led.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/LCD.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/LCD.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/Test.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/basic_io.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/Test.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/Test.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/ethernet_layer.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/ethernet_layer.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/helper.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/helper.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/helper.c"/>
 </editors>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="264" y="0"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="499" y="0"/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="776" y="0"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="623" y="0"/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="776" y="0"/>
-</item>
-<item historyLabel="Test.c" index="3">
+<item historyLabel="helper.c" index="3">
 <position/>
 </item>
-<item historyLabel="Test.h" index="5">
+<item historyLabel="helper.h" index="4">
 <position/>
 </item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="623" y="0"/>
-</item>
-<item historyLabel="Test.c" index="3">
-<position info="not_deleted" x="966" y="40"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="1919" y="0"/>
-</item>
-<item historyLabel="Test.c" index="3">
-<position info="not_deleted" x="962" y="0"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="499" y="0"/>
-</item>
-<item historyLabel="Test.h" index="5">
+<item historyLabel="helper.c" index="3">
 <position/>
 </item>
-<item historyLabel="Test.c" index="3">
-<position info="not_deleted" x="962" y="0"/>
+<item historyLabel="ethernet_layer.h" index="2">
+<position info="not_deleted" x="310" y="51"/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position/>
+</item>
+<item historyLabel="helper.h" index="4">
+<position info="not_deleted" x="200" y="0"/>
+</item>
+<item historyLabel="helper.c" index="3">
+<position/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="752" y="0"/>
+</item>
+<item historyLabel="helper.h" index="4">
+<position info="not_deleted" x="219" y="1"/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="752" y="0"/>
 </item>
 <item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="615" y="0"/>
-</item>
-<item historyLabel="Test.h" index="5">
 <position/>
 </item>
-<item historyLabel="Test.c" index="6">
+<item historyLabel="helper.h" index="4">
+<position info="not_deleted" x="219" y="1"/>
+</item>
+<item historyLabel="helper.c" index="3">
 <position/>
 </item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="55" y="122"/>
-</item>
-<item historyLabel="Test.c" index="6">
-<position info="not_deleted" x="41" y="0"/>
-</item>
-<item historyLabel="LCD.c" index="2">
-<position/>
-</item>
-<item historyLabel="LCD.h" index="1">
-<position/>
-</item>
-<item historyLabel="LCD.c" index="2">
-<position/>
-</item>
-<item historyLabel="Test.c" index="6">
-<position info="not_deleted" x="41" y="0"/>
-</item>
-<item historyLabel="Test.h" index="5">
-<position/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="55" y="122"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="611" y="0"/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="55" y="122"/>
-</item>
-<item historyLabel="Test.h" index="5">
-<position/>
-</item>
-<item historyLabel="Test.c" index="6">
-<position info="not_deleted" x="17" y="0"/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="148" y="0"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="589" y="0"/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="148" y="0"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="589" y="0"/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="148" y="0"/>
-</item>
-<item historyLabel="Test.h" index="5">
-<position/>
-</item>
-<item historyLabel="Test.c" index="6">
-<position info="not_deleted" x="292" y="15"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="517" y="0"/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="204" y="6"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="1928" y="0"/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="905" y="6"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="1928" y="0"/>
+<item historyLabel="ethernet_layer.h" index="2">
+<position info="not_deleted" x="310" y="51"/>
 </item>
 <item historyLabel="hello_led.c" index="0">
 <position/>
 </item>
 <item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="745" y="3"/>
+<position info="not_deleted" x="2004" y="12"/>
 </item>
 <item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="557" y="0"/>
+<position/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="752" y="0"/>
 </item>
 <item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="86" y="37"/>
+<position/>
 </item>
 <item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="2041" y="0"/>
+<position info="not_deleted" x="2094" y="0"/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position/>
 </item>
 <item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="96" y="0"/>
-</item>
-<item historyLabel="basic_io.h" index="4">
-<position info="not_deleted" x="905" y="6"/>
+<position info="not_deleted" x="2094" y="0"/>
 </item>
 <item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="96" y="0"/>
+<position info="not_deleted" x="269" y="0"/>
+</item>
+<item historyLabel="helper.c" index="3">
+<position/>
+</item>
+<item historyLabel="hello_led.c" index="0">
+<position info="not_deleted" x="1500" y="0"/>
+</item>
+<item historyLabel="helper.c" index="3">
+<position/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="750" y="0"/>
+</item>
+<item historyLabel="helper.c" index="3">
+<position/>
+</item>
+<item historyLabel="helper.h" index="4">
+<position info="not_deleted" x="225" y="0"/>
+</item>
+<item historyLabel="hello_led.c" index="0">
+<position info="not_deleted" x="1489" y="0"/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="752" y="0"/>
+</item>
+<item historyLabel="hello_led.c" index="0">
+<position info="not_deleted" x="1297" y="0"/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="752" y="0"/>
+</item>
+<item historyLabel="ethernet_layer.h" index="2">
+<position info="not_deleted" x="310" y="51"/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="702" y="0"/>
+</item>
+<item historyLabel="hello_led.c" index="0">
+<position info="not_deleted" x="1186" y="8"/>
+</item>
+<item historyLabel="helper.c" index="3">
+<position/>
+</item>
+<item historyLabel="ethernet_layer.h" index="2">
+<position info="not_deleted" x="310" y="51"/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="19" y="0"/>
+</item>
+<item historyLabel="ethernet_layer.h" index="2">
+<position info="not_deleted" x="361" y="0"/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="805" y="0"/>
+</item>
+<item historyLabel="helper.c" index="3">
+<position info="not_deleted" x="46" y="0"/>
+</item>
+<item historyLabel="helper.h" index="4">
+<position info="not_deleted" x="61" y="0"/>
+</item>
+<item historyLabel="hello_led.c" index="0">
+<position info="not_deleted" x="1274" y="0"/>
+</item>
+<item historyLabel="ethernet_layer.c" index="1">
+<position info="not_deleted" x="907" y="0"/>
+</item>
+<item historyLabel="hello_led.c" index="0">
+<position info="not_deleted" x="1960" y="0"/>
+</item>
+<item historyLabel="helper.h" index="4">
+<position info="not_deleted" x="61" y="0"/>
+</item>
+<item historyLabel="hello_led.c" index="0">
+<position info="not_deleted" x="1960" y="0"/>
+</item>
+<item historyLabel="helper.c" index="5">
+<position/>
 </item>
 <item active="true" historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="588" y="1"/>
+<position info="not_deleted" x="1960" y="0"/>
 </item>
 </navigationHistory>
 <stickyState/>
@@ -362,20 +369,35 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="helper.c" tooltip="hello_led_0/helper.c">
+<persistable path="/hello_led_0/helper.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="helper.h" tooltip="hello_led_0/helper.h">
+<persistable path="/hello_led_0/helper.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ethernet_layer.c" tooltip="hello_led_0/ethernet_layer.c">
+<persistable path="/hello_led_0/ethernet_layer.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="layer.h" tooltip="hello_led_0/layer.h">
+<persistable path="/hello_led_0/layer.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="layer.c" tooltip="hello_led_0/layer.c">
+<persistable path="/hello_led_0/layer.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Test.h" tooltip="hello_led_0/Test.h">
+<persistable path="/hello_led_0/Test.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="LCD.h" tooltip="hello_led_0/LCD.h">
 <persistable path="/hello_led_0/LCD.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="basic_io.h" tooltip="hello_led_0/basic_io.h">
+<persistable path="/hello_led_0/basic_io.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="LCD.c" tooltip="hello_led_0/LCD.c">
 <persistable path="/hello_led_0/LCD.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Test.c" tooltip="hello_led_0/Test.c">
 <persistable path="/hello_led_0/Test.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="Test.h" tooltip="hello_led_0/Test.h">
-<persistable path="/hello_led_0/Test.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="basic_io.h" tooltip="hello_led_0/basic_io.h">
-<persistable path="/hello_led_0/basic_io.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.c" tooltip="hello_led_0/hello_led.c">
 <persistable path="/hello_led_0/hello_led.c"/>

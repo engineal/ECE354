@@ -9,7 +9,9 @@ C_SRCS += \
 ${addprefix ,\
 LCD.c \
 Test.c \
+ethernet_layer.c \
 hello_led.c \
+helper.c \
 }
 
 CXX_SRCS += \

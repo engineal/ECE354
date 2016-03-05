@@ -1,0 +1,95 @@
+
+#include "basic_io.h"
+#include "test.h"
+#include "LCD.h"
+#include "DM9000A.C"
+#include "helper.h"
+#include "ethernet_layer.h"
+
+unsigned int aaa,rx_len,i,packet_num;
+unsigned char RXT[68];
+unsigned char TXT[21];
+
+int readSwitches()
+{
+    return inport(SWITCH_PIO_BASE);
+}
+
+void writeLEDs(int value)
+{
+    outport(LED_RED_BASE,value);
+}
+
+void encode_message() {
+    ethernetFrame recFrame;
+    recFrame.data = (unsigned char*) malloc(sizeof(unsigned char)*(rx_len - 18));
+    ethUnpack(RXT, rx_len, &recFrame);
+    
+    //check mac address, IP, port address before you do this
+    unsigned int rx_val = (recFrame.data[0]<<16) | (recFrame.data[1]<<8) | recFrame.data[2];
+    writeLEDs(rx_val);
+    
+    free(recFrame.data);
+}
+
+void decode_message() {
+    ethernetFrame recFrame;
+    recFrame.data = (unsigned char*) malloc(sizeof(unsigned char)*(rx_len - 18));
+    ethUnpack(RXT, rx_len, &recFrame);
+    
+    //check mac address, IP, port address before you do this
+    unsigned int rx_val = (recFrame.data[0]<<16) | (recFrame.data[1]<<8) | recFrame.data[2];
+    writeLEDs(rx_val);
+    
+    free(recFrame.data);
+}
+
+void ethernet_interrupts()
+{
+    packet_num++;
+    aaa=ReceivePacket(RXT,&rx_len);
+    if(!aaa)
+    {
+        printf("\nReceive Packet Length = %d\n",rx_len);
+        /*for(i=0;i<rx_len;i++)
+        {
+            if(i%8==0)
+            printf("\n");
+            printf("0x%2X,",RXT[i]);
+        }*/
+        decode_message();
+    }
+    outport(SEG7_DISPLAY_BASE,packet_num);
+}
+
+int main(void)
+{
+    LCD_Test();
+    //ether_addr = {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF}; // Set MAC address with our group id as the last byte
+    DM9000_init();
+    alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
+  
+    packet_num=0;
+  
+    while (1)
+    {
+        int value = readSwitches();
+        
+        ethFrame.data[0] = (value>>16)&0xFF;
+        ethFrame.data[1] = (value>>8)&0xFF;
+        ethFrame.data[2] = value&0xFF;
+        
+        int len = ethPack(&ethFrame, TXT);
+        TransmitPacket(TXT, len);
+        
+        msleep(500);
+    }
+  
+    free(ethFrame.data);
+
+    return 0;
+}
+
+//-------------------------------------------------------------------------
+
+

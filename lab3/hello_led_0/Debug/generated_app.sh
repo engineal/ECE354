@@ -11,4 +11,4 @@
 #
 # DO NOT MODIFY THIS FILE
  
-SYSTEM_CONFIG_DIR=/cygdrive/c/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab3/hello_led_0_syslib/Debug
+SYSTEM_CONFIG_DIR=/cygdrive/c/Users/tbadams/Desktop/ECE354/lab3/hello_led_0_syslib/Debug

@@ -1,0 +1,7 @@
+#ifndef HELPER_H
+#define HELPER_H
+
+void strncpy(char *);
+void strncpy(char *);
+
+#endif /*HELPER_H*/

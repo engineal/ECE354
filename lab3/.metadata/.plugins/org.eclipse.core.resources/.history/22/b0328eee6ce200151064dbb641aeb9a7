@@ -1,0 +1,16 @@
+#ifndef ETHERNET_LAYER_H
+#define ETHERNET_LAYER_H
+
+struct ethernet_frame {
+    char dest_addr[6];
+    char src_addr[6];
+    char type[2];
+    char* data;
+    int dataLength;
+    char checksum[4];
+};
+
+int ethPack(struct ethernet_frame, char*);
+void generateChecksum(char*);
+
+#endif /*ETHERNET_LAYER_H*/

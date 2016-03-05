@@ -1,0 +1,4 @@
+#include "helper.h"
+
+void strncpy(char* dest, const char *src, int n);
+void strncat(char* dest, const char *src, int n);

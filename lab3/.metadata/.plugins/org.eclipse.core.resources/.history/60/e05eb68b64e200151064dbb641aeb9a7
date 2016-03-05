@@ -1,0 +1,12 @@
+#ifndef LAYER_H
+#define LAYER_H
+
+struct ethernet_frame {
+    char dest_addr[];
+    char src_addr[];
+    char[] data;
+};
+
+void generate_frame(, , );
+
+#endif LAYER_H

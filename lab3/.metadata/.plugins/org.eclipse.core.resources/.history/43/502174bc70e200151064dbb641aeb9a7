@@ -1,0 +1,21 @@
+#include "helper.h"
+#include "ethernet_layer.h"
+
+int ethPack(ethernetFrame* frame, char* output) {
+    int s = 0;
+    
+    strncat(output, frame->dest_addr, s, 6);
+    strncat(output, frame->src_addr, s, 6);
+    strncat(output, frame->type, s, 2);
+    strncat(output, frame->data, s, frame->dataLength);
+    strncat(output, frame->checksum, s, 4);
+    
+    return s;
+}
+
+void generateChecksum(char* dest) {
+    dest[0] = 0x00;
+    dest[1] = 0x00;
+    dest[2] = 0x00;
+    dest[3] = 0x20;
+}

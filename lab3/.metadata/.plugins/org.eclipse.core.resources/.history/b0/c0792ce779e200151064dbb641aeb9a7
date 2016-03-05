@@ -1,0 +1,33 @@
+#include "helper.h"
+
+void charncpy(char* dest, const char *src, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        dest[i] = src[i];
+    }
+}
+
+void charncat(char* dest, const char *src, int* s, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        dest[i + *s] = src[i];
+    }
+    *s += n;
+}
+
+void charnuncat(char* dest, const char *src, int* s, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        dest[i] = src[i + *s];
+    }
+    *s += n;
+}
+
+void printcharnf(unsigned char* src, int n) {
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        printf("0x%x ", src[i]);
+    }
+    printf("\n");
+}

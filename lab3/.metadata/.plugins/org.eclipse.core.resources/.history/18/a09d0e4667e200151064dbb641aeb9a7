@@ -1,0 +1,14 @@
+#ifndef ETHERNET_LAYER_H
+#define ETHERNET_LAYER_H
+
+struct ethernet_frame {
+    char dest_addr[6];
+    char src_addr[6];
+    char type[];
+    char data[46];
+    char checksum[4];
+};
+
+void ethPack(struct ethernet_frame, char[], int*);
+
+#endif /*ETHERNET_LAYER_H*/

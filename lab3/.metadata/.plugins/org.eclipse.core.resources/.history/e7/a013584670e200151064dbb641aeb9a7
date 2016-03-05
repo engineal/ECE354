@@ -1,0 +1,15 @@
+#include "helper.h"
+
+void strncpy(char* dest, const char *src, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        dest[i] = src[i];
+    }
+}
+void strncat(char* dest, const char *src, int* s, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        dest[i + s] = src[i];
+    }
+    *s = *s + n;
+}
