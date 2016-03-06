@@ -1,7 +1,10 @@
 #include "helper.h"
 #include "ethernet_layer.h"
 
-int ethPack(ethernetFrame* frame, unsigned char* output) {
+// Takes a full ethernetFrame struct and stores it into
+// output, ready for transmission.
+int ethPack(ethernetFrame* frame, unsigned char* output) 
+{
     int s = 0;
     
     charncat(output, frame->dest_addr, &s, 6);
@@ -13,7 +16,10 @@ int ethPack(ethernetFrame* frame, unsigned char* output) {
     return s;
 }
 
-int ethUnpack(unsigned char* input, int inputLength, ethernetFrame* frame) {
+// Takes char* input which holds transmitted packet and interprets it, 
+// storing the result in an ethernetFrame struct.
+int ethUnpack(unsigned char* input, int inputLength, ethernetFrame* frame) 
+{
     int s = 0;
     
     charnuncat(frame->dest_addr, input, &s, 6);
@@ -25,7 +31,9 @@ int ethUnpack(unsigned char* input, int inputLength, ethernetFrame* frame) {
     return 0;
 }
 
-void generateChecksum(unsigned char* dest) {
+// Generates a CRC checksum for the ethernet frame.
+void generateCRCChecksum(unsigned char* dest) 
+{
     dest[0] = 0x00;
     dest[1] = 0x00;
     dest[2] = 0x00;

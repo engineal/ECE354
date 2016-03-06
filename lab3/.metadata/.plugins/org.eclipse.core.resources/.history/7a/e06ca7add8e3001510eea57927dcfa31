@@ -1,0 +1,8 @@
+#ifndef HELLO_LED_H_
+#define HELLO_LED_H_
+
+int readSwitches();
+void writeLEDs(int);
+void encode_message(int);
+
+#endif /*HELLO_LED_H_*/

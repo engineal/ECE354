@@ -1,0 +1,25 @@
+#ifndef IP_LAYER_H_
+#define IP_LAYER_H_
+
+#define NUM_BYTES_IN_IP_HEADER 20 // incl. for fields we have as empty
+#define SRC_ADDR_BYTE_OFFSET 12
+#define DEST_ADDR_BYTE_OFFSET 16
+#define DATA_BYTE_OFFSET NUM_BYTES_IN_IP_HEADER
+
+typedef struct {
+    int version; // 4 bits
+    int headerLength; // number of 32-bit words in header, 4 bits max
+    int packetLength; // num bytes in total packet, 16 bits max
+    int id; // 16 bits
+    int checksum; // 16 bits
+    unsigned char src_addr[4];
+    unsigned char dest_addr[4];
+    unsigned char* data;
+} IPFrame;
+
+
+int IPPack(IPFrame*, unsigned char*);
+int IPUnpack(unsigned char*, int, IPFrame*);
+void generateIPChecksum(unsigned char*);
+
+#endif /*IP_LAYER_H_*/

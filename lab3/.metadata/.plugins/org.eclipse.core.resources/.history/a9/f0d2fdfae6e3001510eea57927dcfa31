@@ -1,0 +1,69 @@
+#include "IP_layer.h"
+#include "helper.h"
+
+// Takes a full IPFrame struct and stores it into
+// output, ready for transmission.
+int IPPack(IPFrame* frame, unsigned char* output)
+{
+    //store version & headerLength in byte 0
+    output[0] = ((frame->version & 0xF))<<4)|(frame->headerLength & 0xF);
+    
+    //type of service: unused
+    output[1] = 0x00; 
+   
+    //store packetLength
+    output[2] = (frame->packetLength & 0xFF00)>>8;
+    output[3] = (frame->packetLength & 0x00FF);
+    
+    //store identification 
+    output[4] = (frame->id & 0xFF00)>>8;
+    output[5] = (frame->id & 0x00FF);
+    
+    //flags, evil bit, fragment offset, TTL, protocol: unused
+    int i;
+    for(i=6; i<10; i++)
+    {
+        output[i] = 0x00;
+    }
+    
+    //store header checksum
+    output[10] = (frame->checksum & 0xFF00)>>8;
+    output[11] = frame->checksum & 0x00FF;
+    
+    //store src_addr and dest_addr
+    for(i=0; i<4; i++)
+    {
+        output[SRC_ADDR_BYTE_OFFSET+i] = frame->src_addr[i];
+        output[DEST_ADDR_BYTE_OFFSET+i] = frame->dest_addr[i];  
+    }
+    
+    //store data
+    for(i=0; i<(frame->packetLength-NUM_BYTES_IN_IP_HEADER); i++)
+    {
+        output[NUM_BYTES_IN_IP_HEADER+i] = data[i];
+    }
+}
+
+// Takes char* input which holds transmitted packet and interprets it,
+// storing the result in an IPFrame struct.
+int IPUnpack(unsigned char* input, int inputLength, IPFrame* frame)
+{
+    int s = 0;
+    
+    unsigned char temp;
+    charuncat(temp, input, &s, 1);
+    frame->version = (temp&0xF0)>>4;
+    frame->headerLength = temp&0x0F;
+    
+}
+
+// Generates IP header checksum for frame and stores it in 
+// checksum field in struct.
+// "The checksum field is the 16-bit one's complement of the one's 
+// complement sum of all 16-bit words in the header. 
+// For purposes of computing the checksum, the value of the checksum 
+// field is zero."
+void generateIPChecksum(IPFrame* frame)
+{
+    
+}

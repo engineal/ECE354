@@ -32,8 +32,8 @@ obj/hello_led.o: ../hello_led.c ../basic_io.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/nios2.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h \
-  ../test.h ../LCD.h \
+  ../hello_led.h ../test.h ../LCD.h \
   /cygdrive/c/Users/tbadams/Desktop/ECE354/lab3/DM9000A/inc/DM9000A.C \
   /cygdrive/c/Users/tbadams/Desktop/ECE354/lab3/DM9000A/inc/DM9000A.H \
   /cygdrive/c/Users/tbadams/Desktop/ECE354/lab3/DM9000A/inc/basic_io.h \
-  ../helper.h ../ethernet_layer.h
+  ../helper.h ../ethernet_layer.h ../IP_layer.h

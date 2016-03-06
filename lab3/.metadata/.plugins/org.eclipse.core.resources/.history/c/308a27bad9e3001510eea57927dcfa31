@@ -1,0 +1,21 @@
+#ifndef IP_LAYER_H_
+#define IP_LAYER_H_
+
+typedef struct {
+    unsigned char version[4]
+    unsigned char header_length[4]
+} IPFrame;
+
+#endif /*IP_LAYER_H_*/
+
+
+
+The parts of each section that you will use in the is lab are:
+Version: IP packet version (4) 
+Header length (between 5 and 15)
+Total Length (size of datagram)
+
+Identification: uniquely identifying fragments
+Header checksum
+Source and Destination address
+Data

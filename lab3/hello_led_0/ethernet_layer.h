@@ -12,6 +12,6 @@ typedef struct {
 
 int ethPack(ethernetFrame*, unsigned char*);
 int ethUnpack(unsigned char*, int, ethernetFrame*);
-void generateChecksum(unsigned char*);
+void generateCRCChecksum(unsigned char*);
 
 #endif /*ETHERNET_LAYER_H*/

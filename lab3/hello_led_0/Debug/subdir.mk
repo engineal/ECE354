@@ -7,6 +7,7 @@
 # ********************************************************************** 
 C_SRCS += \
 ${addprefix ,\
+IP_layer.c \
 LCD.c \
 Test.c \
 ethernet_layer.c \
