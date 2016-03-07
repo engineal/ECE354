@@ -48,33 +48,36 @@ int IPPack(IPFrame* frame, unsigned char* output)
 // storing the result in an IPFrame struct.
 int IPUnpack(unsigned char* input, IPFrame* frame, unsigned char* ip_addr)
 {
-    int s = 0;
-    
     frame->version = (input[0]>>4)&0xF;
-    int headerLength = input[0]&0xF;
     
     //byte offset for packetLength -- skipping unused header fields
-    s = 2;
-    frame->dataLength = char_to_int(input, &s, 2) - IP_HEADER_LENGTH;
-    frame->id = char_to_int(input, &s, 2);
+    int packetLength = (input[2]<<8) | input[3];
+    frame->dataLength = packetLength - IP_HEADER_LENGTH;
+    frame->id = (input[4]<<8) | input[5];
     
     //byte offset for headerChecksum -- skipping unused header fields
-    s = 10;
-    int checksum = char_to_int(input, &s, 2);
+    int checksum = (input[10]<<8) | input[11];
     
-    s=12;
-    charnuncat(frame->src_addr, input, &s, 4);
-    charnuncat(frame->dest_addr, input, &s, 4);
-    charnuncat(frame->data, input, &s, frame->dataLength);
-    int chcksmLocation = 10;
+    charnuncat(frame->src_addr, input, 12, 4);
+    charnuncat(frame->dest_addr, input, 16, 4);
+    charnuncat(frame->data, input, 20, frame->dataLength);
+    /*int chcksmLocation = 10;
     int_to_char(input, 0, &chcksmLocation, 2);
     int checksum2 = computeChecksum(input, IP_HEADER_LENGTH);
     
     int checksumPass = checksum == checksum2;
+    if (!checksumPass) {
+        printf("IP Checksum fail: %x != %x\n", checksum, checksum2);
+    }*/
     int ipPass = 1;
     int i;
     for (i = 0; i < 4; i++) {
         ipPass &= frame->dest_addr[i] == ip_addr[i];
+    }
+    if (!ipPass) {
+        printf("IP fail: %d.%d.%d.%d != %d.%d.%d.%d\n",
+            frame->dest_addr[0], frame->dest_addr[1], frame->dest_addr[2], frame->dest_addr[3],
+            ip_addr[0], ip_addr[1], ip_addr[2], ip_addr[3]);
     }
     return ipPass;
 }

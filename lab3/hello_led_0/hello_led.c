@@ -8,46 +8,73 @@
 #include "IP_layer.h"
 #include "UDP_layer.h"
 
-unsigned int aaa,rx_len,i,packet_num;
 unsigned char RXT[68];
 
 //ether_addr = {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF}; // Set MAC address with our group id as the last byte
-unsigned char ip_addr[] = {192, 168, 64, 102};
-unsigned int port = 80;
+unsigned char ip_addr[] = {192, 168, 1, 115};
+unsigned int port = 1114;
+
+unsigned char destMAC[] = {0x01, 0x60, 0x6E, 0x11, 0x02, 0x13};
+unsigned char destIP[] = {192, 168, 0, 1};
+unsigned int destPort = 26214;
 
 // run everytime an ethernet interrupt is generated
 void ethernet_interrupts()
 {
+    /*static int lc = 0;
+    printf("lc = %d\n", lc++);
+    
     packet_num++;
-    aaa=ReceivePacket(RXT,&rx_len);
+    int rx_len = 0;
+    int aaa=ReceivePacket(RXT,&rx_len);
     if(!aaa)
     {
         printf("Receive Packet Length = %d\n",rx_len);
-        /*for(i=0;i<rx_len;i++)
+        int i;
+        for(i=0;i<rx_len;i++)
         {
             if(i%8==0)
                 printf("\n");
             printf("0x%2X,",RXT[i]);
         }
-        printf("\n\n");*/
+        printf("\n\n");
         decode_message(RXT, rx_len);
     }
-    outport(SEG7_DISPLAY_BASE,packet_num);
+    
+    writeDecimalLCD(packet_num);*/
 }
 
 int main(void)
 {
     LCD_Test();
     DM9000_init();
-    alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
-  
-    packet_num=0;
-  
+    //alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
+    
+    int packet_num=0;
+    writeDecimalLCD(packet_num);
+    writeLEDs(0);
+    
+    int oldValue = 0;
     while (1)
     {
+        // -- SEND --
         int value = readSwitches();
-        encode_message(value);
-        msleep(500);
+        if (oldValue != value) {
+            encode_message(value);
+            oldValue = value;
+        }
+        
+        // -- RECIEVE --
+        int rx_len = 0;
+        int aaa=ReceivePacket(RXT,&rx_len);
+        if(!aaa)
+        {
+            decode_message(RXT, rx_len);
+            packet_num++;
+            writeDecimalLCD(packet_num);
+        }
+        
+        msleep(1000);
     }
 
     return 0;
@@ -58,21 +85,21 @@ void encode_message(int value) {
     printf("Sent:\n");
     
     UDPFrame udpFrame;
-    char data[] = {value>>16, value>>8, value};
-    fillUDPHeader(&udpFrame, port, port, data, 3); //fills IP header with default values
-    printUDPHeader(&udpFrame);
-    unsigned char UDPData[UDP_HEADER_LENGTH + 3];
+    char data[] = {value>>8, value};
+    fillUDPHeader(&udpFrame, port, destPort, data, 2); //fills IP header with default values
+    //printUDPHeader(&udpFrame);
+    unsigned char UDPData[UDP_HEADER_LENGTH + 2];
     int UDPLength = UDPPack(&udpFrame, UDPData);
     
     IPFrame ipFrame;
-    fillIPHeader(&ipFrame, 4, 1, ip_addr, ip_addr, UDPData, UDPLength); //fills IP header with default values
-    printIPHeader(&ipFrame);
+    fillIPHeader(&ipFrame, 4, 1, ip_addr, destIP, UDPData, UDPLength); //fills IP header with default values
+    //printIPHeader(&ipFrame);
     unsigned char IPData[IP_HEADER_LENGTH + UDPLength];
     int IPLength = IPPack(&ipFrame, IPData);
     
     ethernetFrame ethFrame;
-    fillEthernetHeader(&ethFrame, ether_addr, ether_addr, IPData, IPLength);
-    printEthernetHeader(&ethFrame);
+    fillEthernetHeader(&ethFrame, destMAC, ether_addr, IPData, IPLength);
+    //printEthernetHeader(&ethFrame);
     unsigned char ethernetData[ETHERNET_HEADER_LENGTH + IPLength];
     int ethernetLength = ethPack(&ethFrame, ethernetData);
     
@@ -81,24 +108,25 @@ void encode_message(int value) {
 
 // receives and decodes packet
 void decode_message(char* data, int dataLength) {
-    printf("Received:\n");
+    printf("Received %d bytes:\n", dataLength);
     
     ethernetFrame ethFrame;
     ethFrame.data = (unsigned char*) malloc(sizeof(unsigned char)*(dataLength - ETHERNET_HEADER_LENGTH));
     if (ethUnpack(data, dataLength, &ethFrame, ether_addr)) {
-        printEthernetHeader(&ethFrame);
+        //printEthernetHeader(&ethFrame);
         
         IPFrame ipFrame;
         ipFrame.data = (unsigned char*) malloc(sizeof(unsigned char)*(ethFrame.dataLength - IP_HEADER_LENGTH));
         if (IPUnpack(ethFrame.data, &ipFrame, ip_addr)) {
-            printIPHeader(&ipFrame);
+            //printIPHeader(&ipFrame);
             
             UDPFrame udpFrame;
             udpFrame.data = (unsigned char*) malloc(sizeof(unsigned char)*(ipFrame.dataLength - UDP_HEADER_LENGTH));
             if (UDPUnpack(ipFrame.data, &udpFrame, port)) {
-                printUDPHeader(&udpFrame);
+                //printUDPHeader(&udpFrame);
                 
-                unsigned int rx_val = (udpFrame.data[0]<<16) | (udpFrame.data[1]<<8) | udpFrame.data[2];
+                unsigned int rx_val = (udpFrame.data[0]<<8) | udpFrame.data[1];
+                printf("%x\n\n", rx_val);
                 writeLEDs(rx_val);
             }
             free(udpFrame.data);
@@ -118,7 +146,20 @@ void writeLEDs(int value)
     outport(LED_RED_BASE,value);
 }
 
-
+void writeDecimalLCD(int value)
+{
+    int digits=0;
+    
+    int i;
+    for(i=0; i<8; i++)
+    {
+        digits |= (value % 10)<<(i*4);
+        value = value/10;   
+    }
+    
+    printf("digits to display on seven-segment display: %x\n", digits);
+    
+    outport(SEG7_DISPLAY_BASE,digits);
+}
 //-------------------------------------------------------------------------
-
 

@@ -23,18 +23,17 @@ void charncat(char* dest, const char *src, int* s, int n)
 
 // starting at location s, assigns n bytes from src into dest.
 // updates value of s to point to the next unused byte in src. 
-void charnuncat(char* dest, const char *src, int* s, int n) 
+void charnuncat(char* dest, const char *src, int s, int n) 
 {
     int i;
     for (i = 0; i < n; i++) 
     {
-        dest[i] = src[i + *s];
+        dest[i] = src[i + s];
     }
-    *s += n;
 }
 
 // copies n bytes from src to the dest char array starting at s
-void int_to_char(char* dest, int src, int* s, int n) {
+void int_to_char(char* dest, unsigned int src, int* s, int n) {
     int i;
     for (i = 0; i < n; i++)
     {
@@ -43,24 +42,12 @@ void int_to_char(char* dest, int src, int* s, int n) {
     *s += n;
 }
 
-// copies n bytes from the src char array starting at s to a int
-int char_to_int(const char* src, int* s, int n) {
-    int i;
-    int value = 0;
-    for (i = 0; i < n; i++)
-    {
-        value |= src[i + *s] << (8*(n-1-i));
-    }
-    *s += n;
-    return value;
-}
-
 // Computes checksum on a set of data, assuming data 
 // is in 16bits.  Returns the computed checksum.
 int computeChecksum(char* data, int len)
 {
     int i;
-    int sum = 0;
+    unsigned int sum = 0;
 
     // Increment by 2 as we are working in 16bits.
     for (i = 0; i < len; i+=2)
@@ -71,5 +58,5 @@ int computeChecksum(char* data, int len)
     }
 
     // Compute 1's complement on the sum.
-    return ~sum; 
+    return (~sum) & 0xFFFF; 
 }

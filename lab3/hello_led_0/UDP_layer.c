@@ -22,7 +22,7 @@ int UDPPack(UDPFrame* frame, unsigned char* output)
     charncat(output, frame->data, &s, frame->dataLength);
 
     // Compute the checksum
-    int checksum = computeChecksum(output, UDP_HEADER_LENGTH);
+    int checksum = computeChecksum(output, length);
     int chcksmLocation = 6;
     int_to_char(output, checksum, &chcksmLocation, 2);
 
@@ -32,22 +32,27 @@ int UDPPack(UDPFrame* frame, unsigned char* output)
 // Returns 1 if succesful, 0 if there was an error.
 int UDPUnpack(unsigned char* input, UDPFrame* frame, unsigned int port)
 {
-    int s = 0;
-    
-    frame->sourcePort = char_to_int(input, &s, 2);
-    frame->destPort = char_to_int(input, &s, 2);
-    frame->dataLength = char_to_int(input, &s, 2) - UDP_HEADER_LENGTH;
-    int checksum = char_to_int(input, &s, 2);
-    charnuncat(frame->data, input, &s, frame->dataLength);
+    frame->sourcePort = (input[0]<<8) | input[1];
+    frame->destPort = (input[2]<<8) | input[3];
+    int length = (input[4]<<8) | input[5];
+    frame->dataLength = length - UDP_HEADER_LENGTH;
+    int checksum = (input[6]<<8) | input[7];
+    charnuncat(frame->data, input, 8, frame->dataLength);
 
-    int chcksmLocation = 6;
+    /*int chcksmLocation = 6;
     int_to_char(input, 0, &chcksmLocation, 2);
     int checksum2 = computeChecksum(input, UDP_HEADER_LENGTH);
 
     // If the saved checksum does not equal the final 
     // checksum, there was an error on transmission.
     int checksumPass = checksum == checksum2;
+    if (!checksumPass) {
+        printf("UDP Checksum fail: %x != %x\n", checksum, checksum2);
+    }*/
     int portPass = frame->destPort == port;
+    if (!portPass) {
+        printf("Port fail: %d != %d\n", frame->destPort, port);
+    }
     return portPass;
 }
 
