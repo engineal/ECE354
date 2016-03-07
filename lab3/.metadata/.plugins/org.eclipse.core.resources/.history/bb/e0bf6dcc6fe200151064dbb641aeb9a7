@@ -1,9 +1,0 @@
-#include "helper.h"
-
-void strncpy(char* dest, const char *src, int n) {
-    int i;
-    for (i = 0; i < n; i++) {
-        dest[i] = 
-    }
-}
-void strncat(char* dest, const char *src, int n);

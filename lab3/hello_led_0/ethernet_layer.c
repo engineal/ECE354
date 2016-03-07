@@ -1,3 +1,4 @@
+#include "basic_io.h"
 #include "helper.h"
 #include "ethernet_layer.h"
 
@@ -11,31 +12,62 @@ int ethPack(ethernetFrame* frame, unsigned char* output)
     charncat(output, frame->src_addr, &s, 6);
     charncat(output, frame->type, &s, 2);
     charncat(output, frame->data, &s, frame->dataLength);
-    charncat(output, frame->checksum, &s, 4);
+    
+    // Set the checksum bytes to zero to prepare for
+    // the checksum being computed on this header.
+    int_to_char(output, 0, &s, 4);
+    
+    // Compute the checksum
+    //int checksum = computeChecksum(output, ETHERNET_HEADER_LENGTH);
+    //s -= 4;
+    //int_to_char(output, checksum, &s, 4);
     
     return s;
 }
 
 // Takes char* input which holds transmitted packet and interprets it, 
 // storing the result in an ethernetFrame struct.
-int ethUnpack(unsigned char* input, int inputLength, ethernetFrame* frame) 
+int ethUnpack(unsigned char* input, int inputLength, ethernetFrame* frame, unsigned char* mac_addr) 
 {
     int s = 0;
     
     charnuncat(frame->dest_addr, input, &s, 6);
     charnuncat(frame->src_addr, input, &s, 6);
     charnuncat(frame->type, input, &s, 2);
-    charnuncat(frame->data, input, &s, inputLength - 18);
-    charnuncat(frame->checksum, input, &s, 4);
+    charnuncat(frame->data, input, &s, inputLength - ETHERNET_HEADER_LENGTH);
+    frame->dataLength = inputLength - ETHERNET_HEADER_LENGTH;
+    int checksum = char_to_int(input, &s, 4);
+    int checksum2 = computeChecksum(input, ETHERNET_HEADER_LENGTH);
 
-    return 0;
+    int checksumPass = checksum == checksum2;
+    int macPass = 1;
+    int i;
+    for (i = 0; i < 6; i++) {
+        macPass &= frame->dest_addr[i] == mac_addr[i];
+    }
+    return macPass;
 }
 
-// Generates a CRC checksum for the ethernet frame.
-void generateCRCChecksum(unsigned char* dest) 
-{
-    dest[0] = 0x00;
-    dest[1] = 0x00;
-    dest[2] = 0x00;
-    dest[3] = 0x20;
+void fillEthernetHeader(ethernetFrame* frame, char* dest_addr, char* src_addr, char* data, int dataLength) {
+    charncpy(frame->dest_addr, dest_addr, 6);
+    charncpy(frame->src_addr, src_addr, 6);
+    frame->type[0] = 0x08;
+    frame->type[1] = 0x00;
+    frame->data = data;
+    frame->dataLength = dataLength;
+}
+
+void printEthernetHeader(ethernetFrame* frame) {
+    printf("Ethernet header:\n");
+    printf("destination address: %2x:%2x:%2x:%2x:%2x:%x\n", frame->dest_addr[0], frame->dest_addr[1], frame->dest_addr[2], frame->dest_addr[3], frame->dest_addr[4], frame->dest_addr[5]);
+    printf("source address: %2x:%2x:%2x:%2x:%2x:%2x\n", frame->src_addr[0], frame->src_addr[1], frame->src_addr[2], frame->src_addr[3], frame->src_addr[4], frame->src_addr[5]);
+    printf("type: %x %x\n", frame->type[0], frame->type[1]);
+    printf("data:");
+    int i;
+    for (i = 0; i < frame->dataLength; i++) {
+        if(i%8 == 0)
+            printf("\n");
+        printf("0x%2X,", frame->data[i]);
+    }
+    printf("\n\n");
 }

@@ -1,4 +1,4 @@
-
+#include "basic_io.h"
 #include "IP_layer.h"
 #include "helper.h"
 
@@ -6,80 +6,77 @@
 // output, ready for transmission.
 int IPPack(IPFrame* frame, unsigned char* output)
 {
+    int s = 0;
+    
     //store version & headerLength in byte 0
-    output[0] = ((frame->version & 0xF)<<4)|(frame->headerLength & 0xF);
+    int headerLength = IP_HEADER_LENGTH / 4;
+    output[s++] = ((frame->version & 0xF)<<4)|(headerLength & 0xF);
     
     //type of service: unused
-    output[1] = 0x00; 
+    output[s++] = 0x00; 
    
     //store packetLength
-    output[2] = (frame->packetLength & 0xFF00)>>8;
-    output[3] = (frame->packetLength & 0x00FF);
+    int packetLength = frame->dataLength + IP_HEADER_LENGTH;
+    int_to_char(output, packetLength, &s, 2);
     
     //store identification 
-    output[4] = (frame->id & 0xFF00)>>8;
-    output[5] = (frame->id & 0x00FF);
+    int_to_char(output, frame->id, &s, 2);
     
     //flags, evil bit, fragment offset, TTL, protocol: unused
-    int i;
-    for(i=6; i<10; i++)
-    {
-        output[i] = 0x00;
-    }
+    int_to_char(output, 0, &s, 4);
     
-    //store header checksum
-    output[10] = (frame->checksum & 0xFF00)>>8;
-    output[11] = frame->checksum & 0x00FF;
+    // Set the checksum bytes to zero to prepare for
+    // the checksum being computed on this header.
+    int_to_char(output, 0, &s, 2);
     
     //store src_addr and dest_addr
-    for(i=0; i<4; i++)
-    {
-        output[SRC_ADDR_BYTE_OFFSET+i] = frame->src_addr[i];
-        output[DEST_ADDR_BYTE_OFFSET+i] = frame->dest_addr[i];  
-    }
+    charncat(output, frame->src_addr, &s, 4);
+    charncat(output, frame->dest_addr, &s, 4);
     
     //store data
-    for(i=0; i<(frame->packetLength-NUM_BYTES_IP_HEADER); i++)
-    {
-        output[NUM_BYTES_IP_HEADER+i] = frame->data[i];
-    }
+    charncat(output, frame->data, &s, frame->dataLength);
     
-    return frame->packetLength;
+    // Compute the checksum
+    int checksum = computeChecksum(output, IP_HEADER_LENGTH);
+    int chcksmLocation = 10;
+    int_to_char(output, checksum, &chcksmLocation, 2);
+    
+    return s;
 }
 
 // Takes char* input which holds transmitted packet and interprets it,
 // storing the result in an IPFrame struct.
-int IPUnpack(unsigned char* input, int inputLength, IPFrame* frame)
+int IPUnpack(unsigned char* input, IPFrame* frame, unsigned char* ip_addr)
 {
     int s = 0;
     
-    unsigned char temp1;
-    unsigned char temp2;
-    charnuncat(&temp1, input, &s, 1);
-    frame->version = (temp1&0xF0)>>4;
-    frame->headerLength = temp1&0x0F;
+    frame->version = (input[0]>>4)&0xF;
+    int headerLength = input[0]&0xF;
     
-    s=2; //byte offset for packetLength -- skipping unused header fields
-    charnuncat(&temp1, input, &s, 1);
-    charnuncat(&temp2, input, &s, 1);
-    frame->packetLength = (temp1<<8)|temp2;
+    //byte offset for packetLength -- skipping unused header fields
+    s = 2;
+    frame->dataLength = char_to_int(input, &s, 2) - IP_HEADER_LENGTH;
+    frame->id = char_to_int(input, &s, 2);
     
-    charnuncat(&temp1, input, &s, 1);
-    charnuncat(&temp2, input, &s, 1);
-    frame->id = (temp1<<8)|temp2;
+    //byte offset for headerChecksum -- skipping unused header fields
+    s = 10;
+    int checksum = char_to_int(input, &s, 2);
     
-    s=10; //byte offset for headerChecksum -- skipping unused header fields
-    charnuncat(&temp1, input, &s, 1);
-    charnuncat(&temp2, input, &s, 1);
-    frame->checksum = (temp1<<8)|temp2;
-    
-    s=SRC_ADDR_BYTE_OFFSET;
+    s=12;
     charnuncat(frame->src_addr, input, &s, 4);
     charnuncat(frame->dest_addr, input, &s, 4);
+    charnuncat(frame->data, input, &s, frame->dataLength);
+    int chcksmLocation = 10;
+    int_to_char(input, 0, &chcksmLocation, 2);
+    int checksum2 = computeChecksum(input, IP_HEADER_LENGTH);
     
-    charnuncat(frame->data, input, &s, inputLength-NUM_BYTES_IP_HEADER);
-    
-    return 0; //successful
+    int checksumPass = checksum == checksum2;
+    int ipPass = 1;
+    int i;
+    for (i = 0; i < 4; i++) {
+        ipPass &= frame->dest_addr[i] == ip_addr[i];
+    }
+    return ipPass;
 }
 
 // Generates IP header checksum for frame and stores it in 
@@ -88,24 +85,34 @@ int IPUnpack(unsigned char* input, int inputLength, IPFrame* frame)
 // complement sum of all 16-bit words in the header. 
 // For purposes of computing the checksum, the value of the checksum 
 // field is zero."
-void generateIPChecksum(IPFrame* frame)
+
+void fillIPHeader(
+    IPFrame* frame,
+    int version, int id,
+    char* src_addr,
+    char* dest_addr,
+    char* data, int dataLength)
 {
-  
+    frame->version = version;
+    frame->id = id;
+    charncpy(frame->src_addr, src_addr, 4);
+    charncpy(frame->dest_addr, dest_addr, 4);
+    frame->data = data;
+    frame->dataLength = dataLength;
 }
 
-void fillIPHeader(IPFrame* frame)
-{
-    frame->version = 4;
-    frame->headerLength = 5;
-    frame->packetLength = NUM_BYTES_IP_HEADER + 3;
-    frame->id = 1;
-    frame->checksum = 0;
-    
-    int j;
-    for(j=0; j<4; j++)
-    {
-        frame->src_addr[j]  = 0xC0;
-        frame->dest_addr[j] = 0xC0;
+void printIPHeader(IPFrame* frame) {
+    printf("IP header:\n");
+    printf("version: %d\n", frame->version);
+    printf("id: %d\n", frame->id);
+    printf("source address: %d.%d.%d.%d\n", frame->src_addr[0], frame->src_addr[1], frame->src_addr[2], frame->src_addr[3]);
+    printf("destination address: %d.%d.%d.%d\n", frame->dest_addr[0], frame->dest_addr[1], frame->dest_addr[2], frame->dest_addr[3]);
+    printf("data:");
+    int i;
+    for (i = 0; i < frame->dataLength; i++) {
+        if(i%8 == 0)
+            printf("\n");
+        printf("0x%2X,", frame->data[i]);
     }
+    printf("\n\n");
 }
-
