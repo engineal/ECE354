@@ -1,0 +1,62 @@
+#include "basic_io.h"
+#include "UDP_layer.h"
+#include "helper.h"
+
+int UDPPack(UDPFrame* frame, unsigned char* output)
+{
+    int s = 0;
+    
+    int_to_char(output, frame->sourcePort, &s, 2);
+    int_to_char(output, frame->destPort, &s, 2);
+
+    // Add 8 to payload frame as the header adds
+    // 8 bytes.
+    int length = frame->dataLength + UDP_HEADER_LENGTH;
+    int_to_char(output, length, &s, 2);
+    
+    int_to_char(output, frame->checksum, &s, 2);
+    
+    // Transfer payload data to final output
+    charncat(output, frame->data, &s, frame->dataLength);
+
+    // Set the checksum bytes to zero to prepare for
+    // the checksum being computed on this header.
+    output[6] = 0;
+    output[7] = 0;
+
+    // Compute the checksum 
+    int checksum = computeChecksum(output, 8);
+
+    output[6] = (checksum >> 8) & 0xFF;
+    output[7] = (checksum) & 0xFF;
+
+    return s;
+}
+
+// Returns 1 if succesful, 0 if there was an error.
+int UDPUnpack(unsigned char* input, UDPFrame* frame)
+{
+    int s = 0;
+    
+    frame->sourcePort = char_to_int(input, &s, 2);
+    frame->destPort = char_to_int(input, &s, 2);
+    frame->dataLength = char_to_int(input, &s, 2) - UDP_HEADER_LENGTH;
+    frame->checksum = char_to_int(input, &s, 2);
+    charnuncat(frame->data, input, &s, frame->dataLength);
+
+    input[6] = 0;
+    input[7] = 0;
+
+    int checksum2 = computeChecksum(input, 8);
+
+    // If the saved checksum does not equal the final 
+    // checksum, there was an error on transmission.
+    return checksum == checksum2;
+}
+
+void fillUDPHeader(UDPFrame*, int, int, char*, int) {
+    
+}
+void printUDPHeader(UDPFrame*) {
+    
+}

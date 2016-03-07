@@ -1,0 +1,22 @@
+#ifndef IP_LAYER_H_
+#define IP_LAYER_H_
+
+#define NUM_BYTES_IN_IP_HEADER 120 //see struct below
+
+typedef struct {
+    unsigned char version[4];
+    unsigned char headerLength[4];
+    unsigned char packetLength[16]; // size of datagram
+    unsigned char identification[16]; 
+    unsigned char checksum[16];
+    unsigned char src_addr[32];
+    unsigned char dest_addr[32];
+    unsigned char* data;
+} IPFrame;
+
+
+int IPPack(IPFrame*, unsigned char*);
+int IPUnpack(unsigned char*, int, IPFrame*);
+void generateIPChecksum(unsigned char*);
+
+#endif /*IP_LAYER_H_*/

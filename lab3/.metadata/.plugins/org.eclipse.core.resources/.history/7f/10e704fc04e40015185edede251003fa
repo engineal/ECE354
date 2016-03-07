@@ -1,0 +1,22 @@
+#ifndef __UDP_FRAME_H__
+#define __UDP_FRAME_H__
+
+typedef struct
+{
+    // Source and destination ports.
+    // Both are 16 bits each.
+    int sourcePort;
+    int destPort;
+
+    // This is the previous data that will be sent 
+    // along with the header.
+    char* payload;
+    int payloadLength;
+} udpFrame;
+
+int udpPack(udpFrame* frame, char* output);
+
+int udpUnPack(
+    char* input, udpFrame* output);
+
+#endif
