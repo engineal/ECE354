@@ -47,7 +47,7 @@
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.c" partName="hello_led.c" path="C:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab3/hello_led_0/hello_led.c" title="hello_led.c" tooltip="hello_led_0/hello_led.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.c" partName="hello_led.c" path="C:/Users/ajlucia/code/ECE354/lab3/hello_led_0/hello_led.c" title="hello_led.c" tooltip="hello_led_0/hello_led.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/hello_led.c"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="ethernet_layer.c" partName="ethernet_layer.c" path="C:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab3/hello_led_0/ethernet_layer.c" title="ethernet_layer.c" tooltip="hello_led_0/ethernet_layer.c" workbook="DefaultEditorWorkbook">
@@ -68,7 +68,7 @@
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="helper.h" partName="helper.h" path="C:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab3/hello_led_0/helper.h" title="helper.h" tooltip="hello_led_0/helper.h" workbook="org.eclipse.ui.internal.EditorStack@137bc9">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/helper.h"/>
 </editor>
-<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="ethernet_layer.h" partName="ethernet_layer.h" path="C:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab3/hello_led_0/ethernet_layer.h" title="ethernet_layer.h" tooltip="hello_led_0/ethernet_layer.h" workbook="org.eclipse.ui.internal.EditorStack@137bc9">
+<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="ethernet_layer.h" partName="ethernet_layer.h" path="C:/Users/ajlucia/code/ECE354/lab3/hello_led_0/ethernet_layer.h" title="ethernet_layer.h" tooltip="hello_led_0/ethernet_layer.h" workbook="org.eclipse.ui.internal.EditorStack@137bc9">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/ethernet_layer.h"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="UDP_layer.h" partName="UDP_layer.h" path="C:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab3/hello_led_0/UDP_layer.h" title="UDP_layer.h" tooltip="hello_led_0/UDP_layer.h" workbook="org.eclipse.ui.internal.EditorStack@137bc9">
@@ -101,10 +101,10 @@
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
 <viewState horizontalPosition="0" verticalPosition="0">
 <expanded>
-<element path="C:\Users\jmarple\Desktop\GitPortable\Data\home\code\ECE354\lab3\hello_led_0"/>
+<element path="C:\Users\ajlucia\code\ECE354\lab3\hello_led_0"/>
 </expanded>
 <selection>
-<element path="C:/Users/jmarple/Desktop/GitPortable/Data/home/code/ECE354/lab3/hello_led_0"/>
+<element path="C:/Users/ajlucia/code/ECE354/lab3/hello_led_0"/>
 </selection>
 <customFilters userDefinedPatternsEnabled="false">
 <xmlDefinedFilters>
@@ -235,13 +235,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/UDP_layer.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/ethernet_layer.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/hello_led.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/basic_io.h"/>
 </editors>
-<item historyLabel="IP_layer.c" index="0">
-<position info="not_deleted" x="2297" y="1"/>
-</item>
-<item historyLabel="IP_layer.h" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
 <item historyLabel="IP_layer.c" index="0">
 <position info="not_deleted" x="2375" y="9"/>
 </item>
@@ -383,8 +378,14 @@
 <item historyLabel="ethernet_layer.c" index="3">
 <position info="not_deleted" x="1418" y="0"/>
 </item>
-<item active="true" historyLabel="hello_led.c" index="6">
+<item historyLabel="hello_led.c" index="6">
 <position info="not_deleted" x="2966" y="0"/>
+</item>
+<item historyLabel="basic_io.h" index="7">
+<position/>
+</item>
+<item active="true" historyLabel="hello_led.c" index="6">
+<position info="not_deleted" x="4252" y="12"/>
 </item>
 </navigationHistory>
 <stickyState/>
@@ -404,11 +405,11 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="UDP_layer.c" tooltip="hello_led_0/UDP_layer.c">
-<persistable path="/hello_led_0/UDP_layer.c"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="basic_io.h" tooltip="hello_led_0/basic_io.h">
 <persistable path="/hello_led_0/basic_io.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="UDP_layer.c" tooltip="hello_led_0/UDP_layer.c">
+<persistable path="/hello_led_0/UDP_layer.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="helper.h" tooltip="hello_led_0/helper.h">
 <persistable path="/hello_led_0/helper.h"/>

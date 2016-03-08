@@ -1,9 +1,9 @@
 # generated_app.mk
 #
 # Machine generated for a CPU named "cpu_0" as defined in:
-# c:\Users\tbadams\code\ECE354\ECE354\lab3\hello_led_0_syslib\..\system_0.ptf
+# c:\Users\ajlucia\code\ECE354\lab3\hello_led_0_syslib\..\system_0.ptf
 #
-# Generated: 2016-03-07 14:37:40.815
+# Generated: 2016-03-07 18:34:49.845
 
 # DO NOT MODIFY THIS FILE
 #
@@ -16,7 +16,7 @@
 # DO NOT MODIFY THIS FILE
 
 # assuming the Quartus project directory is the same as the PTF directory
-QUARTUS_PROJECT_DIR = C:/Users/tbadams/code/ECE354/ECE354/lab3
+QUARTUS_PROJECT_DIR = C:/Users/ajlucia/code/ECE354/lab3
 
 # the simulation directory is a subdirectory of the PTF directory
 SIMDIR = $(QUARTUS_PROJECT_DIR)/system_0_sim

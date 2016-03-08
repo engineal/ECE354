@@ -11,12 +11,12 @@
 unsigned char RXT[68];
 
 //ether_addr = {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF}; // Set MAC address with our group id as the last byte
-unsigned char ip_addr[] = {192, 168, 1, 115};
-unsigned int port = 1114;
+unsigned char ip_addr[] = {192, 168, 1, 116};
+unsigned int port = 1115;
 
-unsigned char destMAC[] = {0x01, 0x60, 0x6E, 0x11, 0x02, 0x13};
-unsigned char destIP[] = {192, 168, 0, 1};
-unsigned int destPort = 26214;
+unsigned char destMAC[] = {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF};
+unsigned char destIP[] = {192, 168, 1, 115};
+unsigned int destPort = 1114;
 
 // run everytime an ethernet interrupt is generated
 void ethernet_interrupts()
@@ -74,7 +74,7 @@ int main(void)
             writeDecimalLCD(packet_num);
         }
         
-        msleep(1000);
+        msleep(100);
     }
 
     return 0;
@@ -82,13 +82,13 @@ int main(void)
 
 // creates and transmits packet
 void encode_message(int value) {
-    printf("Sent:\n");
+    printf("Sent: %d\n", value);
     
     UDPFrame udpFrame;
-    char data[] = {value>>8, value};
-    fillUDPHeader(&udpFrame, port, destPort, data, 2); //fills IP header with default values
+    char data[] = {value>>8, value, value>>16};
+    fillUDPHeader(&udpFrame, port, destPort, data, 3); //fills IP header with default values
     //printUDPHeader(&udpFrame);
-    unsigned char UDPData[UDP_HEADER_LENGTH + 2];
+    unsigned char UDPData[UDP_HEADER_LENGTH + 3];
     int UDPLength = UDPPack(&udpFrame, UDPData);
     
     IPFrame ipFrame;
@@ -125,7 +125,7 @@ void decode_message(char* data, int dataLength) {
             if (UDPUnpack(ipFrame.data, &udpFrame, port)) {
                 //printUDPHeader(&udpFrame);
                 
-                unsigned int rx_val = (udpFrame.data[0]<<8) | udpFrame.data[1];
+                unsigned int rx_val = (udpFrame.data[0]<<8) | udpFrame.data[1] | (udpFrame.data[2]<<16);
                 printf("%x\n\n", rx_val);
                 writeLEDs(rx_val);
             }
@@ -156,8 +156,6 @@ void writeDecimalLCD(int value)
         digits |= (value % 10)<<(i*4);
         value = value/10;   
     }
-    
-    printf("digits to display on seven-segment display: %x\n", digits);
     
     outport(SEG7_DISPLAY_BASE,digits);
 }
