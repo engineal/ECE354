@@ -37,10 +37,10 @@
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.c" partName="hello_led.c" path="C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0/hello_led.c" title="hello_led.c" tooltip="hello_led_0/hello_led.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.c" partName="hello_led.c" path="C:/Users/ajlucia/code/ECE354/lab2/software/hello_led_0/hello_led.c" title="hello_led.c" tooltip="hello_led_0/hello_led.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/hello_led.c"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="function.c" partName="function.c" path="C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0/function.c" title="function.c" tooltip="hello_led_0/function.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="function.c" partName="function.c" path="C:/Users/ajlucia/code/ECE354/lab2/software/hello_led_0/function.c" title="function.c" tooltip="hello_led_0/function.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/function.c"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="CAMERA_HAL.h" partName="CAMERA_HAL.h" path="C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0/CAMERA_HAL.h" title="CAMERA_HAL.h" tooltip="hello_led_0/CAMERA_HAL.h" workbook="DefaultEditorWorkbook">
@@ -51,6 +51,9 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="alt_flash.h" partName="alt_flash.h" path="C:/altera/91/nios2eds/components/altera_hal/HAL/inc/sys/alt_flash.h" title="alt_flash.h" tooltip="altera.components/Nios II Software Packages/altera_hal/HAL/inc/sys/alt_flash.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/altera.components/Nios II Software Packages/altera_hal/HAL/inc/sys/alt_flash.h"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="my_includes.h" partName="my_includes.h" path="C:/Users/ajlucia/code/ECE354/lab2/software/hello_led_0/my_includes.h" title="my_includes.h" tooltip="hello_led_0/my_includes.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/my_includes.h"/>
 </editor>
 </editors>
 <views>
@@ -84,9 +87,12 @@
 <viewState/>
 </view>
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
-<viewState horizontalPosition="0" verticalPosition="0">
+<viewState horizontalPosition="0" verticalPosition="1">
+<expanded>
+<element path="C:\Users\ajlucia\code\ECE354\lab2\software\hello_led_0"/>
+</expanded>
 <selection>
-<element path="C:/Users/ajlucia/Desktop/GitPortable/Data/home/ECE354/lab2/software/hello_led_0"/>
+<element path="C:/Users/ajlucia/code/ECE354/lab2/software/hello_led_0/my_includes.h"/>
 </selection>
 <customFilters userDefinedPatternsEnabled="false">
 <xmlDefinedFilters>
@@ -227,19 +233,9 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/function.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/altera.components/Nios II Software Packages/altera_hal/HAL/inc/sys/alt_flash.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/CAMERA_HAL.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/function.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/hello_led_0/my_includes.h"/>
 </editors>
-<item historyLabel="hello_led.c" index="0">
-<position info="not_deleted" x="4000" y="0"/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position/>
-</item>
-<item historyLabel="hello_led.c" index="0">
-<position/>
-</item>
-<item historyLabel="function.h" index="2">
-<position/>
-</item>
 <item historyLabel="function.c" index="1">
 <position info="not_deleted" x="1966" y="0"/>
 </item>
@@ -372,8 +368,23 @@
 <item historyLabel="function.c" index="4">
 <position info="not_deleted" x="2175" y="0"/>
 </item>
-<item active="true" historyLabel="hello_led.c" index="0">
+<item historyLabel="hello_led.c" index="0">
 <position info="not_deleted" x="818" y="0"/>
+</item>
+<item historyLabel="function.c" index="8">
+<position/>
+</item>
+<item historyLabel="my_includes.h" index="9">
+<position/>
+</item>
+<item historyLabel="hello_led.c" index="0">
+<position info="not_deleted" x="850" y="0"/>
+</item>
+<item historyLabel="function.c" index="8">
+<position info="not_deleted" x="1287" y="18"/>
+</item>
+<item active="true" historyLabel="hello_led.c" index="0">
+<position info="not_deleted" x="850" y="0"/>
 </item>
 </navigationHistory>
 <stickyState/>
@@ -393,6 +404,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="my_includes.h" tooltip="hello_led_0/my_includes.h">
+<persistable path="/hello_led_0/my_includes.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system.h" tooltip="hello_led_0_syslib_0/Debug/system_description/system.h">
 <persistable path="/hello_led_0_syslib_0/Debug/system_description/system.h"/>
 </file>

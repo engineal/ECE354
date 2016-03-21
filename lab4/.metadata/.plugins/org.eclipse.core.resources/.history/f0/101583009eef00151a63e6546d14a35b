@@ -1,0 +1,16 @@
+#ifndef HELLO_LED_H
+#define HELLO_LED_H
+
+int readSwitches();
+void writeLEDs(int);
+void encode_message(int);
+void decode_message(char*, int);
+void ethernet_interrupts();
+void writeDecimalLCD(int);
+
+void interpretCommand(alt_u32);
+
+void readFlash(char*, alt_u32);
+void imageFlip(char*, alt_u32);
+
+#endif /*HELLO_LED_H*/

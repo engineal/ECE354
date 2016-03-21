@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench version="2.0">
 <workbenchAdvisor/>
-<window height="768" width="1024" x="84" y="6">
+<window height="768" maximized="true" width="1024" x="84" y="6">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -36,7 +36,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="268" columnWidth1="93" columnWidth2="168" columnWidth3="78" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<viewState columnWidth0="271" columnWidth1="96" columnWidth2="171" columnWidth3="81" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
