@@ -47,13 +47,12 @@
 #define MAX_PACKET_SIZE   1522  /* RX largest legal size packet with fcs & QoS */
 #define DM9000_PKT_MAX    3072  /* TX 1 packet max size without 4-byte CRC */
 //-------------------------------------------------------------------------
-unsigned char ether_addr[6]={ 0x01, 0x60, 0x6E, 0x11, 0x02, 0xFE  };
-//-------------------------------------------------------------------------
+
 void          iow(unsigned int reg, unsigned int data);
 unsigned int  ior(unsigned int reg);
 void          phy_write(unsigned int reg, unsigned int value);
 /* DM9000_init I/O routine */
-unsigned int  DM9000_init (void);
+unsigned int  DM9000_init (char ether_addr[]);
 /* Transmit One Packet TX I/O routine */
 unsigned int  TransmitPacket(unsigned char *data_ptr,unsigned int tx_len);
 /* Receive One Packet I/O routine */

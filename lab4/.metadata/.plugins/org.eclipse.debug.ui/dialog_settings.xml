@@ -3,11 +3,11 @@
 	<section name="org.eclipse.debug.ui.LAUNCH_CONFIGURATIONS_DIALOG_SECTION">
 		<item value="969" key="DIALOG_WIDTH"/>
 		<item value="87" key="DIALOG_Y_ORIGIN"/>
-		<item value=", com.altera.nj.launch.HWLaunch, " key="org.eclipse.debug.ui.EXPANDED_NODES"/>
-		<item value="448" key="DIALOG_X_ORIGIN"/>
+		<item value=", com.altera.nj.launch.HWLaunch, com.altera.nj.launch.ISSLaunch, " key="org.eclipse.debug.ui.EXPANDED_NODES"/>
 		<item value="667" key="DIALOG_HEIGHT"/>
+		<item value="448" key="DIALOG_X_ORIGIN"/>
 		<item value="237" key="org.eclipse.debug.ui.DIALOG_SASH_WEIGHTS_1"/>
+		<item value="1|Segoe UI|9|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="762" key="org.eclipse.debug.ui.DIALOG_SASH_WEIGHTS_2"/>
-		<item value="1|Segoe UI|9|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 </section>

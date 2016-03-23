@@ -1,0 +1,6 @@
+#include "handshake.h"
+
+void hsACK()
+{
+    char data[] = {MSG_GET_IMAGE};
+}

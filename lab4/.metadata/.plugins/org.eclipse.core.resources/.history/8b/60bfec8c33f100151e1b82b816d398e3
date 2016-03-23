@@ -1,0 +1,16 @@
+#ifndef HANDSHAKE_H_
+#define HANDSHAKE_H_
+
+#define MSG_ACK            0b10101010
+#define MSG_NAK            0b11111111
+#define MSG_GET_IMAGE      0
+#define MSG_TRANSMIT_IMAGE 1
+#define MSG_IMAGE_PROC_1   2
+#define MSG_IMAGE_PROC_2   3
+#define MSG_IMAGE_PROC_3   4
+#define MSG_IMAGE_PROC_4   5
+#define MSG_IMAGE_PROC_5   6
+#define MSG_IMAGE_PROC_6   7
+
+
+#endif /*HANDSHAKE_H_*/

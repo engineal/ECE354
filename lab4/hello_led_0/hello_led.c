@@ -1,29 +1,23 @@
 #include "basic_io.h"
 #include "hello_led.h"
-#include "test.h"
 #include "LCD.h"
-#include "helper.h"
-#include "ethernet_layer.h"
-#include "IP_layer.h"
-#include "UDP_layer.h"
-#include "sys/alt_flash.h"
-#include "sys/alt_flash_types.h"
 #include "DM9000A.C"
-#include "ethernet.h"
+#include "image.h"
+#include "net/udp.h"
+#include "net/handshake.h"
 
 unsigned char RXT[68];
 int packet_num;
 
-//ether_addr = {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF}; // Set MAC address with our group id as the last byte
-unsigned char ip_addr[] = {192, 168, 1, 116};
-unsigned int port = 1115;
+#define LOCAL_MAC {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF}
+#define LOCAL_IP_ADDR {192, 168, 1, 116}
+#define LOCAL_PORT 1115
 
-unsigned char destMAC[] = {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFE};
-unsigned char destIP[] = {192, 168, 1, 116};
-unsigned int destPort = 1115;
+#define DEST_MAC {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF}
+#define DEST_IP_ADDR {192, 168, 1, 116}
+#define DEST_PORT 1115
 
-#define X 640
-#define Y 480
+EthernetInfo* ethInfo;
 
 char bin_pix[X][Y];
 
@@ -35,17 +29,11 @@ void ethernet_interrupts()
     int aaa=ReceivePacket(RXT,&rx_len);
     if(!aaa)
     {
-        /*printf("Receive Packet Length = %d\n",rx_len);
-        int i;
-        for(i=0;i<rx_len;i++)
-        {
-            if(i%8==0)
-                printf("\n");
-            printf("0x%2X,",RXT[i]);
-        }
-        printf("\n\n");*/     
         unsigned char data[1024];  
-        int size = decode_message(RXT, rx_len, data, port, ip_addr, ether_addr);
+        int size = udpDecode(RXT, rx_len, data, ethInfo);
+        
+        //interpretCommand(data+1, data[0]);
+         
         
         unsigned int rx_val = ((data[0]&0xFF)<<8) | data[1] | ((data[2]&0xFF)<<16);
         printf("%x\n\n", rx_val);
@@ -57,8 +45,22 @@ void ethernet_interrupts()
 
 int main(void)
 {
+    // Default Ethernet settings.
+    EthernetInfo i;   
+    char localIP[] = LOCAL_IP_ADDR; 
+    char localMAC[] = LOCAL_MAC;
+    char destIP[] = DEST_IP_ADDR;
+    char destMAC[] = DEST_MAC;
+    i.localIP = localIP;
+    i.localMAC = localMAC;
+    i.localPort = LOCAL_PORT;    
+    i.destIP = destIP;
+    i.destMAC = destMAC;
+    i.destPort = DEST_PORT;
+    ethInfo = &i;
+    
     LCD_Test();
-    DM9000_init();
+    DM9000_init(ethInfo->localMAC);
     alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
     
     packet_num=0;
@@ -71,8 +73,10 @@ int main(void)
         // -- SEND --
         int value = readSwitches();
         if (oldValue != value) {
+            //char data[] = {MSG_GET_IMAGE};
+            //encode_message(data, 3, ethInfo);
             char data[] = {(value>>8)&0xFF, (value)&0xFF, (value>>16)&0xFF};
-            encode_message(data, 3, port, destPort, ip_addr, destIP, destMAC, ether_addr);
+            udpSend(data, 3, ethInfo);
             oldValue = value;
         }
         
@@ -82,39 +86,39 @@ int main(void)
     return 0;
 }
 
-void interpretCommand(alt_u32 command) {
+void interpretCommand(char* data, alt_u32 command) {
     writeLEDs(command);
     switch (command) {
         //ACK
-        case 0xAA:
+        case MSG_ACK:
             break;
         //NAK
-        case 0xFF:
+        case MSG_NAK:
             break;
         //Get image from flash
-        case 0:
-            readFlash(bin_pix);
+        case MSG_GET_IMAGE:
+            //readFlash(bin_pix);
             break;
         //Transmit image
-        case 1:
+        case MSG_TRANSMIT_IMAGE:
             break;
         //Flip
-        case 2:
+        case MSG_IMAGE_PROC_1:
             imageFlip(bin_pix);
             break;
         //Invert
-        case 3:
+        case MSG_IMAGE_PROC_2:
             imageInvert(bin_pix);
             break;
         //Rotate
-        case 4:
+        case MSG_IMAGE_PROC_3:
             imageRotate(bin_pix);
             break;
-        case 5:
+        case MSG_IMAGE_PROC_4:
             break;
-        case 6:
+        case MSG_IMAGE_PROC_5:
             break;
-        case 7:
+        case MSG_IMAGE_PROC_6:
             break;
     }
 }
@@ -141,74 +145,6 @@ void writeDecimalLCD(int value)
     }
     
     outport(SEG7_DISPLAY_BASE,digits);
-}
-
-void readFlash(char image[][Y]) {
-    alt_flash_fd* fd;
-    unsigned int offset = 0x10;
-    char bin_pix;
-    fd = alt_flash_open_dev(CFI_FLASH_0_NAME);
-    if (fd==NULL) 
-    {
-        printf("Flash memory open failure\n");
-        return;
-    }
-
-    printf("Reading binary pixel from flash memory\n");
-    int i, j;
-    for(i = 0; i < X; i++) {
-        for (j = 0; j < Y; j++) {
-            alt_read_flash(fd,offset++,&bin_pix,1);
-            image[i][j] = bin_pix;
-        }
-    }
-    alt_flash_close_dev(CFI_FLASH_0_NAME);
-}
-
-
-void imageFlip(char image[][Y]) {
-    char cpy[X][Y];
-    int i, j;
-    for (i = 0; i < X; i++) {
-        for (j = 0; j < Y; j++) {
-            cpy[X - i][j] = image[i][j];
-        }
-    }
-    
-    for (i = 0; i < X; i++) {
-        for (j = 0; j < Y; j++) {
-            image[i][j] = cpy[i][j];
-        }
-    }
-}
-
-void imageInvert(char image[][Y]) {
-    int i, j;
-    for (i = 0; i < X; i++) {
-        for (j = 0; j < Y; j++) {
-            image[i][j] = !image[i][j];
-        }
-    }
-}
-
-void imageRotate(char image[][Y]) {
-    char cpy[X][Y];
-    int i, j;
-    for(i = 0; i < X; i++) {
-        for(j = 0; j < Y; j++) {
-            if (i > 80 && i < 560) {
-                cpy[i][j] = image[j][i];
-            } else {
-                cpy[i][j] = 0;
-            }
-        }
-    }
-    
-    for (i = 0; i < X; i++) {
-        for (j = 0; j < Y; j++) {
-            image[i][j] = cpy[i][j];
-        }
-    }
 }
 //-------------------------------------------------------------------------
 

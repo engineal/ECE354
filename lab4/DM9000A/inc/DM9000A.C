@@ -34,7 +34,7 @@ void phy_write (unsigned int reg, unsigned int value)
 }
 //-------------------------------------------------------------------------
 /* DM9000_init I/O routine */
-unsigned int DM9000_init (void)  /* initialize DM9000 LAN chip */
+unsigned int DM9000_init (char ether_addr[])  /* initialize DM9000 LAN chip */
 {
   unsigned int  i;
 

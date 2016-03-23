@@ -1,0 +1,31 @@
+#ifndef UDP_H
+#define UDP_H
+
+#include "basic_io.h"
+#include "helper.h"
+#include "ethernet_layer.h"
+#include "IP_layer.h"
+#include "UDP_layer.h"
+
+typedef struct
+{
+    char* localIP;
+    int localPort;
+    char* localMAC;
+    
+    char* destIP;
+    int destPort;
+    char* destMAC;   
+} EthernetInfo;
+
+
+void encode_message(
+    char* data, int valueSize, 
+    EthernetInfo* info);
+    
+int decode_message(char* data, 
+    int dataLength, 
+    char* returnedData, 
+    EthernetInfo* info);
+
+#endif /*UDP_H*/
