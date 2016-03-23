@@ -3,8 +3,6 @@
 
 int readSwitches();
 void writeLEDs(int);
-void encode_message(int);
-void decode_message(char*, int);
 void ethernet_interrupts();
 void writeDecimalLCD(int);
 

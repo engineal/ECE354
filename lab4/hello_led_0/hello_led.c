@@ -2,13 +2,14 @@
 #include "hello_led.h"
 #include "test.h"
 #include "LCD.h"
-#include "DM9000A.C"
 #include "helper.h"
 #include "ethernet_layer.h"
 #include "IP_layer.h"
 #include "UDP_layer.h"
 #include "sys/alt_flash.h"
 #include "sys/alt_flash_types.h"
+#include "DM9000A.C"
+#include "ethernet.h"
 
 unsigned char RXT[68];
 int packet_num;
@@ -17,9 +18,9 @@ int packet_num;
 unsigned char ip_addr[] = {192, 168, 1, 116};
 unsigned int port = 1115;
 
-unsigned char destMAC[] = {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF};
-unsigned char destIP[] = {192, 168, 1, 115};
-unsigned int destPort = 1114;
+unsigned char destMAC[] = {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFE};
+unsigned char destIP[] = {192, 168, 1, 116};
+unsigned int destPort = 1115;
 
 #define X 640
 #define Y 480
@@ -29,15 +30,12 @@ char bin_pix[X][Y];
 // run everytime an ethernet interrupt is generated
 void ethernet_interrupts()
 {
-    static int lc = 0;
-    printf("lc = %d\n", lc++);
-    
     packet_num++;
     int rx_len = 0;
     int aaa=ReceivePacket(RXT,&rx_len);
     if(!aaa)
     {
-        printf("Receive Packet Length = %d\n",rx_len);
+        /*printf("Receive Packet Length = %d\n",rx_len);
         int i;
         for(i=0;i<rx_len;i++)
         {
@@ -45,8 +43,13 @@ void ethernet_interrupts()
                 printf("\n");
             printf("0x%2X,",RXT[i]);
         }
-        printf("\n\n");
-        decode_message(RXT, rx_len);
+        printf("\n\n");*/     
+        unsigned char data[1024];  
+        int size = decode_message(RXT, rx_len, data, port, ip_addr, ether_addr);
+        
+        unsigned int rx_val = ((data[0]&0xFF)<<8) | data[1] | ((data[2]&0xFF)<<16);
+        printf("%x\n\n", rx_val);
+        writeLEDs(rx_val);     
     }
     
     writeDecimalLCD(packet_num);
@@ -56,7 +59,7 @@ int main(void)
 {
     LCD_Test();
     DM9000_init();
-    //alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
+    alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
     
     packet_num=0;
     writeDecimalLCD(packet_num);
@@ -68,7 +71,8 @@ int main(void)
         // -- SEND --
         int value = readSwitches();
         if (oldValue != value) {
-            encode_message(value);
+            char data[] = {(value>>8)&0xFF, (value)&0xFF, (value>>16)&0xFF};
+            encode_message(data, 3, port, destPort, ip_addr, destIP, destMAC, ether_addr);
             oldValue = value;
         }
         
@@ -76,62 +80,6 @@ int main(void)
     }
 
     return 0;
-}
-
-// creates and transmits packet
-void encode_message(int value) {
-    printf("Sent: %d\n", value);
-    
-    UDPFrame udpFrame;
-    char data[] = {value>>8, value, value>>16};
-    fillUDPHeader(&udpFrame, port, destPort, data, 3); //fills IP header with default values
-    //printUDPHeader(&udpFrame);
-    unsigned char UDPData[UDP_HEADER_LENGTH + 3];
-    int UDPLength = UDPPack(&udpFrame, UDPData);
-    
-    IPFrame ipFrame;
-    fillIPHeader(&ipFrame, 4, 1, ip_addr, destIP, UDPData, UDPLength); //fills IP header with default values
-    //printIPHeader(&ipFrame);
-    unsigned char IPData[IP_HEADER_LENGTH + UDPLength];
-    int IPLength = IPPack(&ipFrame, IPData);
-    
-    ethernetFrame ethFrame;
-    fillEthernetHeader(&ethFrame, destMAC, ether_addr, IPData, IPLength);
-    //printEthernetHeader(&ethFrame);
-    unsigned char ethernetData[ETHERNET_HEADER_LENGTH + IPLength];
-    int ethernetLength = ethPack(&ethFrame, ethernetData);
-    
-    TransmitPacket(ethernetData, ethernetLength);
-}
-
-// receives and decodes packet
-void decode_message(char* data, int dataLength) {
-    printf("Received %d bytes:\n", dataLength);
-    
-    ethernetFrame ethFrame;
-    ethFrame.data = (unsigned char*) malloc(sizeof(unsigned char)*(dataLength - ETHERNET_HEADER_LENGTH));
-    if (ethUnpack(data, dataLength, &ethFrame, ether_addr)) {
-        //printEthernetHeader(&ethFrame);
-        
-        IPFrame ipFrame;
-        ipFrame.data = (unsigned char*) malloc(sizeof(unsigned char)*(ethFrame.dataLength - IP_HEADER_LENGTH));
-        if (IPUnpack(ethFrame.data, &ipFrame, ip_addr)) {
-            //printIPHeader(&ipFrame);
-            
-            UDPFrame udpFrame;
-            udpFrame.data = (unsigned char*) malloc(sizeof(unsigned char)*(ipFrame.dataLength - UDP_HEADER_LENGTH));
-            if (UDPUnpack(ipFrame.data, &udpFrame, port)) {
-                //printUDPHeader(&udpFrame);
-                unsigned int rx_val = (udpFrame.data[0]<<8) | udpFrame.data[1] | (udpFrame.data[2]<<16);
-                printf("%x\n\n", rx_val);
-                writeLEDs(rx_val);
-                //interpretCommand(udpFrame.data[0]);
-            }
-            free(udpFrame.data);
-        }
-        free(ipFrame.data);
-    }
-    free(ethFrame.data);
 }
 
 void interpretCommand(alt_u32 command) {
