@@ -122,10 +122,8 @@ void decode_message(char* data, int dataLength) {
             udpFrame.data = (unsigned char*) malloc(sizeof(unsigned char)*(ipFrame.dataLength - UDP_HEADER_LENGTH));
             if (UDPUnpack(ipFrame.data, &udpFrame, port)) {
                 //printUDPHeader(&udpFrame);
-                unsigned int rx_val = (udpFrame.data[0]<<8) | udpFrame.data[1] | (udpFrame.data[2]<<16);
-                printf("%x\n\n", rx_val);
-                writeLEDs(rx_val);
-                //interpretCommand(udpFrame.data[0]);
+                
+                interpretCommand(udpFrame.data[0]);
             }
             free(udpFrame.data);
         }
