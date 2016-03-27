@@ -5,6 +5,7 @@
 #include "image.h"
 #include "net/udp.h"
 #include "net/handshake.h"
+#include "interpretCommand.h"
 
 unsigned char RXT[68];
 int packet_num;
@@ -32,12 +33,15 @@ void ethernet_interrupts()
         unsigned char data[1024];  
         int size = udpDecode(RXT, rx_len, data, ethInfo);
         
-        //interpretCommand(data+1, data[0]);
-         
-        
-        unsigned int rx_val = ((data[0]&0xFF)<<8) | data[1] | ((data[2]&0xFF)<<16);
-        printf("%x\n\n", rx_val);
-        writeLEDs(rx_val);     
+        // If size = 1, it must be a commanding message
+        if (size == 1)
+        {
+            printf("Interpreting Command...\n");
+            
+            if (data[0] < 0x09) writeLEDs(data[0]);
+            else if (data[0] == 0xAA || data[0] == 0xFF) writeGreenLEDs(0xFF);
+            interpretCommand(data[0]);
+        }        
     }
     
     writeDecimalLCD(packet_num);
@@ -68,17 +72,25 @@ int main(void)
     writeLEDs(0);
     
     int oldValue = 0;
+    
     while (1)
     {
         // -- SEND --
-        int value = readSwitches();
-        if (oldValue != value) {
-            //char data[] = {MSG_GET_IMAGE};
-            //encode_message(data, 3, ethInfo);
-            char data[] = {(value>>8)&0xFF, (value)&0xFF, (value>>16)&0xFF};
-            udpSend(data, 3, ethInfo);
-            oldValue = value;
+        int value = readButtons();
+        
+        if (oldValue != value && value != 0) 
+        {
+            int switches = readSwitches();
+            
+            if (switches >= 0x0 && switches < 0x9)
+            {
+                char data[] = {0};
+                data[0] = switches;
+                udpSend(data, 1, ethInfo);
+            }   
         }
+        
+        oldValue = value;
         
         msleep(100);
     }
@@ -86,51 +98,23 @@ int main(void)
     return 0;
 }
 
-void interpretCommand(char* data, alt_u32 command) {
-    writeLEDs(command);
-    switch (command) {
-        //ACK
-        case MSG_ACK:
-            break;
-        //NAK
-        case MSG_NAK:
-            break;
-        //Get image from flash
-        case MSG_GET_IMAGE:
-            //readFlash(bin_pix);
-            break;
-        //Transmit image
-        case MSG_TRANSMIT_IMAGE:
-            break;
-        //Flip
-        case MSG_IMAGE_PROC_1:
-            imageFlip(bin_pix);
-            break;
-        //Invert
-        case MSG_IMAGE_PROC_2:
-            imageInvert(bin_pix);
-            break;
-        //Rotate
-        case MSG_IMAGE_PROC_3:
-            imageRotate(bin_pix);
-            break;
-        case MSG_IMAGE_PROC_4:
-            break;
-        case MSG_IMAGE_PROC_5:
-            break;
-        case MSG_IMAGE_PROC_6:
-            break;
-    }
-}
-
 int readSwitches()
 {
     return inport(SWITCH_PIO_BASE);
 }
 
+int readButtons()
+{
+    return inport(BUTTON_PIO_BASE);
+}
+
 void writeLEDs(int value)
 {
     outport(LED_RED_BASE,value);
+}
+void writeGreenLEDs(int value)
+{
+    outport(LED_GREEN_BASE, value);
 }
 
 void writeDecimalLCD(int value)

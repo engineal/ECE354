@@ -1,0 +1,46 @@
+void interpretCommand(alt_u32 command) 
+{
+    writeLEDs(command);
+    
+    switch (command) 
+    {
+        //ACK
+        case MSG_ACK:
+            printf(" -- Recieved Ack Message\n");
+            break;
+        //NAK
+        case MSG_NAK:
+            printf(" -- Recieved Nak Message\n");
+            break;
+        //Get image from flash
+        case MSG_GET_IMAGE:
+            printf(" -- Recieved Get Image From Flash Message\n");
+            readFlash(bin_pix);
+            break;
+        //Transmit image
+        case MSG_TRANSMIT_IMAGE:
+            printf(" -- Recieved Transmit Image Message\n");
+            break;
+        //Flip
+        case MSG_IMAGE_PROC_1:
+            printf(" -- Recieved Flip Image Message\n");
+            imageFlip(bin_pix);
+            break;
+        //Invert
+        case MSG_IMAGE_PROC_2:
+            printf(" -- Recieved Invert Image Message\n");
+            imageInvert(bin_pix);
+            break;
+        //Rotate
+        case MSG_IMAGE_PROC_3:
+            printf(" -- Recieved Rotate Image Message\n"0;
+            imageRotate(bin_pix);
+            break;
+        case MSG_IMAGE_PROC_4:
+            break;
+        case MSG_IMAGE_PROC_5:
+            break;
+        case MSG_IMAGE_PROC_6:
+            break;
+    }
+}

@@ -1,12 +1,12 @@
 #ifndef HELLO_LED_H
 #define HELLO_LED_H
 
+int readButtons();
 int readSwitches();
 void writeLEDs(int);
 void ethernet_interrupts();
 void writeDecimalLCD(int);
-
-void interpretCommand(char* data, alt_u32 command);
+void writeGreenLEDs(int value);
 
 void readFlash(char[][]);
 void imageFlip(char[][]);
