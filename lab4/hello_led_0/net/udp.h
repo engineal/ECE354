@@ -12,8 +12,7 @@ typedef struct
     char* destMAC;   
 } UDPInfo;
 
-int udpSend(char*, int, UDPInfo*);
-    
+void udpSend(char*, int, UDPInfo*);
 int udpReceive(char*, UDPInfo*);
 
 #endif /*UDP_H*/

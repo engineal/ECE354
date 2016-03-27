@@ -3,8 +3,8 @@
 
 void ethernetInit(char[]);
 
-int ethernetSend(char*, int, char*, char*);
-int ethernetSendNoACK(char*, int, char*, char*);
+void ethernetSend(char*, int, char*, char*);
+void ethernetSendNoACK(char*, int, char*, char*);
 int ethernetReceive(char*, char*);
 
 #endif /*ETHERNET_H*/

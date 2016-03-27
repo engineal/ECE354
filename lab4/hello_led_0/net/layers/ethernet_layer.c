@@ -27,31 +27,14 @@ int ethPack(ethernetFrame* frame, unsigned char* output)
 
 // Takes char* input which holds transmitted packet and interprets it, 
 // storing the result in an ethernetFrame struct.
-int ethUnpack(unsigned char* input, int inputLength, ethernetFrame* frame, unsigned char* mac_addr) 
+void ethUnpack(unsigned char* input, int inputLength, ethernetFrame* frame) 
 {
     charnuncat(frame->dest_addr, input, 0, 6);
     charnuncat(frame->src_addr, input, 6, 6);
     charnuncat(frame->type, input, 12, 2);
     charnuncat(frame->data, input, 14, inputLength - ETHERNET_HEADER_LENGTH);
     frame->dataLength = inputLength - ETHERNET_HEADER_LENGTH;
-    /*int checksum = 0;
-    int checksum2 = computeChecksum(input, ETHERNET_HEADER_LENGTH);
-
-    int checksumPass = checksum == checksum2;
-    if (!checksumPass) {
-        printf("Ethernet Checksum fail: %x != %x\n", checksum, checksum2);
-    }*/
-    int macPass = 1;
-    int i;
-    for (i = 0; i < 6; i++) {
-        macPass &= frame->dest_addr[i] == mac_addr[i];
-    }
-    if (!macPass) {
-        printf("IP fail: %2x:%2x:%2x:%2x:%2x:%2x != %2x:%2x:%2x:%2x:%2x:%2x\n",
-            frame->dest_addr[0], frame->dest_addr[1], frame->dest_addr[2], frame->dest_addr[3], frame->dest_addr[4], frame->dest_addr[5],
-            mac_addr[0], mac_addr[1], mac_addr[2], mac_addr[3], mac_addr[4], mac_addr[5]);
-    }
-    return macPass;
+    frame->checksum = 0;
 }
 
 void fillEthernetHeader(ethernetFrame* frame, char* dest_addr, char* src_addr, char* data, int dataLength) {
@@ -61,6 +44,7 @@ void fillEthernetHeader(ethernetFrame* frame, char* dest_addr, char* src_addr, c
     frame->type[1] = 0x00;
     frame->data = data;
     frame->dataLength = dataLength;
+    frame->checksum = 0;
 }
 
 void printEthernetHeader(ethernetFrame* frame) {
@@ -75,5 +59,5 @@ void printEthernetHeader(ethernetFrame* frame) {
             printf("\n");
         printf("0x%2X,", frame->data[i]);
     }
-    printf("\n\n");
+    printf("\nchecksum: %x\n\n", frame->checksum);
 }

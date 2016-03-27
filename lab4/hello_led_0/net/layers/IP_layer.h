@@ -6,6 +6,7 @@
 typedef struct {
     int version; // 4 bits
     int id; // 16 bits
+    int checksum;
     unsigned char src_addr[4];
     unsigned char dest_addr[4];
     unsigned char* data;
@@ -14,7 +15,7 @@ typedef struct {
 
 
 int IPPack(IPFrame*, unsigned char*);
-int IPUnpack(unsigned char*, IPFrame*, unsigned char*);
+void IPUnpack(unsigned char*, IPFrame*);
 void fillIPHeader(IPFrame*, int, int, char*, char*, char*, int);
 void printIPHeader(IPFrame*);
 

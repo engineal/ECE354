@@ -9,10 +9,11 @@ typedef struct {
     unsigned char type[2];
     unsigned char* data;
     int dataLength;
+    int checksum;
 } ethernetFrame;
 
 int ethPack(ethernetFrame*, unsigned char*);
-int ethUnpack(unsigned char*, int, ethernetFrame*, unsigned char*);
+void ethUnpack(unsigned char*, int, ethernetFrame*);
 void fillEthernetHeader(ethernetFrame*, char*, char*, char*, int);
 void printEthernetHeader(ethernetFrame*);
 

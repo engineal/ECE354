@@ -46,7 +46,7 @@ int IPPack(IPFrame* frame, unsigned char* output)
 
 // Takes char* input which holds transmitted packet and interprets it,
 // storing the result in an IPFrame struct.
-int IPUnpack(unsigned char* input, IPFrame* frame, unsigned char* ip_addr)
+void IPUnpack(unsigned char* input, IPFrame* frame)
 {
     frame->version = (input[0]>>4)&0xF;
     
@@ -56,30 +56,14 @@ int IPUnpack(unsigned char* input, IPFrame* frame, unsigned char* ip_addr)
     frame->id = (input[4]<<8) | input[5];
     
     //byte offset for headerChecksum -- skipping unused header fields
-    int checksum = (input[10]<<8) | input[11];
+    frame->checksum = 0; //(input[10]<<8) | input[11];
+    // Clear checksum
+    int chcksmLocation = 10;
+    int_to_char(input, 0, &chcksmLocation, 2);
     
     charnuncat(frame->src_addr, input, 12, 4);
     charnuncat(frame->dest_addr, input, 16, 4);
     charnuncat(frame->data, input, 20, frame->dataLength);
-    /*int chcksmLocation = 10;
-    int_to_char(input, 0, &chcksmLocation, 2);
-    int checksum2 = computeChecksum(input, IP_HEADER_LENGTH);
-    
-    int checksumPass = checksum == checksum2;
-    if (!checksumPass) {
-        printf("IP Checksum fail: %x != %x\n", checksum, checksum2);
-    }*/
-    int ipPass = 1;
-    int i;
-    for (i = 0; i < 4; i++) {
-        ipPass &= frame->dest_addr[i] == ip_addr[i];
-    }
-    if (!ipPass) {
-        printf("IP fail: %d.%d.%d.%d != %d.%d.%d.%d\n",
-            frame->dest_addr[0], frame->dest_addr[1], frame->dest_addr[2], frame->dest_addr[3],
-            ip_addr[0], ip_addr[1], ip_addr[2], ip_addr[3]);
-    }
-    return ipPass;
 }
 
 // Generates IP header checksum for frame and stores it in 
@@ -98,6 +82,7 @@ void fillIPHeader(
 {
     frame->version = version;
     frame->id = id;
+    frame->checksum = 0;
     charncpy(frame->src_addr, src_addr, 4);
     charncpy(frame->dest_addr, dest_addr, 4);
     frame->data = data;
@@ -108,6 +93,7 @@ void printIPHeader(IPFrame* frame) {
     printf("IP header:\n");
     printf("version: %d\n", frame->version);
     printf("id: %d\n", frame->id);
+    printf("checksum: %x\n", frame->checksum);
     printf("source address: %d.%d.%d.%d\n", frame->src_addr[0], frame->src_addr[1], frame->src_addr[2], frame->src_addr[3]);
     printf("destination address: %d.%d.%d.%d\n", frame->dest_addr[0], frame->dest_addr[1], frame->dest_addr[2], frame->dest_addr[3]);
     printf("data:");

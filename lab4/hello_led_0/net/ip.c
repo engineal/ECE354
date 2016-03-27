@@ -3,18 +3,27 @@
 #include "basic_io.h"
 #include "layers/IP_layer.h"
 
-int ipSend(
+void ipSend(
     char* data, int length,
     char* destIP, char* localIP,
     char* destMAC, char* localMAC)
 {
-    IPFrame ipFrame;
-    fillIPHeader(&ipFrame, 4, 1, localIP, destIP, data, length);
-    //printIPHeader(&ipFrame);
+    IPFrame frame;
+    fillIPHeader(&frame, 4, 1, localIP, destIP, data, length);
+    //printIPHeader(&frame);
     unsigned char IPData[IP_HEADER_LENGTH + length];
-    int IPLength = IPPack(&ipFrame, IPData);
+    int IPLength = IPPack(&frame, IPData);
     
-    return ethernetSend(IPData, IPLength, destMAC, localMAC);
+    ethernetSend(IPData, IPLength, destMAC, localMAC);
+}
+
+int compareIP(char* ip1, char* ip2) {
+    int ipPass = 1;
+    int i;
+    for (i = 0; i < 4; i++) {
+        ipPass &= ip1[i] == ip2[i];
+    }
+    return ipPass;
 }
     
 int ipReceive(
@@ -25,11 +34,21 @@ int ipReceive(
     unsigned char data[68];
     int dataLength = ethernetReceive(data, localMAC);
     if (dataLength > 0) {
-        IPFrame ipFrame;
-        ipFrame.data = returnedData;
-        if (IPUnpack(data, &ipFrame, localIP)) {
-            //printIPHeader(&ipFrame);
-            return ipFrame.dataLength;
+        IPFrame frame;
+        frame.data = returnedData;
+        IPUnpack(data, &frame);
+        
+        int checksum = 0; //computeChecksum(data, IP_HEADER_LENGTH);
+        
+        if (frame.checksum != checksum) {
+            printf("IP Checksum fail: %x != %x\n", frame->checksum, checksum);
+        } else if (!compareIP(frame.dest_addr, localIP)) {
+            printf("IP fail: %d.%d.%d.%d != %d.%d.%d.%d\n",
+                frame->dest_addr[0], frame->dest_addr[1], frame->dest_addr[2], frame->dest_addr[3],
+                localIP[0], localIP[1], localIP[2], localIP[3]);
+        } else {
+            //printIPHeader(&frame);
+            return frame.dataLength;
         }
     }
     return -1;

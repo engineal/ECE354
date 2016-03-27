@@ -9,6 +9,8 @@ typedef struct
     // Both are 16 bits each.
     unsigned int sourcePort;
     unsigned int destPort;
+    
+    int checksum;
 
     // This is the previous data that will be sent 
     // along with the header.
@@ -17,7 +19,7 @@ typedef struct
 } UDPFrame;
 
 int UDPPack(UDPFrame*, unsigned char*);
-int UDPUnpack(unsigned char*, UDPFrame*, unsigned int);
+void UDPUnpack(unsigned char*, UDPFrame*);
 void fillUDPHeader(UDPFrame*, int, int, char*, int);
 void printUDPHeader(UDPFrame*);
 

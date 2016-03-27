@@ -4,18 +4,18 @@
 #include "layers/udp_layer.h"
 
 // creates and transmits packet
-int udpSend(
+void udpSend(
     char* data, 
     int length, 
     UDPInfo* info) 
 {
-    UDPFrame udpFrame;
-    fillUDPHeader(&udpFrame, info->localPort, info->destPort, data, length);
-    //printUDPHeader(&udpFrame);
+    UDPFrame frame;
+    fillUDPHeader(&frame, info->localPort, info->destPort, data, length);
+    //printUDPHeader(&frame);
     unsigned char UDPData[UDP_HEADER_LENGTH + length];
-    int UDPLength = UDPPack(&udpFrame, UDPData);
+    int UDPLength = UDPPack(&frame, UDPData);
     
-    return ipSend(UDPData, UDPLength, info->destIP, info->localIP, info->destMAC, info->localMAC);
+    ipSend(UDPData, UDPLength, info->destIP, info->localIP, info->destMAC, info->localMAC);
 }
 
 // receives and decodes packet
@@ -26,11 +26,19 @@ int udpReceive(
     unsigned char data[68];
     int dataLength = ipReceive(data, info->localIP, info->localMAC);
     if (dataLength > 0) {
-        UDPFrame udpFrame;
-        udpFrame.data = returnedData;
-        if (UDPUnpack(data, &udpFrame, info->localPort)) {
-            //printUDPHeader(&udpFrame);
-            return udpFrame.dataLength;
+        UDPFrame frame;
+        frame.data = returnedData;
+        UDPUnpack(data, &frame);
+
+        int checksum = 0; //computeChecksum(data, UDP_HEADER_LENGTH);
+
+        if (frame.checksum != checksum) {
+            printf("UDP Checksum fail: %x != %x\n", frame.checksum, checksum);
+        } else if (frame.destPort != info->localPort) {
+            printf("Port fail: %d != %d\n", frame.destPort, info->localPort);
+        } else {
+            //printUDPHeader(&frame);
+            return frame.dataLength;
         }
     }
     return -1;
