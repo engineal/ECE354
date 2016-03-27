@@ -1,0 +1,65 @@
+#include "ethernet.h"
+#include "basic_io.h"
+#include "DM9000A.C"
+#include "layers/ethernet_layer.h"
+
+volatile int ackReceived;
+
+int ethernetSend(
+    char* data, int length, 
+    char* destMAC, char* localMAC)
+{
+    return ethernetSend(data, length, destMAC, localMAC, 1);
+}
+
+int ethernetSend1(
+    char* data, int length, 
+    char* destMAC, char* localMAC,
+    int expectACK)
+{
+    printf("Entered Ethernet Send\n");
+    ackReceived = 0;
+    //while (!ackReceived && expectACK) {
+        printf("Sending Ethernet\n");
+        
+        ethernetFrame ethFrame;
+        fillEthernetHeader(&ethFrame, destMAC, localMAC, data, length);
+        //printEthernetHeader(&ethFrame);
+        unsigned char ethernetData[ETHERNET_HEADER_LENGTH + length];
+        int ethernetLength = ethPack(&ethFrame, ethernetData);
+        
+        TransmitPacket(ethernetData, ethernetLength);
+        
+        //msleep(1000);
+    //}
+    
+    printf("YAY\n\n");
+    return 1;
+}
+
+int ethernetReceive(
+    char* returnedData, 
+    char* localMAC)
+{
+    printf("Entered Ethernet Receive\n");
+    unsigned char data[68];
+    int dataLength = 0;
+    int aaa=ReceivePacket(data,&dataLength);
+    if (!aaa) {
+        ethernetFrame ethFrame;
+        ethFrame.data = returnedData;
+        if (ethUnpack(data, dataLength, &ethFrame, localMAC)) {
+            //printEthernetHeader(&ethFrame);
+            if (ethFrame.data[0] == 0xF0) {
+                printf("ACK received\n");
+                ackReceived++;
+            } else {
+                printf("ACK sent\n");
+                char ackData[] = {0xF0};
+                ethernetSend1(ackData, 1, ethFrame.src_addr, localMAC, 0);
+                return ethFrame.dataLength;
+            }
+        }
+    }
+    return -1;
+}

@@ -1,0 +1,17 @@
+#ifndef IP_H
+#define IP_H
+
+typedef struct
+{
+    char* localIP;
+    char* localMAC;
+    
+    char* destIP;
+    char* destMAC;   
+} IPInfo;
+
+void ipSend(char*, int, IPInfo*);
+    
+int ipReceive(char*, int, char*, IPInfo*);
+
+#endif /*IP_H*/

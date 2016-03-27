@@ -1,0 +1,25 @@
+#ifndef IP_H
+#define IP_H
+
+typedef struct
+{
+    char* localIP;
+    int localPort;
+    char* localMAC;
+    
+    char* destIP;
+    int destPort;
+    char* destMAC;   
+} EthernetInfo;
+
+
+void udpSend(
+    char* data, int valueSize, 
+    EthernetInfo* info);
+    
+int udpDecode(char* data, 
+    int dataLength, 
+    char* returnedData, 
+    EthernetInfo* info);
+
+#endif /*IP_H*/

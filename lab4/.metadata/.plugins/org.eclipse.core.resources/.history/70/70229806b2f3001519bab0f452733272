@@ -1,0 +1,21 @@
+#ifndef ETHERNET_H
+#define ETHERNET_H
+
+typedef struct
+{
+    char* localMAC;
+    
+    char* destMAC;   
+} IPInfo;
+
+
+void ipSend(
+    char* data, int valueSize, 
+    IPInfo* info);
+    
+int ipReceive(char* data, 
+    int dataLength, 
+    char* returnedData, 
+    IPInfo* info);
+
+#endif /*ETHERNET_H*/

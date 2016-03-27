@@ -1,8 +1,9 @@
 #include "interpretCommand.h"
+#include "basic_io.h"
 #include "image.h"
 #include "net/udp.h"
 
-extern EthernetInfo* ethInfo;
+extern UDPInfo* ethInfo;
 
 static void sendACK()
 {

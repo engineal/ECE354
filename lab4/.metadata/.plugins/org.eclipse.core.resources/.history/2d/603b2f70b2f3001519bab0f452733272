@@ -1,0 +1,20 @@
+#ifndef ETHERNET_H
+#define ETHERNET_H
+
+typedef struct
+{
+    char* localMAC;
+    
+    char* destMAC;   
+} EthernetInfo;
+
+void ethernetSend(
+    char* data, int valueSize, 
+    EthernetInfo* info);
+    
+int ethernetReceive(char* data, 
+    int dataLength, 
+    char* returnedData, 
+    EthernetInfo* info);
+
+#endif /*ETHERNET_H*/

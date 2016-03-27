@@ -10,16 +10,10 @@ typedef struct
     char* destIP;
     int destPort;
     char* destMAC;   
-} EthernetInfo;
+} UDPInfo;
 
-
-void udpSend(
-    char* data, int valueSize, 
-    EthernetInfo* info);
+int udpSend(char*, int, UDPInfo*);
     
-int udpDecode(char* data, 
-    int dataLength, 
-    char* returnedData, 
-    EthernetInfo* info);
+int udpReceive(char*, UDPInfo*);
 
 #endif /*UDP_H*/

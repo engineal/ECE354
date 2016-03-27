@@ -1,0 +1,8 @@
+#ifndef IP_H
+#define IP_H
+
+void ipSend(char*, int, IPInfo*, char*, char*, char*, char*);
+    
+int ipReceive(char*, int, char*, char*);
+
+#endif /*IP_H*/

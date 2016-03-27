@@ -1,0 +1,18 @@
+#include "ip.h"
+#include "ethernet.h"
+#include "basic_io.h"
+#include "layers/IP_layer.h"
+
+void ipSend(
+    char* data, int length,
+    char* destIP, char* localIP,
+    char* destMAC, char* localMAC)
+{
+    IPFrame ipFrame;
+    fillIPHeader(&ipFrame, 4, 1, localIP, destIP, data, length); //fills IP header with default values
+    //printIPHeader(&ipFrame);
+    unsigned char IPData[IP_HEADER_LENGTH + length];
+    int IPLength = IPPack(&ipFrame, IPData);
+    
+    ethernetSend(IPData, IPLength, destMAC, localMAC);
+}
