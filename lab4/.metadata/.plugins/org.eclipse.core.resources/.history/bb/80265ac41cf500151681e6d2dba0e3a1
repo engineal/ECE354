@@ -1,0 +1,15 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
+typedef struct
+{
+    char* localIP;
+    int localPort;
+    char* localMAC;
+    
+    char* destIP;
+    int destPort;
+    char* destMAC;   
+} UDPInfo;
+
+#endif /*QUEUE_H*/

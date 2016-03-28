@@ -12,10 +12,10 @@ void udpSend(
     UDPFrame frame;
     fillUDPHeader(&frame, info->localPort, info->destPort, data, length);
     //printUDPHeader(&frame);
-    unsigned char UDPData[UDP_HEADER_LENGTH + length];
-    int UDPLength = UDPPack(&frame, UDPData);
+    unsigned char output[UDP_HEADER_LENGTH + length];
+    int outputLength = UDPPack(&frame, output);
     
-    ipSend(UDPData, UDPLength, info->destIP, info->localIP, info->destMAC, info->localMAC);
+    ipSend(output, outputLength, info->destIP, info->localIP, info->destMAC, info->localMAC);
 }
 
 // receives and decodes packet
@@ -23,7 +23,7 @@ int udpReceive(
     char* returnedData, 
     UDPInfo* info) 
 {
-    unsigned char data[68];
+    unsigned char data[1024];
     int dataLength = ipReceive(data, info->localIP, info->localMAC);
     if (dataLength > 0) {
         UDPFrame frame;

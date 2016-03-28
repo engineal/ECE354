@@ -56,4 +56,5 @@ void interpretCommand(int command)
         case MSG_IMAGE_PROC_6:
             break;
     }
+    printf("\n");
 }

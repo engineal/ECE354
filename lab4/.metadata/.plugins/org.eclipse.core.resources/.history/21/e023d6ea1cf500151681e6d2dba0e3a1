@@ -1,0 +1,10 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
+typedef struct
+{
+    char* queue[];
+    char queuePointer = 0;
+} Queue;
+
+#endif /*QUEUE_H*/

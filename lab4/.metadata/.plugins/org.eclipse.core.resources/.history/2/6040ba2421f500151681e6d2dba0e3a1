@@ -1,0 +1,22 @@
+#include "queue.h"
+
+void push(Queue* queue, char* item, int length) {
+    if (!isFull(queue)) {
+        queue->items[queue->queuePointer++] = item;
+    }
+}
+
+int pop(Queue* queue, char* item) {
+    if (!isEmpty(queue)) {
+        item = queue->queue[--queue->queuePointer];
+        return 
+    }
+}
+
+int isEmpty(Queue* queue) {
+    return queue->queuePointer == 0;
+}
+
+int isFull(Queue* queue) {
+    return queue->queuePointer == QLENGTH;
+}

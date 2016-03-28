@@ -1,0 +1,18 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
+#define QLENGTH 20
+
+typedef struct
+{
+    char* queue[];
+    char queuePointer;
+} Queue;
+
+Queue initQueue();
+void push(Queue*, char*);
+char* pop(Queue*);
+int isEmpty(Queue*);
+int isFull(Queue*);
+
+#endif /*QUEUE_H*/

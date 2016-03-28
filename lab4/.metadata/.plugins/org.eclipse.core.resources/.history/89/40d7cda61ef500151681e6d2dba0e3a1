@@ -1,0 +1,14 @@
+#ifndef CUSTOM_IO_H
+#define CUSTOM_IO_H
+
+int readSwitches()
+{
+    return inport(SWITCH_PIO_BASE);
+}
+
+int readButtons();
+void writeLEDs(int);
+void writeGreenLEDs(int);
+void writeDecimalLCD(int);
+
+#endif /*CUSTOM_IO_H*/

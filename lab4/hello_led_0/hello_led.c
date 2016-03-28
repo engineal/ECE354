@@ -1,12 +1,11 @@
 #include "hello_led.h"
 #include "basic_io.h"
+#include "custom_io.h"
 #include "LCD.h"
 #include "image.h"
 #include "net/udp.h"
 #include "net/ethernet.h"
 #include "interpretCommand.h"
-
-int packet_num;
 
 #define LOCAL_MAC {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF}
 #define LOCAL_IP_ADDR {192, 168, 1, 116}
@@ -19,28 +18,6 @@ int packet_num;
 UDPInfo* ethInfo;
 
 char bin_pix[X][Y];
-
-// run everytime an ethernet interrupt is generated
-void ethernet_interrupts()
-{
-    packet_num++;
-    unsigned char data[1024];
-    int size = udpReceive(data, ethInfo);
-    if (size > 0) {
-        // If size = 1, it must be a commanding message
-        if (size == 1) {
-            printf("Interpreting Command...\n");
-            
-            if (data[0] < 0x09)
-                writeLEDs(data[0]);
-            else if (data[0] == 0xAA || data[0] == 0xFF)
-                writeGreenLEDs(0xFF);
-            interpretCommand(data[0]);
-        }
-    }
-    
-    writeDecimalLCD(packet_num);
-}
 
 int main(void)
 {
@@ -60,10 +37,7 @@ int main(void)
     
     LCD_Test();
     ethernetInit(ethInfo->localMAC);
-    alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
     
-    packet_num=0;
-    writeDecimalLCD(packet_num);
     writeLEDs(0);
     
     int oldValue = 0x0F;
@@ -72,7 +46,7 @@ int main(void)
     {
         // -- SEND --
         int value = readButtons();
-        if (oldValue != value && value != 0) 
+        if (oldValue != value && value != 0x0F) 
         {
             printf("Buttons: %x\n", value);
             int switches = readSwitches();
@@ -84,8 +58,23 @@ int main(void)
                 udpSend(data, 1, ethInfo);
             }   
         }
-        
         oldValue = value;
+        
+        // -- RECEIVE --
+        unsigned char data[1024];
+        int size = udpReceive(data, ethInfo);
+        if (size > 0) {
+            // If size = 1, it must be a commanding message
+            if (size == 1) {
+                printf("Interpreting Command...\n");
+                
+                if (data[0] < 0x09)
+                    writeLEDs(data[0]);
+                else if (data[0] == 0xAA || data[0] == 0xFF)
+                    writeGreenLEDs(0xFF);
+                //interpretCommand(data[0]);
+            }
+        }
         
         msleep(100);
     }
@@ -93,37 +82,5 @@ int main(void)
     return 0;
 }
 
-int readSwitches()
-{
-    return inport(SWITCH_PIO_BASE);
-}
-
-int readButtons()
-{
-    return inport(BUTTON_PIO_BASE);
-}
-
-void writeLEDs(int value)
-{
-    outport(LED_RED_BASE,value);
-}
-void writeGreenLEDs(int value)
-{
-    outport(LED_GREEN_BASE, value);
-}
-
-void writeDecimalLCD(int value)
-{
-    int digits=0;
-    
-    int i;
-    for(i=0; i<8; i++)
-    {
-        digits |= (value % 10)<<(i*4);
-        value = value/10;   
-    }
-    
-    outport(SEG7_DISPLAY_BASE,digits);
-}
 //-------------------------------------------------------------------------
 

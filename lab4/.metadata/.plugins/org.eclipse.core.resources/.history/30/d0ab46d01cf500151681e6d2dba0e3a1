@@ -1,0 +1,15 @@
+#include "queue.h"
+
+
+void push() {
+    
+}
+
+void pop() {
+    
+}
+
+void isEmpty() {
+    
+}
+
