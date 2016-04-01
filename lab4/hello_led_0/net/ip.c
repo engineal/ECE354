@@ -31,7 +31,7 @@ int ipReceive(
     char* localIP,
     char* localMAC)
 {
-    unsigned char data[1024];
+    unsigned char data[128];
     int dataLength = ethernetReceive(data, localMAC);
     if (dataLength > 0) {
         IPFrame frame;

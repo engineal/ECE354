@@ -1,1 +1,0 @@
-obj/net/handshake.o: ../net/handshake.c ../net/handshake.h

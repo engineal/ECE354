@@ -32,8 +32,8 @@ obj/net/ethernet.o: ../net/ethernet.c ../net/ethernet.h ../basic_io.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/nios2.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h \
-  ../custom_io.h ../helper.h ../queue.h \
+  ../custom_io.h ../helper.h ../net/queue.h \
+  ../net/layers/ethernet_layer.h \
   /cygdrive/c/Users/ajlucia/code/ECE354/lab4/DM9000A/inc/DM9000A.C \
   /cygdrive/c/Users/ajlucia/code/ECE354/lab4/DM9000A/inc/DM9000A.H \
-  /cygdrive/c/Users/ajlucia/code/ECE354/lab4/DM9000A/inc/basic_io.h \
-  ../net/layers/ethernet_layer.h
+  /cygdrive/c/Users/ajlucia/code/ECE354/lab4/DM9000A/inc/basic_io.h

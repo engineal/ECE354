@@ -23,7 +23,7 @@ int udpReceive(
     char* returnedData, 
     UDPInfo* info) 
 {
-    unsigned char data[1024];
+    unsigned char data[128];
     int dataLength = ipReceive(data, info->localIP, info->localMAC);
     if (dataLength > 0) {
         UDPFrame frame;

@@ -1,4 +1,0 @@
-#include "queue.h"
-
-char* queue[];
-char queuePointer = 0;

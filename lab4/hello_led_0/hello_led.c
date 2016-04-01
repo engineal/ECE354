@@ -40,28 +40,26 @@ int main(void)
     
     writeLEDs(0);
     
-    int oldValue = 0x0F;
+    int oldValue = 0;
+    unsigned char data[1024];
     
     while (1)
     {
         // -- SEND --
         int value = readButtons();
-        if (oldValue != value && value != 0x0F) 
+        if (oldValue != value && value == 8) 
         {
-            printf("Buttons: %x\n", value);
             int switches = readSwitches();
-            
             if (switches >= 0x0 && switches < 0x9)
             {
                 char data[] = {switches};
                 printf("Sending %d\n", switches);
-                udpSend(data, 1, ethInfo);
+                //udpSend(data, 1, ethInfo);
             }   
         }
         oldValue = value;
         
         // -- RECEIVE --
-        unsigned char data[1024];
         int size = udpReceive(data, ethInfo);
         if (size > 0) {
             // If size = 1, it must be a commanding message

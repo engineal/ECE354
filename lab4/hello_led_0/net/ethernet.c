@@ -6,9 +6,11 @@
 #include "DM9000A.C"
 #include "layers/ethernet_layer.h"
 
-char ether_addr[6];
+char* ether_addr;
 int packet_num;
-volatile Queue* receivedQueue = initQueue();
+
+Queue* sendQueue;
+Queue* receivedQueue;
 
 volatile int ackReceived;
 
@@ -29,23 +31,24 @@ void ethernet_interrupts() {
     int aaa=ReceivePacket(data, &dataLength);
     if (!aaa) {
         printf("Received %d bytes\n", dataLength);
-        ethernetFrame frame;
-        frame.data = (char*)malloc(sizeof(char)*(1024-ETHERNET_HEADER_LENGTH));
-        ethUnpack(data, dataLength, &frame);
-        printEthernetHeader(&frame);
+        ethernetFrame* frame = (ethernetFrame*)malloc(sizeof(ethernetFrame));
+        frame->data = (char*)malloc(sizeof(char)*(1024-ETHERNET_HEADER_LENGTH));
+        ethUnpack(data, dataLength, frame);
+        //printEthernetHeader(frame);
         
         int checksum = 0; //computeChecksum(data, ETHERNET_HEADER_LENGTH);
         
-        if (frame.checksum != checksum) {
-            printf("Ethernet Checksum fail: %x != %x\n\n", frame.checksum, checksum);
-        } else if (!compareMAC(frame.dest_addr, ether_addr)) {
+        if (frame->checksum != checksum) {
+            printf("Ethernet Checksum fail: %x != %x\n\n", frame->checksum, checksum);
+        } else if (!compareMAC(frame->dest_addr, ether_addr)) {
             printf("MAC fail: %2x:%2x:%2x:%2x:%2x:%2x != %2x:%2x:%2x:%2x:%2x:%2x\n\n",
-                frame.dest_addr[0], frame.dest_addr[1], frame.dest_addr[2], frame.dest_addr[3], frame.dest_addr[4], frame.dest_addr[5],
+                frame->dest_addr[0], frame->dest_addr[1], frame->dest_addr[2], frame->dest_addr[3], frame->dest_addr[4], frame->dest_addr[5],
                 ether_addr[0], ether_addr[1], ether_addr[2], ether_addr[3], ether_addr[4], ether_addr[5]);
         } else {
-            if (frame.data[0] == 0xF0) {
+            if (frame->data[0] == 0xF0) {
                 printf("Received ACK\n\n");
                 ackReceived++;
+                //dequeue(sendQueue);
             } else {
                 printf("Received Packet\n\n");
                 enqueue(receivedQueue, frame);
@@ -59,10 +62,19 @@ void ethernet_interrupts() {
 void ethernetInit(char localMAC[]) {
     ether_addr = localMAC;
     packet_num = 0;
+    receivedQueue = initQueue();
+    
     writeDecimalLCD(packet_num);
     
     DM9000_init(localMAC);
     alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
+}
+
+void ethernet_worker() {
+    ethernetFrame* frame = peek(sendQueue);
+    if (frame != NULL) {
+        //send frame
+    }
 }
 
 void ethernetSend(
@@ -71,18 +83,18 @@ void ethernetSend(
 {
     ethernetFrame frame;
     fillEthernetHeader(&frame, destMAC, localMAC, data, length);
-    printEthernetHeader(&frame);
+    //printEthernetHeader(&frame);
     unsigned char output[ETHERNET_HEADER_LENGTH + length];
     int outputLength = ethPack(&frame, output);
     
     ackReceived = 0;
-    //while (!ackReceived) {
+    while (!ackReceived) {
         printf("Sending %d bytes\n", outputLength);
         TransmitPacket(output, outputLength);
         printf("Sent, waiting for ACK\n");
         
         msleep(1000);
-    //}
+    }
     printf("ACK acknowledged: %d\n\n", ackReceived);
 }
 
@@ -105,17 +117,18 @@ int ethernetReceive(
     char* returnedData, 
     char* localMAC)
 {
-    ethernetFrame frame = dequeue(receivedQueue);
-    if (frame) {
-        printEthernetHeader(&frame);
+    ethernetFrame* frame = dequeue(receivedQueue);
+    if (frame != NULL) {
+        //printEthernetHeader(frame);
 
         printf("Sending ACK\n");
         char ackData[] = {0xF0};
-        //ethernetSendNoACK(ackData, 1, frame.src_addr, localMAC);
+        ethernetSendNoACK(ackData, 1, frame->src_addr, localMAC);
 
-        charncpy(returnedData, frame.data, frame.dataLength);
-        free(frame.data);
-        return frame.dataLength;
+        charncpy(returnedData, frame->data, frame->dataLength);
+        free(frame->data);
+        free(frame);
+        return frame->dataLength;
     }
     return -1;
 }

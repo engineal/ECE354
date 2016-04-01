@@ -6,12 +6,13 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="malloc" key="selection"/>
+		<item value="frame-&gt;" key="selection"/>
 		<list key="findhistory">
+			<item value="frame."/>
 			<item value="malloc"/>
 			<item value="printEthernetHeader"/>
 			<item value="destPort"/>
@@ -19,6 +20,7 @@
 			<item value="sending"/>
 		</list>
 		<list key="replacehistory">
+			<item value="frame-&gt;"/>
 			<item value="X"/>
 		</list>
 	</section>

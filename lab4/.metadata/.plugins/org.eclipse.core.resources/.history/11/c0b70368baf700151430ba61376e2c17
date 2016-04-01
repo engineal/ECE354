@@ -1,0 +1,9 @@
+#ifndef HELLO_LED_H
+#define HELLO_LED_H
+
+#define BUTTON_INT_MASK   0xF
+
+void handle_button_interrupts();
+void init_button_irq();
+
+#endif /*HELLO_LED_H*/

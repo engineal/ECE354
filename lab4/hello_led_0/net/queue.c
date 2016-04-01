@@ -1,4 +1,5 @@
 #include "queue.h"
+#include "basic_io.h"
 
 Queue* initQueue() {
     Queue* queue = (Queue*)malloc(sizeof(Queue));
@@ -7,20 +8,27 @@ Queue* initQueue() {
     return queue;
 }
 
-void enqueue(Queue* queue, ethernetFrame item) {
+void enqueue(Queue* queue, ethernetFrame* item) {
     if (!isFull(queue)) {
         queue->items[queue->end] = item;
         queue->end = (queue->end + 1) % QLENGTH;
     }
 }
 
-ethernetFrame dequeue(Queue* queue) {
+ethernetFrame* dequeue(Queue* queue) {
     if (!isEmpty(queue)) {
-        ethernetFrame result = queue->items[queue->start];
+        ethernetFrame* result = queue->items[queue->start];
         queue->start = (queue->start + 1) % QLENGTH;
         return result;
     }
-    return 0;
+    return NULL;
+}
+
+ethernetFrame* peek(Queue* queue) {
+    if (!isEmpty(queue)) {
+        return queue->items[queue->start];
+    }
+    return NULL;
 }
 
 int size(Queue* queue) {

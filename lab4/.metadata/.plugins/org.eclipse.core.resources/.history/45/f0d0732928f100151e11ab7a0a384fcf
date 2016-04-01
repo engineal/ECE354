@@ -1,7 +1,0 @@
-#ifndef ETHERNET_H_
-#define ETHERNET_H_
-
-void encode_message(char* data, int valueSize);
-int decode_message(char* data);
-
-#endif /*ETHERNET_H_*/

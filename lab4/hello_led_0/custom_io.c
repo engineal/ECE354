@@ -8,7 +8,7 @@ int readSwitches()
 
 int readButtons()
 {
-    return inport(BUTTON_PIO_BASE);
+    return 0xF - inport(BUTTON_PIO_BASE);
 }
 
 void writeLEDs(int value)
