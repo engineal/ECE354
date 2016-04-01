@@ -54,10 +54,13 @@ int main(void)
             {
                 char data[] = {switches};
                 printf("Sending %d\n", switches);
-                //udpSend(data, 1, ethInfo);
+                udpSend(data, 1, ethInfo);
             }   
         }
         oldValue = value;
+        
+        // send queued packets
+        ethernet_worker();
         
         // -- RECEIVE --
         int size = udpReceive(data, ethInfo);
@@ -70,7 +73,7 @@ int main(void)
                     writeLEDs(data[0]);
                 else if (data[0] == 0xAA || data[0] == 0xFF)
                     writeGreenLEDs(0xFF);
-                //interpretCommand(data[0]);
+                interpretCommand(data[0]);
             }
         }
         

@@ -6,13 +6,13 @@
 #include "DM9000A.C"
 #include "layers/ethernet_layer.h"
 
+#define ETHERNET_DATA_LENGTH (1024-ETHERNET_HEADER_LENGTH)
+
 char* ether_addr;
 int packet_num;
 
 Queue* sendQueue;
 Queue* receivedQueue;
-
-volatile int ackReceived;
 
 int compareMAC(char* mac1, char* mac2) {
     int macPass = 1;
@@ -32,7 +32,7 @@ void ethernet_interrupts() {
     if (!aaa) {
         printf("Received %d bytes\n", dataLength);
         ethernetFrame* frame = (ethernetFrame*)malloc(sizeof(ethernetFrame));
-        frame->data = (char*)malloc(sizeof(char)*(1024-ETHERNET_HEADER_LENGTH));
+        frame->data = (char*)malloc(sizeof(char)*ETHERNET_DATA_LENGTH);
         ethUnpack(data, dataLength, frame);
         //printEthernetHeader(frame);
         
@@ -46,22 +46,29 @@ void ethernet_interrupts() {
                 ether_addr[0], ether_addr[1], ether_addr[2], ether_addr[3], ether_addr[4], ether_addr[5]);
         } else {
             if (frame->data[0] == 0xF0) {
-                printf("Received ACK\n\n");
-                ackReceived++;
-                //dequeue(sendQueue);
+                printf("Received layer 2 ACK\n\n");
+                // Remove packet from send queue for which the layer 2 ack was for
+                ethernetFrame* sentFrame = dequeue(sendQueue);
+                if (sentFrame != NULL) {
+                    free(sentFrame->data);
+                    free(sentFrame);
+                }
             } else {
                 printf("Received Packet\n\n");
+                // Add packet to receive queue
                 enqueue(receivedQueue, frame);
+                return; // don't clean up data that was enqueued
             }
         }
-    } else {
-        free(data);        
+        free(frame->data);
+        free(frame);
     }
 }
 
 void ethernetInit(char localMAC[]) {
     ether_addr = localMAC;
     packet_num = 0;
+    sendQueue = initQueue();
     receivedQueue = initQueue();
     
     writeDecimalLCD(packet_num);
@@ -70,34 +77,48 @@ void ethernetInit(char localMAC[]) {
     alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
 }
 
+/*
+ * Will send the next queued packet, which very well could mean resending
+ * the last packet if no layer 2 ack was received.
+ *
+ * TODO: delay retransmission
+ */
 void ethernet_worker() {
+    //if time is up
     ethernetFrame* frame = peek(sendQueue);
     if (frame != NULL) {
-        //send frame
+        //printEthernetHeader(frame);
+        unsigned char output[ETHERNET_HEADER_LENGTH + frame->dataLength];
+        int outputLength = ethPack(frame, output);
+        
+        printf("Sending %d bytes from queue\n", outputLength);
+        TransmitPacket(output, outputLength);
+        printf("Sent from queue\n");
     }
 }
 
+/*
+ * Enqueue the requested packet to be sent
+ * Packet will be sent by ethernet_worker() when its turn comes
+ * (once all previously sent packets receive acks), and will
+ * prevent sending another packet until a layer 2 ack is received for it
+ */
 void ethernetSend(
     char* data, int length, 
     char* destMAC, char* localMAC)
 {
-    ethernetFrame frame;
-    fillEthernetHeader(&frame, destMAC, localMAC, data, length);
-    //printEthernetHeader(&frame);
-    unsigned char output[ETHERNET_HEADER_LENGTH + length];
-    int outputLength = ethPack(&frame, output);
-    
-    ackReceived = 0;
-    while (!ackReceived) {
-        printf("Sending %d bytes\n", outputLength);
-        TransmitPacket(output, outputLength);
-        printf("Sent, waiting for ACK\n");
-        
-        msleep(1000);
-    }
-    printf("ACK acknowledged: %d\n\n", ackReceived);
+    ethernetFrame* frame = (ethernetFrame*)malloc(sizeof(ethernetFrame));
+    char* frameData = (char*)malloc(sizeof(char)*length);
+    charncpy(frameData, data, length); // Copy data so it is availible in queue
+    fillEthernetHeader(frame, destMAC, localMAC, frameData, length);
+    //printEthernetHeader(frame);
+    enqueue(sendQueue, frame);
 }
 
+/*
+ * Send packet at once, not waiting for previous packets to be sent,
+ * does not wait for a layer 2 ack
+ */
 void ethernetSendNoACK(
     char* data, int length, 
     char* destMAC, char* localMAC)
@@ -113,6 +134,13 @@ void ethernetSendNoACK(
     printf("Sent\n\n");
 }
 
+/*
+ * Receive a packet from the recived queue
+ * This packet will be a valid packet (i.e. checksum and MAC address pass)
+ * and will not be an layer 2 ack
+ *
+ * Returns: the length of the returned data, -1 if no packet left to receive
+ */
 int ethernetReceive(
     char* returnedData, 
     char* localMAC)
