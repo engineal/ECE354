@@ -6,30 +6,60 @@
 #include "DM9000A.C"
 #include "layers/ethernet_layer.h"
 
+char ether_addr[6];
 int packet_num;
-volatile Queue* receivedQueue;
+volatile Queue* receivedQueue = initQueue();
 
 volatile int ackReceived;
+
+int compareMAC(char* mac1, char* mac2) {
+    int macPass = 1;
+    int i;
+    for (i = 0; i < 6; i++) {
+        macPass &= mac1[i] == mac2[i];
+    }
+    return macPass;
+}
 
 void ethernet_interrupts() {
     writeDecimalLCD(packet_num++);
     
-    char* data = (char*)malloc(sizeof(char)*1024);
+    char data[1024];
     int dataLength = 0;
     int aaa=ReceivePacket(data, &dataLength);
     if (!aaa) {
         printf("Received %d bytes\n", dataLength);
-        push(receivedQueue, data, dataLength);
+        ethernetFrame frame;
+        frame.data = (char*)malloc(sizeof(char)*(1024-ETHERNET_HEADER_LENGTH));
+        ethUnpack(data, dataLength, &frame);
+        printEthernetHeader(&frame);
+        
+        int checksum = 0; //computeChecksum(data, ETHERNET_HEADER_LENGTH);
+        
+        if (frame.checksum != checksum) {
+            printf("Ethernet Checksum fail: %x != %x\n\n", frame.checksum, checksum);
+        } else if (!compareMAC(frame.dest_addr, ether_addr)) {
+            printf("MAC fail: %2x:%2x:%2x:%2x:%2x:%2x != %2x:%2x:%2x:%2x:%2x:%2x\n\n",
+                frame.dest_addr[0], frame.dest_addr[1], frame.dest_addr[2], frame.dest_addr[3], frame.dest_addr[4], frame.dest_addr[5],
+                ether_addr[0], ether_addr[1], ether_addr[2], ether_addr[3], ether_addr[4], ether_addr[5]);
+        } else {
+            if (frame.data[0] == 0xF0) {
+                printf("Received ACK\n\n");
+                ackReceived++;
+            } else {
+                printf("Received Packet\n\n");
+                enqueue(receivedQueue, frame);
+            }
+        }
     } else {
         free(data);        
     }
 }
 
 void ethernetInit(char localMAC[]) {
+    ether_addr = localMAC;
     packet_num = 0;
     writeDecimalLCD(packet_num);
-    receivedQueue = (Queue*)malloc(sizeof(Queue));
-    receivedQueue->pointer = 0;
     
     DM9000_init(localMAC);
     alt_irq_register(DM9000A_IRQ, NULL, (void*)ethernet_interrupts);
@@ -71,49 +101,21 @@ void ethernetSendNoACK(
     printf("Sent\n\n");
 }
 
-int compareMAC(char* mac1, char* mac2) {
-    int macPass = 1;
-    int i;
-    for (i = 0; i < 6; i++) {
-        macPass &= mac1[i] == mac2[i];
-    }
-    return macPass;
-}
-
 int ethernetReceive(
     char* returnedData, 
     char* localMAC)
 {
-    char* data;
-    int dataLength = pop(receivedQueue, data);
-    if (dataLength > 0) {
-        ethernetFrame frame;
-        frame.data = returnedData;
-        ethUnpack(data, dataLength, &frame);
-        free(data);
+    ethernetFrame frame = dequeue(receivedQueue);
+    if (frame) {
         printEthernetHeader(&frame);
-        
-        int checksum = 0; //computeChecksum(data, ETHERNET_HEADER_LENGTH);
-        
-        if (frame.checksum != checksum) {
-            printf("Ethernet Checksum fail: %x != %x\n\n", frame.checksum, checksum);
-        } else if (!compareMAC(frame.dest_addr, localMAC)) {
-            printf("MAC fail: %2x:%2x:%2x:%2x:%2x:%2x != %2x:%2x:%2x:%2x:%2x:%2x\n\n",
-                frame.dest_addr[0], frame.dest_addr[1], frame.dest_addr[2], frame.dest_addr[3], frame.dest_addr[4], frame.dest_addr[5],
-                localMAC[0], localMAC[1], localMAC[2], localMAC[3], localMAC[4], localMAC[5]);
-        } else {
-            if (frame.data[0] == 0xF0) {
-                printf("Received ACK\n\n");
-                ackReceived++;
-            } else {
-                printf("Received Packet\n\n");
-                printf("Sending ACK\n");
-                char ackData[] = {0xF0};
-                //ethernetSendNoACK(ackData, 1, frame.src_addr, localMAC);
-                
-                return frame.dataLength;
-            }
-        }
+
+        printf("Sending ACK\n");
+        char ackData[] = {0xF0};
+        //ethernetSendNoACK(ackData, 1, frame.src_addr, localMAC);
+
+        charncpy(returnedData, frame.data, frame.dataLength);
+        free(frame.data);
+        return frame.dataLength;
     }
     return -1;
 }
