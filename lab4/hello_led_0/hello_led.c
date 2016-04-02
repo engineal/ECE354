@@ -71,13 +71,17 @@ int main(void)
                 
                 if (data[0] < 0x09)
                     writeLEDs(data[0]);
-                else if (data[0] == 0xAA || data[0] == 0xFF)
+                else if (data[0] == MSG_ACK)
                     writeGreenLEDs(0xFF);
+                else if (data[0] == MSG_NAK)
+                    writeLEDs(0x3FFFF);
                 interpretCommand(data[0]);
             }
         }
         
-        msleep(100);
+        msleep(1000);
+        writeLEDs(0);
+        writeGreenLEDs(0);
     }
 
     return 0;

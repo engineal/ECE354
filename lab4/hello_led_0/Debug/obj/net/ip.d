@@ -1,4 +1,5 @@
-obj/net/ip.o: ../net/ip.c ../net/ip.h ../net/ethernet.h ../basic_io.h \
+obj/net/ip.o: ../net/ip.c ../net/ip.h ../net/layers/IP_layer.h \
+  ../net/ethernet.h ../net/layers/ethernet_layer.h ../basic_io.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/io.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
   /cygdrive/c/altera/91/nios2eds/bin/nios2-gnutools/H-i686-pc-cygwin/bin/../lib/gcc/nios2-elf/3.4.6/../../../../nios2-elf/include/stdio.h \
@@ -31,5 +32,4 @@ obj/net/ip.o: ../net/ip.c ../net/ip.h ../net/ethernet.h ../basic_io.h \
   /cygdrive/c/Users/ajlucia/code/ECE354/lab4/hello_led_0_syslib/Debug/system_description/system.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/nios2.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
-  /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h \
-  ../net/layers/IP_layer.h
+  /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h

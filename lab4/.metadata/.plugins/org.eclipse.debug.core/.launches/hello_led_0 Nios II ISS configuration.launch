@@ -13,11 +13,11 @@
 <stringAttribute key="com.altera.nj.launch.PTF_NAME" value="C:\Users\ajlucia\code\ECE354\lab4\system_0.ptf"/>
 <stringAttribute key="com.altera.nj.launch.QUEST_MEMDUMP_END_ADDR" value=""/>
 <stringAttribute key="com.altera.nj.launch.QUEST_STDOUT" value="jtag_uart_0"/>
-<booleanAttribute key="com.altera.nj.launch.QUEST_ENABLE_MEMDUMP" value="false"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="hello_led_0"/>
 <booleanAttribute key="com.altera.nj.launch.QUEST_TRACE_WARNING" value="true"/>
-<booleanAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN" value="true"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="hello_led_0"/>
+<booleanAttribute key="com.altera.nj.launch.QUEST_ENABLE_MEMDUMP" value="false"/>
 <stringAttribute key="com.altera.nj.launch.QUEST_STDIN" value="jtag_uart_0"/>
+<booleanAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN" value="true"/>
 <stringAttribute key="com.altera.nj.launch.QUEST_LOCATION" value="nios2-iss"/>
 <stringAttribute key="com.altera.nj.launch.QUEST_ARGS" value=""/>
 <booleanAttribute key="org.eclipse.cdt.debug.mi.core.verboseMode" value="false"/>

@@ -11,6 +11,12 @@ static void sendACK()
     udpSend(data, 1, ethInfo);
 }
 
+static void sendNAK()
+{
+    char data[] = {MSG_NAK};
+    udpSend(data, 1, ethInfo);
+}
+
 extern char bin_pix[X][Y];
 void interpretCommand(int command) 
 {    
@@ -38,22 +44,31 @@ void interpretCommand(int command)
         case MSG_IMAGE_PROC_1:
             printf(" -- Recieved Flip Image Message\n");
             imageFlip(bin_pix);
+            sendACK();
             break;
         //Invert
         case MSG_IMAGE_PROC_2:
             printf(" -- Recieved Invert Image Message\n");
             imageInvert(bin_pix);
+            sendACK();
             break;
         //Rotate
         case MSG_IMAGE_PROC_3:
             printf(" -- Recieved Rotate Image Message\n");
             imageRotate(bin_pix);
+            sendACK();
             break;
         case MSG_IMAGE_PROC_4:
+            sendNAK();
             break;
         case MSG_IMAGE_PROC_5:
+            sendNAK();
             break;
         case MSG_IMAGE_PROC_6:
+            sendNAK();
+            break;
+        default:
+            sendNAK();
             break;
     }
     printf("\n");

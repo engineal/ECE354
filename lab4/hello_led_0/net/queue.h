@@ -3,7 +3,7 @@
 
 #include "layers/ethernet_layer.h"
 
-#define QLENGTH 20
+#define QLENGTH 30
 
 typedef struct
 {

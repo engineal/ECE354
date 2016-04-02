@@ -1,7 +1,5 @@
 #include "ip.h"
-#include "ethernet.h"
 #include "basic_io.h"
-#include "layers/IP_layer.h"
 
 void ipSend(
     char* data, int length,
@@ -31,7 +29,7 @@ int ipReceive(
     char* localIP,
     char* localMAC)
 {
-    unsigned char data[128];
+    unsigned char data[IP_LENGTH];
     int dataLength = ethernetReceive(data, localMAC);
     if (dataLength > 0) {
         IPFrame frame;

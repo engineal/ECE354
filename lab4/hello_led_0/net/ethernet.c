@@ -4,9 +4,6 @@
 #include "helper.h"
 #include "queue.h"
 #include "DM9000A.C"
-#include "layers/ethernet_layer.h"
-
-#define ETHERNET_DATA_LENGTH (1024-ETHERNET_HEADER_LENGTH)
 
 char* ether_addr;
 int packet_num;
@@ -26,7 +23,7 @@ int compareMAC(char* mac1, char* mac2) {
 void ethernet_interrupts() {
     writeDecimalLCD(packet_num++);
     
-    char data[1024];
+    char data[ETHERNET_LENGTH];
     int dataLength = 0;
     int aaa=ReceivePacket(data, &dataLength);
     if (!aaa) {
@@ -94,6 +91,7 @@ void ethernet_worker() {
         printf("Sending %d bytes from queue\n", outputLength);
         TransmitPacket(output, outputLength);
         printf("Sent from queue\n");
+        msleep(500);
     }
 }
 
@@ -130,8 +128,9 @@ void ethernetSendNoACK(
     int outputLength = ethPack(&frame, output);
     
     printf("Sending %d bytes\n", outputLength);
-    TransmitPacket(data, outputLength);
+    TransmitPacket(output, outputLength);
     printf("Sent\n\n");
+    msleep(500);
 }
 
 /*

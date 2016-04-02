@@ -1,7 +1,5 @@
 #include "udp.h"
-#include "ip.h"
 #include "basic_io.h"
-#include "layers/udp_layer.h"
 
 // creates and transmits packet
 void udpSend(
@@ -23,7 +21,7 @@ int udpReceive(
     char* returnedData, 
     UDPInfo* info) 
 {
-    unsigned char data[128];
+    unsigned char data[UDP_LENGTH];
     int dataLength = ipReceive(data, info->localIP, info->localMAC);
     if (dataLength > 0) {
         UDPFrame frame;

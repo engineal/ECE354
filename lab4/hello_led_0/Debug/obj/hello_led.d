@@ -32,5 +32,7 @@ obj/hello_led.o: ../hello_led.c ../hello_led.h ../basic_io.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/nios2.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h \
-  ../custom_io.h ../LCD.h ../image.h ../net/udp.h ../net/ethernet.h \
+  ../custom_io.h ../LCD.h ../image.h ../net/udp.h \
+  ../net/layers/udp_layer.h ../net/ip.h ../net/layers/IP_layer.h \
+  ../net/ethernet.h ../net/layers/ethernet_layer.h ../net/ethernet.h \
   ../interpretCommand.h
