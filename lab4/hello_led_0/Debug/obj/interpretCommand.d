@@ -35,4 +35,4 @@ obj/interpretCommand.o: ../interpretCommand.c ../interpretCommand.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h \
   ../image.h ../net/udp.h ../net/layers/udp_layer.h ../net/ip.h \
   ../net/layers/IP_layer.h ../net/ethernet.h \
-  ../net/layers/ethernet_layer.h
+  ../net/layers/ethernet_layer.h ../helper.h

@@ -12,6 +12,8 @@
 #define MSG_IMAGE_PROC_5   0x06
 #define MSG_IMAGE_PROC_6   0x07
 
+#define MAX_PAYLOAD_LENGTH 1471 //1500 for max ethernet length, -28 for IP,UDP headers. -1 for off by one error
+
 void interpretCommand(int command);
 
 #endif /*INTERPRETCOMMAND_H_*/

@@ -2,6 +2,7 @@
 #include "basic_io.h"
 #include "image.h"
 #include "net/udp.h"
+#include "helper.h"
 
 extern UDPInfo* ethInfo;
 
@@ -15,6 +16,35 @@ static void sendNAK()
 {
     char data[] = {MSG_NAK};
     udpSend(data, 1, ethInfo);
+}
+
+// Breaks up an image and sends it in 1500 byte payload packets.
+void transmitImage(char image[][Y]) 
+{
+    char data[X*Y/8]; //8 bits per byte
+    char temp[MAX_PAYLOAD_LENGTH];
+    int i;
+    int bytesSent = 0;
+    int payloadLength = 0;
+    int dataLength = charToBit(image, data); //packing X*Y bits of data (stored in X*Y bytes) into X*Y/8 bytes
+    printf("dataLength: %d \n", dataLength);
+    
+    for(i=0; i<dataLength; i = i+MAX_PAYLOAD_LENGTH) 
+    {
+        printf("bytes sent: %d\n", bytesSent);
+        if((payloadLength=dataLength-bytesSent) >= MAX_PAYLOAD_LENGTH) 
+        {
+            charncpy2(temp, data, i, MAX_PAYLOAD_LENGTH);
+            udpSend(temp, MAX_PAYLOAD_LENGTH, ethInfo);
+            bytesSent+=MAX_PAYLOAD_LENGTH;    
+        }
+        else 
+        {
+            charncpy2(temp, data, i, payloadLength);
+            udpSend(temp, payloadLength, ethInfo);
+            bytesSent+=payloadLength;
+        }
+    }
 }
 
 extern char bin_pix[X][Y];
@@ -34,11 +64,20 @@ void interpretCommand(int command)
         case MSG_GET_IMAGE:
             printf(" -- Recieved Get Image From Flash Message\n");
             readFlash(bin_pix);
+            printf("comparing bin_pix with bin_pix: %d \n", compareArrays(bin_pix, bin_pix));
+            char data2[X*Y/8];
+            char bin_pix2[X][Y];
+            charToBit(bin_pix, data2);
+            bitToChar(data2, bin_pix2);
+            printf("comparing reconstructed bin_pix2 with bin_pix: %d \n", compareArrays(bin_pix, bin_pix2));
             sendACK();
             break;
         //Transmit image
         case MSG_TRANSMIT_IMAGE:
             printf(" -- Recieved Transmit Image Message\n");
+            transmitImage(bin_pix);
+            printf(" -- Transmitted Image\n");
+            sendACK();
             break;
         //Flip
         case MSG_IMAGE_PROC_1:

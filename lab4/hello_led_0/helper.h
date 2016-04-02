@@ -2,6 +2,7 @@
 #define HELPER_H
 
 void charncpy(char*, const char*, int);
+void charncpy2(char*, const char*, int, int);
 void charncat(char*, const char*, int*, int);
 void charnuncat(char*, const char*, int, int);
 

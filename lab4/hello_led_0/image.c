@@ -3,6 +3,7 @@
 #include "sys/alt_flash.h"
 #include "sys/alt_flash_types.h"
 
+
 void readFlash(char image[][Y]) {
     alt_flash_fd* fd;
     unsigned int offset = 0x10;
@@ -25,6 +26,9 @@ void readFlash(char image[][Y]) {
     alt_flash_close_dev(CFI_FLASH_0_NAME);
 }
 
+// Takes a 2-D char array, which contains 1 bit of data for every char, 
+// and condenses it into a 1-D output array which contains 8 bits of data
+// for every char. Returns number of chars in output array.
 int charToBit(char image[][Y], char output[]) {
     int i, j, a;
     int offset = 0;
@@ -44,6 +48,29 @@ int charToBit(char image[][Y], char output[]) {
     
     return offset;
 }
+
+// Undos the action that charToBit performs.
+void bitToChar(char image[] , char output[][Y])
+{
+    int i, j;
+    int x=0; int y=0;
+    char temp;
+    for(i=0; i<(X*Y/8); i++) //for all indices of image[]
+    {
+        temp = image[i];
+        for(j=0; j<8; j++)
+        {
+           output[x][y] = temp & (0x1 << j); // get one bit, store in output[x][y]
+           y++;
+        }
+        if (y==480)
+        {
+            y=0;
+            x++;
+        }
+    }
+}
+
 
 void imageFlip(char image[][Y]) {
     char cpy[X][Y];
@@ -88,4 +115,21 @@ void imageRotate(char image[][Y]) {
             image[i][j] = cpy[i][j];
         }
     }
+}
+
+int compareArrays(char array1[][Y] , char array2[][Y] )
+{
+    int i, j;
+    for(i=0; i<X; i++)
+    {
+        for(j=0; j<Y; j++)
+        {
+            if(array1[i][j] != array2[i][j])
+            {
+                printf("failed on i,j == %d,%d\n", i,j);
+                return -1;
+            }
+        }
+    }
+    return 0; //success, they're the same
 }

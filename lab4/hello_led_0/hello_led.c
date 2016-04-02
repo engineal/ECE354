@@ -3,6 +3,7 @@
 #include "custom_io.h"
 #include "LCD.h"
 #include "image.h"
+#include "helper.h"
 #include "net/udp.h"
 #include "net/ethernet.h"
 #include "interpretCommand.h"
@@ -42,7 +43,11 @@ int main(void)
     writeLEDs(0);
     
     int oldValue = 0;
-    unsigned char data[1024];
+    //unsigned char data[MAX_PAYLOAD_LENGTH];
+    unsigned char data[MAX_PAYLOAD_LENGTH];
+    unsigned char pic_data[X*Y/8];
+    int packetNum = 0;
+    int bytesRec = 0;
     
     while (1)
     {
@@ -54,7 +59,7 @@ int main(void)
             if (switches >= 0x0 && switches < 0x9)
             {
                 char data[] = {switches};
-                printf("Sending %d\n", switches);
+                printf("MASTER: Sending %d\n", switches);
                 udpSend(data, 1, ethInfo);
             }   
         }
@@ -65,10 +70,12 @@ int main(void)
         
         // -- RECEIVE --
         int size = udpReceive(data, ethInfo);
-        if (size > 0) {
+        if (size > 0) 
+        {
             // If size = 1, it must be a commanding message
-            if (size == 1) {
-                printf("Interpreting Command...\n");
+            if (size == 1) 
+            {
+                printf("SLAVE: Interpreting Command...\n");
                 
                 if (data[0] < 0x09)
                     writeLEDs(data[0]);
@@ -77,9 +84,28 @@ int main(void)
                 else if (data[0] == MSG_NAK)
                     writeLEDs(0x3FFFF);
                 interpretCommand(data[0]);
+            } 
+            else //this must be picture data from slave to master
+            {
+                if(packetNum<27) // we send 27 packets per image
+                {
+                    charncpy2(pic_data, data, bytesRec, size); // get data necessary to build your image
+                    bytesRec += size;
+                }
+                else // finished building image
+                {
+                    //convert to 2d array
+                    
+                    // display image
+                    
+                    // reset variables
+                    bytesRec = 0;
+                    packetNum = 0;
+                }
+                printf("MASTER: packetNum: %d \n", packetNum);
+                packetNum++;
             }
         }
-        
         msleep(100);
         writeLEDs(0);
         writeGreenLEDs(0);

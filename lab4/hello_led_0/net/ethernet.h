@@ -5,6 +5,7 @@
 
 #define ETHERNET_LENGTH         1546
 #define ETHERNET_DATA_LENGTH    (ETHERNET_LENGTH-ETHERNET_HEADER_LENGTH)
+//#define ETHERNET_MAX_DATA_LENGTH 1500
 
 void ethernetInit(char[]);
 void ethernet_worker();
