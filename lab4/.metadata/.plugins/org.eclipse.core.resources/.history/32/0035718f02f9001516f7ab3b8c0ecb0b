@@ -50,20 +50,22 @@ void init_vga() {
     //Set_Cursor_Color(0,1023,0);
     
     int i,j;
-    for(i = 0; i < X; i++) {
-        for(j = 0; j < Y; j++) {
-            if((i % 8) == 0)Vga_Set_Pixel(VGA_0_BASE,i,j);
-            else Vga_Clr_Pixel(VGA_0_BASE,i,j);
+    for(i = 0 ; i < 480 ; i++)
+    {
+        for(j = 0 ; j < 640 ; j++)
+        {
+            if((j % 8) == 0)Vga_Set_Pixel(VGA_0_BASE,j,i);
+            else Vga_Clr_Pixel(VGA_0_BASE,j,i);
         }
     }
 }
 
 void write_vga(char image[][Y]) {
     int i, j;
-    for(i = 0; i < X; i++) {
-        for(j = 0; j < Y; j++) {
-            if(!image[i][j])Vga_Set_Pixel(VGA_0_BASE,i,j);
-            else Vga_Clr_Pixel(VGA_0_BASE,i,j);
+    for(i = 0 ; i < 480 ; i++) {
+        for(j = 0 ; j < 640 ; j++) {
+            if(!image[i][j])Vga_Set_Pixel(VGA_0_BASE,j,i);
+            else Vga_Clr_Pixel(VGA_0_BASE,j,i);
         }
     }
 }

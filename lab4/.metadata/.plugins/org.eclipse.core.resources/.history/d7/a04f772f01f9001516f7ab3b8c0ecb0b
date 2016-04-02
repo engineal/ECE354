@@ -27,6 +27,7 @@ void ethernet_interrupts() {
     int dataLength = 0;
     int aaa=ReceivePacket(data, &dataLength);
     if (!aaa) {
+        printf("Received %d bytes\n", dataLength);
         ethernetFrame* frame = (ethernetFrame*)malloc(sizeof(ethernetFrame));
         frame->data = (char*)malloc(sizeof(char)*ETHERNET_DATA_LENGTH);
         ethUnpack(data, dataLength, frame);
@@ -87,8 +88,10 @@ void ethernet_worker() {
         unsigned char output[ETHERNET_HEADER_LENGTH + frame->dataLength];
         int outputLength = ethPack(frame, output);
         
+        printf("Sending %d bytes from queue\n", outputLength);
         TransmitPacket(output, outputLength);
-        msleep(100);
+        printf("Sent from queue\n");
+        msleep(500);
     }
 }
 
@@ -124,8 +127,10 @@ void ethernetSendNoACK(
     unsigned char output[ETHERNET_HEADER_LENGTH + length];
     int outputLength = ethPack(&frame, output);
     
+    printf("Sending %d bytes\n", outputLength);
     TransmitPacket(output, outputLength);
-    msleep(100);
+    printf("Sent\n\n");
+    msleep(500);
 }
 
 /*

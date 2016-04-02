@@ -2,6 +2,7 @@
 #include "basic_io.h"
 #include "custom_io.h"
 #include "LCD.h"
+#include "VGA.C"
 #include "image.h"
 #include "net/udp.h"
 #include "net/ethernet.h"
@@ -37,7 +38,6 @@ int main(void)
     
     LCD_Test();
     ethernetInit(ethInfo->localMAC);
-    init_vga();
     
     writeLEDs(0);
     
@@ -80,7 +80,7 @@ int main(void)
             }
         }
         
-        msleep(100);
+        msleep(1000);
         writeLEDs(0);
         writeGreenLEDs(0);
     }

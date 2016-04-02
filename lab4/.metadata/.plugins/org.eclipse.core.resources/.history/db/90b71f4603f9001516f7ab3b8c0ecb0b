@@ -125,7 +125,7 @@ void ethernetSendNoACK(
     int outputLength = ethPack(&frame, output);
     
     TransmitPacket(output, outputLength);
-    msleep(100);
+    msleep(500);
 }
 
 /*

@@ -31,4 +31,8 @@ obj/custom_io.o: ../custom_io.c ../custom_io.h ../basic_io.h \
   /cygdrive/c/Users/ajlucia/code/ECE354/lab4/hello_led_0_syslib/Debug/system_description/system.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/nios2.h \
   /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/alt_types.h \
-  /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h
+  /cygdrive/c/altera/91/ip/altera/nios2_ip/altera_nios2/HAL/inc/sys/alt_irq.h \
+  /cygdrive/c/Users/ajlucia/code/ECE354/lab4/Binary_VGA_Controller/inc/VGA.C \
+  /cygdrive/c/Users/ajlucia/code/ECE354/lab4/hello_led_0_syslib/Debug/system_description/system.h \
+  /cygdrive/c/Users/ajlucia/code/ECE354/lab4/Binary_VGA_Controller/inc/VGA.h \
+  ../image.h

@@ -37,7 +37,6 @@ int main(void)
     
     LCD_Test();
     ethernetInit(ethInfo->localMAC);
-    init_vga();
     
     writeLEDs(0);
     
@@ -80,7 +79,7 @@ int main(void)
             }
         }
         
-        msleep(100);
+        msleep(1000);
         writeLEDs(0);
         writeGreenLEDs(0);
     }

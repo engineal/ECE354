@@ -88,7 +88,7 @@ void ethernet_worker() {
         int outputLength = ethPack(frame, output);
         
         TransmitPacket(output, outputLength);
-        msleep(100);
+        msleep(500);
     }
 }
 
@@ -125,7 +125,7 @@ void ethernetSendNoACK(
     int outputLength = ethPack(&frame, output);
     
     TransmitPacket(output, outputLength);
-    msleep(100);
+    msleep(500);
 }
 
 /*
