@@ -94,10 +94,14 @@ int main(void)
                 }
                 else // finished building image
                 {
+                    
+                    
                     //convert to 2d array
+                    bitToChar(pic_data, bin_pix);
                     
                     // display image
-                    
+                    write_vga(bin_pix);
+                                        
                     // reset variables
                     bytesRec = 0;
                     packetNum = 0;

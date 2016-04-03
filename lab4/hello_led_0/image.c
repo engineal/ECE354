@@ -60,7 +60,7 @@ void bitToChar(char image[] , char output[][Y])
         temp = image[i];
         for(j=0; j<8; j++)
         {
-           output[x][y] = temp & (0x1 << j); // get one bit, store in output[x][y]
+           output[x][y] = (temp >> (7-j)) & 0x1; // get one bit, store in output[x][y]
            y++;
         }
         if (y==480)

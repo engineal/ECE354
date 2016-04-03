@@ -1,7 +1,7 @@
 PACKAGE install2 
 {
    # This file informs the Nios II IDE of non-legacy component paths.
-   # Generated 2016.03.31.22:18:49
+   # Generated 2016.04.03.18:35:03
    COMPONENT alt_vip_clip 
    {
       VERSION 9.1 

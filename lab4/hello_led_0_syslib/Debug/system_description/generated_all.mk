@@ -1,9 +1,9 @@
 # generated_all.mk
 #
 # Machine generated for a CPU named "cpu_0" as defined in:
-# c:\Users\ajlucia\code\ECE354\lab4\hello_led_0_syslib\..\system_0.ptf
+# c:\Users\tbadams\code\ECE354\lab4\hello_led_0_syslib\..\system_0.ptf
 #
-# Generated: 2016-03-31 22:19:40.043
+# Generated: 2016-04-03 18:36:04.377
 
 # ******************************************************************************
 # *                                                                            *
@@ -68,10 +68,10 @@ COMPONENTS_DEVICE_DRIVERS := /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/alt
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_timer \
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_lcd_16207 \
                              /cygdrive/c/altera/91/ip/altera/sopc_builder_ip/altera_avalon_pio \
-                             /cygdrive/c/Users/ajlucia/code/ECE354/lab4/SEG7_LUT_8 \
-                             /cygdrive/c/Users/ajlucia/code/ECE354/lab4/DM9000A \
-                             /cygdrive/c/Users/ajlucia/code/ECE354/lab4/ISP1362 \
-                             /cygdrive/c/Users/ajlucia/code/ECE354/lab4/Binary_VGA_Controller
+                             /cygdrive/c/Users/tbadams/code/ECE354/lab4/SEG7_LUT_8 \
+                             /cygdrive/c/Users/tbadams/code/ECE354/lab4/DM9000A \
+                             /cygdrive/c/Users/tbadams/code/ECE354/lab4/ISP1362 \
+                             /cygdrive/c/Users/tbadams/code/ECE354/lab4/Binary_VGA_Controller
 
 
 CPU = cpu_0
