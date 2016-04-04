@@ -1,6 +1,0 @@
-#ifndef INTERPRETCOMMAND_H_
-#define INTERPRETCOMMAND_H_
-
-void interpretCommand(char* data, alt_u32 command);
-
-#endif /*INTERPRETCOMMAND_H_*/

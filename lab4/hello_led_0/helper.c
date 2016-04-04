@@ -10,16 +10,6 @@ void charncpy(char* dest, const char *src, int n)
     }
 }
 
-// copies n bytes from src to dest, starting at start.
-void charncpy2(char* dest, const char *src, int start, int n) 
-{
-    int i;
-    for (i = start; i < n; i++) 
-    {
-        dest[i] = src[i];
-    }
-}
-
 // appends n bytes from src to end of dest.
 void charncat(char* dest, const char *src, int* s, int n) 
 {

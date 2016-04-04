@@ -8,17 +8,7 @@
 #include "net/ethernet.h"
 #include "interpretCommand.h"
 
-#define LOCAL_MAC {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF}
-#define LOCAL_IP_ADDR {192, 168, 1, 116}
-#define LOCAL_PORT 1115
-
-#define DEST_MAC {0x01, 0x60, 0x6E, 0x11, 0x02, 0xFF}
-#define DEST_IP_ADDR {192, 168, 1, 116}
-#define DEST_PORT 1115
-
 UDPInfo* ethInfo;
-
-char bin_pix[X][Y];
 
 int main(void)
 {
@@ -43,27 +33,29 @@ int main(void)
     writeLEDs(0);
     
     int oldValue = 0;
-    //unsigned char data[MAX_PAYLOAD_LENGTH];
+    char image[X][Y];
     unsigned char data[MAX_PAYLOAD_LENGTH];
     unsigned char pic_data[X*Y/8];
     int packetNum = 0;
     int bytesRec = 0;
+    char lastCommand=0x00; 
     
     while (1)
     {
         // -- SEND --
-        int value = readButtons();
-        if (oldValue != value && value == 8) 
-        {
-            int switches = readSwitches();
-            if (switches >= 0x0 && switches < 0x9)
+        int switches = readSwitches();
+        int master = (switches >> 17) & 0x1;
+        if (master) {
+            int value = readButtons();
+            if (oldValue != value && value == 8) 
             {
-                char data[] = {switches};
-                printf("MASTER: Sending %d\n", switches);
+                char data[] = {switches & 0xF};
+                lastCommand = data[0];
+                printf("MASTER: Sending %d\n", data[0]);
                 udpSend(data, 1, ethInfo);
-            }   
+            }
+            oldValue = value;
         }
-        oldValue = value;
         
         // send queued packets
         ethernet_worker();
@@ -75,48 +67,45 @@ int main(void)
             // If size = 1, it must be a commanding message
             if (size == 1) 
             {
-                printf("SLAVE: Interpreting Command...\n");
-                
-                if (data[0] < 0x09)
-                    writeLEDs(data[0]);
-                else if (data[0] == MSG_ACK)
+                if (data[0] == MSG_ACK)
+                {
+                    printf(" -- Recieved Ack Message\n\n");
                     writeGreenLEDs(0xFF);
+                    if(master && lastCommand==MSG_TRANSMIT_IMAGE)
+                    {
+                        //convert to 2d array
+                        bitToChar(pic_data, image);
+    
+                        // display image
+                        write_vga(image);
+    
+                        // reset variables
+                        bytesRec = 0;
+                        packetNum = 0;
+                    }
+                    msleep(500);
+                    writeGreenLEDs(0);
+                }
                 else if (data[0] == MSG_NAK)
+                {
+                    printf(" -- Recieved Nak Message\n\n");
                     writeLEDs(0x3FFFF);
-                interpretCommand(data[0]);
+                    msleep(1000);
+                    writeLEDs(0);
+                }
+                else if (!master) {
+                    interpretCommand(data[0]);
+                }
             } 
             else //this must be picture data from slave to master
             {
-                if(packetNum<27) // we send 27 packets per image
-                {
-                    charncpy2(pic_data, data, bytesRec, size); // get data necessary to build your image
-                    bytesRec += size;
-                }
-                else // finished building image
-                {
-                    
-                    
-                    //convert to 2d array
-                    bitToChar(pic_data, bin_pix);
-                    
-                    // display image
-                    write_vga(bin_pix);
-                                        
-                    // reset variables
-                    bytesRec = 0;
-                    packetNum = 0;
-                }
                 printf("MASTER: packetNum: %d \n", packetNum);
+                charncat(pic_data, data, &bytesRec, size); // get data necessary to build your image
                 packetNum++;
             }
         }
         msleep(100);
-        writeLEDs(0);
-        writeGreenLEDs(0);
     }
 
     return 0;
 }
-
-//-------------------------------------------------------------------------
-

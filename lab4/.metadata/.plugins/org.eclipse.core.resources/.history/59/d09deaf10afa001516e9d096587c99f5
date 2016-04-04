@@ -1,0 +1,28 @@
+#ifndef HELLO_LED_H
+#define HELLO_LED_H
+
+#define MASTER
+
+#ifdef MASTER
+
+#define LOCAL_MAC {0x5D, 0x82, 0xD2, 0xEA, 0x03, 0x69}
+#define LOCAL_IP_ADDR {192, 168, 1, 116}
+#define LOCAL_PORT 1115
+
+#define DEST_MAC {0x01, 0x60, 0x6E, 0x11, 0x02, 0x0F}
+#define DEST_IP_ADDR {192, 168, 1, 116}
+#define DEST_PORT 1115
+
+#else
+
+#define LOCAL_MAC {0x01, 0x60, 0x6E, 0x11, 0x02, 0x0F}
+#define LOCAL_IP_ADDR {192, 168, 1, 116}
+#define LOCAL_PORT 1115
+
+#define DEST_MAC {0x5D, 0x82, 0xD2, 0xEA, 0x03, 0x69}
+#define DEST_IP_ADDR {192, 168, 1, 116}
+#define DEST_PORT 1115
+
+#endif
+
+#endif /*HELLO_LED_H*/

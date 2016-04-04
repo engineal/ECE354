@@ -1,2 +1,0 @@
-obj/interpretCommand.o: ../interpretCommand.c ../interpretCommand.h \
-  ../image.h ../net/udp.h

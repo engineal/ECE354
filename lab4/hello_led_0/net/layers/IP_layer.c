@@ -56,10 +56,10 @@ void IPUnpack(unsigned char* input, IPFrame* frame)
     frame->id = (input[4]<<8) | input[5];
     
     //byte offset for headerChecksum -- skipping unused header fields
-    frame->checksum = 0; //(input[10]<<8) | input[11];
+    frame->checksum = (input[10]<<8) | input[11];
     // Clear checksum
-    int chcksmLocation = 10;
-    int_to_char(input, 0, &chcksmLocation, 2);
+    input[10] = 0;
+    input[11] = 0;
     
     charnuncat(frame->src_addr, input, 12, 4);
     charnuncat(frame->dest_addr, input, 16, 4);

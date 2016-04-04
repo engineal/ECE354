@@ -3,7 +3,6 @@
 #include "sys/alt_flash.h"
 #include "sys/alt_flash_types.h"
 
-
 void readFlash(char image[][Y]) {
     alt_flash_fd* fd;
     unsigned int offset = 0x10;
@@ -17,8 +16,8 @@ void readFlash(char image[][Y]) {
 
     printf("Reading binary pixel from flash memory\n");
     int i, j;
-    for(i = 0; i < X; i++) {
-        for (j = 0; j < Y; j++) {
+    for (j = 0; j < Y; j++) {
+        for(i = 0; i < X; i++) {
             alt_read_flash(fd,offset++,&bin_pix,1);
             image[i][j] = bin_pix;
         }
@@ -105,7 +104,7 @@ void imageRotate(char image[][Y]) {
             if (i > 80 && i < 560) {
                 cpy[i][j] = image[j][i];
             } else {
-                cpy[i][j] = 0;
+                cpy[i][j] = 1;
             }
         }
     }

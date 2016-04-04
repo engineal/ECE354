@@ -1,5 +1,6 @@
 #include "ip.h"
 #include "basic_io.h"
+#include "helper.h"
 
 void ipSend(
     char* data, int length,
@@ -36,7 +37,7 @@ int ipReceive(
         frame.data = returnedData;
         IPUnpack(data, &frame);
         
-        int checksum = 0; //computeChecksum(data, IP_HEADER_LENGTH);
+        int checksum = computeChecksum(data, IP_HEADER_LENGTH);
         
         if (frame.checksum != checksum) {
             printf("IP Checksum fail: %x != %x\n", frame.checksum, checksum);

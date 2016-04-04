@@ -1,5 +1,6 @@
 #include "interpretCommand.h"
 #include "basic_io.h"
+#include "custom_io.h"
 #include "image.h"
 #include "net/udp.h"
 #include "helper.h"
@@ -25,58 +26,42 @@ void transmitImage(char image[][Y])
     char temp[MAX_PAYLOAD_LENGTH];
     int i;
     int bytesSent = 0;
-    int payloadLength = 0;
     int dataLength = charToBit(image, data); //packing X*Y bits of data (stored in X*Y bytes) into X*Y/8 bytes
-    printf("dataLength: %d \n", dataLength);
+    printf("Sending image, %d bytes total\n", dataLength);
     
-    for(i=0; i<dataLength; i = i+MAX_PAYLOAD_LENGTH) 
+    for(i=0; i < dataLength; i += MAX_PAYLOAD_LENGTH) 
     {
-        printf("bytes sent: %d\n", bytesSent);
-        if((payloadLength=dataLength-bytesSent) >= MAX_PAYLOAD_LENGTH) 
+        int remaining = dataLength - bytesSent;
+        if(remaining >= MAX_PAYLOAD_LENGTH) 
         {
-            charncpy2(temp, data, i, MAX_PAYLOAD_LENGTH);
+            charnuncat(temp, data, bytesSent, MAX_PAYLOAD_LENGTH);
             udpSend(temp, MAX_PAYLOAD_LENGTH, ethInfo);
-            bytesSent+=MAX_PAYLOAD_LENGTH;    
+            bytesSent += MAX_PAYLOAD_LENGTH;
         }
         else 
         {
-            charncpy2(temp, data, i, payloadLength);
-            udpSend(temp, payloadLength, ethInfo);
-            bytesSent+=payloadLength;
+            charnuncat(temp, data, bytesSent, remaining);
+            udpSend(temp, remaining, ethInfo);
+            bytesSent += remaining;
         }
     }
 }
 
-extern char bin_pix[X][Y];
+char bin_pix[X][Y];
 void interpretCommand(int command) 
 {    
     switch (command) 
     {
-        //ACK
-        case MSG_ACK:
-            printf(" -- Recieved Ack Message\n");
-            break;
-        //NAK
-        case MSG_NAK:
-            printf(" -- Recieved Nak Message\n");
-            break;
         //Get image from flash
         case MSG_GET_IMAGE:
             printf(" -- Recieved Get Image From Flash Message\n");
             readFlash(bin_pix);
-            printf("comparing bin_pix with bin_pix: %d \n", compareArrays(bin_pix, bin_pix));
-            char data2[X*Y/8];
-            char bin_pix2[X][Y];
-            charToBit(bin_pix, data2);
-            bitToChar(data2, bin_pix2);
-            printf("comparing reconstructed bin_pix2 with bin_pix: %d \n", compareArrays(bin_pix, bin_pix2));
             sendACK();
             break;
         //Transmit image
         case MSG_TRANSMIT_IMAGE:
             printf(" -- Recieved Transmit Image Message\n");
             transmitImage(bin_pix);
-            printf(" -- Transmitted Image\n");
             sendACK();
             break;
         //Flip

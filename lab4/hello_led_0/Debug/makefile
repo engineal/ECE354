@@ -28,7 +28,7 @@ RM := rm -rf
 # This project
 PROJECT := hello_led_0
 # Location of this project
-APP_DIR :=/cygdrive/c/Users/tbadams/code/ECE354/lab4/hello_led_0
+APP_DIR :=/cygdrive/c/Users/ajlucia/code/ECE354/lab4/hello_led_0
 
 # Configuration for application project
 # The configuration can be changed from C/C++ build property page -> Configuration drop-down box.
@@ -39,14 +39,14 @@ APP_CONFIG := Debug
 # Referenced system library & location. 
 # These can be changed from App Options property page
 SYSTEM_NAME := hello_led_0_syslib
-SYSTEM_DIR := /cygdrive/c/Users/tbadams/code/ECE354/lab4/hello_led_0_syslib
+SYSTEM_DIR := /cygdrive/c/Users/ajlucia/code/ECE354/lab4/hello_led_0_syslib
 
 # Configuration for system library project
 # The configuration can be changed from system library properties -> C/C++ build -> Configuration drop-down box.
 # If changed a new configuration folder (e.g. Release) is generated with all the generated and built files
 SYS_CONFIG := Debug
 
-PTF := C:/Users/tbadams/code/ECE354/lab4/system_0.ptf
+PTF := C:/Users/ajlucia/code/ECE354/lab4/system_0.ptf
 
 # Change this setting from Window->Preferences->Nios II Run and Build Settings
 DO_MAKE_OBJDUMP := 0

@@ -20,14 +20,14 @@ ARFLAGS = -src
 # This project
 SYSTEM_NAME := hello_led_0_syslib
 # Location of this project
-SYSTEM_DIR := /cygdrive/c/Users/tbadams/code/ECE354/lab4/hello_led_0_syslib
+SYSTEM_DIR := /cygdrive/c/Users/ajlucia/code/ECE354/lab4/hello_led_0_syslib
 
 # Configuration for system library project
 # The configuration can be changed from system library properties -> C/C++ build -> Configuration drop-down box.
 # If changed a new configuration folder (e.g. Release) is generated with all the generated and built files
 SYS_CONFIG := Debug
 
-PTF := /cygdrive/c/Users/tbadams/code/ECE354/lab4/system_0.ptf
+PTF := /cygdrive/c/Users/ajlucia/code/ECE354/lab4/system_0.ptf
 
 RM := rm -rf
 

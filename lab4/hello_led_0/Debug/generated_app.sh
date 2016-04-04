@@ -11,4 +11,4 @@
 #
 # DO NOT MODIFY THIS FILE
  
-SYSTEM_CONFIG_DIR=/cygdrive/c/Users/tbadams/code/ECE354/lab4/hello_led_0_syslib/Debug
+SYSTEM_CONFIG_DIR=/cygdrive/c/Users/ajlucia/code/ECE354/lab4/hello_led_0_syslib/Debug
