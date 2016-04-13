@@ -1,0 +1,41 @@
+#include "ip.h"
+#include "ethernet.h"
+#include "basic_io.h"
+#include "layers/IP_layer.h"
+
+int ipSend(
+    char* data, int length,
+    char* destIP, char* localIP,
+    char* destMAC, char* localMAC)
+{
+    printf("Entered IP Send\n");
+    
+    IPFrame ipFrame;
+    fillIPHeader(&ipFrame, 4, 1, localIP, destIP, data, length);
+    //printIPHeader(&ipFrame);
+    unsigned char IPData[IP_HEADER_LENGTH + length];
+    int IPLength = IPPack(&ipFrame, IPData);
+    
+    printf("Sending IP\n");
+    
+    return ethernetSend(IPData, IPLength, destMAC, localMAC);
+}
+    
+int ipReceive(
+    char* returnedData,
+    char* localIP,
+    char* localMAC)
+{
+    printf("Entered IP Receive\n");
+    unsigned char data[68];
+    int dataLength = ethernetReceive(data, localMAC);
+    if (dataLength > 0) {
+        IPFrame ipFrame;
+        ipFrame.data = returnedData;
+        if (IPUnpack(data, &ipFrame, localIP)) {
+            //printIPHeader(&ipFrame);
+            return ipFrame.dataLength;
+        }
+    }
+    return -1;
+}

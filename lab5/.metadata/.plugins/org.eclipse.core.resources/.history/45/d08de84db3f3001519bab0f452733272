@@ -1,0 +1,8 @@
+#ifndef ETHERNET_H
+#define ETHERNET_H
+
+void ethernetSend(char*, int, EthernetInfo*);
+    
+int ethernetReceive(char*, int, char*, EthernetInfo*);
+
+#endif /*ETHERNET_H*/

@@ -1,0 +1,19 @@
+#ifndef UDP_H
+#define UDP_H
+
+typedef struct
+{
+    char* localIP;
+    int localPort;
+    char* localMAC;
+    
+    char* destIP;
+    int destPort;
+    char* destMAC;   
+} EthernetInfo;
+
+void udpSend(char*, int, EthernetInfo*);
+    
+int udpReceive(char*, int, char*, EthernetInfo*);
+
+#endif /*UDP_H*/

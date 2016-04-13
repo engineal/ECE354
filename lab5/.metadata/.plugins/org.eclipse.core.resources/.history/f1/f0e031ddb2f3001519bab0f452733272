@@ -1,0 +1,16 @@
+#include "ip.h"
+#include "basic_io.h"
+#include "layers/IP_layer.h"
+
+void ipSend(
+    char* data, int length, 
+    EthernetInfo* info)
+{
+    ethernetFrame ethFrame;
+    fillEthernetHeader(&ethFrame, info->destMAC, info->localMAC, data, length);
+    //printEthernetHeader(&ethFrame);
+    unsigned char ethernetData[ETHERNET_HEADER_LENGTH + length];
+    int ethernetLength = ethPack(&ethFrame, ethernetData);
+    
+    TransmitPacket(ethernetData, ethernetLength);        
+}
