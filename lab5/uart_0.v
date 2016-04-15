@@ -1,4 +1,4 @@
-//Legal Notice: (C)2007 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2016 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -36,7 +36,7 @@ module uart_0_log_module (
 //synthesis translate_off
 //////////////// SIMULATION-ONLY CONTENTS
    reg [31:0] text_handle; // for $fopen
-   initial text_handle = $fopen ("D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_sim/uart_0_log_module.txt");
+   initial text_handle = $fopen ("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/uart_0_log_module.txt");
 
    always @(posedge clk) begin
       if (valid && strobe) begin
@@ -287,7 +287,7 @@ module uart_0_rx_stimulus_source_character_source_rom_module (
           d9_pre <= 0;
           new_rom <= 0;
         end
-      else if (1)
+      else 
         begin
           d1_pre <= pre;
           d2_pre <= d1_pre;
@@ -332,7 +332,7 @@ module uart_0_rx_stimulus_source_character_source_rom_module (
          if (mutex[0] && !safe && safe_delay) begin
             // and blast the mutex after falling edge of safe if interactive
             if (interactive) begin
-               mutex_handle = $fopen ("D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_sim/uart_0_input_data_mutex.dat");
+               mutex_handle = $fopen ("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/uart_0_input_data_mutex.dat");
                $fdisplay (mutex_handle, "0");
                $fclose (mutex_handle);
                // $display ($stime, "\t%m:\n\t\tMutex cleared!");
@@ -345,13 +345,13 @@ module uart_0_rx_stimulus_source_character_source_rom_module (
             poll_count = poll_count + 1;
          end else begin         // do the interesting stuff.
             poll_count = 0;
-            $readmemh ("D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_sim/uart_0_input_data_mutex.dat", mutex);
+            $readmemh ("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/uart_0_input_data_mutex.dat", mutex);
             if (mutex[0] && !safe) begin
             // read stream into mem_array after current characters are gone!
                // save mutex[0] value to compare to address (generates 'safe')
                mutex[1] <= mutex[0];
                // $display ($stime, "\t%m:\n\t\tMutex hit: Trying to read %d bytes...", mutex[0]);
-               $readmemh("D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_sim/uart_0_input_data_stream.dat", mem_array);
+               $readmemh("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/uart_0_input_data_stream.dat", mem_array);
                // bash address and send pulse outside to send the char:
                address <= 0;
                pre <= -1;
@@ -516,7 +516,6 @@ module uart_0_rx (
   reg     [  9: 0] baud_rate_counter;
   wire             baud_rate_counter_is_zero;
   reg              break_detect;
-  reg              d1_source_rxd;
   reg              delayed_unxrx_in_processxx3;
   reg              delayed_unxsync_rxdxx1;
   reg              delayed_unxsync_rxdxx2;
@@ -540,7 +539,7 @@ module uart_0_rx (
   wire             shift_reg_start_bit_n;
   wire             source_rxd;
   wire             stop_bit;
-  reg              sync_rxd;
+  wire             sync_rxd;
   wire             unused_start_bit;
   wire    [  9: 0] unxshiftxrxd_shift_regxshift_reg_start_bit_nxx6_in;
   reg     [  9: 0] unxshiftxrxd_shift_regxshift_reg_start_bit_nxx6_out;
@@ -555,20 +554,15 @@ module uart_0_rx (
       .source_rxd    (source_rxd)
     );
 
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-        begin
-          d1_source_rxd <= 0;
-          sync_rxd <= 0;
-        end
-      else if (clk_en)
-        begin
-          d1_source_rxd <= source_rxd;
-          sync_rxd <= d1_source_rxd;
-        end
-    end
+  altera_std_synchronizer the_altera_std_synchronizer
+    (
+      .clk (clk),
+      .din (source_rxd),
+      .dout (sync_rxd),
+      .reset_n (reset_n)
+    );
 
+  defparam the_altera_std_synchronizer.depth = 2;
 
   //delayed_unxsync_rxdxx1, which is an e_register
   always @(posedge clk or negedge reset_n)
@@ -997,7 +991,7 @@ module uart_0 (
                  readyfordata,
                  txd
               )
-;
+  /* synthesis altera_attribute = "-name SYNCHRONIZER_IDENTIFICATION OFF" */ ;
 
   output           dataavailable;
   output           irq;

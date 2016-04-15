@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench version="2.0">
 <workbenchAdvisor/>
-<window height="1010" maximized="true" width="840" x="0" y="0">
+<window height="1010" width="840" x="0" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
 </perspectiveBar>
 <coolbarLayout locked="0">
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="130" y="22"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="214" y="22"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.cdt.ui.CElementCreationActionSet" itemType="typeToolBarContribution" x="167" y="22"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="129" y="22"/>
@@ -33,7 +33,7 @@
 </folder>
 </info>
 </editorArea>
-<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.c" partName="hello_led.c" path="C:/Users/ajlucia/code/ECE354/lab5/hello_led_0/hello_led.c" title="hello_led.c" tooltip="hello_led_0/hello_led.c" workbook="DefaultEditorWorkbook">
+<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.c" partName="hello_led.c" path="C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/hello_led_0/hello_led.c" title="hello_led.c" tooltip="hello_led_0/hello_led.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/hello_led.c"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="hello_led.h" partName="hello_led.h" path="C:/Users/ajlucia/code/ECE354/lab5/hello_led_0/hello_led.h" title="hello_led.h" tooltip="hello_led_0/hello_led.h" workbook="DefaultEditorWorkbook">
@@ -65,12 +65,8 @@
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
 <viewState horizontalPosition="0" verticalPosition="0">
 <expanded>
-<element path="C:\Users\ajlucia\code\ECE354\lab5\hello_led_0"/>
-<element path="C:\Users\ajlucia\code\ECE354\lab5\hello_led_0\net"/>
+<element path="C:\Users\jmarple\Desktop\GitPortable\Data\home\ECE354\lab5\hello_led_0"/>
 </expanded>
-<selection>
-<element path="C:/Users/ajlucia/code/ECE354/lab5/hello_led_0"/>
-</selection>
 <customFilters userDefinedPatternsEnabled="false">
 <xmlDefinedFilters>
 <child filterId="com.altera.nj.ui.Nios2CView_patternFilterId_.*" isEnabled="true"/>

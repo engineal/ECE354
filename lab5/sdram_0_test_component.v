@@ -1,4 +1,4 @@
-//Legal Notice: (C)2007 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2016 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -48,8 +48,7 @@ module sdram_0_test_component_ram_module (
 //////////////// SIMULATION-ONLY CONTENTS
   always @(rdaddress)
     begin
-      if (1)
-          read_address <= rdaddress;
+      read_address = rdaddress;
     end
 
 
@@ -73,8 +72,7 @@ initial
 //synthesis read_comments_as_HDL on
 //  always @(rdaddress)
 //    begin
-//      if (1)
-//          read_address <= rdaddress;
+//      read_address = rdaddress;
 //    end
 //
 //

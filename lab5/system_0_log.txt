@@ -1,28 +1,33 @@
-Altera SOPC Builder Version 7.10 Build 156
-Copyright (c) 1999-2007 Altera Corporation.  All rights reserved.
+Altera SOPC Builder Version 9.10 Build 222
+Copyright (c) 1999-2009 Altera Corporation.  All rights reserved.
 
 
-# 2007.06.22 14:53:18 (*) mk_custom_sdk starting
-# 2007.06.22 14:53:18 (*) Reading project D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0.ptf.
+No .sopc_builder configuration file(!)
+# 2016.04.14 22:04:28 (*) mk_custom_sdk starting
+# 2016.04.14 22:04:28 (*) Reading project C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0.ptf.
 
-# 2007.06.22 14:53:19 (*) Finding all CPUs
-# 2007.06.22 14:53:19 (*) Finding all available components
-# 2007.06.22 14:53:19 (*) Reading D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/.sopc_builder/install.ptf
+# 2016.04.14 22:04:28 (*) Finding all CPUs
+# 2016.04.14 22:04:28 (*) Finding all available components
 
-# 2007.06.22 14:53:19 (*) Found 73 components
+# 2016.04.14 22:04:28 (*) Reading C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/.sopc_builder/install.ptf
 
-# 2007.06.22 14:53:20 (*) Finding all peripherals
+# 2016.04.14 22:04:28 (*) Found 64 components
 
-# 2007.06.22 14:53:20 (*) Finding software components
+# 2016.04.14 22:04:29 (*) Finding all peripherals
 
-# 2007.06.22 14:53:22 (*) (Legacy SDK Generation Skipped)
-# 2007.06.22 14:53:22 (*) (All TCL Script Generation Skipped)
-# 2007.06.22 14:53:22 (*) (No Libraries Built)
-# 2007.06.22 14:53:22 (*) (Contents Generation Skipped)
-# 2007.06.22 14:53:22 (*) mk_custom_sdk finishing
+# 2016.04.14 22:04:29 (*) Finding software components
 
-# 2007.06.22 14:53:22 (*) Starting generation for system: system_0.
+# 2016.04.14 22:04:31 (*) (Legacy SDK Generation Skipped)
+# 2016.04.14 22:04:31 (*) (All TCL Script Generation Skipped)
+# 2016.04.14 22:04:31 (*) (No Libraries Built)
+# 2016.04.14 22:04:31 (*) (Contents Generation Skipped)
+# 2016.04.14 22:04:31 (*) mk_custom_sdk finishing
 
+# 2016.04.14 22:04:31 (*) Starting generation for system: system_0.
+
+.
+.
+.
 .
 .
 .
@@ -30,127 +35,136 @@ Copyright (c) 1999-2007 Altera Corporation.  All rights reserved.
 .
 .
 ..
+..
+.
+.
+.
 .
 .
 ...
-.
-.
-.
-.
-.
+...
 ....
 ..
+.
 
-# 2007.06.22 14:53:26 (*) Running Generator Program for cpu_0
+# 2016.04.14 22:04:33 (*) Running Generator Program for cpu_0
 
-# 2007.06.22 14:53:30 (*)   Checking for plaintext license.
-# 2007.06.22 14:53:30 (*)   Plaintext license not found.
-# 2007.06.22 14:53:30 (*)   Checking for encrypted license (non-evaluation).
-# 2007.06.22 14:53:30 (*)   Encrypted license found.  SOF will not be time-limited.
-# 2007.06.22 14:53:48 (*)   Creating encrypted HDL
+# 2016.04.14 22:04:37 (*) Starting Nios II generation
+# 2016.04.14 22:04:37 (*)   Checking for plaintext license.
+# 2016.04.14 22:04:38 (*)   Couldn't query license setup in Quartus directory c:/altera/91/quartus
+# 2016.04.14 22:04:38 (*)   Defaulting to contents of LM_LICENSE_FILE environment variable
+# 2016.04.14 22:04:38 (*)   LM_LICENSE_FILE environment variable is empty
+# 2016.04.14 22:04:38 (*)   Plaintext license not found.
+# 2016.04.14 22:04:38 (*)   Checking for encrypted license (non-evaluation).
 
-# 2007.06.22 14:53:54 (*) Running Generator Program for cfi_flash_0
+# 2016.04.14 22:04:39 (*)   Couldn't query license setup in Quartus directory c:/altera/91/quartus
+# 2016.04.14 22:04:39 (*)   Defaulting to contents of LM_LICENSE_FILE environment variable
+# 2016.04.14 22:04:39 (*)   LM_LICENSE_FILE environment variable is empty
+# 2016.04.14 22:04:39 (*)   Encrypted license not found.  Defaulting to OCP evaluation license (produces a time-limited SOF)
+# 2016.04.14 22:04:39 (*)   Getting CPU configuration settings
+# 2016.04.14 22:04:39 (*)   Elaborating CPU configuration settings
 
-# 2007.06.22 14:53:56 (*) Running Generator Program for sdram_0
+# 2016.04.14 22:04:39 (*)   Creating all objects for CPU
+# 2016.04.14 22:04:39 (*)     Testbench
+# 2016.04.14 22:04:39 (*)     Instruction decoding
+# 2016.04.14 22:04:39 (*)       Instruction fields
+# 2016.04.14 22:04:40 (*)       Instruction decodes
+# 2016.04.14 22:04:41 (*)       Signals for RTL simulation waveforms
+# 2016.04.14 22:04:41 (*)       Instruction controls
+# 2016.04.14 22:04:41 (*)     Pipeline frontend
+# 2016.04.14 22:04:41 (*)     Pipeline backend
+# 2016.04.14 22:04:48 (*)   Generating HDL from CPU objects
 
-# 2007.06.22 14:53:59 (*) Running Generator Program for epcs_controller
+# 2016.04.14 22:04:53 (*)   Creating encrypted HDL
+# 2016.04.14 22:04:54 (*) Done Nios II generation
 
-# 2007.06.22 14:54:02 (*) Running Generator Program for jtag_uart_0
+# 2016.04.14 22:04:55 (*) Running Generator Program for cfi_flash_0
 
-# 2007.06.22 14:54:06 (*) Running Generator Program for uart_0
+# 2016.04.14 22:04:57 (*) Running Generator Program for sdram_0
 
-# 2007.06.22 14:54:09 (*) Running Generator Program for timer_0
+# 2016.04.14 22:04:59 (*) Running Generator Program for epcs_controller
 
-# 2007.06.22 14:54:12 (*) Running Generator Program for timer_1
+# 2016.04.14 22:05:02 (*) Running Generator Program for jtag_uart_0
 
-# 2007.06.22 14:54:15 (*) Running Generator Program for lcd_16207_0
+# 2016.04.14 22:05:05 (*) Running Generator Program for uart_0
 
-# 2007.06.22 14:54:18 (*) Running Generator Program for led_red
+# 2016.04.14 22:05:08 (*) Running Generator Program for timer_0
 
-# 2007.06.22 14:54:20 (*) Running Generator Program for led_green
+# 2016.04.14 22:05:10 (*) Running Generator Program for timer_1
 
-# 2007.06.22 14:54:23 (*) Running Generator Program for button_pio
+# 2016.04.14 22:05:12 (*) Running Generator Program for lcd_16207_0
 
-# 2007.06.22 14:54:25 (*) Running Generator Program for switch_pio
+# 2016.04.14 22:05:14 (*) Running Generator Program for led_red
 
-# 2007.06.22 14:54:28 (*) Running Generator Program for SEG7_Display
+# 2016.04.14 22:05:17 (*) Running Generator Program for led_green
 
-# 2007.06.22 14:54:33 (*) Running Generator Program for sram_0
+# 2016.04.14 22:05:19 (*) Running Generator Program for button_pio
 
-# 2007.06.22 14:54:38 (*) Running Generator Program for DM9000A
+# 2016.04.14 22:05:21 (*) Running Generator Program for switch_pio
 
-# 2007.06.22 14:54:43 (*) Running Generator Program for ISP1362
+# 2016.04.14 22:05:23 (*) Running Generator Program for SEG7_Display
 
-# 2007.06.22 14:54:49 (*) Running Generator Program for VGA_0
+# 2016.04.14 22:05:27 (*) Running Generator Program for sram_0
 
-# 2007.06.22 14:54:54 (*) Running Generator Program for Audio_0
+# 2016.04.14 22:05:31 (*) Running Generator Program for DM9000A
 
-# 2007.06.22 14:55:00 (*) Running Generator Program for SD_DAT
+# 2016.04.14 22:05:35 (*) Running Generator Program for ISP1362
 
-# 2007.06.22 14:55:02 (*) Running Generator Program for SD_CMD
+# 2016.04.14 22:05:40 (*) Running Generator Program for VGA_0
 
-# 2007.06.22 14:55:05 (*) Running Generator Program for SD_CLK
+# 2016.04.14 22:05:44 (*) Running Generator Program for Audio_0
 
-# 2007.06.22 14:55:08 (*) Running Generator Program for clock_0
+# 2016.04.14 22:05:48 (*) Running Generator Program for SD_DAT
 
-# 2007.06.22 14:55:11 (*) Running Generator Program for clock_1
+# 2016.04.14 22:05:51 (*) Running Generator Program for SD_CMD
+
+# 2016.04.14 22:05:53 (*) Running Generator Program for SD_CLK
+
+# 2016.04.14 22:05:55 (*) Running Generator Program for ODATA_PIO
+
+# 2016.04.14 22:05:57 (*) Running Generator Program for FIFO_IN_WRITE_REQ_PIO
+
+# 2016.04.14 22:05:59 (*) Running Generator Program for FIFO_IN_FULL_PIO
+
+# 2016.04.14 22:06:02 (*) Running Generator Program for IDATA_PIO
+
+# 2016.04.14 22:06:04 (*) Running Generator Program for RESULT_READY_PIO
+
+# 2016.04.14 22:06:06 (*) Running Generator Program for FIFO_OUT_READ_REQ_PIO
+
+# 2016.04.14 22:06:08 (*) Running Generator Program for RLE_FLUSH_PIO
+
+# 2016.04.14 22:06:11 (*) Running Generator Program for system_0_clock_0
+
+# 2016.04.14 22:06:13 (*) Running Generator Program for system_0_clock_1
 
 .
 
 
-# 2007.06.22 14:55:15 (*) Running Test Generator Program for sdram_0
+# 2016.04.14 22:06:16 (*) Running Test Generator Program for sdram_0
 
-# 2007.06.22 14:55:17 (*) Making arbitration and system (top) modules.
+# 2016.04.14 22:06:18 (*) Making arbitration and system (top) modules.
 
 
 WARNING:
-Should not have Active_CS_Through_Read_Latency set without setting some Read_Latency. at c:/altera/71/quartus/sopc_builder/bin/europa/europa_utils.pm line 248.
+Should not have Active_CS_Through_Read_Latency set without setting some Read_Latency. at C:/altera/91/quartus/sopc_builder/bin/europa/europa_utils.pm line 248.
 
-# 2007.06.22 14:55:55 (*) Generating Quartus symbol for top level: system_0
+# 2016.04.14 22:06:41 (*) Generating Quartus symbol for top level: system_0
 
-# 2007.06.22 14:55:55 (*) Symbol D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0.bsf already exists, no need to regenerate
-# 2007.06.22 14:55:55 (*) Creating command-line system-generation script: D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_generation_script
+# 2016.04.14 22:06:42 (*) Generating Symbol C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0.bsf
 
-# 2007.06.22 14:55:55 (*) Running setup for HDL simulator: modelsim
+# 2016.04.14 22:06:42 (*) Creating command-line system-generation script: C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_generation_script
 
-
-# 2007.06.22 14:55:56 (*) Setting up Quartus with system_0_setup_quartus.tcl
-c:/altera/71/quartus/bin/quartus_sh -t system_0_setup_quartus.tcl
+# 2016.04.14 22:06:43 (*) Running setup for HDL simulator: modelsim
 
 
-Info: *******************************************************************
-Info: Running Quartus II Shell
-    Info: Version 7.1 Build 156 04/30/2007 SJ Full Version
-    Info: Copyright (C) 1991-2007 Altera Corporation. All rights reserved.
-    Info: Your use of Altera Corporation's design tools, logic functions 
-    Info: and other software and tools, and its AMPP partner logic 
-    Info: functions, and any output files from any of the foregoing 
-    Info: (including device programming or simulation files), and any 
-    Info: associated documentation or information are expressly subject 
-    Info: to the terms and conditions of the Altera Program License 
-    Info: Subscription Agreement, Altera MegaCore Function License 
-    Info: Agreement, or other applicable license agreement, including, 
-    Info: without limitation, that your use is for the sole purpose of 
-    Info: programming logic devices manufactured by Altera and sold by 
-    Info: Altera or its authorized distributors.  Please refer 
-to the 
-    Info: applicable agreement for further details.
-    Info: Processing started: Fri Jun 22 14:55:56 2007
-Info: Command: quartus_sh -t system_0_setup_quartus.tcl
-Info: Evaluation of Tcl script system_0_setup_quartus.tcl was successful
-Info: Quartus II Shell was successful. 0 errors, 0 warnings
-    Info: Allocated 44 megabytes of memory during processing
-    Info: Processing ended: Fri Jun 22 14:55:56 2007
-    Info: Elapsed time: 00:00:00
+# 2016.04.14 22:06:44 (*) Completed generation for system: system_0.
+# 2016.04.14 22:06:44 (*) THE FOLLOWING SYSTEM ITEMS HAVE BEEN GENERATED:
+  SOPC Builder database : C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0.ptf 
+  System HDL Model : C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0.v 
+  System Generation Script : C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_generation_script 
 
-# 2007.06.22 14:55:57 (*) Completed generation for system: system_0.
-# 2007.06.22 14:55:57 (*) THE FOLLOWING SYSTEM ITEMS HAVE BEEN GENERATED:
-  SOPC Builder database : D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0.ptf 
-  System HDL Model : D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0.v 
-  System Generation Script : D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_generation_script 
-
-
-# 2007.06.22 14:55:57 (*) SUCCESS: SYSTEM GENERATION COMPLETED.
+# 2016.04.14 22:06:44 (*) SUCCESS: SYSTEM GENERATION COMPLETED.
 
 
 Press 'Exit' to exit.

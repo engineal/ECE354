@@ -1,4 +1,4 @@
-//Legal Notice: (C)2007 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2016 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -96,6 +96,7 @@ module epcs_controller_sub (
   reg     [ 15: 0] data_to_cpu;
   reg              data_wr_strobe;
   wire             dataavailable;
+  wire             ds_MISO;
   wire             enableSS;
   wire             endofpacket;
   reg     [ 15: 0] endofpacketvalue_reg;
@@ -142,8 +143,8 @@ module epcs_controller_sub (
     begin
       if (reset_n == 0)
           rd_strobe <= 0;
-      else if (1)
-          rd_strobe <= p1_rd_strobe;
+      else 
+        rd_strobe <= p1_rd_strobe;
     end
 
 
@@ -152,8 +153,8 @@ module epcs_controller_sub (
     begin
       if (reset_n == 0)
           data_rd_strobe <= 0;
-      else if (1)
-          data_rd_strobe <= p1_data_rd_strobe;
+      else 
+        data_rd_strobe <= p1_data_rd_strobe;
     end
 
 
@@ -163,8 +164,8 @@ module epcs_controller_sub (
     begin
       if (reset_n == 0)
           wr_strobe <= 0;
-      else if (1)
-          wr_strobe <= p1_wr_strobe;
+      else 
+        wr_strobe <= p1_wr_strobe;
     end
 
 
@@ -173,8 +174,8 @@ module epcs_controller_sub (
     begin
       if (reset_n == 0)
           data_wr_strobe <= 0;
-      else if (1)
-          data_wr_strobe <= p1_data_wr_strobe;
+      else 
+        data_wr_strobe <= p1_data_wr_strobe;
     end
 
 
@@ -227,8 +228,8 @@ module epcs_controller_sub (
     begin
       if (reset_n == 0)
           irq_reg <= 0;
-      else if (1)
-          irq_reg <= (EOP & iEOP_reg) | ((TOE | ROE) & iE_reg) | (RRDY & iRRDY_reg) | (TRDY & iTRDY_reg) | (TOE & iTOE_reg) | (ROE & iROE_reg);
+      else 
+        irq_reg <= (EOP & iEOP_reg) | ((TOE | ROE) & iE_reg) | (RRDY & iRRDY_reg) | (TRDY & iTRDY_reg) | (TOE & iTOE_reg) | (ROE & iROE_reg);
     end
 
 
@@ -264,8 +265,8 @@ module epcs_controller_sub (
     begin
       if (reset_n == 0)
           slowcount <= 0;
-      else if (1)
-          slowcount <= p1_slowcount;
+      else 
+        slowcount <= p1_slowcount;
     end
 
 
@@ -401,12 +402,13 @@ module epcs_controller_sub (
                       shift_reg <= {shift_reg[6 : 0], MISO_reg};
                 end
               else 
-                MISO_reg <= MISO;
+                MISO_reg <= ds_MISO;
             end
         end
     end
 
 
+  assign ds_MISO = MISO;
 
 endmodule
 

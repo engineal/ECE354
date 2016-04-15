@@ -1,4 +1,4 @@
-//Legal Notice: (C)2007 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2016 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -19,6 +19,7 @@ module cpu_0_test_bench (
                           // inputs:
                            A_bstatus_reg,
                            A_cmp_result,
+                           A_ctrl_exception,
                            A_ctrl_ld_non_bypass,
                            A_dst_regnum,
                            A_en,
@@ -35,11 +36,14 @@ module cpu_0_test_bench (
                            A_valid,
                            A_wr_data_unfiltered,
                            A_wr_dst_reg,
+                           E_add_br_to_taken_history_unfiltered,
                            E_logic_result,
-                           E_src1,
                            E_valid,
-                           M_alu_result,
-                           M_en,
+                           M_bht_ptr_unfiltered,
+                           M_bht_wr_data_unfiltered,
+                           M_bht_wr_en_unfiltered,
+                           M_mem_baddr,
+                           M_target_pcb,
                            M_valid,
                            W_dst_regnum,
                            W_iw,
@@ -47,6 +51,7 @@ module cpu_0_test_bench (
                            W_iw_opx,
                            W_pcb,
                            W_valid,
+                           W_vinst,
                            W_wr_dst_reg,
                            clk,
                            d_address,
@@ -60,18 +65,29 @@ module cpu_0_test_bench (
 
                           // outputs:
                            A_wr_data_filtered,
-                           E_src1_eq_src2
+                           E_add_br_to_taken_history_filtered,
+                           E_src1_eq_src2,
+                           M_bht_ptr_filtered,
+                           M_bht_wr_data_filtered,
+                           M_bht_wr_en_filtered,
+                           test_has_ended
                         )
 ;
 
   output  [ 31: 0] A_wr_data_filtered;
+  output           E_add_br_to_taken_history_filtered;
   output           E_src1_eq_src2;
-  input            A_bstatus_reg;
+  output  [  7: 0] M_bht_ptr_filtered;
+  output  [  1: 0] M_bht_wr_data_filtered;
+  output           M_bht_wr_en_filtered;
+  output           test_has_ended;
+  input   [ 31: 0] A_bstatus_reg;
   input            A_cmp_result;
+  input            A_ctrl_exception;
   input            A_ctrl_ld_non_bypass;
   input   [  4: 0] A_dst_regnum;
   input            A_en;
-  input            A_estatus_reg;
+  input   [ 31: 0] A_estatus_reg;
   input   [ 31: 0] A_ienable_reg;
   input   [ 31: 0] A_ipending_reg;
   input   [ 31: 0] A_iw;
@@ -80,15 +96,18 @@ module cpu_0_test_bench (
   input            A_op_intr;
   input   [ 23: 0] A_pcb;
   input   [ 31: 0] A_st_data;
-  input            A_status_reg;
+  input   [ 31: 0] A_status_reg;
   input            A_valid;
   input   [ 31: 0] A_wr_data_unfiltered;
   input            A_wr_dst_reg;
+  input            E_add_br_to_taken_history_unfiltered;
   input   [ 31: 0] E_logic_result;
-  input   [ 31: 0] E_src1;
   input            E_valid;
-  input   [ 31: 0] M_alu_result;
-  input            M_en;
+  input   [  7: 0] M_bht_ptr_unfiltered;
+  input   [  1: 0] M_bht_wr_data_unfiltered;
+  input            M_bht_wr_en_unfiltered;
+  input   [ 23: 0] M_mem_baddr;
+  input   [ 23: 0] M_target_pcb;
   input            M_valid;
   input   [  4: 0] W_dst_regnum;
   input   [ 31: 0] W_iw;
@@ -96,6 +115,7 @@ module cpu_0_test_bench (
   input   [  5: 0] W_iw_opx;
   input   [ 23: 0] W_pcb;
   input            W_valid;
+  input   [ 55: 0] W_vinst;
   input            W_wr_dst_reg;
   input            clk;
   input   [ 23: 0] d_address;
@@ -107,7 +127,7 @@ module cpu_0_test_bench (
   input            i_readdatavalid;
   input            reset_n;
 
-  reg     [ 31: 0] A_full_mem_baddr;
+  reg     [ 23: 0] A_mem_baddr;
   reg     [ 23: 0] A_target_pcb;
   wire    [ 31: 0] A_wr_data_filtered;
   wire             A_wr_data_unfiltered_0_is_x;
@@ -142,9 +162,11 @@ module cpu_0_test_bench (
   wire             A_wr_data_unfiltered_7_is_x;
   wire             A_wr_data_unfiltered_8_is_x;
   wire             A_wr_data_unfiltered_9_is_x;
+  wire             E_add_br_to_taken_history_filtered;
   wire             E_src1_eq_src2;
-  reg     [ 23: 0] M_target_pcb;
-  wire    [ 55: 0] W_inst;
+  wire    [  7: 0] M_bht_ptr_filtered;
+  wire    [  1: 0] M_bht_wr_data_filtered;
+  wire             M_bht_wr_en_filtered;
   wire             W_op_add;
   wire             W_op_addi;
   wire             W_op_and;
@@ -184,9 +206,11 @@ module cpu_0_test_bench (
   wire             W_op_flushp;
   wire             W_op_hbreak;
   wire             W_op_initd;
+  wire             W_op_initda;
   wire             W_op_initi;
   wire             W_op_intr;
   wire             W_op_jmp;
+  wire             W_op_jmpi;
   wire             W_op_ldb;
   wire             W_op_ldbio;
   wire             W_op_ldbu;
@@ -195,6 +219,7 @@ module cpu_0_test_bench (
   wire             W_op_ldhio;
   wire             W_op_ldhu;
   wire             W_op_ldhuio;
+  wire             W_op_ldl;
   wire             W_op_ldw;
   wire             W_op_ldwio;
   wire             W_op_mul;
@@ -209,27 +234,23 @@ module cpu_0_test_bench (
   wire             W_op_orhi;
   wire             W_op_ori;
   wire             W_op_rdctl;
+  wire             W_op_rdprs;
   wire             W_op_ret;
   wire             W_op_rol;
   wire             W_op_roli;
   wire             W_op_ror;
-  wire             W_op_rsv01;
   wire             W_op_rsv02;
   wire             W_op_rsv09;
   wire             W_op_rsv10;
   wire             W_op_rsv17;
   wire             W_op_rsv18;
-  wire             W_op_rsv19;
   wire             W_op_rsv25;
   wire             W_op_rsv26;
-  wire             W_op_rsv29;
-  wire             W_op_rsv31;
   wire             W_op_rsv33;
   wire             W_op_rsv34;
   wire             W_op_rsv41;
   wire             W_op_rsv42;
   wire             W_op_rsv49;
-  wire             W_op_rsv56;
   wire             W_op_rsv57;
   wire             W_op_rsv61;
   wire             W_op_rsv62;
@@ -238,7 +259,6 @@ module cpu_0_test_bench (
   wire             W_op_rsvx10;
   wire             W_op_rsvx15;
   wire             W_op_rsvx17;
-  wire             W_op_rsvx20;
   wire             W_op_rsvx21;
   wire             W_op_rsvx25;
   wire             W_op_rsvx33;
@@ -262,6 +282,7 @@ module cpu_0_test_bench (
   wire             W_op_srli;
   wire             W_op_stb;
   wire             W_op_stbio;
+  wire             W_op_stc;
   wire             W_op_sth;
   wire             W_op_sthio;
   wire             W_op_stw;
@@ -270,19 +291,139 @@ module cpu_0_test_bench (
   wire             W_op_sync;
   wire             W_op_trap;
   wire             W_op_wrctl;
+  wire             W_op_wrprs;
   wire             W_op_xor;
   wire             W_op_xorhi;
   wire             W_op_xori;
-  wire    [ 55: 0] W_vinst;
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          M_target_pcb <= 0;
-      else if (M_en)
-          M_target_pcb <= E_src1[23 : 0];
-    end
-
-
+  wire             test_has_ended;
+  assign W_op_call = W_iw_op == 0;
+  assign W_op_jmpi = W_iw_op == 1;
+  assign W_op_ldbu = W_iw_op == 3;
+  assign W_op_addi = W_iw_op == 4;
+  assign W_op_stb = W_iw_op == 5;
+  assign W_op_br = W_iw_op == 6;
+  assign W_op_ldb = W_iw_op == 7;
+  assign W_op_cmpgei = W_iw_op == 8;
+  assign W_op_ldhu = W_iw_op == 11;
+  assign W_op_andi = W_iw_op == 12;
+  assign W_op_sth = W_iw_op == 13;
+  assign W_op_bge = W_iw_op == 14;
+  assign W_op_ldh = W_iw_op == 15;
+  assign W_op_cmplti = W_iw_op == 16;
+  assign W_op_initda = W_iw_op == 19;
+  assign W_op_ori = W_iw_op == 20;
+  assign W_op_stw = W_iw_op == 21;
+  assign W_op_blt = W_iw_op == 22;
+  assign W_op_ldw = W_iw_op == 23;
+  assign W_op_cmpnei = W_iw_op == 24;
+  assign W_op_flushda = W_iw_op == 27;
+  assign W_op_xori = W_iw_op == 28;
+  assign W_op_stc = W_iw_op == 29;
+  assign W_op_bne = W_iw_op == 30;
+  assign W_op_ldl = W_iw_op == 31;
+  assign W_op_cmpeqi = W_iw_op == 32;
+  assign W_op_ldbuio = W_iw_op == 35;
+  assign W_op_muli = W_iw_op == 36;
+  assign W_op_stbio = W_iw_op == 37;
+  assign W_op_beq = W_iw_op == 38;
+  assign W_op_ldbio = W_iw_op == 39;
+  assign W_op_cmpgeui = W_iw_op == 40;
+  assign W_op_ldhuio = W_iw_op == 43;
+  assign W_op_andhi = W_iw_op == 44;
+  assign W_op_sthio = W_iw_op == 45;
+  assign W_op_bgeu = W_iw_op == 46;
+  assign W_op_ldhio = W_iw_op == 47;
+  assign W_op_cmpltui = W_iw_op == 48;
+  assign W_op_initd = W_iw_op == 51;
+  assign W_op_orhi = W_iw_op == 52;
+  assign W_op_stwio = W_iw_op == 53;
+  assign W_op_bltu = W_iw_op == 54;
+  assign W_op_ldwio = W_iw_op == 55;
+  assign W_op_rdprs = W_iw_op == 56;
+  assign W_op_flushd = W_iw_op == 59;
+  assign W_op_xorhi = W_iw_op == 60;
+  assign W_op_rsv02 = W_iw_op == 2;
+  assign W_op_rsv09 = W_iw_op == 9;
+  assign W_op_rsv10 = W_iw_op == 10;
+  assign W_op_rsv17 = W_iw_op == 17;
+  assign W_op_rsv18 = W_iw_op == 18;
+  assign W_op_rsv25 = W_iw_op == 25;
+  assign W_op_rsv26 = W_iw_op == 26;
+  assign W_op_rsv33 = W_iw_op == 33;
+  assign W_op_rsv34 = W_iw_op == 34;
+  assign W_op_rsv41 = W_iw_op == 41;
+  assign W_op_rsv42 = W_iw_op == 42;
+  assign W_op_rsv49 = W_iw_op == 49;
+  assign W_op_rsv57 = W_iw_op == 57;
+  assign W_op_rsv61 = W_iw_op == 61;
+  assign W_op_rsv62 = W_iw_op == 62;
+  assign W_op_rsv63 = W_iw_op == 63;
+  assign W_op_eret = W_op_opx & (W_iw_opx == 1);
+  assign W_op_roli = W_op_opx & (W_iw_opx == 2);
+  assign W_op_rol = W_op_opx & (W_iw_opx == 3);
+  assign W_op_flushp = W_op_opx & (W_iw_opx == 4);
+  assign W_op_ret = W_op_opx & (W_iw_opx == 5);
+  assign W_op_nor = W_op_opx & (W_iw_opx == 6);
+  assign W_op_mulxuu = W_op_opx & (W_iw_opx == 7);
+  assign W_op_cmpge = W_op_opx & (W_iw_opx == 8);
+  assign W_op_bret = W_op_opx & (W_iw_opx == 9);
+  assign W_op_ror = W_op_opx & (W_iw_opx == 11);
+  assign W_op_flushi = W_op_opx & (W_iw_opx == 12);
+  assign W_op_jmp = W_op_opx & (W_iw_opx == 13);
+  assign W_op_and = W_op_opx & (W_iw_opx == 14);
+  assign W_op_cmplt = W_op_opx & (W_iw_opx == 16);
+  assign W_op_slli = W_op_opx & (W_iw_opx == 18);
+  assign W_op_sll = W_op_opx & (W_iw_opx == 19);
+  assign W_op_wrprs = W_op_opx & (W_iw_opx == 20);
+  assign W_op_or = W_op_opx & (W_iw_opx == 22);
+  assign W_op_mulxsu = W_op_opx & (W_iw_opx == 23);
+  assign W_op_cmpne = W_op_opx & (W_iw_opx == 24);
+  assign W_op_srli = W_op_opx & (W_iw_opx == 26);
+  assign W_op_srl = W_op_opx & (W_iw_opx == 27);
+  assign W_op_nextpc = W_op_opx & (W_iw_opx == 28);
+  assign W_op_callr = W_op_opx & (W_iw_opx == 29);
+  assign W_op_xor = W_op_opx & (W_iw_opx == 30);
+  assign W_op_mulxss = W_op_opx & (W_iw_opx == 31);
+  assign W_op_cmpeq = W_op_opx & (W_iw_opx == 32);
+  assign W_op_divu = W_op_opx & (W_iw_opx == 36);
+  assign W_op_div = W_op_opx & (W_iw_opx == 37);
+  assign W_op_rdctl = W_op_opx & (W_iw_opx == 38);
+  assign W_op_mul = W_op_opx & (W_iw_opx == 39);
+  assign W_op_cmpgeu = W_op_opx & (W_iw_opx == 40);
+  assign W_op_initi = W_op_opx & (W_iw_opx == 41);
+  assign W_op_trap = W_op_opx & (W_iw_opx == 45);
+  assign W_op_wrctl = W_op_opx & (W_iw_opx == 46);
+  assign W_op_cmpltu = W_op_opx & (W_iw_opx == 48);
+  assign W_op_add = W_op_opx & (W_iw_opx == 49);
+  assign W_op_break = W_op_opx & (W_iw_opx == 52);
+  assign W_op_hbreak = W_op_opx & (W_iw_opx == 53);
+  assign W_op_sync = W_op_opx & (W_iw_opx == 54);
+  assign W_op_sub = W_op_opx & (W_iw_opx == 57);
+  assign W_op_srai = W_op_opx & (W_iw_opx == 58);
+  assign W_op_sra = W_op_opx & (W_iw_opx == 59);
+  assign W_op_intr = W_op_opx & (W_iw_opx == 61);
+  assign W_op_crst = W_op_opx & (W_iw_opx == 62);
+  assign W_op_rsvx00 = W_op_opx & (W_iw_opx == 0);
+  assign W_op_rsvx10 = W_op_opx & (W_iw_opx == 10);
+  assign W_op_rsvx15 = W_op_opx & (W_iw_opx == 15);
+  assign W_op_rsvx17 = W_op_opx & (W_iw_opx == 17);
+  assign W_op_rsvx21 = W_op_opx & (W_iw_opx == 21);
+  assign W_op_rsvx25 = W_op_opx & (W_iw_opx == 25);
+  assign W_op_rsvx33 = W_op_opx & (W_iw_opx == 33);
+  assign W_op_rsvx34 = W_op_opx & (W_iw_opx == 34);
+  assign W_op_rsvx35 = W_op_opx & (W_iw_opx == 35);
+  assign W_op_rsvx42 = W_op_opx & (W_iw_opx == 42);
+  assign W_op_rsvx43 = W_op_opx & (W_iw_opx == 43);
+  assign W_op_rsvx44 = W_op_opx & (W_iw_opx == 44);
+  assign W_op_rsvx47 = W_op_opx & (W_iw_opx == 47);
+  assign W_op_rsvx50 = W_op_opx & (W_iw_opx == 50);
+  assign W_op_rsvx51 = W_op_opx & (W_iw_opx == 51);
+  assign W_op_rsvx55 = W_op_opx & (W_iw_opx == 55);
+  assign W_op_rsvx56 = W_op_opx & (W_iw_opx == 56);
+  assign W_op_rsvx60 = W_op_opx & (W_iw_opx == 60);
+  assign W_op_rsvx63 = W_op_opx & (W_iw_opx == 63);
+  assign W_op_opx = W_iw_op == 58;
+  assign W_op_custom = W_iw_op == 50;
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
@@ -295,150 +436,26 @@ module cpu_0_test_bench (
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          A_full_mem_baddr <= 0;
+          A_mem_baddr <= 0;
       else if (A_en)
-          A_full_mem_baddr <= M_alu_result;
-    end
-
-
-  always @(posedge clk or negedge reset_n)
-    begin
-      if (reset_n == 0)
-          M_target_pcb <= 0;
-      else if (M_en)
-          M_target_pcb <= E_src1[23 : 0];
+          A_mem_baddr <= M_mem_baddr;
     end
 
 
   assign E_src1_eq_src2 = E_logic_result == 0;
-  assign W_op_rsv02 = W_iw_op[5 : 0] == 2;
-  assign W_op_cmplti = W_iw_op[5 : 0] == 16;
-  assign W_op_rsv18 = W_iw_op[5 : 0] == 18;
-  assign W_op_rsv01 = W_iw_op[5 : 0] == 1;
-  assign W_op_rsv26 = W_iw_op[5 : 0] == 26;
-  assign W_op_rsv42 = W_iw_op[5 : 0] == 42;
-  assign W_op_ldbio = W_iw_op[5 : 0] == 39;
-  assign W_op_ldbu = W_iw_op[5 : 0] == 3;
-  assign W_op_orhi = W_iw_op[5 : 0] == 52;
-  assign W_op_rsv31 = W_iw_op[5 : 0] == 31;
-  assign W_op_bge = W_iw_op[5 : 0] == 14;
-  assign W_op_br = W_iw_op[5 : 0] == 6;
-  assign W_op_ldhio = W_iw_op[5 : 0] == 47;
-  assign W_op_rsv41 = W_iw_op[5 : 0] == 41;
-  assign W_op_rsv19 = W_iw_op[5 : 0] == 19;
-  assign W_op_ldwio = W_iw_op[5 : 0] == 55;
-  assign W_op_rsv29 = W_iw_op[5 : 0] == 29;
-  assign W_op_rsv61 = W_iw_op[5 : 0] == 61;
-  assign W_op_opx = W_iw_op[5 : 0] == 58;
-  assign W_op_stb = W_iw_op[5 : 0] == 5;
-  assign W_op_rsv62 = W_iw_op[5 : 0] == 62;
-  assign W_op_bltu = W_iw_op[5 : 0] == 54;
-  assign W_op_custom = W_iw_op[5 : 0] == 50;
-  assign W_op_muli = W_iw_op[5 : 0] == 36;
-  assign W_op_xori = W_iw_op[5 : 0] == 28;
-  assign W_op_cmpgei = W_iw_op[5 : 0] == 8;
-  assign W_op_ldw = W_iw_op[5 : 0] == 23;
-  assign W_op_cmpeqi = W_iw_op[5 : 0] == 32;
-  assign W_op_ldh = W_iw_op[5 : 0] == 15;
-  assign W_op_stw = W_iw_op[5 : 0] == 21;
-  assign W_op_rsv09 = W_iw_op[5 : 0] == 9;
-  assign W_op_cmpnei = W_iw_op[5 : 0] == 24;
-  assign W_op_ldb = W_iw_op[5 : 0] == 7;
-  assign W_op_bgeu = W_iw_op[5 : 0] == 46;
-  assign W_op_stwio = W_iw_op[5 : 0] == 53;
-  assign W_op_rsv33 = W_iw_op[5 : 0] == 33;
-  assign W_op_andhi = W_iw_op[5 : 0] == 44;
-  assign W_op_ldbuio = W_iw_op[5 : 0] == 35;
-  assign W_op_rsv34 = W_iw_op[5 : 0] == 34;
-  assign W_op_sthio = W_iw_op[5 : 0] == 45;
-  assign W_op_cmpgeui = W_iw_op[5 : 0] == 40;
-  assign W_op_stbio = W_iw_op[5 : 0] == 37;
-  assign W_op_andi = W_iw_op[5 : 0] == 12;
-  assign W_op_addi = W_iw_op[5 : 0] == 4;
-  assign W_op_flushda = W_iw_op[5 : 0] == 27;
-  assign W_op_rsv49 = W_iw_op[5 : 0] == 49;
-  assign W_op_blt = W_iw_op[5 : 0] == 22;
-  assign W_op_beq = W_iw_op[5 : 0] == 38;
-  assign W_op_ori = W_iw_op[5 : 0] == 20;
-  assign W_op_cmpltui = W_iw_op[5 : 0] == 48;
-  assign W_op_xorhi = W_iw_op[5 : 0] == 60;
-  assign W_op_rsv56 = W_iw_op[5 : 0] == 56;
-  assign W_op_ldhuio = W_iw_op[5 : 0] == 43;
-  assign W_op_rsv63 = W_iw_op[5 : 0] == 63;
-  assign W_op_bne = W_iw_op[5 : 0] == 30;
-  assign W_op_rsv57 = W_iw_op[5 : 0] == 57;
-  assign W_op_call = W_iw_op[5 : 0] == 0;
-  assign W_op_ldhu = W_iw_op[5 : 0] == 11;
-  assign W_op_flushd = W_iw_op[5 : 0] == 59;
-  assign W_op_initd = W_iw_op[5 : 0] == 51;
-  assign W_op_rsv10 = W_iw_op[5 : 0] == 10;
-  assign W_op_rsv17 = W_iw_op[5 : 0] == 17;
-  assign W_op_sth = W_iw_op[5 : 0] == 13;
-  assign W_op_rsv25 = W_iw_op[5 : 0] == 25;
-  assign W_op_flushi = W_op_opx & (W_iw_opx[5 : 0] == 12);
-  assign W_op_mulxuu = W_op_opx & (W_iw_opx[5 : 0] == 7);
-  assign W_op_rsvx33 = W_op_opx & (W_iw_opx[5 : 0] == 33);
-  assign W_op_wrctl = W_op_opx & (W_iw_opx[5 : 0] == 46);
-  assign W_op_roli = W_op_opx & (W_iw_opx[5 : 0] == 2);
-  assign W_op_intr = W_op_opx & (W_iw_opx[5 : 0] == 61);
-  assign W_op_rsvx43 = W_op_opx & (W_iw_opx[5 : 0] == 43);
-  assign W_op_srl = W_op_opx & (W_iw_opx[5 : 0] == 27);
-  assign W_op_trap = W_op_opx & (W_iw_opx[5 : 0] == 45);
-  assign W_op_rsvx17 = W_op_opx & (W_iw_opx[5 : 0] == 17);
-  assign W_op_break = W_op_opx & (W_iw_opx[5 : 0] == 52);
-  assign W_op_rdctl = W_op_opx & (W_iw_opx[5 : 0] == 38);
-  assign W_op_cmpltu = W_op_opx & (W_iw_opx[5 : 0] == 48);
-  assign W_op_callr = W_op_opx & (W_iw_opx[5 : 0] == 29);
-  assign W_op_cmpge = W_op_opx & (W_iw_opx[5 : 0] == 8);
-  assign W_op_rsvx47 = W_op_opx & (W_iw_opx[5 : 0] == 47);
-  assign W_op_and = W_op_opx & (W_iw_opx[5 : 0] == 14);
-  assign W_op_rsvx00 = W_op_opx & (W_iw_opx[5 : 0] == 0);
-  assign W_op_rsvx56 = W_op_opx & (W_iw_opx[5 : 0] == 56);
-  assign W_op_hbreak = W_op_opx & (W_iw_opx[5 : 0] == 53);
-  assign W_op_flushp = W_op_opx & (W_iw_opx[5 : 0] == 4);
-  assign W_op_nor = W_op_opx & (W_iw_opx[5 : 0] == 6);
-  assign W_op_rsvx50 = W_op_opx & (W_iw_opx[5 : 0] == 50);
-  assign W_op_initi = W_op_opx & (W_iw_opx[5 : 0] == 41);
-  assign W_op_srai = W_op_opx & (W_iw_opx[5 : 0] == 58);
-  assign W_op_sync = W_op_opx & (W_iw_opx[5 : 0] == 54);
-  assign W_op_rsvx15 = W_op_opx & (W_iw_opx[5 : 0] == 15);
-  assign W_op_rsvx55 = W_op_opx & (W_iw_opx[5 : 0] == 55);
-  assign W_op_crst = W_op_opx & (W_iw_opx[5 : 0] == 62);
-  assign W_op_rsvx42 = W_op_opx & (W_iw_opx[5 : 0] == 42);
-  assign W_op_xor = W_op_opx & (W_iw_opx[5 : 0] == 30);
-  assign W_op_rsvx34 = W_op_opx & (W_iw_opx[5 : 0] == 34);
-  assign W_op_mulxss = W_op_opx & (W_iw_opx[5 : 0] == 31);
-  assign W_op_rsvx51 = W_op_opx & (W_iw_opx[5 : 0] == 51);
-  assign W_op_rsvx10 = W_op_opx & (W_iw_opx[5 : 0] == 10);
-  assign W_op_eret = W_op_opx & (W_iw_opx[5 : 0] == 1);
-  assign W_op_rsvx25 = W_op_opx & (W_iw_opx[5 : 0] == 25);
-  assign W_op_jmp = W_op_opx & (W_iw_opx[5 : 0] == 13);
-  assign W_op_or = W_op_opx & (W_iw_opx[5 : 0] == 22);
-  assign W_op_rsvx35 = W_op_opx & (W_iw_opx[5 : 0] == 35);
-  assign W_op_sra = W_op_opx & (W_iw_opx[5 : 0] == 59);
-  assign W_op_rsvx20 = W_op_opx & (W_iw_opx[5 : 0] == 20);
-  assign W_op_slli = W_op_opx & (W_iw_opx[5 : 0] == 18);
-  assign W_op_mulxsu = W_op_opx & (W_iw_opx[5 : 0] == 23);
-  assign W_op_rsvx21 = W_op_opx & (W_iw_opx[5 : 0] == 21);
-  assign W_op_ror = W_op_opx & (W_iw_opx[5 : 0] == 11);
-  assign W_op_srli = W_op_opx & (W_iw_opx[5 : 0] == 26);
-  assign W_op_sll = W_op_opx & (W_iw_opx[5 : 0] == 19);
-  assign W_op_div = W_op_opx & (W_iw_opx[5 : 0] == 37);
-  assign W_op_cmplt = W_op_opx & (W_iw_opx[5 : 0] == 16);
-  assign W_op_add = W_op_opx & (W_iw_opx[5 : 0] == 49);
-  assign W_op_rsvx44 = W_op_opx & (W_iw_opx[5 : 0] == 44);
-  assign W_op_bret = W_op_opx & (W_iw_opx[5 : 0] == 9);
-  assign W_op_rsvx60 = W_op_opx & (W_iw_opx[5 : 0] == 60);
-  assign W_op_rsvx63 = W_op_opx & (W_iw_opx[5 : 0] == 63);
-  assign W_op_mul = W_op_opx & (W_iw_opx[5 : 0] == 39);
-  assign W_op_cmpgeu = W_op_opx & (W_iw_opx[5 : 0] == 40);
-  assign W_op_cmpne = W_op_opx & (W_iw_opx[5 : 0] == 24);
-  assign W_op_cmpeq = W_op_opx & (W_iw_opx[5 : 0] == 32);
-  assign W_op_ret = W_op_opx & (W_iw_opx[5 : 0] == 5);
-  assign W_op_rol = W_op_opx & (W_iw_opx[5 : 0] == 3);
-  assign W_op_sub = W_op_opx & (W_iw_opx[5 : 0] == 57);
-  assign W_op_nextpc = W_op_opx & (W_iw_opx[5 : 0] == 28);
-  assign W_op_divu = W_op_opx & (W_iw_opx[5 : 0] == 36);
+  //Propagating 'X' data bits
+  assign E_add_br_to_taken_history_filtered = E_add_br_to_taken_history_unfiltered;
+
+  //Propagating 'X' data bits
+  assign M_bht_wr_en_filtered = M_bht_wr_en_unfiltered;
+
+  //Propagating 'X' data bits
+  assign M_bht_wr_data_filtered = M_bht_wr_data_unfiltered;
+
+  //Propagating 'X' data bits
+  assign M_bht_ptr_filtered = M_bht_ptr_unfiltered;
+
+  assign test_has_ended = 1'b0;
 
 //synthesis translate_off
 //////////////// SIMULATION-ONLY CONTENTS
@@ -753,145 +770,15 @@ module cpu_0_test_bench (
   initial  
   begin
     trace_handle = $fopen("cpu_0.tr");
-    $fwrite(trace_handle, "version 2\nnumThreads 1\n");
+    $fwrite(trace_handle, "version 3\nnumThreads 1\n");
   end
   always @(posedge clk)
     begin
-      if (~reset_n || (A_valid & A_en))
-          $fwrite(trace_handle, "%0d ns: %0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h\n", $time, ~reset_n, A_pcb, 0, A_op_intr, A_op_hbreak, A_iw, A_wr_dst_reg, A_dst_regnum, A_wr_data_filtered, A_full_mem_baddr, A_st_data, A_mem_byte_en, A_cmp_result, A_target_pcb, A_status_reg, A_estatus_reg, A_bstatus_reg, A_ienable_reg, A_ipending_reg, 0);
+      if ((~reset_n || (A_valid & A_en)) && ~test_has_ended)
+          $fwrite(trace_handle, "%0d ns: %0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h\n", $time, ~reset_n, A_pcb, 0, A_op_intr, A_op_hbreak, A_iw, ~(A_op_intr | A_op_hbreak), A_wr_dst_reg, A_dst_regnum, 0, A_wr_data_filtered, A_mem_baddr, A_st_data, A_mem_byte_en, A_cmp_result, A_target_pcb, A_status_reg, A_estatus_reg, A_bstatus_reg, A_ienable_reg, A_ipending_reg, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, A_ctrl_exception ? 1 : 0, 0, 0, 0, 0);
     end
 
 
-  assign W_inst = ((((W_iw_op[5 : 0] == 2))))? 56'h20207273763032 :
-    ((((W_iw_op[5 : 0] == 16))))? 56'h20636d706c7469 :
-    ((((W_iw_op[5 : 0] == 18))))? 56'h20207273763138 :
-    ((((W_iw_op[5 : 0] == 1))))? 56'h20207273763031 :
-    ((((W_iw_op[5 : 0] == 26))))? 56'h20207273763236 :
-    ((((W_iw_op[5 : 0] == 42))))? 56'h20207273763432 :
-    ((((W_iw_op[5 : 0] == 39))))? 56'h20206c6462696f :
-    ((((W_iw_op[5 : 0] == 3))))? 56'h2020206c646275 :
-    ((((W_iw_op[5 : 0] == 52))))? 56'h2020206f726869 :
-    ((((W_iw_op[5 : 0] == 31))))? 56'h20207273763331 :
-    ((((W_iw_op[5 : 0] == 14))))? 56'h20202020626765 :
-    ((((W_iw_op[5 : 0] == 6))))? 56'h20202020206272 :
-    ((((W_iw_op[5 : 0] == 47))))? 56'h20206c6468696f :
-    ((((W_iw_op[5 : 0] == 41))))? 56'h20207273763431 :
-    ((((W_iw_op[5 : 0] == 19))))? 56'h20207273763139 :
-    ((((W_iw_op[5 : 0] == 55))))? 56'h20206c6477696f :
-    ((((W_iw_op[5 : 0] == 29))))? 56'h20207273763239 :
-    ((((W_iw_op[5 : 0] == 61))))? 56'h20207273763631 :
-    ((((W_iw_op[5 : 0] == 5))))? 56'h20202020737462 :
-    ((((W_iw_op[5 : 0] == 62))))? 56'h20207273763632 :
-    ((((W_iw_op[5 : 0] == 54))))? 56'h202020626c7475 :
-    ((((W_iw_op[5 : 0] == 50))))? 56'h20637573746f6d :
-    ((((W_iw_op[5 : 0] == 36))))? 56'h2020206d756c69 :
-    ((((W_iw_op[5 : 0] == 28))))? 56'h202020786f7269 :
-    ((((W_iw_op[5 : 0] == 8))))? 56'h20636d70676569 :
-    ((((W_iw_op[5 : 0] == 23))))? 56'h202020206c6477 :
-    ((((W_iw_op[5 : 0] == 32))))? 56'h20636d70657169 :
-    ((((W_iw_op[5 : 0] == 15))))? 56'h202020206c6468 :
-    ((((W_iw_op[5 : 0] == 21))))? 56'h20202020737477 :
-    ((((W_iw_op[5 : 0] == 9))))? 56'h20207273763039 :
-    ((((W_iw_op[5 : 0] == 24))))? 56'h20636d706e6569 :
-    ((((W_iw_op[5 : 0] == 7))))? 56'h202020206c6462 :
-    ((((W_iw_op[5 : 0] == 46))))? 56'h20202062676575 :
-    ((((W_iw_op[5 : 0] == 53))))? 56'h2020737477696f :
-    ((((W_iw_op[5 : 0] == 33))))? 56'h20207273763333 :
-    ((((W_iw_op[5 : 0] == 44))))? 56'h2020616e646869 :
-    ((((W_iw_op[5 : 0] == 35))))? 56'h206c646275696f :
-    ((((W_iw_op[5 : 0] == 34))))? 56'h20207273763334 :
-    ((((W_iw_op[5 : 0] == 45))))? 56'h2020737468696f :
-    ((((W_iw_op[5 : 0] == 40))))? 56'h636d7067657569 :
-    ((((W_iw_op[5 : 0] == 37))))? 56'h2020737462696f :
-    ((((W_iw_op[5 : 0] == 12))))? 56'h202020616e6469 :
-    ((((W_iw_op[5 : 0] == 4))))? 56'h20202061646469 :
-    ((((W_iw_op[5 : 0] == 27))))? 56'h666c7573686461 :
-    ((((W_iw_op[5 : 0] == 49))))? 56'h20207273763439 :
-    ((((W_iw_op[5 : 0] == 22))))? 56'h20202020626c74 :
-    ((((W_iw_op[5 : 0] == 38))))? 56'h20202020626571 :
-    ((((W_iw_op[5 : 0] == 20))))? 56'h202020206f7269 :
-    ((((W_iw_op[5 : 0] == 48))))? 56'h636d706c747569 :
-    ((((W_iw_op[5 : 0] == 60))))? 56'h2020786f726869 :
-    ((((W_iw_op[5 : 0] == 56))))? 56'h20207273763536 :
-    ((((W_iw_op[5 : 0] == 43))))? 56'h206c646875696f :
-    ((((W_iw_op[5 : 0] == 63))))? 56'h20207273763633 :
-    ((((W_iw_op[5 : 0] == 30))))? 56'h20202020626e65 :
-    ((((W_iw_op[5 : 0] == 57))))? 56'h20207273763537 :
-    ((((W_iw_op[5 : 0] == 0))))? 56'h20202063616c6c :
-    ((((W_iw_op[5 : 0] == 11))))? 56'h2020206c646875 :
-    ((((W_iw_op[5 : 0] == 59))))? 56'h20666c75736864 :
-    ((((W_iw_op[5 : 0] == 51))))? 56'h2020696e697464 :
-    ((((W_iw_op[5 : 0] == 10))))? 56'h20207273763130 :
-    ((((W_iw_op[5 : 0] == 17))))? 56'h20207273763137 :
-    ((((W_iw_op[5 : 0] == 13))))? 56'h20202020737468 :
-    ((((W_iw_op[5 : 0] == 25))))? 56'h20207273763235 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 12))))? 56'h20666c75736869 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 7))))? 56'h206d756c787575 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 33))))? 56'h20727376783333 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 46))))? 56'h2020777263746c :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 2))))? 56'h202020726f6c69 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 61))))? 56'h202020696e7472 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 43))))? 56'h20727376783433 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 27))))? 56'h2020202073726c :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 45))))? 56'h20202074726170 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 17))))? 56'h20727376783137 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 52))))? 56'h2020627265616b :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 38))))? 56'h2020726463746c :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 48))))? 56'h20636d706c7475 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 29))))? 56'h202063616c6c72 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 8))))? 56'h2020636d706765 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 47))))? 56'h20727376783437 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 14))))? 56'h20202020616e64 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 0))))? 56'h20727376783030 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 56))))? 56'h20727376783536 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 53))))? 56'h2068627265616b :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 4))))? 56'h20666c75736870 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 6))))? 56'h202020206e6f72 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 50))))? 56'h20727376783530 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 41))))? 56'h2020696e697469 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 58))))? 56'h20202073726169 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 54))))? 56'h20202073796e63 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 15))))? 56'h20727376783135 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 55))))? 56'h20727376783535 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 62))))? 56'h20202063727374 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 42))))? 56'h20727376783432 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 30))))? 56'h20202020786f72 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 34))))? 56'h20727376783334 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 31))))? 56'h206d756c787373 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 51))))? 56'h20727376783531 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 10))))? 56'h20727376783130 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 1))))? 56'h20202065726574 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 25))))? 56'h20727376783235 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 13))))? 56'h202020206a6d70 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 22))))? 56'h20202020206f72 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 35))))? 56'h20727376783335 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 59))))? 56'h20202020737261 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 20))))? 56'h20727376783230 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 18))))? 56'h202020736c6c69 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 23))))? 56'h206d756c787375 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 21))))? 56'h20727376783231 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 11))))? 56'h20202020726f72 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 26))))? 56'h20202073726c69 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 19))))? 56'h20202020736c6c :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 37))))? 56'h20202020646976 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 16))))? 56'h2020636d706c74 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 49))))? 56'h20202020616464 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 44))))? 56'h20727376783434 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 9))))? 56'h20202062726574 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 60))))? 56'h20727376783630 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 63))))? 56'h20727376783633 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 39))))? 56'h202020206d756c :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 40))))? 56'h20636d70676575 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 24))))? 56'h2020636d706e65 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 32))))? 56'h2020636d706571 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 5))))? 56'h20202020726574 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 3))))? 56'h20202020726f6c :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 57))))? 56'h20202020737562 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 28))))? 56'h206e6578747063 :
-    (((W_op_opx & (W_iw_opx[5 : 0] == 36))))? 56'h20202064697675 :
-    56'h20202020424144;
-
-  assign W_vinst = W_valid ? W_inst : {7{8'h2d}};
 
 //////////////// END SIMULATION-ONLY CONTENTS
 

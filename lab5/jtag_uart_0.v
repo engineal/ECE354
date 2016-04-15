@@ -1,4 +1,4 @@
-//Legal Notice: (C)2007 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2016 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -36,7 +36,7 @@ module jtag_uart_0_log_module (
 //synthesis translate_off
 //////////////// SIMULATION-ONLY CONTENTS
    reg [31:0] text_handle; // for $fopen
-   initial text_handle = $fopen ("D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_sim/jtag_uart_0_output_stream.dat");
+   initial text_handle = $fopen ("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/jtag_uart_0_output_stream.dat");
 
    always @(posedge clk) begin
       if (valid && strobe) begin
@@ -260,7 +260,7 @@ module jtag_uart_0_drom_module (
           d9_pre <= 0;
           new_rom <= 0;
         end
-      else if (1)
+      else 
         begin
           d1_pre <= pre;
           d2_pre <= d1_pre;
@@ -307,7 +307,7 @@ module jtag_uart_0_drom_module (
          if (mutex[0] && !safe && safe_delay) begin
             // and blast the mutex after falling edge of safe if interactive
             if (interactive) begin
-               mutex_handle = $fopen ("D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_sim/jtag_uart_0_input_mutex.dat");
+               mutex_handle = $fopen ("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/jtag_uart_0_input_mutex.dat");
                $fdisplay (mutex_handle, "0");
                $fclose (mutex_handle);
                // $display ($stime, "\t%m:\n\t\tMutex cleared!");
@@ -320,13 +320,13 @@ module jtag_uart_0_drom_module (
             poll_count = poll_count + 1;
          end else begin         // do the interesting stuff.
             poll_count = 0;
-            $readmemh ("D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_sim/jtag_uart_0_input_mutex.dat", mutex);
+            $readmemh ("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/jtag_uart_0_input_mutex.dat", mutex);
             if (mutex[0] && !safe) begin
             // read stream into mem_array after current characters are gone!
                // save mutex[0] value to compare to address (generates 'safe')
                mutex[1] <= mutex[0];
                // $display ($stime, "\t%m:\n\t\tMutex hit: Trying to read %d bytes...", mutex[0]);
-               $readmemb("D:/keith_temp/quartusII/DE2_System_v1.5/DE2_System_v1.5/DE2_demonstrations/DE2_NET/system_0_sim/jtag_uart_0_input_stream.dat", mem_array);
+               $readmemb("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/jtag_uart_0_input_stream.dat", mem_array);
                // bash address and send pulse outside to send the char:
                address <= 0;
                pre <= -1;
@@ -534,7 +534,7 @@ module jtag_uart_0 (
                       dataavailable,
                       readyfordata
                    )
-;
+  /* synthesis ALTERA_ATTRIBUTE = "SUPPRESS_DA_RULE_INTERNAL=\"R101,C106,D101,D103\"" */ ;
 
   output           av_irq;
   output  [ 31: 0] av_readdata;
@@ -710,8 +710,8 @@ module jtag_uart_0 (
     begin
       if (rst_n == 0)
           readyfordata <= 0;
-      else if (1)
-          readyfordata <= ~fifo_FF;
+      else 
+        readyfordata <= ~fifo_FF;
     end
 
 
@@ -734,8 +734,7 @@ module jtag_uart_0 (
   assign t_pause = sim_t_pause;
   always @(fifo_EF)
     begin
-      if (1)
-          dataavailable <= ~fifo_EF;
+      dataavailable = ~fifo_EF;
     end
 
 
@@ -759,14 +758,15 @@ module jtag_uart_0 (
 //
 //  defparam jtag_uart_0_alt_jtag_atlantic.INSTANCE_ID = 0,
 //           jtag_uart_0_alt_jtag_atlantic.LOG2_RXFIFO_DEPTH = 6,
-//           jtag_uart_0_alt_jtag_atlantic.LOG2_TXFIFO_DEPTH = 6;
+//           jtag_uart_0_alt_jtag_atlantic.LOG2_TXFIFO_DEPTH = 6,
+//           jtag_uart_0_alt_jtag_atlantic.SLD_AUTO_INSTANCE_INDEX = "YES";
 //
 //  always @(posedge clk or negedge rst_n)
 //    begin
 //      if (rst_n == 0)
 //          dataavailable <= 0;
-//      else if (1)
-//          dataavailable <= ~fifo_EF;
+//      else 
+//        dataavailable <= ~fifo_EF;
 //    end
 //
 //

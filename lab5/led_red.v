@@ -1,4 +1,4 @@
-//Legal Notice: (C)2007 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2016 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -28,11 +28,13 @@ module led_red (
                   writedata,
 
                  // outputs:
-                  out_port
+                  out_port,
+                  readdata
                )
 ;
 
   output  [ 17: 0] out_port;
+  output  [ 17: 0] readdata;
   input   [  1: 0] address;
   input            chipselect;
   input            clk;
@@ -43,8 +45,11 @@ module led_red (
   wire             clk_en;
   reg     [ 17: 0] data_out;
   wire    [ 17: 0] out_port;
+  wire    [ 17: 0] read_mux_out;
+  wire    [ 17: 0] readdata;
   assign clk_en = 1;
   //s1, which is an e_avalon_slave
+  assign read_mux_out = {18 {(address == 0)}} & data_out;
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
@@ -54,6 +59,7 @@ module led_red (
     end
 
 
+  assign readdata = read_mux_out;
   assign out_port = data_out;
 
 endmodule

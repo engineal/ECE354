@@ -1,4 +1,4 @@
-//Legal Notice: (C)2007 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2016 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -97,6 +97,7 @@ module cpu_0_jtag_debug_module_wrapper (
 
   wire    [ 37: 0] jdo;
   wire             jrst_n;
+  wire    [ 37: 0] sr;
   wire             st_ready_test_idle;
   wire             take_action_break_a;
   wire             take_action_break_b;
@@ -111,33 +112,57 @@ module cpu_0_jtag_debug_module_wrapper (
   wire             take_no_action_break_c;
   wire             take_no_action_ocimem_a;
   wire             take_no_action_tracemem_a;
-
-//synthesis translate_off
-//////////////// SIMULATION-ONLY CONTENTS
-  cpu_0_jtag_debug_module the_cpu_0_jtag_debug_module
+  wire             vji_cdr;
+  wire    [  1: 0] vji_ir_in;
+  wire    [  1: 0] vji_ir_out;
+  wire             vji_rti;
+  wire             vji_sdr;
+  wire             vji_tck;
+  wire             vji_tdi;
+  wire             vji_tdo;
+  wire             vji_udr;
+  wire             vji_uir;
+  cpu_0_jtag_debug_module_tck the_cpu_0_jtag_debug_module_tck
     (
-      .MonDReg                   (MonDReg),
-      .break_readreg             (break_readreg),
+      .MonDReg            (MonDReg),
+      .break_readreg      (break_readreg),
+      .dbrk_hit0_latch    (dbrk_hit0_latch),
+      .dbrk_hit1_latch    (dbrk_hit1_latch),
+      .dbrk_hit2_latch    (dbrk_hit2_latch),
+      .dbrk_hit3_latch    (dbrk_hit3_latch),
+      .debugack           (debugack),
+      .ir_in              (vji_ir_in),
+      .ir_out             (vji_ir_out),
+      .jrst_n             (jrst_n),
+      .jtag_state_rti     (vji_rti),
+      .monitor_error      (monitor_error),
+      .monitor_ready      (monitor_ready),
+      .reset_n            (reset_n),
+      .resetlatch         (resetlatch),
+      .sr                 (sr),
+      .st_ready_test_idle (st_ready_test_idle),
+      .tck                (vji_tck),
+      .tdi                (vji_tdi),
+      .tdo                (vji_tdo),
+      .tracemem_on        (tracemem_on),
+      .tracemem_trcdata   (tracemem_trcdata),
+      .tracemem_tw        (tracemem_tw),
+      .trc_im_addr        (trc_im_addr),
+      .trc_on             (trc_on),
+      .trc_wrap           (trc_wrap),
+      .trigbrktype        (trigbrktype),
+      .trigger_state_1    (trigger_state_1),
+      .vs_cdr             (vji_cdr),
+      .vs_sdr             (vji_sdr),
+      .vs_uir             (vji_uir)
+    );
+
+  cpu_0_jtag_debug_module_sysclk the_cpu_0_jtag_debug_module_sysclk
+    (
       .clk                       (clk),
-      .clrn                      (reset_n),
-      .dbrk_hit0_latch           (dbrk_hit0_latch),
-      .dbrk_hit1_latch           (dbrk_hit1_latch),
-      .dbrk_hit2_latch           (dbrk_hit2_latch),
-      .dbrk_hit3_latch           (dbrk_hit3_latch),
-      .debugack                  (debugack),
-      .ena                       (1'b0),
-      .ir_in                     (2'b0),
+      .ir_in                     (vji_ir_in),
       .jdo                       (jdo),
-      .jrst_n                    (jrst_n),
-      .jtag_state_udr            (1'b0),
-      .monitor_error             (monitor_error),
-      .monitor_ready             (monitor_ready),
-      .raw_tck                   (1'b0),
-      .reset_n                   (reset_n),
-      .resetlatch                (resetlatch),
-      .rti                       (1'b0),
-      .shift                     (1'b0),
-      .st_ready_test_idle        (st_ready_test_idle),
+      .sr                        (sr),
       .take_action_break_a       (take_action_break_a),
       .take_action_break_b       (take_action_break_b),
       .take_action_break_c       (take_action_break_c),
@@ -151,63 +176,49 @@ module cpu_0_jtag_debug_module_wrapper (
       .take_no_action_break_c    (take_no_action_break_c),
       .take_no_action_ocimem_a   (take_no_action_ocimem_a),
       .take_no_action_tracemem_a (take_no_action_tracemem_a),
-      .tdi                       (1'b0),
-      .tracemem_on               (tracemem_on),
-      .tracemem_trcdata          (tracemem_trcdata),
-      .tracemem_tw               (tracemem_tw),
-      .trc_im_addr               (trc_im_addr),
-      .trc_on                    (trc_on),
-      .trc_wrap                  (trc_wrap),
-      .trigbrktype               (trigbrktype),
-      .trigger_state_1           (trigger_state_1),
-      .update                    (1'b0),
-      .usr1                      (1'b0)
+      .vs_udr                    (vji_udr),
+      .vs_uir                    (vji_uir)
     );
 
+
+//synthesis translate_off
+//////////////// SIMULATION-ONLY CONTENTS
+  assign vji_tck = 1'b0;
+  assign vji_tdi = 1'b0;
+  assign vji_sdr = 1'b0;
+  assign vji_cdr = 1'b0;
+  assign vji_rti = 1'b0;
+  assign vji_uir = 1'b0;
+  assign vji_udr = 1'b0;
+  assign vji_ir_in = 2'b0;
 
 //////////////// END SIMULATION-ONLY CONTENTS
 
 //synthesis translate_on
 //synthesis read_comments_as_HDL on
-//  cpu_0_jtag_debug_module the_cpu_0_jtag_debug_module1
+//  sld_virtual_jtag_basic cpu_0_jtag_debug_module_phy
 //    (
-//      .MonDReg                   (MonDReg),
-//      .break_readreg             (break_readreg),
-//      .clk                       (clk),
-//      .dbrk_hit0_latch           (dbrk_hit0_latch),
-//      .dbrk_hit1_latch           (dbrk_hit1_latch),
-//      .dbrk_hit2_latch           (dbrk_hit2_latch),
-//      .dbrk_hit3_latch           (dbrk_hit3_latch),
-//      .debugack                  (debugack),
-//      .jdo                       (jdo),
-//      .jrst_n                    (jrst_n),
-//      .monitor_error             (monitor_error),
-//      .monitor_ready             (monitor_ready),
-//      .reset_n                   (reset_n),
-//      .resetlatch                (resetlatch),
-//      .st_ready_test_idle        (st_ready_test_idle),
-//      .take_action_break_a       (take_action_break_a),
-//      .take_action_break_b       (take_action_break_b),
-//      .take_action_break_c       (take_action_break_c),
-//      .take_action_ocimem_a      (take_action_ocimem_a),
-//      .take_action_ocimem_b      (take_action_ocimem_b),
-//      .take_action_tracectrl     (take_action_tracectrl),
-//      .take_action_tracemem_a    (take_action_tracemem_a),
-//      .take_action_tracemem_b    (take_action_tracemem_b),
-//      .take_no_action_break_a    (take_no_action_break_a),
-//      .take_no_action_break_b    (take_no_action_break_b),
-//      .take_no_action_break_c    (take_no_action_break_c),
-//      .take_no_action_ocimem_a   (take_no_action_ocimem_a),
-//      .take_no_action_tracemem_a (take_no_action_tracemem_a),
-//      .tracemem_on               (tracemem_on),
-//      .tracemem_trcdata          (tracemem_trcdata),
-//      .tracemem_tw               (tracemem_tw),
-//      .trc_im_addr               (trc_im_addr),
-//      .trc_on                    (trc_on),
-//      .trc_wrap                  (trc_wrap),
-//      .trigbrktype               (trigbrktype),
-//      .trigger_state_1           (trigger_state_1)
+//      .ir_in (vji_ir_in),
+//      .ir_out (vji_ir_out),
+//      .jtag_state_rti (vji_rti),
+//      .tck (vji_tck),
+//      .tdi (vji_tdi),
+//      .tdo (vji_tdo),
+//      .virtual_state_cdr (vji_cdr),
+//      .virtual_state_sdr (vji_sdr),
+//      .virtual_state_udr (vji_udr),
+//      .virtual_state_uir (vji_uir)
 //    );
+//
+//  defparam cpu_0_jtag_debug_module_phy.sld_auto_instance_index = "YES",
+//           cpu_0_jtag_debug_module_phy.sld_instance_index = 0,
+//           cpu_0_jtag_debug_module_phy.sld_ir_width = 2,
+//           cpu_0_jtag_debug_module_phy.sld_mfg_id = 70,
+//           cpu_0_jtag_debug_module_phy.sld_sim_action = "",
+//           cpu_0_jtag_debug_module_phy.sld_sim_n_scan = 0,
+//           cpu_0_jtag_debug_module_phy.sld_sim_total_length = 0,
+//           cpu_0_jtag_debug_module_phy.sld_type_id = 34,
+//           cpu_0_jtag_debug_module_phy.sld_version = 3;
 //
 //synthesis read_comments_as_HDL off
 

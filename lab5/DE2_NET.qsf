@@ -25,7 +25,7 @@
 
 # Project-Wide Assignments
 # ========================
-set_global_assignment -name LAST_QUARTUS_VERSION 7.1
+set_global_assignment -name LAST_QUARTUS_VERSION 9.1
 
 # Pin & Location Assignments
 # ==========================
@@ -524,6 +524,8 @@ set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-
 # end ENTITY(DE2_NET)
 # --------------------
 
+set_global_assignment -name VERILOG_FILE rle_fifo_8_24.v
+set_global_assignment -name VERILOG_FILE rle_enc.v
 set_global_assignment -name VERILOG_FILE Audio_0.v
 set_global_assignment -name VERILOG_FILE AUDIO_DAC_FIFO.v
 set_global_assignment -name VERILOG_FILE Audio_PLL.v

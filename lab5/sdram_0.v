@@ -1,4 +1,4 @@
-//Legal Notice: (C)2007 Altera Corporation. All rights reserved.  Your
+//Legal Notice: (C)2016 Altera Corporation. All rights reserved.  Your
 //use of Altera Corporation's design tools, logic functions and other
 //software and tools, and its AMPP partner logic functions, and any
 //output files any of the foregoing (including device programming or
@@ -67,11 +67,11 @@ module sdram_0_input_efifo_module (
       case (rd_address) // synthesis parallel_case full_case
       
           1'd0: begin
-              rd_data <= entry_0;
+              rd_data = entry_0;
           end // 1'd0 
       
           1'd1: begin
-              rd_data <= entry_1;
+              rd_data = entry_1;
           end // 1'd1 
       
           default: begin
@@ -664,8 +664,8 @@ module sdram_0 (
     begin
       if (reset_n == 0)
           za_data <= 0;
-      else if (1)
-          za_data <= zs_dq;
+      else 
+        za_data <= zs_dq;
     end
 
 
