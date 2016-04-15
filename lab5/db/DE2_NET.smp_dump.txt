@@ -1,0 +1,12 @@
+
+State Machine - |rle_enc|state
+Name state.RESET_COUNT state.WAIT_OUTPUT state.COUNT_DONE state.SHIFT_BITS state.COUNT_BITS state.WAIT_INPUT state.REQUEST_INPUT state.INIT state.READ_INPUT 
+state.INIT 0 0 0 0 0 0 0 0 0 
+state.REQUEST_INPUT 0 0 0 0 0 0 1 1 0 
+state.WAIT_INPUT 0 0 0 0 0 1 0 1 0 
+state.COUNT_BITS 0 0 0 0 1 0 0 1 0 
+state.SHIFT_BITS 0 0 0 1 0 0 0 1 0 
+state.COUNT_DONE 0 0 1 0 0 0 0 1 0 
+state.WAIT_OUTPUT 0 1 0 0 0 0 0 1 0 
+state.RESET_COUNT 1 0 0 0 0 0 0 1 0 
+state.READ_INPUT 0 0 0 0 0 0 0 1 1 

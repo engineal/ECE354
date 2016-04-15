@@ -489,7 +489,7 @@ system_0 	u0	(
 
                 // the_uart_0
                  .rxd_to_the_uart_0(UART_RXD),
-                 .txd_from_the_uart_0(UART_TXD)
+                 .txd_from_the_uart_0(UART_TXD),
                  
                 // new hardware
                 .in_port_to_the_FIFO_IN_FULL_PIO(FIFO_IN_FULL_PIO),
@@ -497,7 +497,7 @@ system_0 	u0	(
                 .in_port_to_the_RESULT_READY_PIO(RESULT_READY_PIO),
                 .out_port_from_the_FIFO_IN_WRITE_REQ_PIO(FIFO_IN_WRITE_REQ_PIO),
                 .out_port_from_the_FIFO_OUT_READ_REQ_PIO(FIFO_OUT_READ_REQ_PIO),
-                .out_port_from_the_ODATA_PIO(ODATA, PIO),
+                .out_port_from_the_ODATA_PIO(ODATA_PIO),
                 .out_port_from_the_RLE_FLUSH_PIO(RLE_FLUSH_PIO)
                 );
 
