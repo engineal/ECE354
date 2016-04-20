@@ -75,12 +75,8 @@ int main(void)
                     {
                         //convert to 2d array
                         bitToChar(pic_data, image);
-                        
-                        //decompress
-                        //decompress(image,displayImage); //"image" is a compressed version of the image.
-                        
+    
                         // display image
-                        //write_vga(displayImage);
                         write_vga(image);
     
                         // reset variables

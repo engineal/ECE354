@@ -26,8 +26,6 @@ void transmitImage(char image[][Y])
     char temp[MAX_PAYLOAD_LENGTH];
     int i;
     int bytesSent = 0;
-    // compressImage(image,compressedImage);
-    // int dataLength = charToBit(compressedImage,data);
     int dataLength = charToBit(image, data); //packing X*Y bits of data (stored in X*Y bytes) into X*Y/8 bytes
     printf("Sending image, %d bytes total\n", dataLength);
     
