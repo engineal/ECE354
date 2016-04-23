@@ -4,19 +4,19 @@
 ////////////////////////////////////////////////////////////////////////
 
 module rle_enc (clk, rst, rd_req , recv_ready ,send_ready, in_data , out_data, end_of_stream ,wr_req);
-input clk,rst; 				//Use global Clk and Reset
-input recv_ready,send_ready;		//recv_ready indicates input side FIFO is not empty. send_ready indicates output side FIFO is not full
+input clk,rst; 					//Use global Clk and Reset
+input recv_ready,send_ready;	//recv_ready indicates input side FIFO is not empty. send_ready indicates output side FIFO is not full
 input [7:0] in_data;			//input data comes from input side FIFO
 input end_of_stream ;			//Indicate the end of bit stream. Flush out the last segment to FIFO.
 output [23:0] out_data;			//Output data to output side FIFO. [23] has bit ID, [22:0] has bit counting value
 output rd_req,wr_req;			//Read request for input side FIFO
 
-reg rd_reg,wr_reg;			//Write request for output side FIFO
+reg rd_reg,wr_reg;				//Write request for output side FIFO
 reg [22:0] bit_count;			//Store number of consecutive bits in bit stream
 reg [3:0] shift_count;			//Current shift amount of shift_buf
-reg value_type;				//Bit ID
-reg [7:0] shift_buf;			//Store 8 bit segment of bit stream comes from input side FIFO
-					//Will be shifted out to calculate number of bits
+reg value_type;					//Bit ID
+reg [7:0] shift_buf;			//Store 8 bit segment of bit stream, which comes from input side FIFO
+								//Will be shifted out to calculate number of bits
 reg [3:0] state;
 reg [3:0] next_state;
 
@@ -68,31 +68,43 @@ always @(posedge clk) begin
 	case(state)
 	INIT: begin
 		//Initialize registers
+		bit_count <= 23'b0;
+		shift_buf <= 8'b0;
+		rd_reg <= 1'b0;
+		wr_reg <= 1'b0;
+		new_bitstream <= 1'b0;
+
 	end
 	REQUEST_INPUT: begin
 		//Assert rd_req signal to FIFO by setting rd_reg
 		//FIFO takes rd_req signal at next clock
+		rd_reg <= 1'b1;
+		shift_count <= 4'b0000;
+
 	end
 	WAIT_INPUT: begin
 		//De-assert rd_req by setting rd_reg
+		rd_reg <= 1'b0;
 	end		
 	READ_INPUT : begin
 		//FIFO provides valid data after taking rd_req
 		//shift_buf stores 8 bit input data 
+		shift_buf[7:0] <= in_data[7:0];
 	end			
 	COUNT_BITS: begin
 		//Count number of consecutive bits in shift_buf
 		//If new type of bit starts, store bit ID in value_type register
 		//If current value_type and shift_buf[0] is not matched, notify current encoding is completed and new encoding will be started
 		if(new_bitstream) begin
-
+			value_type <= shift_buf[0];
+			new_bitstream <= 1'b0;
 		end
 		else begin
 			if(shift_buf[0] == value_type) begin
-
+				bit_count[22:0] <= bit_count[22:0] + 1;
 			end
 			else begin
-
+				new_bitstream <= 1'b1;
 			end
 		end			
 	end
@@ -100,18 +112,23 @@ always @(posedge clk) begin
 		//Right shift the shift_buf
 		//Increase shift_count
 		if(!new_bitstream) begin
-
+			shift_buf[6:0] <= shift_buf[7:1];
+			shift_buf[7] <= 1'b0;
+			shift_count <= shift_count + 1;
 		end
 	end
 	COUNT_DONE: begin
 		//Assert wr_req by setting wr_reg
 		//FIFO will take wr_req signal in next clock cycle
+		wr_reg = 1'b1;
 	end
-	WAIT_OUTPUT : begin
+	WAIT_OUTPUT : begin //it's in this cycle that output side FIFO reads out_data
 		//De-assert wr_req by setting wr_reg
+		wr_reg = 1'b0;
 	end
 	RESET_COUNT : begin
 		//Reset bit counting register after passing encoded data to output side FIFO
+		bit_count[22:0] <= 23'b0;
 	end
 	endcase
 end
