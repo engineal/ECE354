@@ -1,6 +1,0 @@
-#ifndef HELLO_LED_H
-#define HELLO_LED_H
-
-#define BUTTON_INT_MASK 0x0F
-
-#endif /*HELLO_LED_H*/

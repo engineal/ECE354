@@ -36,7 +36,7 @@ module uart_0_log_module (
 //synthesis translate_off
 //////////////// SIMULATION-ONLY CONTENTS
    reg [31:0] text_handle; // for $fopen
-   initial text_handle = $fopen ("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/uart_0_log_module.txt");
+   initial text_handle = $fopen ("C:/Users/tbadams/code/ECE354/lab5/system_0_sim/uart_0_log_module.txt");
 
    always @(posedge clk) begin
       if (valid && strobe) begin
@@ -332,7 +332,7 @@ module uart_0_rx_stimulus_source_character_source_rom_module (
          if (mutex[0] && !safe && safe_delay) begin
             // and blast the mutex after falling edge of safe if interactive
             if (interactive) begin
-               mutex_handle = $fopen ("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/uart_0_input_data_mutex.dat");
+               mutex_handle = $fopen ("C:/Users/tbadams/code/ECE354/lab5/system_0_sim/uart_0_input_data_mutex.dat");
                $fdisplay (mutex_handle, "0");
                $fclose (mutex_handle);
                // $display ($stime, "\t%m:\n\t\tMutex cleared!");
@@ -345,13 +345,13 @@ module uart_0_rx_stimulus_source_character_source_rom_module (
             poll_count = poll_count + 1;
          end else begin         // do the interesting stuff.
             poll_count = 0;
-            $readmemh ("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/uart_0_input_data_mutex.dat", mutex);
+            $readmemh ("C:/Users/tbadams/code/ECE354/lab5/system_0_sim/uart_0_input_data_mutex.dat", mutex);
             if (mutex[0] && !safe) begin
             // read stream into mem_array after current characters are gone!
                // save mutex[0] value to compare to address (generates 'safe')
                mutex[1] <= mutex[0];
                // $display ($stime, "\t%m:\n\t\tMutex hit: Trying to read %d bytes...", mutex[0]);
-               $readmemh("C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/system_0_sim/uart_0_input_data_stream.dat", mem_array);
+               $readmemh("C:/Users/tbadams/code/ECE354/lab5/system_0_sim/uart_0_input_data_stream.dat", mem_array);
                // bash address and send pulse outside to send the char:
                address <= 0;
                pre <= -1;

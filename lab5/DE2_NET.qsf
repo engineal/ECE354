@@ -573,3 +573,5 @@ set_instance_assignment -name CLOCK_SETTINGS CLOCK_50 -to CLOCK_50
 set_instance_assignment -name CLOCK_SETTINGS CLOCK_27 -to CLOCK_27
 set_global_assignment -name LL_ROOT_REGION ON -entity DE2_NET -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -entity DE2_NET -section_id "Root Region"
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"

@@ -34,8 +34,8 @@ SYSTEM system_0
       device_family_id = "CYCLONEII";
       view_master_columns = "1";
       view_master_priorities = "0";
-      name_column_width = "149";
-      desc_column_width = "149";
+      name_column_width = "151";
+      desc_column_width = "153";
       bustype_column_width = "0";
       base_column_width = "75";
       clock_column_width = "64";
@@ -81,7 +81,7 @@ SYSTEM system_0
          reference_designators = "U30,U20";
          sopc_system_file = "system/DE2_Board.ptf";
       }
-      view_frame_window = "0:0:839:1010";
+      view_frame_window = "0:0:840:1010";
       do_log_history = "0";
    }
    MODULE cpu_0

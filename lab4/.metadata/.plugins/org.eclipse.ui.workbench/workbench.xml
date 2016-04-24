@@ -44,7 +44,7 @@
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="interpretCommand.h" partName="interpretCommand.h" path="C:/Users/ajlucia/code/ECE354/lab4/hello_led_0/interpretCommand.h" title="interpretCommand.h" tooltip="hello_led_0/interpretCommand.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/interpretCommand.h"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="interpretCommand.c" partName="interpretCommand.c" path="C:/Users/ajlucia/code/ECE354/lab4/hello_led_0/interpretCommand.c" title="interpretCommand.c" tooltip="hello_led_0/interpretCommand.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="interpretCommand.c" partName="interpretCommand.c" path="C:/Users/tbadams/code/ECE354/lab4/hello_led_0/interpretCommand.c" title="interpretCommand.c" tooltip="hello_led_0/interpretCommand.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/hello_led_0/interpretCommand.c"/>
 </editor>
 </editors>
@@ -72,13 +72,6 @@
 </view>
 <view id="com.altera.nj.ui.Nios2CView" partName="Nios II C/C++ Projects">
 <viewState horizontalPosition="0" verticalPosition="0">
-<expanded>
-<element path="C:\Users\ajlucia\code\ECE354\lab4\hello_led_0"/>
-<element path="C:\Users\ajlucia\code\ECE354\lab4\hello_led_0\net"/>
-</expanded>
-<selection>
-<element path="C:/Users/ajlucia/code/ECE354/lab4/hello_led_0/interpretCommand.c"/>
-</selection>
 <customFilters userDefinedPatternsEnabled="false">
 <xmlDefinedFilters>
 <child filterId="com.altera.nj.ui.Nios2CView_patternFilterId_.*" isEnabled="true"/>

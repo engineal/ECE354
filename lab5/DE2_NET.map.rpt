@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE2_NET
-Thu Apr 14 23:13:12 2016
+Sun Apr 24 18:53:56 2016
 Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
 
 
@@ -16,9 +16,10 @@ Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
   8. State Machine - |rle_enc|state
   9. Registers Removed During Synthesis
  10. General Register Statistics
- 11. Parameter Settings for User Entity Instance: Top-level Entity: |rle_enc
- 12. Analysis & Synthesis Messages
- 13. Analysis & Synthesis Suppressed Messages
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: Top-level Entity: |rle_enc
+ 13. Analysis & Synthesis Messages
+ 14. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -44,15 +45,15 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                 ;
 +------------------------------------+-----------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Apr 14 23:13:12 2016   ;
+; Analysis & Synthesis Status        ; Successful - Sun Apr 24 18:53:56 2016   ;
 ; Quartus II Version                 ; 9.1 Build 222 10/21/2009 SJ Web Edition ;
 ; Revision Name                      ; DE2_NET                                 ;
 ; Top-level Entity Name              ; rle_enc                                 ;
 ; Family                             ; Cyclone II                              ;
-; Total logic elements               ; 0                                       ;
-;     Total combinational functions  ; 0                                       ;
-;     Dedicated logic registers      ; 0                                       ;
-; Total registers                    ; 0                                       ;
+; Total logic elements               ; 92                                      ;
+;     Total combinational functions  ; 92                                      ;
+;     Dedicated logic registers      ; 48                                      ;
+; Total registers                    ; 48                                      ;
 ; Total pins                         ; 39                                      ;
 ; Total virtual pins                 ; 0                                       ;
 ; Total memory bits                  ; 0                                       ;
@@ -151,13 +152,13 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                             ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------------------------------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                         ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------------------------------+
-; rle_enc.v                        ; yes             ; User Verilog HDL File  ; C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/rle_enc.v ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                    ;
++----------------------------------+-----------------+------------------------+---------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                ;
++----------------------------------+-----------------+------------------------+---------------------------------------------+
+; rle_enc.v                        ; yes             ; User Verilog HDL File  ; C:/Users/tbadams/code/ECE354/lab5/rle_enc.v ;
++----------------------------------+-----------------+------------------------+---------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -165,22 +166,27 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
+; Estimated Total logic elements              ; 92    ;
 ;                                             ;       ;
-; Total combinational functions               ; 0     ;
+; Total combinational functions               ; 92    ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 0     ;
-;     -- 3 input functions                    ; 0     ;
-;     -- <=2 input functions                  ; 0     ;
+;     -- 4 input functions                    ; 53    ;
+;     -- 3 input functions                    ; 5     ;
+;     -- <=2 input functions                  ; 34    ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 0     ;
-;     -- arithmetic mode                      ; 0     ;
+;     -- normal mode                          ; 67    ;
+;     -- arithmetic mode                      ; 25    ;
 ;                                             ;       ;
-; Total registers                             ; 0     ;
-;     -- Dedicated logic registers            ; 0     ;
+; Total registers                             ; 48    ;
+;     -- Dedicated logic registers            ; 48    ;
 ;     -- I/O registers                        ; 0     ;
 ;                                             ;       ;
 ; I/O pins                                    ; 39    ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 48    ;
+; Total fan-out                               ; 430   ;
+; Average fan-out                             ; 2.40  ;
 +---------------------------------------------+-------+
 
 
@@ -189,7 +195,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |rle_enc                   ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 39   ; 0            ; |rle_enc            ; work         ;
+; |rle_enc                   ; 92 (92)           ; 48 (48)      ; 0           ; 0            ; 0       ; 0         ; 39   ; 0            ; |rle_enc            ; work         ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -212,25 +218,16 @@ Encoding Type:  One-Hot
 +---------------------+-------------------+-------------------+------------------+------------------+------------------+------------------+---------------------+------------+------------------+
 
 
-+-------------------------------------------------------------+
-; Registers Removed During Synthesis                          ;
-+----------------------------------------+--------------------+
-; Register name                          ; Reason for Removal ;
-+----------------------------------------+--------------------+
-; state~2                                ; Lost fanout        ;
-; state~3                                ; Lost fanout        ;
-; state~4                                ; Lost fanout        ;
-; state.READ_INPUT                       ; Lost fanout        ;
-; state.INIT                             ; Lost fanout        ;
-; state.REQUEST_INPUT                    ; Lost fanout        ;
-; state.WAIT_INPUT                       ; Lost fanout        ;
-; state.COUNT_BITS                       ; Lost fanout        ;
-; state.SHIFT_BITS                       ; Lost fanout        ;
-; state.COUNT_DONE                       ; Lost fanout        ;
-; state.WAIT_OUTPUT                      ; Lost fanout        ;
-; state.RESET_COUNT                      ; Lost fanout        ;
-; Total Number of Removed Registers = 12 ;                    ;
-+----------------------------------------+--------------------+
++------------------------------------------------------------+
+; Registers Removed During Synthesis                         ;
++---------------------------------------+--------------------+
+; Register name                         ; Reason for Removal ;
++---------------------------------------+--------------------+
+; state~2                               ; Lost fanout        ;
+; state~3                               ; Lost fanout        ;
+; state~4                               ; Lost fanout        ;
+; Total Number of Removed Registers = 3 ;                    ;
++---------------------------------------+--------------------+
 
 
 +------------------------------------------------------+
@@ -238,14 +235,23 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
+; Total registers                              ; 48    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Synchronous Load   ; 4     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 7     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |rle_enc|shift_buf[4]      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
 +-------------------------------------------------------------------------+
@@ -272,7 +278,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 222 10/21/2009 SJ Web Edition
-    Info: Processing started: Thu Apr 14 23:13:08 2016
+    Info: Processing started: Sun Apr 24 18:53:52 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE2_NET -c DE2_NET
 Info: Found 2 design units, including 2 entities, in source file rle_fifo_8_24.v
     Info: Found entity 1: RLE_FIFO_8_256
@@ -466,86 +472,26 @@ Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(323): conditional expr
 Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(333): conditional expression evaluates to a constant
 Warning (10037): Verilog HDL or VHDL warning at sdram_0.v(677): conditional expression evaluates to a constant
 Info: Elaborating entity "rle_enc" for the top level hierarchy
-Warning (10858): Verilog HDL warning at rle_enc.v(14): object rd_reg used but never assigned
-Warning (10858): Verilog HDL warning at rle_enc.v(14): object wr_reg used but never assigned
-Warning (10858): Verilog HDL warning at rle_enc.v(15): object bit_count used but never assigned
-Warning (10858): Verilog HDL warning at rle_enc.v(16): object shift_count used but never assigned
-Warning (10858): Verilog HDL warning at rle_enc.v(17): object value_type used but never assigned
-Warning (10858): Verilog HDL warning at rle_enc.v(18): object shift_buf used but never assigned
-Warning (10858): Verilog HDL warning at rle_enc.v(23): object new_bitstream used but never assigned
-Warning (10030): Net "bit_count" at rle_enc.v(15) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "rd_reg" at rle_enc.v(14) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "wr_reg" at rle_enc.v(14) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "shift_count.0111" at rle_enc.v(16) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "value_type" at rle_enc.v(17) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "new_bitstream" at rle_enc.v(23) has no driver or initial value, using a default initial value '0'
+Warning (10230): Verilog HDL assignment warning at rle_enc.v(104): truncated value with size 32 to match size of target (23)
+Warning (10230): Verilog HDL assignment warning at rle_enc.v(117): truncated value with size 32 to match size of target (4)
 Warning: OpenCore Simulation-Only Evaluation feature is turned on for all cores in the design
     Warning: Some cores in this design do not support the OpenCore Plus Hardware Evaluation feature
         Warning: "Nios II Processor (6AF7_00A2)" does not support the OpenCore Plus Hardware Evaluation feature
-Warning: Output pins are stuck at VCC or GND
-    Warning (13410): Pin "rd_req" is stuck at GND
-    Warning (13410): Pin "out_data[0]" is stuck at GND
-    Warning (13410): Pin "out_data[1]" is stuck at GND
-    Warning (13410): Pin "out_data[2]" is stuck at GND
-    Warning (13410): Pin "out_data[3]" is stuck at GND
-    Warning (13410): Pin "out_data[4]" is stuck at GND
-    Warning (13410): Pin "out_data[5]" is stuck at GND
-    Warning (13410): Pin "out_data[6]" is stuck at GND
-    Warning (13410): Pin "out_data[7]" is stuck at GND
-    Warning (13410): Pin "out_data[8]" is stuck at GND
-    Warning (13410): Pin "out_data[9]" is stuck at GND
-    Warning (13410): Pin "out_data[10]" is stuck at GND
-    Warning (13410): Pin "out_data[11]" is stuck at GND
-    Warning (13410): Pin "out_data[12]" is stuck at GND
-    Warning (13410): Pin "out_data[13]" is stuck at GND
-    Warning (13410): Pin "out_data[14]" is stuck at GND
-    Warning (13410): Pin "out_data[15]" is stuck at GND
-    Warning (13410): Pin "out_data[16]" is stuck at GND
-    Warning (13410): Pin "out_data[17]" is stuck at GND
-    Warning (13410): Pin "out_data[18]" is stuck at GND
-    Warning (13410): Pin "out_data[19]" is stuck at GND
-    Warning (13410): Pin "out_data[20]" is stuck at GND
-    Warning (13410): Pin "out_data[21]" is stuck at GND
-    Warning (13410): Pin "out_data[22]" is stuck at GND
-    Warning (13410): Pin "out_data[23]" is stuck at GND
-    Warning (13410): Pin "wr_req" is stuck at GND
-Info: 12 registers lost all their fanouts during netlist optimizations. The first 12 are displayed below.
+Info: 3 registers lost all their fanouts during netlist optimizations. The first 3 are displayed below.
     Info: Register "state~2" lost all its fanouts during netlist optimizations.
     Info: Register "state~3" lost all its fanouts during netlist optimizations.
     Info: Register "state~4" lost all its fanouts during netlist optimizations.
-    Info: Register "state.READ_INPUT" lost all its fanouts during netlist optimizations.
-    Info: Register "state.INIT" lost all its fanouts during netlist optimizations.
-    Info: Register "state.REQUEST_INPUT" lost all its fanouts during netlist optimizations.
-    Info: Register "state.WAIT_INPUT" lost all its fanouts during netlist optimizations.
-    Info: Register "state.COUNT_BITS" lost all its fanouts during netlist optimizations.
-    Info: Register "state.SHIFT_BITS" lost all its fanouts during netlist optimizations.
-    Info: Register "state.COUNT_DONE" lost all its fanouts during netlist optimizations.
-    Info: Register "state.WAIT_OUTPUT" lost all its fanouts during netlist optimizations.
-    Info: Register "state.RESET_COUNT" lost all its fanouts during netlist optimizations.
-Warning: Design contains 13 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "in_data[0]"
-    Warning (15610): No output dependent on input pin "in_data[1]"
-    Warning (15610): No output dependent on input pin "in_data[2]"
-    Warning (15610): No output dependent on input pin "in_data[3]"
-    Warning (15610): No output dependent on input pin "in_data[4]"
-    Warning (15610): No output dependent on input pin "in_data[5]"
-    Warning (15610): No output dependent on input pin "in_data[6]"
-    Warning (15610): No output dependent on input pin "in_data[7]"
-    Warning (15610): No output dependent on input pin "end_of_stream"
-    Warning (15610): No output dependent on input pin "rst"
-    Warning (15610): No output dependent on input pin "recv_ready"
-    Warning (15610): No output dependent on input pin "send_ready"
-    Warning (15610): No output dependent on input pin "clk"
-Info: Implemented 39 device resources after synthesis - the final resource count might be different
+Info: Implemented 131 device resources after synthesis - the final resource count might be different
     Info: Implemented 13 input pins
     Info: Implemented 26 output pins
+    Info: Implemented 92 logic cells
 Warning: Ignored assignments for entity "DE2_NET" -- entity does not exist in design
     Warning: Assignment for entity set_global_assignment -name LL_ROOT_REGION ON -entity DE2_NET -section_id "Root Region" was ignored
     Warning: Assignment for entity set_global_assignment -name LL_MEMBER_STATE LOCKED -entity DE2_NET -section_id "Root Region" was ignored
-Info: Generated suppressed messages file C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/DE2_NET.map.smsg
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 73 warnings
-    Info: Peak virtual memory: 199 megabytes
-    Info: Processing ended: Thu Apr 14 23:13:12 2016
+Info: Generated suppressed messages file C:/Users/tbadams/code/ECE354/lab5/DE2_NET.map.smsg
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 21 warnings
+    Info: Peak virtual memory: 204 megabytes
+    Info: Processing ended: Sun Apr 24 18:53:56 2016
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:04
 
@@ -553,6 +499,6 @@ Info: Quartus II Analysis & Synthesis was successful. 0 errors, 73 warnings
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/DE2_NET.map.smsg.
+The suppressed messages can be found in C:/Users/tbadams/code/ECE354/lab5/DE2_NET.map.smsg.
 
 

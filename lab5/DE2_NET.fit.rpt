@@ -1,5 +1,5 @@
 Fitter report for DE2_NET
-Thu Apr 14 23:13:21 2016
+Sun Apr 24 18:54:04 2016
 Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
 
 
@@ -21,10 +21,19 @@ Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
  13. Fitter Resource Utilization by Entity
  14. Delay Chain Summary
  15. Pad To Core Delay Chain Fanout
- 16. Interconnect Usage Summary
- 17. Fitter Device Options
- 18. Operating Settings and Conditions
- 19. Fitter Messages
+ 16. Control Signals
+ 17. Global & Other Fast Signals
+ 18. Non-Global High Fan-Out Signals
+ 19. Interconnect Usage Summary
+ 20. LAB Logic Elements
+ 21. LAB-wide Signals
+ 22. LAB Signals Sourced
+ 23. LAB Signals Sourced Out
+ 24. LAB Distinct Inputs
+ 25. Fitter Device Options
+ 26. Operating Settings and Conditions
+ 27. Estimated Delay Added for Hold Timing
+ 28. Fitter Messages
 
 
 
@@ -50,17 +59,17 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Fitter Summary                                                               ;
 +------------------------------------+-----------------------------------------+
-; Fitter Status                      ; Successful - Thu Apr 14 23:13:21 2016   ;
+; Fitter Status                      ; Successful - Sun Apr 24 18:54:04 2016   ;
 ; Quartus II Version                 ; 9.1 Build 222 10/21/2009 SJ Web Edition ;
 ; Revision Name                      ; DE2_NET                                 ;
 ; Top-level Entity Name              ; rle_enc                                 ;
 ; Family                             ; Cyclone II                              ;
 ; Device                             ; EP2C35F672C6                            ;
 ; Timing Models                      ; Final                                   ;
-; Total logic elements               ; 0 / 33,216 ( 0 % )                      ;
-;     Total combinational functions  ; 0 / 33,216 ( 0 % )                      ;
-;     Dedicated logic registers      ; 0 / 33,216 ( 0 % )                      ;
-; Total registers                    ; 0                                       ;
+; Total logic elements               ; 92 / 33,216 ( < 1 % )                   ;
+;     Total combinational functions  ; 92 / 33,216 ( < 1 % )                   ;
+;     Dedicated logic registers      ; 48 / 33,216 ( < 1 % )                   ;
+; Total registers                    ; 48                                      ;
 ; Total pins                         ; 39 / 475 ( 8 % )                        ;
 ; Total virtual pins                 ; 0                                       ;
 ; Total memory bits                  ; 0 / 483,840 ( 0 % )                     ;
@@ -589,49 +598,57 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/ECE354/lab5/DE2_NET.pin.
+The pin-out file can be found in C:/Users/tbadams/code/ECE354/lab5/DE2_NET.pin.
 
 
-+-------------------------------------------------------------------+
-; Fitter Resource Usage Summary                                     ;
-+---------------------------------------------+---------------------+
-; Resource                                    ; Usage               ;
-+---------------------------------------------+---------------------+
-; Total logic elements                        ; 0 / 33,216 ( 0 % )  ;
-;     -- Combinational with no register       ; 0                   ;
-;     -- Register only                        ; 0                   ;
-;     -- Combinational with a register        ; 0                   ;
-;                                             ;                     ;
-; Logic element usage by number of LUT inputs ;                     ;
-;     -- 4 input functions                    ; 0                   ;
-;     -- 3 input functions                    ; 0                   ;
-;     -- <=2 input functions                  ; 0                   ;
-;     -- Register only                        ; 0                   ;
-;                                             ;                     ;
-; Logic elements by mode                      ;                     ;
-;     -- normal mode                          ; 0                   ;
-;     -- arithmetic mode                      ; 0                   ;
-;                                             ;                     ;
-; Total registers*                            ; 0 / 34,593 ( 0 % )  ;
-;     -- Dedicated logic registers            ; 0 / 33,216 ( 0 % )  ;
-;     -- I/O registers                        ; 0 / 1,377 ( 0 % )   ;
-;                                             ;                     ;
-; Total LABs:  partially or completely used   ; 0 / 2,076 ( 0 % )   ;
-; User inserted logic elements                ; 0                   ;
-; Virtual pins                                ; 0                   ;
-; I/O pins                                    ; 39 / 475 ( 8 % )    ;
-;     -- Clock pins                           ; 1 / 8 ( 13 % )      ;
-; Global signals                              ; 0                   ;
-; M4Ks                                        ; 0 / 105 ( 0 % )     ;
-; Total block memory bits                     ; 0 / 483,840 ( 0 % ) ;
-; Total block memory implementation bits      ; 0 / 483,840 ( 0 % ) ;
-; Embedded Multiplier 9-bit elements          ; 0 / 70 ( 0 % )      ;
-; PLLs                                        ; 0 / 4 ( 0 % )       ;
-; Global clocks                               ; 0 / 16 ( 0 % )      ;
-; JTAGs                                       ; 0 / 1 ( 0 % )       ;
-; ASMI blocks                                 ; 0 / 1 ( 0 % )       ;
-; CRC blocks                                  ; 0 / 1 ( 0 % )       ;
-+---------------------------------------------+---------------------+
++---------------------------------------------------------------------+
+; Fitter Resource Usage Summary                                       ;
++---------------------------------------------+-----------------------+
+; Resource                                    ; Usage                 ;
++---------------------------------------------+-----------------------+
+; Total logic elements                        ; 92 / 33,216 ( < 1 % ) ;
+;     -- Combinational with no register       ; 44                    ;
+;     -- Register only                        ; 0                     ;
+;     -- Combinational with a register        ; 48                    ;
+;                                             ;                       ;
+; Logic element usage by number of LUT inputs ;                       ;
+;     -- 4 input functions                    ; 53                    ;
+;     -- 3 input functions                    ; 5                     ;
+;     -- <=2 input functions                  ; 34                    ;
+;     -- Register only                        ; 0                     ;
+;                                             ;                       ;
+; Logic elements by mode                      ;                       ;
+;     -- normal mode                          ; 67                    ;
+;     -- arithmetic mode                      ; 25                    ;
+;                                             ;                       ;
+; Total registers*                            ; 48 / 34,593 ( < 1 % ) ;
+;     -- Dedicated logic registers            ; 48 / 33,216 ( < 1 % ) ;
+;     -- I/O registers                        ; 0 / 1,377 ( 0 % )     ;
+;                                             ;                       ;
+; Total LABs:  partially or completely used   ; 7 / 2,076 ( < 1 % )   ;
+; User inserted logic elements                ; 0                     ;
+; Virtual pins                                ; 0                     ;
+; I/O pins                                    ; 39 / 475 ( 8 % )      ;
+;     -- Clock pins                           ; 2 / 8 ( 25 % )        ;
+; Global signals                              ; 1                     ;
+; M4Ks                                        ; 0 / 105 ( 0 % )       ;
+; Total block memory bits                     ; 0 / 483,840 ( 0 % )   ;
+; Total block memory implementation bits      ; 0 / 483,840 ( 0 % )   ;
+; Embedded Multiplier 9-bit elements          ; 0 / 70 ( 0 % )        ;
+; PLLs                                        ; 0 / 4 ( 0 % )         ;
+; Global clocks                               ; 1 / 16 ( 6 % )        ;
+; JTAGs                                       ; 0 / 1 ( 0 % )         ;
+; ASMI blocks                                 ; 0 / 1 ( 0 % )         ;
+; CRC blocks                                  ; 0 / 1 ( 0 % )         ;
+; Average interconnect usage (total/H/V)      ; 0% / 0% / 0%          ;
+; Peak interconnect usage (total/H/V)         ; 0% / 0% / 0%          ;
+; Maximum fan-out node                        ; clk~clkctrl           ;
+; Maximum fan-out                             ; 48                    ;
+; Highest non-global fan-out signal           ; Selector36~0          ;
+; Highest non-global fan-out                  ; 23                    ;
+; Total fan-out                               ; 431                   ;
+; Average fan-out                             ; 2.37                  ;
++---------------------------------------------+-----------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
 
@@ -641,19 +658,19 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 +---------------+-------+----------+--------------+--------------+-------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+-------------+----------------------+
 ; Name          ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Cell number ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Power Up High ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination ; Location assigned by ;
 +---------------+-------+----------+--------------+--------------+-------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+-------------+----------------------+
-; clk           ; H11   ; 3        ; 18           ; 36           ; 3           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; end_of_stream ; J13   ; 3        ; 24           ; 36           ; 1           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; in_data[0]    ; C13   ; 3        ; 31           ; 36           ; 2           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; in_data[1]    ; D13   ; 3        ; 31           ; 36           ; 3           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; in_data[2]    ; G11   ; 3        ; 22           ; 36           ; 1           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; in_data[3]    ; A10   ; 3        ; 22           ; 36           ; 2           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; in_data[4]    ; H10   ; 3        ; 7            ; 36           ; 1           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; in_data[5]    ; D10   ; 3        ; 20           ; 36           ; 0           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; in_data[6]    ; C22   ; 4        ; 63           ; 36           ; 1           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; in_data[7]    ; A9    ; 3        ; 20           ; 36           ; 2           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; recv_ready    ; AD7   ; 8        ; 5            ; 0            ; 2           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; rst           ; E10   ; 3        ; 18           ; 36           ; 0           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
-; send_ready    ; K16   ; 4        ; 57           ; 36           ; 1           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; clk           ; P2    ; 1        ; 0            ; 18           ; 2           ; 1                     ; 0                  ; yes    ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; end_of_stream ; B11   ; 3        ; 29           ; 36           ; 2           ; 4                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; in_data[0]    ; C16   ; 4        ; 37           ; 36           ; 0           ; 1                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; in_data[1]    ; B15   ; 4        ; 37           ; 36           ; 2           ; 1                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; in_data[2]    ; G14   ; 4        ; 35           ; 36           ; 2           ; 1                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; in_data[3]    ; H17   ; 4        ; 48           ; 36           ; 1           ; 1                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; in_data[4]    ; C12   ; 3        ; 29           ; 36           ; 1           ; 1                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; in_data[5]    ; F14   ; 4        ; 35           ; 36           ; 3           ; 1                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; in_data[6]    ; C15   ; 4        ; 37           ; 36           ; 3           ; 1                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; in_data[7]    ; G13   ; 4        ; 35           ; 36           ; 0           ; 1                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; recv_ready    ; D13   ; 3        ; 31           ; 36           ; 3           ; 3                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; rst           ; C13   ; 3        ; 31           ; 36           ; 2           ; 9                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
+; send_ready    ; F13   ; 4        ; 35           ; 36           ; 1           ; 2                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; Fitter               ;
 +---------------+-------+----------+--------------+--------------+-------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+-------------+----------------------+
 
 
@@ -662,32 +679,32 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 +--------------+-------+----------+--------------+--------------+-------------+-----------------+------------------------+---------------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+----------------------+------+----------------------+---------------------+
 ; Name         ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Cell number ; Output Register ; Output Enable Register ; Power Up High ; PCI I/O Enabled ; Open Drain ; TRI Primitive ; Bus Hold ; Weak Pull Up ; I/O Standard ; Current Strength ; Termination ; Location assigned by ; Load ; Output Enable Source ; Output Enable Group ;
 +--------------+-------+----------+--------------+--------------+-------------+-----------------+------------------------+---------------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+----------------------+------+----------------------+---------------------+
-; out_data[0]  ; D9    ; 3        ; 16           ; 36           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[10] ; L3    ; 2        ; 0            ; 24           ; 4           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[11] ; J10   ; 3        ; 27           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[12] ; B7    ; 3        ; 11           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[13] ; B14   ; 4        ; 33           ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[14] ; AC3   ; 1        ; 0            ; 2            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[15] ; AE13  ; 8        ; 31           ; 0            ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[16] ; A17   ; 4        ; 42           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[17] ; J14   ; 3        ; 24           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[18] ; AD4   ; 8        ; 3            ; 0            ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[19] ; K1    ; 2        ; 0            ; 25           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[1]  ; Y14   ; 7        ; 37           ; 0            ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[20] ; F9    ; 3        ; 9            ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[21] ; AD22  ; 7        ; 61           ; 0            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[22] ; G9    ; 3        ; 7            ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[23] ; G16   ; 4        ; 44           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[2]  ; G10   ; 3        ; 14           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[3]  ; V10   ; 8        ; 5            ; 0            ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[4]  ; F10   ; 3        ; 14           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[5]  ; R2    ; 1        ; 0            ; 17           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[6]  ; C8    ; 3        ; 14           ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[7]  ; C11   ; 3        ; 29           ; 36           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[8]  ; D8    ; 3        ; 14           ; 36           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; out_data[9]  ; AC11  ; 8        ; 22           ; 0            ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; rd_req       ; AD6   ; 8        ; 5            ; 0            ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
-; wr_req       ; F26   ; 5        ; 65           ; 29           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[0]  ; B16   ; 4        ; 37           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[10] ; G18   ; 4        ; 50           ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[11] ; G15   ; 4        ; 44           ; 36           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[12] ; B18   ; 4        ; 46           ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[13] ; A18   ; 4        ; 46           ; 36           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[14] ; F16   ; 4        ; 44           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[15] ; H15   ; 4        ; 42           ; 36           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[16] ; H16   ; 4        ; 42           ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[17] ; A17   ; 4        ; 42           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[18] ; P18   ; 5        ; 65           ; 29           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[19] ; B17   ; 4        ; 42           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[1]  ; G17   ; 4        ; 48           ; 36           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[20] ; G16   ; 4        ; 44           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[21] ; D16   ; 4        ; 40           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[22] ; D15   ; 4        ; 40           ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[23] ; B14   ; 4        ; 33           ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[2]  ; C17   ; 4        ; 46           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[3]  ; J20   ; 5        ; 65           ; 30           ; 3           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[4]  ; D17   ; 4        ; 46           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[5]  ; F17   ; 4        ; 48           ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[6]  ; J17   ; 4        ; 48           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[7]  ; F15   ; 4        ; 44           ; 36           ; 2           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[8]  ; E15   ; 4        ; 40           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; out_data[9]  ; C19   ; 4        ; 53           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; rd_req       ; D14   ; 4        ; 33           ; 36           ; 0           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
+; wr_req       ; A14   ; 4        ; 33           ; 36           ; 1           ; no              ; no                     ; no            ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVTTL  ; 24mA             ; Off         ; Fitter               ; 0 pF ; -                    ; -                   ;
 +--------------+-------+----------+--------------+--------------+-------------+-----------------+------------------------+---------------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+----------------------+------+----------------------+---------------------+
 
 
@@ -696,14 +713,14 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 +----------+------------------+---------------+--------------+
 ; I/O Bank ; Usage            ; VCCIO Voltage ; VREF Voltage ;
 +----------+------------------+---------------+--------------+
-; 1        ; 2 / 64 ( 3 % )   ; 3.3V          ; --           ;
-; 2        ; 4 / 59 ( 7 % )   ; 3.3V          ; --           ;
-; 3        ; 21 / 56 ( 38 % ) ; 3.3V          ; --           ;
-; 4        ; 5 / 58 ( 9 % )   ; 3.3V          ; --           ;
-; 5        ; 1 / 65 ( 2 % )   ; 3.3V          ; --           ;
+; 1        ; 1 / 64 ( 2 % )   ; 3.3V          ; --           ;
+; 2        ; 2 / 59 ( 3 % )   ; 3.3V          ; --           ;
+; 3        ; 4 / 56 ( 7 % )   ; 3.3V          ; --           ;
+; 4        ; 32 / 58 ( 55 % ) ; 3.3V          ; --           ;
+; 5        ; 2 / 65 ( 3 % )   ; 3.3V          ; --           ;
 ; 6        ; 0 / 59 ( 0 % )   ; 3.3V          ; --           ;
-; 7        ; 2 / 58 ( 3 % )   ; 3.3V          ; --           ;
-; 8        ; 6 / 56 ( 11 % )  ; 3.3V          ; --           ;
+; 7        ; 0 / 58 ( 0 % )   ; 3.3V          ; --           ;
+; 8        ; 0 / 56 ( 0 % )   ; 3.3V          ; --           ;
 +----------+------------------+---------------+--------------+
 
 
@@ -719,16 +736,16 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; A6       ; 479        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; A7       ; 465        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; A8       ; 457        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; A9       ; 451        ; 3        ; in_data[7]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; A10      ; 447        ; 3        ; in_data[3]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; A9       ; 451        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; A10      ; 447        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; A11      ;            ; 3        ; VCCIO3                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; A12      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; A13      ; 430        ; 4        ; GND+                                     ;        ;              ;         ; Column I/O ;                 ; --       ; --           ;
-; A14      ; 427        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; A14      ; 427        ; 4        ; wr_req                                   ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; A15      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; A16      ;            ; 4        ; VCCIO4                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
-; A17      ; 412        ; 4        ; out_data[16]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; A18      ; 406        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; A17      ; 412        ; 4        ; out_data[17]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; A18      ; 406        ; 4        ; out_data[13]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; A19      ; 394        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; A20      ; 390        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; A21      ; 382        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -790,7 +807,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; AB26     ; 262        ; 6        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; AC1      ; 119        ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; AC2      ; 118        ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
-; AC3      ; 128        ; 1        ; out_data[14]                             ; output ; 3.3-V LVTTL  ;         ; Row I/O    ; N               ; no       ; Off          ;
+; AC3      ; 128        ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; AC4      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; AC5      ; 133        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AC6      ; 134        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -798,7 +815,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; AC8      ; 148        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AC9      ; 163        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AC10     ; 164        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; AC11     ; 168        ; 8        ; out_data[9]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; AC11     ; 168        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AC12     ; 172        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AC13     ; 185        ; 8        ; GND+                                     ;        ;              ;         ; Column I/O ;                 ; --       ; --           ;
 ; AC14     ; 191        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -817,10 +834,10 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; AD1      ;            ; 1        ; VCCIO1                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; AD2      ; 122        ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; AD3      ; 123        ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
-; AD4      ; 135        ; 8        ; out_data[18]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; AD4      ; 135        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AD5      ; 136        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; AD6      ; 139        ; 8        ; rd_req                                   ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; AD7      ; 140        ; 8        ; recv_ready                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; AD6      ; 139        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; AD7      ; 140        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AD8      ; 149        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AD9      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; AD10     ; 167        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -835,7 +852,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; AD19     ; 221        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AD20     ;            ; 7        ; VCCIO7                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; AD21     ; 238        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; AD22     ; 240        ; 7        ; out_data[21]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; AD22     ; 240        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AD23     ; 239        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AD24     ; 249        ; 6        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; AD25     ; 248        ; 6        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
@@ -852,7 +869,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; AE10     ; 169        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AE11     ; 174        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AE12     ; 182        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; AE13     ; 183        ; 8        ; out_data[15]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; AE13     ; 183        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AE14     ; 188        ; 7        ; GND+                                     ;        ;              ;         ; Column I/O ;                 ; --       ; --           ;
 ; AE15     ; 189        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; AE16     ; 200        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -896,18 +913,18 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; B4       ; 483        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; B5       ; 481        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; B6       ; 480        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; B7       ; 466        ; 3        ; out_data[12]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; B7       ; 466        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; B8       ; 458        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; B9       ; 452        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; B10      ; 448        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; B11      ; 435        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; B11      ; 435        ; 3        ; end_of_stream                            ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; B12      ; 433        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; B13      ; 429        ; 4        ; GND+                                     ;        ;              ;         ; Column I/O ;                 ; --       ; --           ;
-; B14      ; 428        ; 4        ; out_data[13]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; B15      ; 420        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; B16      ; 419        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; B17      ; 411        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; B18      ; 405        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; B14      ; 428        ; 4        ; out_data[23]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; B15      ; 420        ; 4        ; in_data[1]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; B16      ; 419        ; 4        ; out_data[0]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; B17      ; 411        ; 4        ; out_data[19]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; B18      ; 405        ; 4        ; out_data[12]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; B19      ; 393        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; B20      ; 389        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; B21      ; 381        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -923,21 +940,21 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; C5       ; 486        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; C6       ; 485        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; C7       ; 468        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; C8       ; 463        ; 3        ; out_data[6]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; C8       ; 463        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; C9       ; 459        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; C10      ; 450        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; C11      ; 436        ; 3        ; out_data[7]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; C12      ; 434        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; C13      ; 431        ; 3        ; in_data[0]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; C11      ; 436        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; C12      ; 434        ; 3        ; in_data[4]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; C13      ; 431        ; 3        ; rst                                      ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; C14      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
-; C15      ; 421        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; C16      ; 418        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; C17      ; 404        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; C15      ; 421        ; 4        ; in_data[6]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; C16      ; 418        ; 4        ; in_data[0]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; C17      ; 404        ; 4        ; out_data[2]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; C18      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
-; C19      ; 391        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; C19      ; 391        ; 4        ; out_data[9]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; C20      ;            ; 4        ; VCCIO4                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; C21      ; 375        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; C22      ; 374        ; 4        ; in_data[6]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; C22      ; 374        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; C23      ; 373        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; C24      ; 360        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; C25      ; 361        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
@@ -949,16 +966,16 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; D5       ; 477        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; D6       ; 467        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; D7       ; 469        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; D8       ; 464        ; 3        ; out_data[8]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; D9       ; 460        ; 3        ; out_data[0]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; D10      ; 449        ; 3        ; in_data[5]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; D8       ; 464        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; D9       ; 460        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; D10      ; 449        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; D11      ; 445        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; D12      ; 443        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; D13      ; 432        ; 3        ; in_data[1]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; D14      ; 426        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; D15      ; 417        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; D16      ; 415        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; D17      ; 403        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; D13      ; 432        ; 3        ; recv_ready                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; D14      ; 426        ; 4        ; rd_req                                   ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; D15      ; 417        ; 4        ; out_data[22]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; D16      ; 415        ; 4        ; out_data[21]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; D17      ; 403        ; 4        ; out_data[4]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; D18      ; 396        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; D19      ; 392        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; D20      ; 387        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -977,12 +994,12 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; E7       ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; E8       ; 474        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; E9       ;            ; 3        ; VCCIO3                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
-; E10      ; 453        ; 3        ; rst                                      ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; E10      ; 453        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; E11      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; E12      ; 444        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; E13      ;            ; 3        ; VCCIO3                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; E14      ;            ; 4        ; VCCIO4                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
-; E15      ; 416        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; E15      ; 416        ; 4        ; out_data[8]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; E16      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; E17      ;            ; 4        ; VCCIO4                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; E18      ; 395        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -1002,15 +1019,15 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; F6       ; 5          ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; F7       ; 14         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; F8       ;            ;          ; GNDA_PLL3                                ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
-; F9       ; 470        ; 3        ; out_data[20]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; F10      ; 462        ; 3        ; out_data[4]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; F9       ; 470        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; F10      ; 462        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; F11      ; 454        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; F12      ; 440        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; F13      ; 423        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; F14      ; 425        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; F15      ; 409        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; F16      ; 408        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; F17      ; 401        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; F13      ; 423        ; 4        ; send_ready                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; F14      ; 425        ; 4        ; in_data[5]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; F15      ; 409        ; 4        ; out_data[7]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; F16      ; 408        ; 4        ; out_data[14]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; F17      ; 401        ; 4        ; out_data[5]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; F18      ; 398        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; F19      ;            ;          ; GNDA_PLL2                                ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; F20      ; 372        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
@@ -1019,7 +1036,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; F23      ; 353        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; F24      ; 354        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; F25      ; 350        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
-; F26      ; 349        ; 5        ; wr_req                                   ; output ; 3.3-V LVTTL  ;         ; Row I/O    ; N               ; no       ; Off          ;
+; F26      ; 349        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; G1       ; 30         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; G2       ; 31         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; G3       ; 24         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
@@ -1028,16 +1045,16 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; G6       ; 9          ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; G7       ;            ;          ; GND_PLL3                                 ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; G8       ;            ;          ; VCCA_PLL3                                ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
-; G9       ; 471        ; 3        ; out_data[22]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; G10      ; 461        ; 3        ; out_data[2]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; G11      ; 446        ; 3        ; in_data[2]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; G9       ; 471        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; G10      ; 461        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; G11      ; 446        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; G12      ; 439        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; G13      ; 422        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; G14      ; 424        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; G15      ; 410        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; G16      ; 407        ; 4        ; out_data[23]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; G17      ; 402        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; G18      ; 397        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; G13      ; 422        ; 4        ; in_data[7]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; G14      ; 424        ; 4        ; in_data[2]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; G15      ; 410        ; 4        ; out_data[11]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; G16      ; 407        ; 4        ; out_data[20]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; G17      ; 402        ; 4        ; out_data[1]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; G18      ; 397        ; 4        ; out_data[10]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; G19      ;            ;          ; VCCA_PLL2                                ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
 ; G20      ;            ;          ; GND_PLL2                                 ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; G21      ; 368        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
@@ -1055,14 +1072,14 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; H7       ;            ;          ; VCCD_PLL3                                ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
 ; H8       ; 473        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; H9       ;            ; 3        ; VCCIO3                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
-; H10      ; 472        ; 3        ; in_data[4]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; H11      ; 456        ; 3        ; clk                                      ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; H10      ; 472        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; H11      ; 456        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; H12      ; 455        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; H13      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; H14      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
-; H15      ; 414        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; H16      ; 413        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; H17      ; 400        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; H15      ; 414        ; 4        ; out_data[15]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; H16      ; 413        ; 4        ; out_data[16]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; H17      ; 400        ; 4        ; in_data[3]                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; H18      ;            ; 4        ; VCCIO4                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; H19      ; 335        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; H20      ;            ;          ; VCCD_PLL2                                ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
@@ -1081,24 +1098,24 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; J7       ; 17         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; J8       ; 16         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; J9       ; 475        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; J10      ; 438        ; 3        ; out_data[11]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; J10      ; 438        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; J11      ; 437        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; J12      ;            ; 3        ; VCCIO3                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
-; J13      ; 442        ; 3        ; end_of_stream                            ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
-; J14      ; 441        ; 3        ; out_data[17]                             ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; J13      ; 442        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; J14      ; 441        ; 3        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; J15      ;            ; 4        ; VCCIO4                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; J16      ; 385        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; J17      ; 399        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
+; J17      ; 399        ; 4        ; out_data[6]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
 ; J18      ; 383        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; J19      ;            ; 5        ; VCCIO5                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
-; J20      ; 351        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
+; J20      ; 351        ; 5        ; out_data[3]                              ; output ; 3.3-V LVTTL  ;         ; Row I/O    ; N               ; no       ; Off          ;
 ; J21      ; 352        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; J22      ; 357        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; J23      ; 339        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; J24      ; 338        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; J25      ; 327        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; J26      ; 326        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
-; K1       ; 42         ; 2        ; out_data[19]                             ; output ; 3.3-V LVTTL  ;         ; Row I/O    ; N               ; no       ; Off          ;
+; K1       ; 42         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; K2       ; 43         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; K3       ; 41         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; K4       ; 40         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
@@ -1113,7 +1130,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; K13      ;            ;          ; VCCINT                                   ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
 ; K14      ;            ;          ; VCCINT                                   ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
 ; K15      ;            ;          ; VCCINT                                   ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
-; K16      ; 386        ; 4        ; send_ready                               ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; K16      ; 386        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; K17      ; 384        ; 4        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; K18      ; 334        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; K19      ; 333        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
@@ -1126,7 +1143,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; K26      ; 320        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; L1       ;            ; 2        ; VCCIO2                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; L2       ; 50         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
-; L3       ; 51         ; 2        ; out_data[10]                             ; output ; 3.3-V LVTTL  ;         ; Row I/O    ; N               ; no       ; Off          ;
+; L3       ; 51         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; L4       ; 44         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; L5       ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; L6       ; 48         ; 2        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
@@ -1203,7 +1220,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; N25      ; 309        ; 5        ; GND+                                     ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
 ; N26      ; 308        ; 5        ; GND+                                     ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
 ; P1       ; 68         ; 1        ; GND+                                     ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
-; P2       ; 67         ; 1        ; GND+                                     ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
+; P2       ; 67         ; 1        ; clk                                      ; input  ; 3.3-V LVTTL  ;         ; Row I/O    ; N               ; no       ; Off          ;
 ; P3       ; 69         ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; P4       ; 70         ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; P5       ;            ; 1        ; VCCIO1                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
@@ -1219,7 +1236,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; P15      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; P16      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; P17      ; 293        ; 6        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
-; P18      ; 347        ; 5        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
+; P18      ; 347        ; 5        ; out_data[18]                             ; output ; 3.3-V LVTTL  ;         ; Row I/O    ; N               ; no       ; Off          ;
 ; P19      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; P20      ; 301        ; 6        ; ^MSEL0                                   ;        ;              ;         ; --         ;                 ; --       ; --           ;
 ; P21      ; 300        ; 6        ; ^MSEL1                                   ;        ;              ;         ; --         ;                 ; --       ; --           ;
@@ -1229,7 +1246,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; P25      ; 307        ; 6        ; GND+                                     ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
 ; P26      ; 306        ; 6        ; GND+                                     ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
 ; R1       ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
-; R2       ; 71         ; 1        ; out_data[5]                              ; output ; 3.3-V LVTTL  ;         ; Row I/O    ; N               ; no       ; Off          ;
+; R2       ; 71         ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; R3       ; 72         ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; R4       ; 73         ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; R5       ; 74         ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
@@ -1315,7 +1332,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; V7       ; 112        ; 1        ; RESERVED_INPUT                           ;        ;              ;         ; Row I/O    ;                 ; no       ; Off          ;
 ; V8       ;            ; 1        ; VCCIO1                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; V9       ; 142        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; V10      ; 141        ; 8        ; out_data[3]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; V10      ; 141        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; V11      ; 177        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; V12      ;            ; 8        ; VCCIO8                                   ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; V13      ; 176        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
@@ -1371,7 +1388,7 @@ The pin-out file can be found in C:/Users/jmarple/Desktop/GitPortable/Data/home/
 ; Y11      ; 156        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; Y12      ; 180        ; 8        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; Y13      ; 193        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
-; Y14      ; 195        ; 7        ; out_data[1]                              ; output ; 3.3-V LVTTL  ;         ; Column I/O ; N               ; no       ; Off          ;
+; Y14      ; 195        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; Y15      ; 196        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; Y16      ; 210        ; 7        ; RESERVED_INPUT                           ;        ;              ;         ; Column I/O ;                 ; no       ; Off          ;
 ; Y17      ;            ;          ; GND                                      ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
@@ -1430,7 +1447,7 @@ Note: User assignments will override these defaults. The user specified values a
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M4Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+---------------------+--------------+
-; |rle_enc                   ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 39   ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |rle_enc            ; work         ;
+; |rle_enc                   ; 92 (92)     ; 48 (48)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 39   ; 0            ; 44 (44)      ; 0 (0)             ; 48 (48)          ; |rle_enc            ; work         ;
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -1440,19 +1457,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------+----------+---------------+---------------+-----------------------+-----+
 ; Name          ; Pin Type ; Pad to Core 0 ; Pad to Core 1 ; Pad to Input Register ; TCO ;
 +---------------+----------+---------------+---------------+-----------------------+-----+
-; in_data[0]    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; in_data[1]    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; in_data[2]    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; in_data[3]    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; in_data[4]    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; in_data[5]    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; in_data[6]    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; in_data[7]    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; end_of_stream ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
+; clk           ; Input    ; (0) 299 ps    ; (0) 299 ps    ; --                    ; --  ;
 ; rst           ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
 ; recv_ready    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; send_ready    ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
-; clk           ; Input    ; (0) 287 ps    ; (0) 287 ps    ; --                    ; --  ;
+; end_of_stream ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
+; in_data[0]    ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
+; send_ready    ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
+; in_data[1]    ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
+; in_data[2]    ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
+; in_data[3]    ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
+; in_data[4]    ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
+; in_data[5]    ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
+; in_data[6]    ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
+; in_data[7]    ; Input    ; (6) 4114 ps   ; (6) 4114 ps   ; --                    ; --  ;
 ; rd_req        ; Output   ; --            ; --            ; --                    ; --  ;
 ; out_data[0]   ; Output   ; --            ; --            ; --                    ; --  ;
 ; out_data[1]   ; Output   ; --            ; --            ; --                    ; --  ;
@@ -1487,36 +1504,256 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------+-------------------+---------+
 ; Source Pin / Fanout ; Pad To Core Index ; Setting ;
 +---------------------+-------------------+---------+
-; in_data[0]          ;                   ;         ;
-; in_data[1]          ;                   ;         ;
-; in_data[2]          ;                   ;         ;
-; in_data[3]          ;                   ;         ;
-; in_data[4]          ;                   ;         ;
-; in_data[5]          ;                   ;         ;
-; in_data[6]          ;                   ;         ;
-; in_data[7]          ;                   ;         ;
-; end_of_stream       ;                   ;         ;
+; clk                 ;                   ;         ;
 ; rst                 ;                   ;         ;
 ; recv_ready          ;                   ;         ;
+; end_of_stream       ;                   ;         ;
+;      - state~15     ; 0                 ; 6       ;
+;      - state~17     ; 0                 ; 6       ;
+;      - state~20     ; 0                 ; 6       ;
+;      - state~24     ; 0                 ; 6       ;
+; in_data[0]          ;                   ;         ;
+;      - Selector33~0 ; 0                 ; 6       ;
 ; send_ready          ;                   ;         ;
-; clk                 ;                   ;         ;
+;      - state~22     ; 0                 ; 6       ;
+;      - state~25     ; 0                 ; 6       ;
+; in_data[1]          ;                   ;         ;
+;      - Selector32~0 ; 0                 ; 6       ;
+; in_data[2]          ;                   ;         ;
+;      - Selector31~0 ; 0                 ; 6       ;
+; in_data[3]          ;                   ;         ;
+;      - Selector30~0 ; 0                 ; 6       ;
+; in_data[4]          ;                   ;         ;
+;      - Selector29~0 ; 0                 ; 6       ;
+; in_data[5]          ;                   ;         ;
+;      - Selector28~0 ; 1                 ; 6       ;
+; in_data[6]          ;                   ;         ;
+;      - Selector27~0 ; 0                 ; 6       ;
+; in_data[7]          ;                   ;         ;
+;      - Selector26~0 ; 0                 ; 6       ;
 +---------------------+-------------------+---------+
 
 
-+-------------------------------------------------+
-; Interconnect Usage Summary                      ;
-+----------------------------+--------------------+
-; Interconnect Resource Type ; Usage              ;
-+----------------------------+--------------------+
-; Block interconnects        ; 0 / 94,460 ( 0 % ) ;
-; C16 interconnects          ; 0 / 3,315 ( 0 % )  ;
-; C4 interconnects           ; 0 / 60,840 ( 0 % ) ;
-; Direct links               ; 0 / 94,460 ( 0 % ) ;
-; Global clocks              ; 0 / 16 ( 0 % )     ;
-; Local interconnects        ; 0 / 33,216 ( 0 % ) ;
-; R24 interconnects          ; 0 / 3,091 ( 0 % )  ;
-; R4 interconnects           ; 0 / 81,294 ( 0 % ) ;
-+----------------------------+--------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                                                              ;
++------------------+-------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; Name             ; Location          ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++------------------+-------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; clk              ; PIN_P2            ; 48      ; Clock        ; yes    ; Global Clock         ; GCLK3            ; --                        ;
+; shift_buf[4]~0   ; LCCOMB_X36_Y32_N8 ; 8       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; state.SHIFT_BITS ; LCFF_X35_Y32_N27  ; 15      ; Sync. load   ; no     ; --                   ; --               ; --                        ;
++------------------+-------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+
+
++-------------------------------------------------------------------------------------------------+
+; Global & Other Fast Signals                                                                     ;
++------+----------+---------+----------------------+------------------+---------------------------+
+; Name ; Location ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++------+----------+---------+----------------------+------------------+---------------------------+
+; clk  ; PIN_P2   ; 48      ; Global Clock         ; GCLK3            ; --                        ;
++------+----------+---------+----------------------+------------------+---------------------------+
+
+
++---------------------------------+
+; Non-Global High Fan-Out Signals ;
++---------------------+-----------+
+; Name                ; Fan-Out   ;
++---------------------+-----------+
+; Selector24~0        ; 23        ;
+; Selector36~0        ; 23        ;
+; state.SHIFT_BITS    ; 15        ;
+; state.READ_INPUT    ; 10        ;
+; rst                 ; 9         ;
+; new_bitstream       ; 9         ;
+; shift_buf[4]~0      ; 8         ;
+; state.REQUEST_INPUT ; 8         ;
+; state.INIT          ; 6         ;
+; state.COUNT_BITS    ; 5         ;
+; end_of_stream       ; 4         ;
+; bit_count[22]       ; 4         ;
+; bit_count[21]       ; 4         ;
+; bit_count[20]       ; 4         ;
+; bit_count[19]       ; 4         ;
+; bit_count[18]       ; 4         ;
+; bit_count[17]       ; 4         ;
+; bit_count[16]       ; 4         ;
+; bit_count[15]       ; 4         ;
+; bit_count[14]       ; 4         ;
+; bit_count[13]       ; 4         ;
+; bit_count[12]       ; 4         ;
+; bit_count[11]       ; 4         ;
+; bit_count[10]       ; 4         ;
+; bit_count[9]        ; 4         ;
+; bit_count[8]        ; 4         ;
+; bit_count[7]        ; 4         ;
+; bit_count[6]        ; 4         ;
+; bit_count[5]        ; 4         ;
+; bit_count[4]        ; 4         ;
+; bit_count[3]        ; 4         ;
+; bit_count[2]        ; 4         ;
+; bit_count[1]        ; 4         ;
+; bit_count[0]        ; 4         ;
+; recv_ready          ; 3         ;
+; shift_count[2]      ; 3         ;
+; shift_count[1]      ; 3         ;
+; shift_count[0]      ; 3         ;
+; shift_count[3]      ; 3         ;
+; state.COUNT_DONE    ; 3         ;
+; state.RESET_COUNT   ; 3         ;
+; value_type          ; 3         ;
+; send_ready          ; 2         ;
+; shift_buf[7]        ; 2         ;
+; WideOr0~6           ; 2         ;
+; WideOr0~4           ; 2         ;
+; Equal0~0            ; 2         ;
+; state.WAIT_OUTPUT   ; 2         ;
+; always1~0           ; 2         ;
+; shift_buf[0]        ; 2         ;
++---------------------+-----------+
+
+
++-----------------------------------------------------+
+; Interconnect Usage Summary                          ;
++----------------------------+------------------------+
+; Interconnect Resource Type ; Usage                  ;
++----------------------------+------------------------+
+; Block interconnects        ; 119 / 94,460 ( < 1 % ) ;
+; C16 interconnects          ; 1 / 3,315 ( < 1 % )    ;
+; C4 interconnects           ; 73 / 60,840 ( < 1 % )  ;
+; Direct links               ; 50 / 94,460 ( < 1 % )  ;
+; Global clocks              ; 1 / 16 ( 6 % )         ;
+; Local interconnects        ; 38 / 33,216 ( < 1 % )  ;
+; R24 interconnects          ; 1 / 3,091 ( < 1 % )    ;
+; R4 interconnects           ; 64 / 81,294 ( < 1 % )  ;
++----------------------------+------------------------+
+
+
++---------------------------------------------------------------------------+
+; LAB Logic Elements                                                        ;
++---------------------------------------------+-----------------------------+
+; Number of Logic Elements  (Average = 13.14) ; Number of LABs  (Total = 7) ;
++---------------------------------------------+-----------------------------+
+; 1                                           ; 0                           ;
+; 2                                           ; 0                           ;
+; 3                                           ; 0                           ;
+; 4                                           ; 0                           ;
+; 5                                           ; 1                           ;
+; 6                                           ; 0                           ;
+; 7                                           ; 1                           ;
+; 8                                           ; 0                           ;
+; 9                                           ; 0                           ;
+; 10                                          ; 0                           ;
+; 11                                          ; 0                           ;
+; 12                                          ; 0                           ;
+; 13                                          ; 0                           ;
+; 14                                          ; 0                           ;
+; 15                                          ; 0                           ;
+; 16                                          ; 5                           ;
++---------------------------------------------+-----------------------------+
+
+
++------------------------------------------------------------------+
+; LAB-wide Signals                                                 ;
++------------------------------------+-----------------------------+
+; LAB-wide Signals  (Average = 1.00) ; Number of LABs  (Total = 7) ;
++------------------------------------+-----------------------------+
+; 1 Clock                            ; 6                           ;
+; 1 Sync. load                       ; 1                           ;
++------------------------------------+-----------------------------+
+
+
++----------------------------------------------------------------------------+
+; LAB Signals Sourced                                                        ;
++----------------------------------------------+-----------------------------+
+; Number of Signals Sourced  (Average = 20.00) ; Number of LABs  (Total = 7) ;
++----------------------------------------------+-----------------------------+
+; 0                                            ; 0                           ;
+; 1                                            ; 0                           ;
+; 2                                            ; 0                           ;
+; 3                                            ; 0                           ;
+; 4                                            ; 0                           ;
+; 5                                            ; 0                           ;
+; 6                                            ; 0                           ;
+; 7                                            ; 0                           ;
+; 8                                            ; 0                           ;
+; 9                                            ; 0                           ;
+; 10                                           ; 1                           ;
+; 11                                           ; 1                           ;
+; 12                                           ; 0                           ;
+; 13                                           ; 0                           ;
+; 14                                           ; 0                           ;
+; 15                                           ; 0                           ;
+; 16                                           ; 1                           ;
+; 17                                           ; 0                           ;
+; 18                                           ; 1                           ;
+; 19                                           ; 0                           ;
+; 20                                           ; 0                           ;
+; 21                                           ; 0                           ;
+; 22                                           ; 0                           ;
+; 23                                           ; 0                           ;
+; 24                                           ; 0                           ;
+; 25                                           ; 0                           ;
+; 26                                           ; 1                           ;
+; 27                                           ; 1                           ;
+; 28                                           ; 0                           ;
+; 29                                           ; 0                           ;
+; 30                                           ; 0                           ;
+; 31                                           ; 0                           ;
+; 32                                           ; 1                           ;
++----------------------------------------------+-----------------------------+
+
+
++-------------------------------------------------------------------------------+
+; LAB Signals Sourced Out                                                       ;
++-------------------------------------------------+-----------------------------+
+; Number of Signals Sourced Out  (Average = 9.57) ; Number of LABs  (Total = 7) ;
++-------------------------------------------------+-----------------------------+
+; 0                                               ; 0                           ;
+; 1                                               ; 0                           ;
+; 2                                               ; 0                           ;
+; 3                                               ; 0                           ;
+; 4                                               ; 1                           ;
+; 5                                               ; 1                           ;
+; 6                                               ; 0                           ;
+; 7                                               ; 1                           ;
+; 8                                               ; 0                           ;
+; 9                                               ; 0                           ;
+; 10                                              ; 1                           ;
+; 11                                              ; 0                           ;
+; 12                                              ; 1                           ;
+; 13                                              ; 1                           ;
+; 14                                              ; 0                           ;
+; 15                                              ; 0                           ;
+; 16                                              ; 1                           ;
++-------------------------------------------------+-----------------------------+
+
+
++----------------------------------------------------------------------------+
+; LAB Distinct Inputs                                                        ;
++----------------------------------------------+-----------------------------+
+; Number of Distinct Inputs  (Average = 13.14) ; Number of LABs  (Total = 7) ;
++----------------------------------------------+-----------------------------+
+; 0                                            ; 0                           ;
+; 1                                            ; 0                           ;
+; 2                                            ; 0                           ;
+; 3                                            ; 0                           ;
+; 4                                            ; 0                           ;
+; 5                                            ; 1                           ;
+; 6                                            ; 0                           ;
+; 7                                            ; 0                           ;
+; 8                                            ; 1                           ;
+; 9                                            ; 0                           ;
+; 10                                           ; 0                           ;
+; 11                                           ; 0                           ;
+; 12                                           ; 0                           ;
+; 13                                           ; 0                           ;
+; 14                                           ; 2                           ;
+; 15                                           ; 1                           ;
+; 16                                           ; 0                           ;
+; 17                                           ; 1                           ;
+; 18                                           ; 0                           ;
+; 19                                           ; 1                           ;
++----------------------------------------------+-----------------------------+
 
 
 +--------------------------------------------------------------------+
@@ -1548,13 +1785,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------+--------+
 
 
++------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing                      ;
++-----------------+----------------------+-------------------+
+; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
++-----------------+----------------------+-------------------+
+
+
 +-----------------+
 ; Fitter Messages ;
 +-----------------+
 Info: *******************************************************************
 Info: Running Quartus II Fitter
     Info: Version 9.1 Build 222 10/21/2009 SJ Web Edition
-    Info: Processing started: Thu Apr 14 23:13:13 2016
+    Info: Processing started: Sun Apr 24 18:53:58 2016
 Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off DE2_NET -c DE2_NET
 Info: Selected device EP2C35F672C6 for design "DE2_NET"
 Info: Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
@@ -1567,14 +1811,6 @@ Info: Fitter converted 2 user pins into dedicated programming pins
     Info: Pin ~nCSO~ is reserved at location D3
 Critical Warning: No exact pin location assignment(s) for 39 pins of 39 total pins
     Info: Pin rd_req not assigned to an exact location on the device
-    Info: Pin in_data[0] not assigned to an exact location on the device
-    Info: Pin in_data[1] not assigned to an exact location on the device
-    Info: Pin in_data[2] not assigned to an exact location on the device
-    Info: Pin in_data[3] not assigned to an exact location on the device
-    Info: Pin in_data[4] not assigned to an exact location on the device
-    Info: Pin in_data[5] not assigned to an exact location on the device
-    Info: Pin in_data[6] not assigned to an exact location on the device
-    Info: Pin in_data[7] not assigned to an exact location on the device
     Info: Pin out_data[0] not assigned to an exact location on the device
     Info: Pin out_data[1] not assigned to an exact location on the device
     Info: Pin out_data[2] not assigned to an exact location on the device
@@ -1600,13 +1836,23 @@ Critical Warning: No exact pin location assignment(s) for 39 pins of 39 total pi
     Info: Pin out_data[22] not assigned to an exact location on the device
     Info: Pin out_data[23] not assigned to an exact location on the device
     Info: Pin wr_req not assigned to an exact location on the device
-    Info: Pin end_of_stream not assigned to an exact location on the device
+    Info: Pin clk not assigned to an exact location on the device
     Info: Pin rst not assigned to an exact location on the device
     Info: Pin recv_ready not assigned to an exact location on the device
+    Info: Pin end_of_stream not assigned to an exact location on the device
+    Info: Pin in_data[0] not assigned to an exact location on the device
     Info: Pin send_ready not assigned to an exact location on the device
-    Info: Pin clk not assigned to an exact location on the device
+    Info: Pin in_data[1] not assigned to an exact location on the device
+    Info: Pin in_data[2] not assigned to an exact location on the device
+    Info: Pin in_data[3] not assigned to an exact location on the device
+    Info: Pin in_data[4] not assigned to an exact location on the device
+    Info: Pin in_data[5] not assigned to an exact location on the device
+    Info: Pin in_data[6] not assigned to an exact location on the device
+    Info: Pin in_data[7] not assigned to an exact location on the device
 Info: Timing-driven compilation is using the Classic Timing Analyzer
 Info: Detected fmax, tsu, tco, and/or tpd requirements -- optimizing circuit to achieve only the specified requirements
+Info: Automatically promoted node clk (placed in PIN P2 (CLK2, LVDSCLK1p, Input))
+    Info: Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G3
 Info: Starting register packing
 Extra Info: Performing register packing on registers with non-logic cell location assignments
 Extra Info: Completed register packing on registers with non-logic cell location assignments
@@ -1617,11 +1863,11 @@ Extra Info: Finished moving registers into I/O cells, Multiplier Blocks, and RAM
 Info: Finished register packing
     Extra Info: No registers were packed into other blocks
 Info: Statistics of I/O pins that need to be placed that use the same VCCIO and VREF, before I/O pin placement
-    Info: Number of I/O pins in group: 39 (unused VREF, 3.3V VCCIO, 13 input, 26 output, 0 bidirectional)
+    Info: Number of I/O pins in group: 38 (unused VREF, 3.3V VCCIO, 12 input, 26 output, 0 bidirectional)
         Info: I/O standards used: 3.3-V LVTTL.
 Info: I/O bank details before I/O pin placement
     Info: Statistics of I/O banks
-        Info: I/O bank number 1 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  64 pins available
+        Info: I/O bank number 1 does not use VREF pins and has undetermined VCCIO pins. 1 total pin(s) used --  63 pins available
         Info: I/O bank number 2 does not use VREF pins and has undetermined VCCIO pins. 2 total pin(s) used --  57 pins available
         Info: I/O bank number 3 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  56 pins available
         Info: I/O bank number 4 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  58 pins available
@@ -2076,15 +2322,43 @@ Warning: Ignored locations or region assignments to the following nodes
     Warning: Node "VGA_R[9]" is assigned to location or region, but does not exist in design
     Warning: Node "VGA_SYNC" is assigned to location or region, but does not exist in design
     Warning: Node "VGA_VS" is assigned to location or region, but does not exist in design
-Info: Fitter preparation operations ending: elapsed time is 00:00:01
+Info: Fitter preparation operations ending: elapsed time is 00:00:00
 Info: Fitter placement preparation operations beginning
 Info: Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info: Fitter placement operations beginning
 Info: Fitter placement was successful
 Info: Fitter placement operations ending: elapsed time is 00:00:01
+Info: Estimated most critical path is register to register delay of 5.457 ns
+    Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = LAB_X36_Y32; Fanout = 2; REG Node = 'shift_buf[0]'
+    Info: 2: + IC(0.473 ns) + CELL(0.150 ns) = 0.623 ns; Loc. = LAB_X36_Y32; Fanout = 3; COMB Node = 'always1~0'
+    Info: 3: + IC(1.466 ns) + CELL(0.393 ns) = 2.482 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~1'
+    Info: 4: + IC(0.000 ns) + CELL(0.071 ns) = 2.553 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~3'
+    Info: 5: + IC(0.000 ns) + CELL(0.071 ns) = 2.624 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~5'
+    Info: 6: + IC(0.000 ns) + CELL(0.071 ns) = 2.695 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~7'
+    Info: 7: + IC(0.000 ns) + CELL(0.071 ns) = 2.766 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~9'
+    Info: 8: + IC(0.000 ns) + CELL(0.071 ns) = 2.837 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~11'
+    Info: 9: + IC(0.000 ns) + CELL(0.071 ns) = 2.908 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~13'
+    Info: 10: + IC(0.000 ns) + CELL(0.071 ns) = 2.979 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~15'
+    Info: 11: + IC(0.000 ns) + CELL(0.071 ns) = 3.050 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~17'
+    Info: 12: + IC(0.000 ns) + CELL(0.071 ns) = 3.121 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~19'
+    Info: 13: + IC(0.000 ns) + CELL(0.071 ns) = 3.192 ns; Loc. = LAB_X44_Y30; Fanout = 2; COMB Node = 'Add0~21'
+    Info: 14: + IC(0.090 ns) + CELL(0.071 ns) = 3.353 ns; Loc. = LAB_X44_Y29; Fanout = 2; COMB Node = 'Add0~23'
+    Info: 15: + IC(0.000 ns) + CELL(0.071 ns) = 3.424 ns; Loc. = LAB_X44_Y29; Fanout = 2; COMB Node = 'Add0~25'
+    Info: 16: + IC(0.000 ns) + CELL(0.071 ns) = 3.495 ns; Loc. = LAB_X44_Y29; Fanout = 2; COMB Node = 'Add0~27'
+    Info: 17: + IC(0.000 ns) + CELL(0.071 ns) = 3.566 ns; Loc. = LAB_X44_Y29; Fanout = 2; COMB Node = 'Add0~29'
+    Info: 18: + IC(0.000 ns) + CELL(0.071 ns) = 3.637 ns; Loc. = LAB_X44_Y29; Fanout = 2; COMB Node = 'Add0~31'
+    Info: 19: + IC(0.000 ns) + CELL(0.071 ns) = 3.708 ns; Loc. = LAB_X44_Y29; Fanout = 2; COMB Node = 'Add0~33'
+    Info: 20: + IC(0.000 ns) + CELL(0.071 ns) = 3.779 ns; Loc. = LAB_X44_Y29; Fanout = 2; COMB Node = 'Add0~35'
+    Info: 21: + IC(0.000 ns) + CELL(0.071 ns) = 3.850 ns; Loc. = LAB_X44_Y29; Fanout = 2; COMB Node = 'Add0~37'
+    Info: 22: + IC(0.000 ns) + CELL(0.071 ns) = 3.921 ns; Loc. = LAB_X44_Y29; Fanout = 2; COMB Node = 'Add0~39'
+    Info: 23: + IC(0.000 ns) + CELL(0.410 ns) = 4.331 ns; Loc. = LAB_X44_Y29; Fanout = 1; COMB Node = 'Add0~40'
+    Info: 24: + IC(0.767 ns) + CELL(0.275 ns) = 5.373 ns; Loc. = LAB_X45_Y30; Fanout = 1; COMB Node = 'Selector5~0'
+    Info: 25: + IC(0.000 ns) + CELL(0.084 ns) = 5.457 ns; Loc. = LAB_X45_Y30; Fanout = 5; REG Node = 'bit_count[20]'
+    Info: Total cell delay = 2.661 ns ( 48.76 % )
+    Info: Total interconnect delay = 2.796 ns ( 51.24 % )
 Info: Fitter routing operations beginning
 Info: Average interconnect usage is 0% of the available device resources
-    Info: Peak interconnect usage is 0% of the available device resources in the region that extends from location X0_Y24 to location X10_Y36
+    Info: Peak interconnect usage is 0% of the available device resources in the region that extends from location X44_Y24 to location X54_Y36
 Info: Fitter routing operations ending: elapsed time is 00:00:00
 Info: The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info: Optimizations that may affect the design's routability were skipped
@@ -2120,9 +2394,9 @@ Warning: Found 26 output pins without output pin load capacitance assignment
 Info: Delay annotation completed successfully
 Warning: Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Info: Quartus II Fitter was successful. 0 errors, 451 warnings
-    Info: Peak virtual memory: 247 megabytes
-    Info: Processing ended: Thu Apr 14 23:13:21 2016
-    Info: Elapsed time: 00:00:08
+    Info: Peak virtual memory: 248 megabytes
+    Info: Processing ended: Sun Apr 24 18:54:04 2016
+    Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:06
 
 

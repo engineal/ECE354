@@ -2,8 +2,44 @@
 #include "basic_io.h"
 #include "image.h"
 
-int hw_compressImage(char* output, char image[][Y]) {
-    return 0;
+int hwCompressImage(char* output, char image[][Y]) {
+    int n = 0; 
+    int outputLength = 0;
+    char bitImage[X*Y/8];
+    
+    charToBit(image, bitImage);
+   
+    outport(RLE_FLUSH_PIO_BASE, 0);
+    while(n<(X*Y/8))
+    {
+        if(!inport(FIFO_IN_FULL_PIO_BASE))
+        {
+            outport(FIFO_IN_WRITE_REQ_PIO_BASE, 1);
+            outport(ODATA_PIO_BASE, bitImage[n]);
+            //output(FIFO_IN_WRITE_REQ_PIO_BASE, 1);
+            //output(FIFO_IN_WRITE_REQ_PIO_BASE, 0); ?
+        }
+        
+        if(inport(RESULT_READY_PIO_BASE))
+        {
+            outport(FIFO_OUT_READ_REQ_PIO_BASE, 1);
+            int rleData = inport(IDATA_PIO_BASE);
+            output[outputLength++] = (rleData >> 16) & 0xFF;
+            output[outputLength++] = (rleData >> 8)  & 0xFF;
+            output[outputLength++] = (rleData)       & 0xFF;
+            
+            outport(FIFO_OUT_READ_REQ_PIO_BASE, 0);
+            
+            if(n<10)
+            {
+                printf("%x", rleData);
+            }
+        }
+        
+    }
+    outport(RLE_FLUSH_PIO_BASE, 1);
+    //output(RLE_FLUSH_PIO_BASE, 0);
+    return outputLength;
 }
 
 int compressImage(char* output, char image[][Y]) {
