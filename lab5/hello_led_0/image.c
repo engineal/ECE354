@@ -49,7 +49,7 @@ int charToBit(char image[][Y], char output[]) {
 }
 
 // Undos the action that charToBit performs.
-void bitToChar(char image[] , char output[][Y])
+void bitToChar(char image[], char output[][Y])
 {
     int i, j;
     int x=0; int y=0;
@@ -116,19 +116,16 @@ void imageRotate(char image[][Y]) {
     }
 }
 
-int compareArrays(char array1[][Y] , char array2[][Y] )
-{
-    int i, j;
-    for(i=0; i<X; i++)
-    {
-        for(j=0; j<Y; j++)
-        {
-            if(array1[i][j] != array2[i][j])
-            {
-                printf("failed on i,j == %d,%d\n", i,j);
-                return -1;
+int compareArrays(char array1[][Y], char array2[][Y]) {
+    int x, y;
+    int success = 1;
+    for(x=0; x<X; x++) {
+        for(y=0; y<Y; y++) {
+            if(array1[x][y] != array2[x][y]) {
+                printf("failed on %d,%d; %x!=%x\n", x, y, array1[x][y], array2[x][y]);
+                success = 0;
             }
         }
     }
-    return 0; //success, they're the same
+    return success; //success, they're the same
 }

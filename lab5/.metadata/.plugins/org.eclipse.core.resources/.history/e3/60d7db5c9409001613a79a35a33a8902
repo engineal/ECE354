@@ -1,0 +1,8 @@
+#ifndef RLE_H
+#define RLE_H
+
+int hw_compressImage(char*, char[][], int);
+int compressImage(char*, char[][], int);
+void decompressImage(char[][], char*, int);
+
+#endif /*RLE_H*/

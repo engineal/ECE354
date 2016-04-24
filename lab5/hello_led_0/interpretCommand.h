@@ -1,5 +1,5 @@
-#ifndef INTERPRETCOMMAND_H_
-#define INTERPRETCOMMAND_H_
+#ifndef INTERPRETCOMMAND_H
+#define INTERPRETCOMMAND_H
 
 #define MSG_ACK            0xAA
 #define MSG_NAK            0xFF
@@ -16,4 +16,4 @@
 
 void interpretCommand(int command);
 
-#endif /*INTERPRETCOMMAND_H_*/
+#endif /*INTERPRETCOMMAND_H*/

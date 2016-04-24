@@ -1,7 +1,7 @@
 #ifndef HELLO_LED_H
 #define HELLO_LED_H
 
-#define MASTER
+//#define MASTER
 
 #ifdef MASTER
 

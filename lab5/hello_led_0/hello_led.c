@@ -7,6 +7,7 @@
 #include "net/udp.h"
 #include "net/ethernet.h"
 #include "interpretCommand.h"
+#include "rle.h"
 
 UDPInfo* ethInfo;
 
@@ -33,12 +34,10 @@ int main(void)
     writeLEDs(0);
     
     int oldValue = 0;
-    char image[X][Y];
-    unsigned char data[MAX_PAYLOAD_LENGTH];
-    unsigned char pic_data[X*Y/8];
+    unsigned char pic_data[3*X*Y];
     int packetNum = 0;
     int bytesRec = 0;
-    char lastCommand=0x00; 
+    char lastCommand=0x00;
     
     while (1)
     {
@@ -61,6 +60,7 @@ int main(void)
         ethernet_worker();
         
         // -- RECEIVE --
+        unsigned char data[MAX_PAYLOAD_LENGTH];
         int size = udpReceive(data, ethInfo);
         if (size > 0) 
         {
@@ -73,14 +73,10 @@ int main(void)
                     writeGreenLEDs(0xFF);
                     if((master || SINGLE) && lastCommand==MSG_TRANSMIT_IMAGE)
                     {
-                        //convert to 2d array
-                        bitToChar(pic_data, image);
-                        
-                        //decompress
-                        //decompress(image,displayImage); //"image" is a compressed version of the image.
+                        char image[X][Y];
+                        decompressImage(image, pic_data, bytesRec);
                         
                         // display image
-                        //write_vga(displayImage);
                         write_vga(image);
     
                         // reset variables

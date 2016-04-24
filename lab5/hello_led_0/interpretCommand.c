@@ -4,6 +4,7 @@
 #include "image.h"
 #include "net/udp.h"
 #include "helper.h"
+#include "rle.h"
 
 extern UDPInfo* ethInfo;
 
@@ -22,19 +23,17 @@ static void sendNAK()
 // Breaks up an image and sends it in 1500 byte payload packets.
 void transmitImage(char image[][Y]) 
 {
-    char data[X*Y/8]; //8 bits per byte
-    char temp[MAX_PAYLOAD_LENGTH];
-    int i;
-    int bytesSent = 0;
-    // compressImage(image,compressedImage);
-    // int dataLength = charToBit(compressedImage,data);
-    int dataLength = charToBit(image, data); //packing X*Y bits of data (stored in X*Y bytes) into X*Y/8 bytes
+    char data[3*X*Y];
+    int dataLength = compressImage(data, image);
     printf("Sending image, %d bytes total\n", dataLength);
     
-    for(i=0; i < dataLength; i += MAX_PAYLOAD_LENGTH) 
+    char temp[MAX_PAYLOAD_LENGTH];
+    int bytesSent = 0;
+    int i;
+    for(i = 0; i < dataLength; i += MAX_PAYLOAD_LENGTH) 
     {
         int remaining = dataLength - bytesSent;
-        if(remaining >= MAX_PAYLOAD_LENGTH) 
+        if (remaining >= MAX_PAYLOAD_LENGTH) 
         {
             charnuncat(temp, data, bytesSent, MAX_PAYLOAD_LENGTH);
             udpSend(temp, MAX_PAYLOAD_LENGTH, ethInfo);
