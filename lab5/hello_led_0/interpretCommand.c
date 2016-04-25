@@ -34,7 +34,7 @@ void transmitImage(char image[][Y])
     int dataLength = compressImage(data, image);
     //int dataLength = hwCompressImage(data, image);
     
-    int numPackets = (dataLength+MAX_PAYLOAD_LENGTH-1)/MAX_PAYLOAD_LENGTH;
+    int numPackets = (dataLength+MAX_PAYLOAD_LENGTH-1)/MAX_PAYLOAD_LENGTH; //Round up division
     printf("SLAVE: sending %d packets, %d bytes\n", numPackets, dataLength);
     
     char temp[MAX_PAYLOAD_LENGTH];

@@ -6,11 +6,16 @@
 #include "DM9000A.C"
 #include "math.h"
 
+#define TIMEOUT 10
+
 char* ether_addr;
 int packet_num;
 
 Queue* sendQueue;
 Queue* receivedQueue;
+
+int tries;
+int timeout;
 
 int compareMAC(char* mac1, char* mac2) {
     int macPass = 1;
@@ -47,6 +52,9 @@ void ethernet_interrupts() {
                 // Remove packet from send queue for which the layer 2 ack was for
                 ethernetFrame* sentFrame = dequeue(sendQueue);
                 if (sentFrame != NULL) {
+                    printf("Layer 2 ACK received after %d try(s)\n", tries);
+                    tries = 0;
+                    timeout = TIMEOUT;
                     free(sentFrame->data);
                     free(sentFrame);
                 }
@@ -67,6 +75,9 @@ void ethernetInit(char* localMAC) {
     sendQueue = initQueue();
     receivedQueue = initQueue();
     
+    tries = 0;
+    timeout = TIMEOUT;
+    
     writeDecimalLCD(packet_num);
     
     DM9000_init(localMAC);
@@ -80,12 +91,22 @@ void ethernetInit(char* localMAC) {
 void ethernet_worker() {
     ethernetFrame* frame = peek(sendQueue);
     if (frame != NULL) {
-        //printEthernetHeader(frame);
-        unsigned char output[ETHERNET_HEADER_LENGTH + frame->dataLength];
-        int outputLength = ethPack(frame, output);
-        
-        TransmitPacket(output, outputLength);
-        msleep(100);
+        if (timeout >= TIMEOUT) {
+            if (tries > 0) {
+                printf("Layer 2 ACK not received for try #%d, retrying\n", tries);
+            }
+            //printEthernetHeader(frame);
+            unsigned char output[ETHERNET_HEADER_LENGTH + frame->dataLength];
+            int outputLength = ethPack(frame, output);
+            
+            TransmitPacket(output, outputLength);
+            tries++;
+            timeout = 0;
+            msleep(50);
+        } else {
+            printf("Layer 2 ACK not received for try #%d, waiting...\n", tries);
+            timeout++;
+        }
     }
 }
 
@@ -128,7 +149,7 @@ void ethernetSendNoACK(
     int outputLength = ethPack(&frame, output);
     
     TransmitPacket(output, outputLength);
-    msleep(100);
+    msleep(50);
 }
 
 /*

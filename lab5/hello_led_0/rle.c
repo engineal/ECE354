@@ -77,9 +77,13 @@ void decompressImage(char output[][Y], char* input, int inputLength) {
         for (j = 0; j < num; j++) {
             output[x][y] = bit;
             y++;
-            if (y == 480) {
+            if (y == Y) {
                 y = 0;
                 x++;
+            }
+            if (x >= X) {
+                // Stop at end of image, this means compression data is corrupt
+                return;
             }
         }
     }
