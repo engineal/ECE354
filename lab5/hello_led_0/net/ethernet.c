@@ -53,11 +53,13 @@ void ethernet_interrupts() {
                 ethernetFrame* sentFrame = dequeue(sendQueue);
                 if (sentFrame != NULL) {
                     printf("Layer 2 ACK received after %d try(s)\n", tries);
-                    tries = 0;
-                    timeout = TIMEOUT;
                     free(sentFrame->data);
                     free(sentFrame);
+                } else {
+                    printf("Extra layer 2 ACK received!\n", tries);
                 }
+                tries = 0;
+                timeout = TIMEOUT;
             } else {
                 // Add packet to receive queue
                 enqueue(receivedQueue, frame);
