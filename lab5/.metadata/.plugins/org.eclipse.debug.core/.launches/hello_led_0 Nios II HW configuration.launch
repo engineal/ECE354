@@ -6,7 +6,7 @@
 <stringAttribute key="org.eclipse.debug.core.source_locator_id" value="com.altera.nj.debug.core.sourceLocator"/>
 <stringAttribute key="com.altera.nj.launch.PTF_CPU" value="cpu_0"/>
 <booleanAttribute key="com.altera.nj.launch.STOP_AT_ENTRY" value="false"/>
-<stringAttribute key="com.altera.nj.launch.CABLE_NAME" value="USB-Blaster [USB-0]"/>
+<stringAttribute key="com.altera.nj.launch.CABLE_NAME" value="USB-Blaster [USB-1]"/>
 <intAttribute key="com.altera.nj.launch.TERMINAL_BY_WHAT" value="1"/>
 <booleanAttribute key="com.altera.nj.launch.RESET_TARGET" value="false"/>
 <stringAttribute key="com.altera.nj.launch.TERMINAL_TO_WHAT" value="stdout"/>

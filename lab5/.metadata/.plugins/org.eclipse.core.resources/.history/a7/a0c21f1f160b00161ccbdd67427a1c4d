@@ -103,7 +103,7 @@ void ethernet_worker() {
             TransmitPacket(output, outputLength);
             tries++;
             timeout = 0;
-            msleep(100);
+            msleep(10);
         } else {
             timeout++;
         }
@@ -149,7 +149,7 @@ void ethernetSendNoACK(
     int outputLength = ethPack(&frame, output);
     
     TransmitPacket(output, outputLength);
-    msleep(100);
+    msleep(50);
 }
 
 /*

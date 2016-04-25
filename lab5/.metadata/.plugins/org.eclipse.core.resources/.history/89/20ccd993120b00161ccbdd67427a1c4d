@@ -52,6 +52,7 @@ void ethernet_interrupts() {
                 // Remove packet from send queue for which the layer 2 ack was for
                 ethernetFrame* sentFrame = dequeue(sendQueue);
                 if (sentFrame != NULL) {
+                    printf("Layer 2 ACK received after %d try(s)\n", tries);
                     free(sentFrame->data);
                     free(sentFrame);
                 } else {
@@ -103,8 +104,9 @@ void ethernet_worker() {
             TransmitPacket(output, outputLength);
             tries++;
             timeout = 0;
-            msleep(100);
+            msleep(50);
         } else {
+            printf("Layer 2 ACK not received for try #%d, waiting...\n", tries);
             timeout++;
         }
     }
@@ -149,7 +151,7 @@ void ethernetSendNoACK(
     int outputLength = ethPack(&frame, output);
     
     TransmitPacket(output, outputLength);
-    msleep(100);
+    msleep(50);
 }
 
 /*

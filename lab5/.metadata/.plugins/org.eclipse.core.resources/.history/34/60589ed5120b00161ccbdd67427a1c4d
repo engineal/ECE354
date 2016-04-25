@@ -103,8 +103,9 @@ void ethernet_worker() {
             TransmitPacket(output, outputLength);
             tries++;
             timeout = 0;
-            msleep(100);
+            msleep(50);
         } else {
+            printf("Layer 2 ACK not received for try #%d, waiting...\n", tries);
             timeout++;
         }
     }
@@ -149,7 +150,7 @@ void ethernetSendNoACK(
     int outputLength = ethPack(&frame, output);
     
     TransmitPacket(output, outputLength);
-    msleep(100);
+    msleep(50);
 }
 
 /*
