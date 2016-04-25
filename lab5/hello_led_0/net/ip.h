@@ -7,7 +7,7 @@
 #define IP_LENGTH       ETHERNET_DATA_LENGTH
 #define IP_DATA_LENGTH  (IP_LENGTH-IP_HEADER_LENGTH)
 
-void ipSend(char*, int, char*, char*, char*, char*);
-int ipReceive(char*, char*, char*);
+void ipSend(char*, int, char*, char*, char*);
+int ipReceive(char*, char*);
 
 #endif /*IP_H*/

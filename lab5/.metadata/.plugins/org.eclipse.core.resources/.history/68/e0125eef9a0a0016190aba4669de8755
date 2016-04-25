@@ -1,0 +1,47 @@
+#include "udp.h"
+#include "basic_io.h"
+#include "helper.h"
+
+// creates and transmits packet
+void udpSend(
+    char* data, 
+    int length, 
+    int destPort, int localPort,
+    char* destIP, char* localIP,
+    char* destMAC) 
+{
+    UDPFrame frame;
+    fillUDPHeader(&frame, localPort, destPort, data, length);
+    //printUDPHeader(&frame);
+    unsigned char output[UDP_HEADER_LENGTH + length];
+    int outputLength = UDPPack(&frame, output);
+    
+    ipSend(output, outputLength, destIP, localIP, destMAC);
+}
+
+// receives and decodes packet
+int udpReceive(
+    char* returnedData, 
+    int localPort,
+    char* localIP) 
+{
+    unsigned char data[UDP_LENGTH];
+    int dataLength = ipReceive(data, localIP);
+    if (dataLength > 0) {
+        UDPFrame frame;
+        frame.data = returnedData;
+        UDPUnpack(data, &frame);
+        //printUDPHeader(&frame);
+
+        int checksum = computeChecksum(data, dataLength);
+
+        if (frame.checksum != checksum) {
+            printf("UDP Checksum fail: %x != %x\n", frame.checksum, checksum);
+        } else if (frame.destPort != localPort) {
+            printf("Port fail: %d != %d\n", frame.destPort, info->localPort);
+        } else {
+            return frame.dataLength;
+        }
+    }
+    return -1;
+}

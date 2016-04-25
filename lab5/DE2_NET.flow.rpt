@@ -1,5 +1,5 @@
 Flow report for DE2_NET
-Sun Apr 24 19:40:59 2016
+Sun Apr 24 21:53:24 2016
 Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
 
 
@@ -38,16 +38,16 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Flow Summary                                                                 ;
 +------------------------------------+-----------------------------------------+
-; Flow Status                        ; Successful - Sun Apr 24 19:40:58 2016   ;
+; Flow Status                        ; Successful - Sun Apr 24 21:53:24 2016   ;
 ; Quartus II Version                 ; 9.1 Build 222 10/21/2009 SJ Web Edition ;
 ; Revision Name                      ; DE2_NET                                 ;
 ; Top-level Entity Name              ; DE2_NET                                 ;
 ; Family                             ; Cyclone II                              ;
 ; Device                             ; EP2C35F672C6                            ;
 ; Timing Models                      ; Final                                   ;
-; Met timing requirements            ; No                                      ;
-; Total logic elements               ; 7,255 / 33,216 ( 22 % )                 ;
-;     Total combinational functions  ; 6,073 / 33,216 ( 18 % )                 ;
+; Met timing requirements            ; Yes                                     ;
+; Total logic elements               ; 7,211 / 33,216 ( 22 % )                 ;
+;     Total combinational functions  ; 6,059 / 33,216 ( 18 % )                 ;
 ;     Dedicated logic registers      ; 3,834 / 33,216 ( 12 % )                 ;
 ; Total registers                    ; 3951                                    ;
 ; Total pins                         ; 425 / 475 ( 89 % )                      ;
@@ -63,7 +63,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/24/2016 19:37:51 ;
+; Start date & time ; 04/24/2016 21:50:28 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE2_NET             ;
 +-------------------+---------------------+
@@ -74,7 +74,7 @@ applicable agreement for further details.
 +-----------------------+------------------------------+---------------+-------------+------------+
 ; Assignment Name       ; Value                        ; Default Value ; Entity Name ; Section Id ;
 +-----------------------+------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID ; 152426032768.146154107104056 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID ; 152426032768.146154902806148 ; --            ; --          ; --         ;
 +-----------------------+------------------------------+---------------+-------------+------------+
 
 
@@ -83,11 +83,11 @@ applicable agreement for further details.
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name             ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis    ; 00:01:16     ; 1.0                     ; 313 MB              ; 00:01:09                           ;
-; Fitter                  ; 00:01:37     ; 1.0                     ; 286 MB              ; 00:01:33                           ;
+; Analysis & Synthesis    ; 00:01:03     ; 1.0                     ; 313 MB              ; 00:01:01                           ;
+; Fitter                  ; 00:01:39     ; 1.0                     ; 287 MB              ; 00:01:35                           ;
 ; Assembler               ; 00:00:03     ; 1.0                     ; 251 MB              ; 00:00:03                           ;
-; Classic Timing Analyzer ; 00:00:07     ; 1.0                     ; 207 MB              ; 00:00:07                           ;
-; Total                   ; 00:03:03     ; --                      ; --                  ; 00:02:52                           ;
+; Classic Timing Analyzer ; 00:00:07     ; 1.0                     ; 203 MB              ; 00:00:08                           ;
+; Total                   ; 00:02:52     ; --                      ; --                  ; 00:02:47                           ;
 +-------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

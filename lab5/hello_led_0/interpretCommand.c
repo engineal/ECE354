@@ -6,18 +6,24 @@
 #include "helper.h"
 #include "rle.h"
 
-extern UDPInfo* ethInfo;
+extern int localPort;
+extern char localIP[];
+extern char localMAC[];
+
+extern int destPort;
+extern char destIP[];
+extern char destMAC[];
 
 static void sendACK()
 {
     char data[] = {MSG_ACK};
-    udpSend(data, 1, ethInfo);
+    udpSend(data, 1, destPort, localPort, destIP, localIP, destMAC);
 }
 
 static void sendNAK()
 {
     char data[] = {MSG_NAK};
-    udpSend(data, 1, ethInfo);
+    udpSend(data, 1, destPort, localPort, destIP, localIP, destMAC);
 }
 
 // Breaks up an image and sends it in 1500 byte payload packets.
@@ -25,10 +31,11 @@ void transmitImage(char image[][Y])
 {
     char data[3*X*Y];
     
-    //int dataLength = compressImage(data, image);
-    int dataLength = hwCompressImage(data, image);
+    int dataLength = compressImage(data, image);
+    //int dataLength = hwCompressImage(data, image);
     
-    printf("Sending image, %d bytes total\n", dataLength);
+    int numPackets = (dataLength+MAX_PAYLOAD_LENGTH-1)/MAX_PAYLOAD_LENGTH;
+    printf("SLAVE: sending %d packets, %d bytes\n", numPackets, dataLength);
     
     char temp[MAX_PAYLOAD_LENGTH];
     int bytesSent = 0;
@@ -39,13 +46,13 @@ void transmitImage(char image[][Y])
         if (remaining >= MAX_PAYLOAD_LENGTH) 
         {
             charnuncat(temp, data, bytesSent, MAX_PAYLOAD_LENGTH);
-            udpSend(temp, MAX_PAYLOAD_LENGTH, ethInfo);
+            udpSend(temp, MAX_PAYLOAD_LENGTH, destPort, localPort, destIP, localIP, destMAC);
             bytesSent += MAX_PAYLOAD_LENGTH;
         }
         else 
         {
             charnuncat(temp, data, bytesSent, remaining);
-            udpSend(temp, remaining, ethInfo);
+            udpSend(temp, remaining, destPort, localPort, destIP, localIP, destMAC);
             bytesSent += remaining;
         }
     }

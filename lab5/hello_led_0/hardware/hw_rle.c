@@ -18,10 +18,11 @@ void rle_flush() {
 
 int fifo_out_read_byte() {
     outport(FIFO_OUT_READ_REQ_PIO_BASE, 1);
+    int result = inport(IDATA_PIO_BASE);
     outport(FIFO_OUT_READ_REQ_PIO_BASE, 0);
-    return inport(IDATA_PIO_BASE);
+    return result;
 }
 
 int fifo_out_ready() {
-    return inport(RESULT_READY_PIO_BASE);
+    return !inport(RESULT_READY_PIO_BASE);
 }

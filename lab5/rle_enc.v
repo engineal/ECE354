@@ -72,11 +72,11 @@ always @(posedge clk) begin
 		shift_buf <= 8'b0;
 		rd_reg <= 1'b0;
 		wr_reg <= 1'b0;
-		new_bitstream <= 1'b0;
+		new_bitstream <= 1'b1;
 
 	end
 	REQUEST_INPUT: begin
-		//Assert rd_req signal to FIFO by setting rd_reg
+		//Assert rd_req signal to FIFO by setting rd_reg
 		//FIFO takes rd_req signal at next clock
 		rd_reg <= 1'b1;
 		shift_count <= 4'b0000;
@@ -89,7 +89,7 @@ always @(posedge clk) begin
 	READ_INPUT : begin
 		//FIFO provides valid data after taking rd_req
 		//shift_buf stores 8 bit input data 
-		shift_buf[7:0] <= in_data[7:0];
+		shift_buf <= in_data;
 	end			
 	COUNT_BITS: begin
 		//Count number of consecutive bits in shift_buf
@@ -98,10 +98,11 @@ always @(posedge clk) begin
 		if(new_bitstream) begin
 			value_type <= shift_buf[0];
 			new_bitstream <= 1'b0;
+			bit_count <= 23'b1;
 		end
 		else begin
 			if(shift_buf[0] == value_type) begin
-				bit_count[22:0] <= bit_count[22:0] + 1;
+				bit_count <= bit_count + 1;
 			end
 			else begin
 				new_bitstream <= 1'b1;
@@ -112,23 +113,22 @@ always @(posedge clk) begin
 		//Right shift the shift_buf
 		//Increase shift_count
 		if(!new_bitstream) begin
-			shift_buf[6:0] <= shift_buf[7:1];
-			shift_buf[7] <= 1'b0;
+			shift_buf <= shift_buf >> 1;
 			shift_count <= shift_count + 1;
 		end
 	end
 	COUNT_DONE: begin
 		//Assert wr_req by setting wr_reg
 		//FIFO will take wr_req signal in next clock cycle
-		wr_reg = 1'b1;
+		wr_reg <= 1'b1;
 	end
 	WAIT_OUTPUT : begin //it's in this cycle that output side FIFO reads out_data
 		//De-assert wr_req by setting wr_reg
-		wr_reg = 1'b0;
+		wr_reg <= 1'b0;
 	end
 	RESET_COUNT : begin
 		//Reset bit counting register after passing encoded data to output side FIFO
-		bit_count[22:0] <= 23'b0;
+		bit_count <= 23'b0;
 	end
 	endcase
 end

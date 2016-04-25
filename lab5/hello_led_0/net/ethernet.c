@@ -61,7 +61,7 @@ void ethernet_interrupts() {
     }
 }
 
-void ethernetInit(char localMAC[]) {
+void ethernetInit(char* localMAC) {
     ether_addr = localMAC;
     packet_num = 0;
     sendQueue = initQueue();
@@ -97,7 +97,7 @@ void ethernet_worker() {
  */
 void ethernetSend(
     char* data, int length, 
-    char* destMAC, char* localMAC)
+    char* destMAC)
 {
     int data_length = max(length,46);
     ethernetFrame* frame = (ethernetFrame*)malloc(sizeof(ethernetFrame));
@@ -108,7 +108,7 @@ void ethernetSend(
     for (x = length; x < 46; x++) {
         data[x] = 0x0;
     }
-    fillEthernetHeader(frame, destMAC, localMAC, frameData, data_length);
+    fillEthernetHeader(frame, destMAC, ether_addr, frameData, data_length);
     //printEthernetHeader(frame);
     enqueue(sendQueue, frame);
 }
@@ -119,10 +119,10 @@ void ethernetSend(
  */
 void ethernetSendNoACK(
     char* data, int length, 
-    char* destMAC, char* localMAC)
+    char* destMAC)
 {
     ethernetFrame frame;
-    fillEthernetHeader(&frame, destMAC, localMAC, data, length);
+    fillEthernetHeader(&frame, destMAC, ether_addr, data, length);
     //printEthernetHeader(&frame);
     unsigned char output[ETHERNET_HEADER_LENGTH + length];
     int outputLength = ethPack(&frame, output);
@@ -138,16 +138,14 @@ void ethernetSendNoACK(
  *
  * Returns: the length of the returned data, -1 if no packet left to receive
  */
-int ethernetReceive(
-    char* returnedData, 
-    char* localMAC)
+int ethernetReceive(char* returnedData)
 {
     ethernetFrame* frame = dequeue(receivedQueue);
     if (frame != NULL) {
         //printEthernetHeader(frame);
         //Send layer 2 ACK
         char ackData[] = {0xF0};
-        ethernetSendNoACK(ackData, 1, frame->src_addr, localMAC);
+        ethernetSendNoACK(ackData, 1, frame->src_addr);
 
         charncpy(returnedData, frame->data, frame->dataLength);
         free(frame->data);

@@ -8,41 +8,22 @@
 #include "net/ethernet.h"
 #include "interpretCommand.h"
 #include "rle.h"
-#include "hardware/hw_rle.h"
 
-UDPInfo* ethInfo;
+int localPort = LOCAL_PORT;
+char localIP[] = LOCAL_IP;
+char localMAC[] = LOCAL_MAC;
+
+int destPort = DEST_PORT;
+char destIP[] = DEST_IP;
+char destMAC[] = DEST_MAC;
 
 int main(void)
 {
-    // Default Ethernet settings.
-    UDPInfo i;   
-    char localIP[] = LOCAL_IP;
-    char localMAC[] = LOCAL_MAC;
-    char destIP[] = DEST_IP;
-    char destMAC[] = DEST_MAC;
-    i.localIP = localIP;
-    i.localMAC = localMAC;
-    i.localPort = LOCAL_PORT;    
-    i.destIP = destIP;
-    i.destMAC = destMAC;
-    i.destPort = DEST_PORT;
-    ethInfo = &i;
-    
     LCD_Test();
-    ethernetInit(ethInfo->localMAC);
+    ethernetInit(localMAC);
     init_vga();
     
     writeLEDs(0);
-    
-    
-    
-    rle_flush();
-    fifo_in_write_byte(0x01);
-    rle_flush();
-    int rleData = fifo_out_read_byte();
-    printf("%x \n", rleData);
-    
-    
     
     int oldValue = 0;
     unsigned char pic_data[3*X*Y];
@@ -62,7 +43,7 @@ int main(void)
                 char data[] = {switches & 0xF};
                 lastCommand = data[0];
                 printf("MASTER: Sending %d\n", data[0]);
-                udpSend(data, 1, ethInfo);
+                udpSend(data, 1, destPort, localPort, destIP, localIP, destMAC);
             }
             oldValue = value;
         }
@@ -72,7 +53,7 @@ int main(void)
         
         // -- RECEIVE --
         unsigned char data[MAX_PAYLOAD_LENGTH];
-        int size = udpReceive(data, ethInfo);
+        int size = udpReceive(data, localPort, localIP);
         if (size > 0) 
         {
             // If size = 1, it must be a commanding message
@@ -84,8 +65,12 @@ int main(void)
                     writeGreenLEDs(0xFF);
                     if((master || SINGLE) && lastCommand==MSG_TRANSMIT_IMAGE)
                     {
+                        printf("MASTER: received %d packets, %d bytes\n", packetNum, bytesRec);
+                        
                         char image[X][Y];
                         decompressImage(image, pic_data, bytesRec);
+                        
+                        printf("decompressed\n");
                         
                         // display image
                         write_vga(image);
@@ -110,12 +95,11 @@ int main(void)
             } 
             else //this must be picture data from slave to master
             {
-                printf("MASTER: packetNum: %d \n", packetNum);
                 charncat(pic_data, data, &bytesRec, size); // get data necessary to build your image
                 packetNum++;
             }
         }
-        msleep(100);
+        msleep(50);
     }
 
     return 0;

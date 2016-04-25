@@ -6,24 +6,27 @@
 void udpSend(
     char* data, 
     int length, 
-    UDPInfo* info) 
+    int destPort, int localPort,
+    char* destIP, char* localIP,
+    char* destMAC) 
 {
     UDPFrame frame;
-    fillUDPHeader(&frame, info->localPort, info->destPort, data, length);
+    fillUDPHeader(&frame, localPort, destPort, data, length);
     //printUDPHeader(&frame);
     unsigned char output[UDP_HEADER_LENGTH + length];
     int outputLength = UDPPack(&frame, output);
     
-    ipSend(output, outputLength, info->destIP, info->localIP, info->destMAC, info->localMAC);
+    ipSend(output, outputLength, destIP, localIP, destMAC);
 }
 
 // receives and decodes packet
 int udpReceive(
     char* returnedData, 
-    UDPInfo* info) 
+    int localPort,
+    char* localIP) 
 {
     unsigned char data[UDP_LENGTH];
-    int dataLength = ipReceive(data, info->localIP, info->localMAC);
+    int dataLength = ipReceive(data, localIP);
     if (dataLength > 0) {
         UDPFrame frame;
         frame.data = returnedData;
@@ -34,8 +37,8 @@ int udpReceive(
 
         if (frame.checksum != checksum) {
             printf("UDP Checksum fail: %x != %x\n", frame.checksum, checksum);
-        } else if (frame.destPort != info->localPort) {
-            printf("Port fail: %d != %d\n", frame.destPort, info->localPort);
+        } else if (frame.destPort != localPort) {
+            printf("Port fail: %d != %d\n", frame.destPort, localPort);
         } else {
             return frame.dataLength;
         }

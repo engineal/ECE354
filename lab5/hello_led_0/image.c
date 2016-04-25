@@ -14,7 +14,6 @@ void readFlash(char image[][Y]) {
         return;
     }
 
-    printf("Reading binary pixel from flash memory\n");
     int i, j;
     for (j = 0; j < Y; j++) {
         for(i = 0; i < X; i++) {
@@ -29,19 +28,19 @@ void readFlash(char image[][Y]) {
 // and condenses it into a 1-D output array which contains 8 bits of data
 // for every char. Returns number of chars in output array.
 int charToBit(char image[][Y], char output[]) {
-    int i, j, a;
+    int x, y, a;
     int offset = 0;
     unsigned char temp;
     
-    for (i = 0; i < X; i++) {
-        j = 0;
-        while (j < Y) {
+    for (x = 0; x < X; x++) {
+        y = 0;
+        while (y < Y) {
             temp = 0;
             for (a = 0; a < 8; a++) {
-                temp |= image[i][j + a] << (7 - a);
+                temp |= image[x][y + a] << a;
             }
             output[offset++] = temp;
-            j += 8;
+            y += 8;
         }
     }
     
@@ -59,7 +58,7 @@ void bitToChar(char image[], char output[][Y])
         temp = image[i];
         for(j=0; j<8; j++)
         {
-           output[x][y] = (temp >> (7-j)) & 0x1; // get one bit, store in output[x][y]
+           output[x][y] = (temp >> j) & 0x1; // get one bit, store in output[x][y]
            y++;
         }
         if (y==480)
@@ -98,20 +97,21 @@ void imageInvert(char image[][Y]) {
 
 void imageRotate(char image[][Y]) {
     char cpy[X][Y];
-    int i, j;
-    for(i = 0; i < X; i++) {
-        for(j = 0; j < Y; j++) {
-            if (i > 80 && i < 560) {
-                cpy[i][j] = image[j][i];
+    int x, y;
+    int boundry = (X - Y) / 2;
+    for(x = 0; x < X; x++) {
+        for(y = 0; y < Y; y++) {
+            if (x > boundry && x < X - boundry) {
+                cpy[x][y] = image[y + boundry][Y - (x - boundry)];
             } else {
-                cpy[i][j] = 1;
+                cpy[x][y] = 1;
             }
         }
     }
     
-    for (i = 0; i < X; i++) {
-        for (j = 0; j < Y; j++) {
-            image[i][j] = cpy[i][j];
+    for (x = 0; x < X; x++) {
+        for (y = 0; y < Y; y++) {
+            image[x][y] = cpy[x][y];
         }
     }
 }

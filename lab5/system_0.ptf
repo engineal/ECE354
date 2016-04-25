@@ -2462,7 +2462,7 @@ SYSTEM system_0
             {
                IRQ_Number = "1";
             }
-            Base_Address = "0x006810F0";
+            Base_Address = "0x00681160";
             Address_Group = "0";
          }
          PORT_WIRING 
@@ -3930,7 +3930,7 @@ SYSTEM system_0
             {
                priority = "1";
             }
-            Base_Address = "0x00681100";
+            Base_Address = "0x00681170";
             IRQ_MASTER cpu_0/data_master
             {
                IRQ_Number = "NC";
@@ -4416,7 +4416,7 @@ SYSTEM system_0
             {
                IRQ_Number = "6";
             }
-            Base_Address = "0x006810F8";
+            Base_Address = "0x00681168";
          }
          COMPONENT_BUILDER 
          {
@@ -5317,7 +5317,7 @@ SYSTEM system_0
             {
                priority = "1";
             }
-            Base_Address = "0x00681104";
+            Base_Address = "0x00681174";
             IRQ_MASTER cpu_0/data_master
             {
                IRQ_Number = "NC";
@@ -5967,7 +5967,7 @@ SYSTEM system_0
             Has_IRQ = "0";
             Address_Width = "2";
             Data_Width = "8";
-            Base_Address = "0x00681110";
+            Base_Address = "0x006810F0";
             Address_Alignment = "native";
             Read_Wait_States = "1";
             Write_Wait_States = "0";
@@ -6111,7 +6111,7 @@ SYSTEM system_0
             Has_IRQ = "0";
             Address_Width = "2";
             Data_Width = "1";
-            Base_Address = "0x00681120";
+            Base_Address = "0x00681100";
             Address_Alignment = "native";
             Read_Wait_States = "1";
             Write_Wait_States = "0";
@@ -6234,7 +6234,7 @@ SYSTEM system_0
             Has_IRQ = "0";
             Address_Width = "2";
             Data_Width = "1";
-            Base_Address = "0x00681130";
+            Base_Address = "0x00681110";
             Address_Alignment = "native";
             Read_Wait_States = "1";
             Write_Wait_States = "0";
@@ -6357,7 +6357,7 @@ SYSTEM system_0
             Has_IRQ = "0";
             Address_Width = "2";
             Data_Width = "24";
-            Base_Address = "0x00681140";
+            Base_Address = "0x00681120";
             Address_Alignment = "native";
             Read_Wait_States = "1";
             Write_Wait_States = "0";
@@ -6480,7 +6480,7 @@ SYSTEM system_0
             Has_IRQ = "0";
             Address_Width = "2";
             Data_Width = "1";
-            Base_Address = "0x00681150";
+            Base_Address = "0x00681130";
             Address_Alignment = "native";
             Read_Wait_States = "1";
             Write_Wait_States = "0";
@@ -6624,7 +6624,7 @@ SYSTEM system_0
             Has_IRQ = "0";
             Address_Width = "2";
             Data_Width = "1";
-            Base_Address = "0x00681160";
+            Base_Address = "0x00681140";
             Address_Alignment = "native";
             Read_Wait_States = "1";
             Write_Wait_States = "0";
@@ -6768,7 +6768,7 @@ SYSTEM system_0
             Has_IRQ = "0";
             Address_Width = "2";
             Data_Width = "1";
-            Base_Address = "0x00681170";
+            Base_Address = "0x00681150";
             Address_Alignment = "native";
             Read_Wait_States = "1";
             Write_Wait_States = "0";

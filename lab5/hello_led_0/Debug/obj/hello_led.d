@@ -35,4 +35,4 @@ obj/hello_led.o: ../hello_led.c ../hello_led.h ../basic_io.h \
   ../custom_io.h ../LCD.h ../image.h ../helper.h ../net/udp.h \
   ../net/layers/udp_layer.h ../net/ip.h ../net/layers/IP_layer.h \
   ../net/ethernet.h ../net/layers/ethernet_layer.h ../net/ethernet.h \
-  ../interpretCommand.h ../rle.h ../hardware/hw_rle.h
+  ../interpretCommand.h ../rle.h

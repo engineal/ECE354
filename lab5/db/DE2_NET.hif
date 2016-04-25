@@ -4995,152 +4995,6 @@ RLE_FIFO_8_256:FIFO_send|dcfifo:dcfifo_component|dcfifo_kbk1:auto_generated|alt_
 
 # end
 # entity
-rle_enc
-# storage
-db|DE2_NET.(27).cnf
-db|DE2_NET.(27).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-rle_enc.v
-50a6dbffc0acfff715ba44fe407c347a
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# user_parameter {
-INIT
-0000
-PARAMETER_UNSIGNED_BIN
-DEF
-REQUEST_INPUT
-0001
-PARAMETER_UNSIGNED_BIN
-DEF
-WAIT_INPUT
-0010
-PARAMETER_UNSIGNED_BIN
-DEF
-COUNT_BITS
-0011
-PARAMETER_UNSIGNED_BIN
-DEF
-SHIFT_BITS
-0100
-PARAMETER_UNSIGNED_BIN
-DEF
-COUNT_DONE
-0101
-PARAMETER_UNSIGNED_BIN
-DEF
-WAIT_OUTPUT
-0110
-PARAMETER_UNSIGNED_BIN
-DEF
-RESET_COUNT
-0111
-PARAMETER_UNSIGNED_BIN
-DEF
-READ_INPUT
-1000
-PARAMETER_UNSIGNED_BIN
-DEF
-}
-# hierarchies {
-rle_enc:rle_machine
-}
-# macro_sequence
-
-# end
-# entity
-system_0
-# storage
-db|DE2_NET.(28).cnf
-db|DE2_NET.(28).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0
-}
-# macro_sequence
-
-# end
-# entity
-Audio_0_avalon_slave_0_arbitrator
-# storage
-db|DE2_NET.(29).cnf
-db|DE2_NET.(29).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|Audio_0_avalon_slave_0_arbitrator:the_Audio_0_avalon_slave_0
-}
-# macro_sequence
-
-# end
-# entity
 Audio_0
 # storage
 db|DE2_NET.(30).cnf
@@ -6472,42 +6326,6 @@ system_0:u0|Audio_0:the_Audio_0|AUDIO_DAC_FIFO:the_AUDIO_DAC_FIFO|FIFO_16_256:u0
 
 # end
 # entity
-DM9000A_avalon_slave_0_arbitrator
-# storage
-db|DE2_NET.(45).cnf
-db|DE2_NET.(45).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|DM9000A_avalon_slave_0_arbitrator:the_DM9000A_avalon_slave_0
-}
-# macro_sequence
-
-# end
-# entity
 DM9000A
 # storage
 db|DE2_NET.(46).cnf
@@ -6580,42 +6398,6 @@ system_0:u0|DM9000A:the_DM9000A|DM9000A_IF:the_DM9000A_IF
 
 # end
 # entity
-FIFO_IN_FULL_PIO_s1_arbitrator
-# storage
-db|DE2_NET.(48).cnf
-db|DE2_NET.(48).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|FIFO_IN_FULL_PIO_s1_arbitrator:the_FIFO_IN_FULL_PIO_s1
-}
-# macro_sequence
-
-# end
-# entity
 FIFO_IN_FULL_PIO
 # storage
 db|DE2_NET.(49).cnf
@@ -6647,42 +6429,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|FIFO_IN_FULL_PIO:the_FIFO_IN_FULL_PIO
-}
-# macro_sequence
-
-# end
-# entity
-FIFO_IN_WRITE_REQ_PIO_s1_arbitrator
-# storage
-db|DE2_NET.(50).cnf
-db|DE2_NET.(50).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|FIFO_IN_WRITE_REQ_PIO_s1_arbitrator:the_FIFO_IN_WRITE_REQ_PIO_s1
 }
 # macro_sequence
 
@@ -6724,42 +6470,6 @@ system_0:u0|FIFO_IN_WRITE_REQ_PIO:the_FIFO_IN_WRITE_REQ_PIO
 
 # end
 # entity
-FIFO_OUT_READ_REQ_PIO_s1_arbitrator
-# storage
-db|DE2_NET.(52).cnf
-db|DE2_NET.(52).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|FIFO_OUT_READ_REQ_PIO_s1_arbitrator:the_FIFO_OUT_READ_REQ_PIO_s1
-}
-# macro_sequence
-
-# end
-# entity
 FIFO_OUT_READ_REQ_PIO
 # storage
 db|DE2_NET.(53).cnf
@@ -6796,42 +6506,6 @@ system_0:u0|FIFO_OUT_READ_REQ_PIO:the_FIFO_OUT_READ_REQ_PIO
 
 # end
 # entity
-IDATA_PIO_s1_arbitrator
-# storage
-db|DE2_NET.(54).cnf
-db|DE2_NET.(54).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|IDATA_PIO_s1_arbitrator:the_IDATA_PIO_s1
-}
-# macro_sequence
-
-# end
-# entity
 IDATA_PIO
 # storage
 db|DE2_NET.(55).cnf
@@ -6863,78 +6537,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|IDATA_PIO:the_IDATA_PIO
-}
-# macro_sequence
-
-# end
-# entity
-ISP1362_avalon_slave_0_arbitrator
-# storage
-db|DE2_NET.(56).cnf
-db|DE2_NET.(56).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|ISP1362_avalon_slave_0_arbitrator:the_ISP1362_avalon_slave_0
-}
-# macro_sequence
-
-# end
-# entity
-ISP1362_avalon_slave_1_arbitrator
-# storage
-db|DE2_NET.(57).cnf
-db|DE2_NET.(57).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|ISP1362_avalon_slave_1_arbitrator:the_ISP1362_avalon_slave_1
 }
 # macro_sequence
 
@@ -7012,42 +6614,6 @@ system_0:u0|ISP1362:the_ISP1362|ISP1362_IF:the_ISP1362_IF
 
 # end
 # entity
-ODATA_PIO_s1_arbitrator
-# storage
-db|DE2_NET.(60).cnf
-db|DE2_NET.(60).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|ODATA_PIO_s1_arbitrator:the_ODATA_PIO_s1
-}
-# macro_sequence
-
-# end
-# entity
 ODATA_PIO
 # storage
 db|DE2_NET.(61).cnf
@@ -7079,42 +6645,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|ODATA_PIO:the_ODATA_PIO
-}
-# macro_sequence
-
-# end
-# entity
-RESULT_READY_PIO_s1_arbitrator
-# storage
-db|DE2_NET.(62).cnf
-db|DE2_NET.(62).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|RESULT_READY_PIO_s1_arbitrator:the_RESULT_READY_PIO_s1
 }
 # macro_sequence
 
@@ -7156,42 +6686,6 @@ system_0:u0|RESULT_READY_PIO:the_RESULT_READY_PIO
 
 # end
 # entity
-RLE_FLUSH_PIO_s1_arbitrator
-# storage
-db|DE2_NET.(64).cnf
-db|DE2_NET.(64).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|RLE_FLUSH_PIO_s1_arbitrator:the_RLE_FLUSH_PIO_s1
-}
-# macro_sequence
-
-# end
-# entity
 RLE_FLUSH_PIO
 # storage
 db|DE2_NET.(65).cnf
@@ -7223,42 +6717,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|RLE_FLUSH_PIO:the_RLE_FLUSH_PIO
-}
-# macro_sequence
-
-# end
-# entity
-SD_CLK_s1_arbitrator
-# storage
-db|DE2_NET.(66).cnf
-db|DE2_NET.(66).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|SD_CLK_s1_arbitrator:the_SD_CLK_s1
 }
 # macro_sequence
 
@@ -7300,42 +6758,6 @@ system_0:u0|SD_CLK:the_SD_CLK
 
 # end
 # entity
-SD_CMD_s1_arbitrator
-# storage
-db|DE2_NET.(68).cnf
-db|DE2_NET.(68).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|SD_CMD_s1_arbitrator:the_SD_CMD_s1
-}
-# macro_sequence
-
-# end
-# entity
 SD_CMD
 # storage
 db|DE2_NET.(69).cnf
@@ -7372,42 +6794,6 @@ system_0:u0|SD_CMD:the_SD_CMD
 
 # end
 # entity
-SD_DAT_s1_arbitrator
-# storage
-db|DE2_NET.(70).cnf
-db|DE2_NET.(70).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|SD_DAT_s1_arbitrator:the_SD_DAT_s1
-}
-# macro_sequence
-
-# end
-# entity
 SD_DAT
 # storage
 db|DE2_NET.(71).cnf
@@ -7439,42 +6825,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|SD_DAT:the_SD_DAT
-}
-# macro_sequence
-
-# end
-# entity
-SEG7_Display_avalon_slave_0_arbitrator
-# storage
-db|DE2_NET.(72).cnf
-db|DE2_NET.(72).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|SEG7_Display_avalon_slave_0_arbitrator:the_SEG7_Display_avalon_slave_0
 }
 # macro_sequence
 
@@ -7590,42 +6940,6 @@ system_0:u0|SEG7_Display:the_SEG7_Display|SEG7_LUT_8:the_SEG7_LUT_8|SEG7_LUT:u4
 system_0:u0|SEG7_Display:the_SEG7_Display|SEG7_LUT_8:the_SEG7_LUT_8|SEG7_LUT:u5
 system_0:u0|SEG7_Display:the_SEG7_Display|SEG7_LUT_8:the_SEG7_LUT_8|SEG7_LUT:u6
 system_0:u0|SEG7_Display:the_SEG7_Display|SEG7_LUT_8:the_SEG7_LUT_8|SEG7_LUT:u7
-}
-# macro_sequence
-
-# end
-# entity
-VGA_0_avalon_slave_0_arbitrator
-# storage
-db|DE2_NET.(76).cnf
-db|DE2_NET.(76).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|VGA_0_avalon_slave_0_arbitrator:the_VGA_0_avalon_slave_0
 }
 # macro_sequence
 
@@ -11130,42 +10444,6 @@ system_0:u0|VGA_0:the_VGA_0|VGA_NIOS_CTRL:the_VGA_NIOS_CTRL|VGA_OSD_RAM:u1|Img_R
 
 # end
 # entity
-button_pio_s1_arbitrator
-# storage
-db|DE2_NET.(89).cnf
-db|DE2_NET.(89).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|button_pio_s1_arbitrator:the_button_pio_s1
-}
-# macro_sequence
-
-# end
-# entity
 button_pio
 # storage
 db|DE2_NET.(90).cnf
@@ -11197,114 +10475,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|button_pio:the_button_pio
-}
-# macro_sequence
-
-# end
-# entity
-cpu_0_jtag_debug_module_arbitrator
-# storage
-db|DE2_NET.(91).cnf
-db|DE2_NET.(91).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|cpu_0_jtag_debug_module_arbitrator:the_cpu_0_jtag_debug_module
-}
-# macro_sequence
-
-# end
-# entity
-cpu_0_data_master_arbitrator
-# storage
-db|DE2_NET.(92).cnf
-db|DE2_NET.(92).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|cpu_0_data_master_arbitrator:the_cpu_0_data_master
-}
-# macro_sequence
-
-# end
-# entity
-cpu_0_instruction_master_arbitrator
-# storage
-db|DE2_NET.(93).cnf
-db|DE2_NET.(93).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|cpu_0_instruction_master_arbitrator:the_cpu_0_instruction_master
 }
 # macro_sequence
 
@@ -17874,490 +17044,6 @@ system_0:u0|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_nios2_ocim
 
 # end
 # entity
-altsyncram_c572
-# storage
-db|DE2_NET.(129).cnf
-db|DE2_NET.(129).cnf
-# case_insensitive
-# source_file
-db|altsyncram_c572.tdf
-153c56ace73cb44719a6f34395de44
-7
-# used_port {
-wren_b
--1
-3
-wren_a
--1
-3
-q_b9
--1
-3
-q_b8
--1
-3
-q_b7
--1
-3
-q_b6
--1
-3
-q_b5
--1
-3
-q_b4
--1
-3
-q_b31
--1
-3
-q_b30
--1
-3
-q_b3
--1
-3
-q_b29
--1
-3
-q_b28
--1
-3
-q_b27
--1
-3
-q_b26
--1
-3
-q_b25
--1
-3
-q_b24
--1
-3
-q_b23
--1
-3
-q_b22
--1
-3
-q_b21
--1
-3
-q_b20
--1
-3
-q_b2
--1
-3
-q_b19
--1
-3
-q_b18
--1
-3
-q_b17
--1
-3
-q_b16
--1
-3
-q_b15
--1
-3
-q_b14
--1
-3
-q_b13
--1
-3
-q_b12
--1
-3
-q_b11
--1
-3
-q_b10
--1
-3
-q_b1
--1
-3
-q_b0
--1
-3
-q_a9
--1
-3
-q_a8
--1
-3
-q_a7
--1
-3
-q_a6
--1
-3
-q_a5
--1
-3
-q_a4
--1
-3
-q_a31
--1
-3
-q_a30
--1
-3
-q_a3
--1
-3
-q_a29
--1
-3
-q_a28
--1
-3
-q_a27
--1
-3
-q_a26
--1
-3
-q_a25
--1
-3
-q_a24
--1
-3
-q_a23
--1
-3
-q_a22
--1
-3
-q_a21
--1
-3
-q_a20
--1
-3
-q_a2
--1
-3
-q_a19
--1
-3
-q_a18
--1
-3
-q_a17
--1
-3
-q_a16
--1
-3
-q_a15
--1
-3
-q_a14
--1
-3
-q_a13
--1
-3
-q_a12
--1
-3
-q_a11
--1
-3
-q_a10
--1
-3
-q_a1
--1
-3
-q_a0
--1
-3
-data_b9
--1
-3
-data_b8
--1
-3
-data_b7
--1
-3
-data_b6
--1
-3
-data_b5
--1
-3
-data_b4
--1
-3
-data_b31
--1
-3
-data_b30
--1
-3
-data_b3
--1
-3
-data_b29
--1
-3
-data_b28
--1
-3
-data_b27
--1
-3
-data_b26
--1
-3
-data_b25
--1
-3
-data_b24
--1
-3
-data_b23
--1
-3
-data_b22
--1
-3
-data_b21
--1
-3
-data_b20
--1
-3
-data_b2
--1
-3
-data_b19
--1
-3
-data_b18
--1
-3
-data_b17
--1
-3
-data_b16
--1
-3
-data_b15
--1
-3
-data_b14
--1
-3
-data_b13
--1
-3
-data_b12
--1
-3
-data_b11
--1
-3
-data_b10
--1
-3
-data_b1
--1
-3
-data_b0
--1
-3
-data_a9
--1
-3
-data_a8
--1
-3
-data_a7
--1
-3
-data_a6
--1
-3
-data_a5
--1
-3
-data_a4
--1
-3
-data_a31
--1
-3
-data_a30
--1
-3
-data_a3
--1
-3
-data_a29
--1
-3
-data_a28
--1
-3
-data_a27
--1
-3
-data_a26
--1
-3
-data_a25
--1
-3
-data_a24
--1
-3
-data_a23
--1
-3
-data_a22
--1
-3
-data_a21
--1
-3
-data_a20
--1
-3
-data_a2
--1
-3
-data_a19
--1
-3
-data_a18
--1
-3
-data_a17
--1
-3
-data_a16
--1
-3
-data_a15
--1
-3
-data_a14
--1
-3
-data_a13
--1
-3
-data_a12
--1
-3
-data_a11
--1
-3
-data_a10
--1
-3
-data_a1
--1
-3
-data_a0
--1
-3
-clocken1
--1
-3
-clocken0
--1
-3
-clock1
--1
-3
-clock0
--1
-3
-byteena_a3
--1
-3
-byteena_a2
--1
-3
-byteena_a1
--1
-3
-byteena_a0
--1
-3
-address_b7
--1
-3
-address_b6
--1
-3
-address_b5
--1
-3
-address_b4
--1
-3
-address_b3
--1
-3
-address_b2
--1
-3
-address_b1
--1
-3
-address_b0
--1
-3
-address_a7
--1
-3
-address_a6
--1
-3
-address_a5
--1
-3
-address_a4
--1
-3
-address_a3
--1
-3
-address_a2
--1
-3
-address_a1
--1
-3
-address_a0
--1
-3
-}
-# memory_file {
-cpu_0_ociram_default_contents.mif
-ff3f47b4d33ceacd725cace7dc5e5fbb
-}
-# hierarchies {
-system_0:u0|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_nios2_ocimem:the_cpu_0_nios2_ocimem|cpu_0_ociram_lpm_dram_bdp_component_module:cpu_0_ociram_lpm_dram_bdp_component|altsyncram:the_altsyncram|altsyncram_c572:auto_generated
-}
-# macro_sequence
-
-# end
-# entity
 cpu_0_nios2_avalon_reg
 # storage
 db|DE2_NET.(130).cnf
@@ -20008,42 +18694,6 @@ system_0:u0|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_jtag_debug
 MASK_8_BITS255INST_BIT_INDEX0MASK_11_BITS2047MFG_BIT_INDEX8MASK_8_BITS255TYPE_BIT_INDEX19MASK_5_BITS31VERION_BIT_INDEX27
 # end
 # entity
-epcs_controller_epcs_control_port_arbitrator
-# storage
-db|DE2_NET.(153).cnf
-db|DE2_NET.(153).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|epcs_controller_epcs_control_port_arbitrator:the_epcs_controller_epcs_control_port
-}
-# macro_sequence
-
-# end
-# entity
 epcs_controller
 # storage
 db|DE2_NET.(154).cnf
@@ -20518,42 +19168,6 @@ d86d17f199903c5cf264c7b2416f745
 }
 # hierarchies {
 system_0:u0|epcs_controller:the_epcs_controller|altsyncram:the_boot_copier_rom|altsyncram_lo31:auto_generated
-}
-# macro_sequence
-
-# end
-# entity
-jtag_uart_0_avalon_jtag_slave_arbitrator
-# storage
-db|DE2_NET.(159).cnf
-db|DE2_NET.(159).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|jtag_uart_0_avalon_jtag_slave_arbitrator:the_jtag_uart_0_avalon_jtag_slave
 }
 # macro_sequence
 
@@ -21467,42 +20081,6 @@ system_0:u0|jtag_uart_0:the_jtag_uart_0|alt_jtag_atlantic:jtag_uart_0_alt_jtag_a
 
 # end
 # entity
-lcd_16207_0_control_slave_arbitrator
-# storage
-db|DE2_NET.(172).cnf
-db|DE2_NET.(172).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|lcd_16207_0_control_slave_arbitrator:the_lcd_16207_0_control_slave
-}
-# macro_sequence
-
-# end
-# entity
 lcd_16207_0
 # storage
 db|DE2_NET.(173).cnf
@@ -21534,42 +20112,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|lcd_16207_0:the_lcd_16207_0
-}
-# macro_sequence
-
-# end
-# entity
-led_green_s1_arbitrator
-# storage
-db|DE2_NET.(174).cnf
-db|DE2_NET.(174).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|led_green_s1_arbitrator:the_led_green_s1
 }
 # macro_sequence
 
@@ -21611,42 +20153,6 @@ system_0:u0|led_green:the_led_green
 
 # end
 # entity
-led_red_s1_arbitrator
-# storage
-db|DE2_NET.(176).cnf
-db|DE2_NET.(176).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|led_red_s1_arbitrator:the_led_red_s1
-}
-# macro_sequence
-
-# end
-# entity
 led_red
 # storage
 db|DE2_NET.(177).cnf
@@ -21678,114 +20184,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|led_red:the_led_red
-}
-# macro_sequence
-
-# end
-# entity
-sdram_0_s1_arbitrator
-# storage
-db|DE2_NET.(178).cnf
-db|DE2_NET.(178).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|sdram_0_s1_arbitrator:the_sdram_0_s1
-}
-# macro_sequence
-
-# end
-# entity
-rdv_fifo_for_system_0_clock_0_out_to_sdram_0_s1_module
-# storage
-db|DE2_NET.(179).cnf
-db|DE2_NET.(179).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|sdram_0_s1_arbitrator:the_sdram_0_s1|rdv_fifo_for_system_0_clock_0_out_to_sdram_0_s1_module:rdv_fifo_for_system_0_clock_0_out_to_sdram_0_s1
-}
-# macro_sequence
-
-# end
-# entity
-rdv_fifo_for_system_0_clock_1_out_to_sdram_0_s1_module
-# storage
-db|DE2_NET.(180).cnf
-db|DE2_NET.(180).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|sdram_0_s1_arbitrator:the_sdram_0_s1|rdv_fifo_for_system_0_clock_1_out_to_sdram_0_s1_module:rdv_fifo_for_system_0_clock_1_out_to_sdram_0_s1
 }
 # macro_sequence
 
@@ -21863,42 +20261,6 @@ system_0:u0|sdram_0:the_sdram_0|sdram_0_input_efifo_module:the_sdram_0_input_efi
 
 # end
 # entity
-sram_0_avalon_slave_0_arbitrator
-# storage
-db|DE2_NET.(183).cnf
-db|DE2_NET.(183).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|sram_0_avalon_slave_0_arbitrator:the_sram_0_avalon_slave_0
-}
-# macro_sequence
-
-# end
-# entity
 sram_0
 # storage
 db|DE2_NET.(184).cnf
@@ -21971,42 +20333,6 @@ system_0:u0|sram_0:the_sram_0|SRAM_16Bit_512K:the_SRAM_16Bit_512K
 
 # end
 # entity
-switch_pio_s1_arbitrator
-# storage
-db|DE2_NET.(186).cnf
-db|DE2_NET.(186).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|switch_pio_s1_arbitrator:the_switch_pio_s1
-}
-# macro_sequence
-
-# end
-# entity
 switch_pio
 # storage
 db|DE2_NET.(187).cnf
@@ -22038,78 +20364,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|switch_pio:the_switch_pio
-}
-# macro_sequence
-
-# end
-# entity
-system_0_clock_0_in_arbitrator
-# storage
-db|DE2_NET.(188).cnf
-db|DE2_NET.(188).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|system_0_clock_0_in_arbitrator:the_system_0_clock_0_in
-}
-# macro_sequence
-
-# end
-# entity
-system_0_clock_0_out_arbitrator
-# storage
-db|DE2_NET.(189).cnf
-db|DE2_NET.(189).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|system_0_clock_0_out_arbitrator:the_system_0_clock_0_out
 }
 # macro_sequence
 
@@ -22298,78 +20552,6 @@ system_0:u0|system_0_clock_0:the_system_0_clock_0|system_0_clock_0_bit_pipe:endo
 
 # end
 # entity
-system_0_clock_1_in_arbitrator
-# storage
-db|DE2_NET.(195).cnf
-db|DE2_NET.(195).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|system_0_clock_1_in_arbitrator:the_system_0_clock_1_in
-}
-# macro_sequence
-
-# end
-# entity
-system_0_clock_1_out_arbitrator
-# storage
-db|DE2_NET.(196).cnf
-db|DE2_NET.(196).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|system_0_clock_1_out_arbitrator:the_system_0_clock_1_out
-}
-# macro_sequence
-
-# end
-# entity
 system_0_clock_1
 # storage
 db|DE2_NET.(197).cnf
@@ -22553,42 +20735,6 @@ system_0:u0|system_0_clock_1:the_system_0_clock_1|system_0_clock_1_bit_pipe:endo
 
 # end
 # entity
-timer_0_s1_arbitrator
-# storage
-db|DE2_NET.(202).cnf
-db|DE2_NET.(202).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|timer_0_s1_arbitrator:the_timer_0_s1
-}
-# macro_sequence
-
-# end
-# entity
 timer_0
 # storage
 db|DE2_NET.(203).cnf
@@ -22625,42 +20771,6 @@ system_0:u0|timer_0:the_timer_0
 
 # end
 # entity
-timer_1_s1_arbitrator
-# storage
-db|DE2_NET.(204).cnf
-db|DE2_NET.(204).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|timer_1_s1_arbitrator:the_timer_1_s1
-}
-# macro_sequence
-
-# end
-# entity
 timer_1
 # storage
 db|DE2_NET.(205).cnf
@@ -22692,78 +20802,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|timer_1:the_timer_1
-}
-# macro_sequence
-
-# end
-# entity
-tri_state_bridge_0_avalon_slave_arbitrator
-# storage
-db|DE2_NET.(206).cnf
-db|DE2_NET.(206).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|tri_state_bridge_0_avalon_slave_arbitrator:the_tri_state_bridge_0_avalon_slave
-}
-# macro_sequence
-
-# end
-# entity
-uart_0_s1_arbitrator
-# storage
-db|DE2_NET.(207).cnf
-db|DE2_NET.(207).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|uart_0_s1_arbitrator:the_uart_0_s1
 }
 # macro_sequence
 
@@ -22944,78 +20982,6 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 system_0:u0|uart_0:the_uart_0|uart_0_regs:the_uart_0_regs
-}
-# macro_sequence
-
-# end
-# entity
-system_0_reset_clk_domain_synch_module
-# storage
-db|DE2_NET.(213).cnf
-db|DE2_NET.(213).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|system_0_reset_clk_domain_synch_module:system_0_reset_clk_domain_synch
-}
-# macro_sequence
-
-# end
-# entity
-system_0_reset_clk_50_domain_synch_module
-# storage
-db|DE2_NET.(214).cnf
-db|DE2_NET.(214).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-system_0.v
-edce7d3af4b98d7ad953de3b9bbfaab
-8
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-system_0:u0|system_0_reset_clk_50_domain_synch_module:system_0_reset_clk_50_domain_synch
 }
 # macro_sequence
 
@@ -23703,6 +21669,2040 @@ USR
 # lmf
 |altera|91|quartus|lmf|maxplus2.lmf
 a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+system_0
+# storage
+db|DE2_NET.(28).cnf
+db|DE2_NET.(28).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0
+}
+# macro_sequence
+
+# end
+# entity
+Audio_0_avalon_slave_0_arbitrator
+# storage
+db|DE2_NET.(29).cnf
+db|DE2_NET.(29).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|Audio_0_avalon_slave_0_arbitrator:the_Audio_0_avalon_slave_0
+}
+# macro_sequence
+
+# end
+# entity
+DM9000A_avalon_slave_0_arbitrator
+# storage
+db|DE2_NET.(45).cnf
+db|DE2_NET.(45).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|DM9000A_avalon_slave_0_arbitrator:the_DM9000A_avalon_slave_0
+}
+# macro_sequence
+
+# end
+# entity
+FIFO_IN_FULL_PIO_s1_arbitrator
+# storage
+db|DE2_NET.(48).cnf
+db|DE2_NET.(48).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|FIFO_IN_FULL_PIO_s1_arbitrator:the_FIFO_IN_FULL_PIO_s1
+}
+# macro_sequence
+
+# end
+# entity
+FIFO_IN_WRITE_REQ_PIO_s1_arbitrator
+# storage
+db|DE2_NET.(50).cnf
+db|DE2_NET.(50).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|FIFO_IN_WRITE_REQ_PIO_s1_arbitrator:the_FIFO_IN_WRITE_REQ_PIO_s1
+}
+# macro_sequence
+
+# end
+# entity
+FIFO_OUT_READ_REQ_PIO_s1_arbitrator
+# storage
+db|DE2_NET.(52).cnf
+db|DE2_NET.(52).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|FIFO_OUT_READ_REQ_PIO_s1_arbitrator:the_FIFO_OUT_READ_REQ_PIO_s1
+}
+# macro_sequence
+
+# end
+# entity
+IDATA_PIO_s1_arbitrator
+# storage
+db|DE2_NET.(54).cnf
+db|DE2_NET.(54).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|IDATA_PIO_s1_arbitrator:the_IDATA_PIO_s1
+}
+# macro_sequence
+
+# end
+# entity
+ISP1362_avalon_slave_0_arbitrator
+# storage
+db|DE2_NET.(56).cnf
+db|DE2_NET.(56).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|ISP1362_avalon_slave_0_arbitrator:the_ISP1362_avalon_slave_0
+}
+# macro_sequence
+
+# end
+# entity
+ISP1362_avalon_slave_1_arbitrator
+# storage
+db|DE2_NET.(57).cnf
+db|DE2_NET.(57).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|ISP1362_avalon_slave_1_arbitrator:the_ISP1362_avalon_slave_1
+}
+# macro_sequence
+
+# end
+# entity
+ODATA_PIO_s1_arbitrator
+# storage
+db|DE2_NET.(60).cnf
+db|DE2_NET.(60).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|ODATA_PIO_s1_arbitrator:the_ODATA_PIO_s1
+}
+# macro_sequence
+
+# end
+# entity
+RESULT_READY_PIO_s1_arbitrator
+# storage
+db|DE2_NET.(62).cnf
+db|DE2_NET.(62).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|RESULT_READY_PIO_s1_arbitrator:the_RESULT_READY_PIO_s1
+}
+# macro_sequence
+
+# end
+# entity
+RLE_FLUSH_PIO_s1_arbitrator
+# storage
+db|DE2_NET.(64).cnf
+db|DE2_NET.(64).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|RLE_FLUSH_PIO_s1_arbitrator:the_RLE_FLUSH_PIO_s1
+}
+# macro_sequence
+
+# end
+# entity
+SD_CLK_s1_arbitrator
+# storage
+db|DE2_NET.(66).cnf
+db|DE2_NET.(66).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|SD_CLK_s1_arbitrator:the_SD_CLK_s1
+}
+# macro_sequence
+
+# end
+# entity
+SD_CMD_s1_arbitrator
+# storage
+db|DE2_NET.(68).cnf
+db|DE2_NET.(68).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|SD_CMD_s1_arbitrator:the_SD_CMD_s1
+}
+# macro_sequence
+
+# end
+# entity
+SD_DAT_s1_arbitrator
+# storage
+db|DE2_NET.(70).cnf
+db|DE2_NET.(70).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|SD_DAT_s1_arbitrator:the_SD_DAT_s1
+}
+# macro_sequence
+
+# end
+# entity
+SEG7_Display_avalon_slave_0_arbitrator
+# storage
+db|DE2_NET.(72).cnf
+db|DE2_NET.(72).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|SEG7_Display_avalon_slave_0_arbitrator:the_SEG7_Display_avalon_slave_0
+}
+# macro_sequence
+
+# end
+# entity
+VGA_0_avalon_slave_0_arbitrator
+# storage
+db|DE2_NET.(76).cnf
+db|DE2_NET.(76).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|VGA_0_avalon_slave_0_arbitrator:the_VGA_0_avalon_slave_0
+}
+# macro_sequence
+
+# end
+# entity
+button_pio_s1_arbitrator
+# storage
+db|DE2_NET.(89).cnf
+db|DE2_NET.(89).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|button_pio_s1_arbitrator:the_button_pio_s1
+}
+# macro_sequence
+
+# end
+# entity
+cpu_0_jtag_debug_module_arbitrator
+# storage
+db|DE2_NET.(91).cnf
+db|DE2_NET.(91).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|cpu_0_jtag_debug_module_arbitrator:the_cpu_0_jtag_debug_module
+}
+# macro_sequence
+
+# end
+# entity
+cpu_0_data_master_arbitrator
+# storage
+db|DE2_NET.(92).cnf
+db|DE2_NET.(92).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|cpu_0_data_master_arbitrator:the_cpu_0_data_master
+}
+# macro_sequence
+
+# end
+# entity
+cpu_0_instruction_master_arbitrator
+# storage
+db|DE2_NET.(93).cnf
+db|DE2_NET.(93).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|cpu_0_instruction_master_arbitrator:the_cpu_0_instruction_master
+}
+# macro_sequence
+
+# end
+# entity
+altsyncram_c572
+# storage
+db|DE2_NET.(129).cnf
+db|DE2_NET.(129).cnf
+# case_insensitive
+# source_file
+db|altsyncram_c572.tdf
+153c56ace73cb44719a6f34395de44
+7
+# used_port {
+wren_b
+-1
+3
+wren_a
+-1
+3
+q_b9
+-1
+3
+q_b8
+-1
+3
+q_b7
+-1
+3
+q_b6
+-1
+3
+q_b5
+-1
+3
+q_b4
+-1
+3
+q_b31
+-1
+3
+q_b30
+-1
+3
+q_b3
+-1
+3
+q_b29
+-1
+3
+q_b28
+-1
+3
+q_b27
+-1
+3
+q_b26
+-1
+3
+q_b25
+-1
+3
+q_b24
+-1
+3
+q_b23
+-1
+3
+q_b22
+-1
+3
+q_b21
+-1
+3
+q_b20
+-1
+3
+q_b2
+-1
+3
+q_b19
+-1
+3
+q_b18
+-1
+3
+q_b17
+-1
+3
+q_b16
+-1
+3
+q_b15
+-1
+3
+q_b14
+-1
+3
+q_b13
+-1
+3
+q_b12
+-1
+3
+q_b11
+-1
+3
+q_b10
+-1
+3
+q_b1
+-1
+3
+q_b0
+-1
+3
+q_a9
+-1
+3
+q_a8
+-1
+3
+q_a7
+-1
+3
+q_a6
+-1
+3
+q_a5
+-1
+3
+q_a4
+-1
+3
+q_a31
+-1
+3
+q_a30
+-1
+3
+q_a3
+-1
+3
+q_a29
+-1
+3
+q_a28
+-1
+3
+q_a27
+-1
+3
+q_a26
+-1
+3
+q_a25
+-1
+3
+q_a24
+-1
+3
+q_a23
+-1
+3
+q_a22
+-1
+3
+q_a21
+-1
+3
+q_a20
+-1
+3
+q_a2
+-1
+3
+q_a19
+-1
+3
+q_a18
+-1
+3
+q_a17
+-1
+3
+q_a16
+-1
+3
+q_a15
+-1
+3
+q_a14
+-1
+3
+q_a13
+-1
+3
+q_a12
+-1
+3
+q_a11
+-1
+3
+q_a10
+-1
+3
+q_a1
+-1
+3
+q_a0
+-1
+3
+data_b9
+-1
+3
+data_b8
+-1
+3
+data_b7
+-1
+3
+data_b6
+-1
+3
+data_b5
+-1
+3
+data_b4
+-1
+3
+data_b31
+-1
+3
+data_b30
+-1
+3
+data_b3
+-1
+3
+data_b29
+-1
+3
+data_b28
+-1
+3
+data_b27
+-1
+3
+data_b26
+-1
+3
+data_b25
+-1
+3
+data_b24
+-1
+3
+data_b23
+-1
+3
+data_b22
+-1
+3
+data_b21
+-1
+3
+data_b20
+-1
+3
+data_b2
+-1
+3
+data_b19
+-1
+3
+data_b18
+-1
+3
+data_b17
+-1
+3
+data_b16
+-1
+3
+data_b15
+-1
+3
+data_b14
+-1
+3
+data_b13
+-1
+3
+data_b12
+-1
+3
+data_b11
+-1
+3
+data_b10
+-1
+3
+data_b1
+-1
+3
+data_b0
+-1
+3
+data_a9
+-1
+3
+data_a8
+-1
+3
+data_a7
+-1
+3
+data_a6
+-1
+3
+data_a5
+-1
+3
+data_a4
+-1
+3
+data_a31
+-1
+3
+data_a30
+-1
+3
+data_a3
+-1
+3
+data_a29
+-1
+3
+data_a28
+-1
+3
+data_a27
+-1
+3
+data_a26
+-1
+3
+data_a25
+-1
+3
+data_a24
+-1
+3
+data_a23
+-1
+3
+data_a22
+-1
+3
+data_a21
+-1
+3
+data_a20
+-1
+3
+data_a2
+-1
+3
+data_a19
+-1
+3
+data_a18
+-1
+3
+data_a17
+-1
+3
+data_a16
+-1
+3
+data_a15
+-1
+3
+data_a14
+-1
+3
+data_a13
+-1
+3
+data_a12
+-1
+3
+data_a11
+-1
+3
+data_a10
+-1
+3
+data_a1
+-1
+3
+data_a0
+-1
+3
+clocken1
+-1
+3
+clocken0
+-1
+3
+clock1
+-1
+3
+clock0
+-1
+3
+byteena_a3
+-1
+3
+byteena_a2
+-1
+3
+byteena_a1
+-1
+3
+byteena_a0
+-1
+3
+address_b7
+-1
+3
+address_b6
+-1
+3
+address_b5
+-1
+3
+address_b4
+-1
+3
+address_b3
+-1
+3
+address_b2
+-1
+3
+address_b1
+-1
+3
+address_b0
+-1
+3
+address_a7
+-1
+3
+address_a6
+-1
+3
+address_a5
+-1
+3
+address_a4
+-1
+3
+address_a3
+-1
+3
+address_a2
+-1
+3
+address_a1
+-1
+3
+address_a0
+-1
+3
+}
+# memory_file {
+cpu_0_ociram_default_contents.mif
+caf57b8c594c39d3adb2a26cf9b19fc6
+}
+# hierarchies {
+system_0:u0|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_nios2_ocimem:the_cpu_0_nios2_ocimem|cpu_0_ociram_lpm_dram_bdp_component_module:cpu_0_ociram_lpm_dram_bdp_component|altsyncram:the_altsyncram|altsyncram_c572:auto_generated
+}
+# macro_sequence
+
+# end
+# entity
+epcs_controller_epcs_control_port_arbitrator
+# storage
+db|DE2_NET.(153).cnf
+db|DE2_NET.(153).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|epcs_controller_epcs_control_port_arbitrator:the_epcs_controller_epcs_control_port
+}
+# macro_sequence
+
+# end
+# entity
+jtag_uart_0_avalon_jtag_slave_arbitrator
+# storage
+db|DE2_NET.(159).cnf
+db|DE2_NET.(159).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|jtag_uart_0_avalon_jtag_slave_arbitrator:the_jtag_uart_0_avalon_jtag_slave
+}
+# macro_sequence
+
+# end
+# entity
+lcd_16207_0_control_slave_arbitrator
+# storage
+db|DE2_NET.(172).cnf
+db|DE2_NET.(172).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|lcd_16207_0_control_slave_arbitrator:the_lcd_16207_0_control_slave
+}
+# macro_sequence
+
+# end
+# entity
+led_green_s1_arbitrator
+# storage
+db|DE2_NET.(174).cnf
+db|DE2_NET.(174).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|led_green_s1_arbitrator:the_led_green_s1
+}
+# macro_sequence
+
+# end
+# entity
+led_red_s1_arbitrator
+# storage
+db|DE2_NET.(176).cnf
+db|DE2_NET.(176).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|led_red_s1_arbitrator:the_led_red_s1
+}
+# macro_sequence
+
+# end
+# entity
+sdram_0_s1_arbitrator
+# storage
+db|DE2_NET.(178).cnf
+db|DE2_NET.(178).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|sdram_0_s1_arbitrator:the_sdram_0_s1
+}
+# macro_sequence
+
+# end
+# entity
+rdv_fifo_for_system_0_clock_0_out_to_sdram_0_s1_module
+# storage
+db|DE2_NET.(179).cnf
+db|DE2_NET.(179).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|sdram_0_s1_arbitrator:the_sdram_0_s1|rdv_fifo_for_system_0_clock_0_out_to_sdram_0_s1_module:rdv_fifo_for_system_0_clock_0_out_to_sdram_0_s1
+}
+# macro_sequence
+
+# end
+# entity
+rdv_fifo_for_system_0_clock_1_out_to_sdram_0_s1_module
+# storage
+db|DE2_NET.(180).cnf
+db|DE2_NET.(180).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|sdram_0_s1_arbitrator:the_sdram_0_s1|rdv_fifo_for_system_0_clock_1_out_to_sdram_0_s1_module:rdv_fifo_for_system_0_clock_1_out_to_sdram_0_s1
+}
+# macro_sequence
+
+# end
+# entity
+sram_0_avalon_slave_0_arbitrator
+# storage
+db|DE2_NET.(183).cnf
+db|DE2_NET.(183).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|sram_0_avalon_slave_0_arbitrator:the_sram_0_avalon_slave_0
+}
+# macro_sequence
+
+# end
+# entity
+switch_pio_s1_arbitrator
+# storage
+db|DE2_NET.(186).cnf
+db|DE2_NET.(186).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|switch_pio_s1_arbitrator:the_switch_pio_s1
+}
+# macro_sequence
+
+# end
+# entity
+system_0_clock_0_in_arbitrator
+# storage
+db|DE2_NET.(188).cnf
+db|DE2_NET.(188).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|system_0_clock_0_in_arbitrator:the_system_0_clock_0_in
+}
+# macro_sequence
+
+# end
+# entity
+system_0_clock_0_out_arbitrator
+# storage
+db|DE2_NET.(189).cnf
+db|DE2_NET.(189).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|system_0_clock_0_out_arbitrator:the_system_0_clock_0_out
+}
+# macro_sequence
+
+# end
+# entity
+system_0_clock_1_in_arbitrator
+# storage
+db|DE2_NET.(195).cnf
+db|DE2_NET.(195).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|system_0_clock_1_in_arbitrator:the_system_0_clock_1_in
+}
+# macro_sequence
+
+# end
+# entity
+system_0_clock_1_out_arbitrator
+# storage
+db|DE2_NET.(196).cnf
+db|DE2_NET.(196).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|system_0_clock_1_out_arbitrator:the_system_0_clock_1_out
+}
+# macro_sequence
+
+# end
+# entity
+timer_0_s1_arbitrator
+# storage
+db|DE2_NET.(202).cnf
+db|DE2_NET.(202).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|timer_0_s1_arbitrator:the_timer_0_s1
+}
+# macro_sequence
+
+# end
+# entity
+timer_1_s1_arbitrator
+# storage
+db|DE2_NET.(204).cnf
+db|DE2_NET.(204).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|timer_1_s1_arbitrator:the_timer_1_s1
+}
+# macro_sequence
+
+# end
+# entity
+tri_state_bridge_0_avalon_slave_arbitrator
+# storage
+db|DE2_NET.(206).cnf
+db|DE2_NET.(206).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|tri_state_bridge_0_avalon_slave_arbitrator:the_tri_state_bridge_0_avalon_slave
+}
+# macro_sequence
+
+# end
+# entity
+uart_0_s1_arbitrator
+# storage
+db|DE2_NET.(207).cnf
+db|DE2_NET.(207).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|uart_0_s1_arbitrator:the_uart_0_s1
+}
+# macro_sequence
+
+# end
+# entity
+system_0_reset_clk_domain_synch_module
+# storage
+db|DE2_NET.(213).cnf
+db|DE2_NET.(213).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|system_0_reset_clk_domain_synch_module:system_0_reset_clk_domain_synch
+}
+# macro_sequence
+
+# end
+# entity
+system_0_reset_clk_50_domain_synch_module
+# storage
+db|DE2_NET.(214).cnf
+db|DE2_NET.(214).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+system_0.v
+7dfb217e73629276c080f62e76351ca7
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+system_0:u0|system_0_reset_clk_50_domain_synch_module:system_0_reset_clk_50_domain_synch
+}
+# macro_sequence
+
+# end
+# entity
+rle_enc
+# storage
+db|DE2_NET.(27).cnf
+db|DE2_NET.(27).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+rle_enc.v
+5742825f07a4b49f44795b4abac8dd
+8
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# user_parameter {
+INIT
+0000
+PARAMETER_UNSIGNED_BIN
+DEF
+REQUEST_INPUT
+0001
+PARAMETER_UNSIGNED_BIN
+DEF
+WAIT_INPUT
+0010
+PARAMETER_UNSIGNED_BIN
+DEF
+COUNT_BITS
+0011
+PARAMETER_UNSIGNED_BIN
+DEF
+SHIFT_BITS
+0100
+PARAMETER_UNSIGNED_BIN
+DEF
+COUNT_DONE
+0101
+PARAMETER_UNSIGNED_BIN
+DEF
+WAIT_OUTPUT
+0110
+PARAMETER_UNSIGNED_BIN
+DEF
+RESET_COUNT
+0111
+PARAMETER_UNSIGNED_BIN
+DEF
+READ_INPUT
+1000
+PARAMETER_UNSIGNED_BIN
+DEF
+}
+# hierarchies {
+rle_enc:rle_machine
+}
 # macro_sequence
 
 # end

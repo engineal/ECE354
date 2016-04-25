@@ -1,0 +1,24 @@
+#ifndef UDP_H
+#define UDP_H
+
+#include "layers/udp_layer.h"
+#include "ip.h"
+
+#define UDP_LENGTH       IP_DATA_LENGTH
+#define UDP_DATA_LENGTH  (UDP_LENGTH-UDP_HEADER_LENGTH)
+
+typedef struct
+{
+    unsigned char* localIP;
+    int localPort;
+    unsigned char* localMAC;
+    
+    unsigned char* destIP;
+    int destPort;
+    unsigned char* destMAC;   
+} UDPInfo;
+
+void udpSend(char*, int, UDPInfo*);
+int udpReceive(char*, UDPInfo*);
+
+#endif /*UDP_H*/
