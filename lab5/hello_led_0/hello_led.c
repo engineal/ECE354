@@ -8,6 +8,7 @@
 #include "net/ethernet.h"
 #include "interpretCommand.h"
 #include "rle.h"
+#include "hardware/hw_rle.h"
 
 UDPInfo* ethInfo;
 
@@ -32,6 +33,16 @@ int main(void)
     init_vga();
     
     writeLEDs(0);
+    
+    
+    
+    rle_flush();
+    fifo_in_write_byte(0x01);
+    rle_flush();
+    int rleData = fifo_out_read_byte();
+    printf("%x \n", rleData);
+    
+    
     
     int oldValue = 0;
     unsigned char pic_data[3*X*Y];

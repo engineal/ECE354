@@ -1,44 +1,41 @@
 #include "rle.h"
 #include "basic_io.h"
+#include "hardware/hw_rle.h"
 #include "image.h"
 
 int hwCompressImage(char* output, char image[][Y]) {
-    int n = 0; 
-    int outputLength = 0;
     char bitImage[X*Y/8];
-    
+    int bitImageIndex = 0; 
+    int outputLength = 0;
+
     charToBit(image, bitImage);
-   
-    outport(RLE_FLUSH_PIO_BASE, 0);
-    while(n<(X*Y/8))
+    
+    rle_flush();
+    
+    while(bitImageIndex<(X*Y/8))
     {
-        if(!inport(FIFO_IN_FULL_PIO_BASE))
+        if(!fifo_in_full())
         {
-            outport(FIFO_IN_WRITE_REQ_PIO_BASE, 1);
-            outport(ODATA_PIO_BASE, bitImage[n]);
-            //output(FIFO_IN_WRITE_REQ_PIO_BASE, 1);
-            //output(FIFO_IN_WRITE_REQ_PIO_BASE, 0); ?
+            printf("block 1.  ");
+            fifo_in_write_byte(bitImage[bitImageIndex++]);
         }
         
-        if(inport(RESULT_READY_PIO_BASE))
+        if(fifo_out_ready())
         {
-            outport(FIFO_OUT_READ_REQ_PIO_BASE, 1);
-            int rleData = inport(IDATA_PIO_BASE);
+            printf("block 2.  ");
+            int rleData = fifo_out_read_byte();
             output[outputLength++] = (rleData >> 16) & 0xFF;
             output[outputLength++] = (rleData >> 8)  & 0xFF;
             output[outputLength++] = (rleData)       & 0xFF;
             
-            outport(FIFO_OUT_READ_REQ_PIO_BASE, 0);
-            
-            if(n<10)
+            /*if(bitImageIndex<10)
             {
-                printf("%x", rleData);
-            }
+                printf("oh hi, %x", rleData);
+            }*/
         }
         
     }
-    outport(RLE_FLUSH_PIO_BASE, 1);
-    //output(RLE_FLUSH_PIO_BASE, 0);
+    rle_flush();
     return outputLength;
 }
 

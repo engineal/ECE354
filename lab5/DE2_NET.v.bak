@@ -301,18 +301,19 @@ wire	CLK_18_4;
 wire	CLK_25;
 
 wire [7:0] FIFO_IN_ODATA;
-wire FIFO_IN_DEAD_DEQ;
+wire FIFO_IN_READ_REQ;
 wire FIFO_IN_EMPTY;
 wire [23:0] RLE_OUT;
 wire RLE_DONE;
 wire FIFO_OUT_FULL;
 wire [7:0] ODATA_PIO;
 wire FIFO_IN_WRITE_REQ_PIO;
-wire FIFO_IN_PULL_PIO;
+wire FIFO_IN_FULL_PIO;
 wire RLE_FLUSH_PIO;
 wire [23:0] IDATA_PIO;
 wire RESULT_READY_PIO;
 wire FIFO_OUT_READ_REQ_PIO;
+
 
 //	Flash
 assign	FL_RST_N	=	1'b1;
@@ -343,40 +344,40 @@ SDRAM_PLL 	PLL1	(.inclk0(CLOCK_50),.c0(DRAM_CLK),.c1(CPU_CLK),.c2(CLK_25));
 Audio_PLL 	PLL2	(.areset(!CPU_RESET),.inclk0(CLOCK_27),.c0(CLK_18_4));
 
 RLE_FIFO_24_256 FIFO_recv(
-				.aclr(!CPU_RESULT),
-				.data(RLE_OUT),
-				.rdclk(CLOCK_50),
-				.rdreq(FIFO_OUT_READ_REQ_PIO),
-				.wrclk(CLOCK_50),
-				.wrreq(RLE_DONE),
-				.q(IDATA_PIO),
-				.wrfull(FIFO_OUT_FULL),
-				.rdempty(RESULT_READY_PIO)
-);
-
+							.aclr(!CPU_RESET),
+							.data(RLE_OUT),
+							.rdclk(CLOCK_50),
+							.rdreq(FIFO_OUT_READ_REQ_PIO),
+							.wrclk(CLOCK_50),
+							.wrreq(RLE_DONE),
+							.q(IDATA_PIO),
+							.wrfull(FIFO_OUT_FULL),
+							.rdempty(RESULT_READY_PIO)
+						);
+						
 RLE_FIFO_8_256 FIFO_send(
-				.aclr(!CPU_RESULT),
-				.data(ODATA_PIO),
-				.rdclk(CLOCK_50),
-				.rdreq(FIFO_IN_READ_REQ_PIO),
-				.wrclk(CLOCK_50),
-				.wrreq(FIFO_IN_WRITE_REQ_PIO),
-				.q(FIFO_IN_ODATA),
-				.wrfull(FIFO_IN_FULL_PIO),
-				.rdempty(FIFO_IN_EMPTY)
-);
-
+							.aclr(!CPU_RESET),
+							.data(ODATA_PIO),
+							.rdclk(CLOCK_50),
+							.rdreq(FIFO_IN_READ_REQ),
+							.wrclk(CLOCK_50),
+							.wrreq(FIFO_IN_WRITE_REQ_PIO),
+							.q(FIFO_IN_ODATA),
+							.wrfull(FIFO_IN_FULL_PIO),
+							.rdempty(FIFO_IN_EMPTY),
+						);
+						
 rle_enc rle_machine(
-				.clk(CLOCK_50),
-				.rst(!CPU_RESET),
-				.recv_ready(!FIFO_IN_EMPTY),
-				.send_ready(!FIFO_OUT_FULL),
-				.in_data(FIFO_IN_ODATA),
-				.end_of_steram(RLE_FLUSH_PIO),
-				.out_data(RLE_OUT),
-				.rd_req(FIFO_IN_READ_REQ),
-				.wr_req(RLE_DONE)
-);
+							.clk(CLOCK_50),
+							.rst(!CPU_RESET),
+							.recv_ready(!FIFO_IN_EMPTY),
+							.send_ready(!FIFO_OUT_FULL),
+							.in_data(FIFO_IN_ODATA),
+							.end_of_stream(RLE_FLUSH_PIO),
+							.out_data(RLE_OUT),
+							.rd_req(FIFO_IN_READ_REQ),
+							.wr_req(RLE_DONE)
+					);							
 
 system_0 	u0	(
 				// 1) global signals:
@@ -489,16 +490,17 @@ system_0 	u0	(
 
                 // the_uart_0
                  .rxd_to_the_uart_0(UART_RXD),
-                 .txd_from_the_uart_0(UART_TXD),
+                 .txd_from_the_uart_0(UART_TXD)
                  
-                // new hardware
+                //
                 .in_port_to_the_FIFO_IN_FULL_PIO(FIFO_IN_FULL_PIO),
                 .in_port_to_the_IDATA_PIO(IDATA_PIO),
                 .in_port_to_the_RESULT_READY_PIO(RESULT_READY_PIO),
                 .out_port_from_the_FIFO_IN_WRITE_REQ_PIO(FIFO_IN_WRITE_REQ_PIO),
                 .out_port_from_the_FIFO_OUT_READ_REQ_PIO(FIFO_OUT_READ_REQ_PIO),
-                .out_port_from_the_ODATA_PIO(ODATA, PIO),
-                .out_port_from_the_RLE_FLUSH_PIO(RLE_FLUSH_PIO)
+                .out_port_from_the_ODATA_PIO(ODATA_PIO),
+                .out_port_from_the_RLE_FLUSH_PIO(RLE_FLUSH_PIO) 
+                
                 );
 
 I2C_AV_Config 	u1	(	//	Host Side

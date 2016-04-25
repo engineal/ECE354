@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="318" key="DIALOG_Y_ORIGIN"/>
-		<item value="973" key="DIALOG_X_ORIGIN"/>
+		<item value="267" key="DIALOG_Y_ORIGIN"/>
+		<item value="722" key="DIALOG_X_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="wrap"/>
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
-		<item value="true" key="wholeword"/>
-		<item value="y" key="selection"/>
+		<item value="false" key="wholeword"/>
+		<item value="" key="selection"/>
 		<list key="findhistory">
-			<item value="j"/>
-			<item value="i"/>
-			<item value="length"/>
-			<item value="ethInfo"/>
-			<item value="master"/>
 			<item value="Error"/>
 			<item value="MAX_PACKET_LENGTH"/>
+			<item value="ethInfo"/>
 			<item value="msleep"/>
+			<item value="1024"/>
+			<item value="frame."/>
+			<item value="malloc"/>
+			<item value="printEthernetHeader"/>
 		</list>
 		<list key="replacehistory">
-			<item value="y"/>
-			<item value="x"/>
 			<item value="MAX_PAYLOAD_LENGTH"/>
 			<item value="udpInfo"/>
 			<item value="frame-&gt;"/>

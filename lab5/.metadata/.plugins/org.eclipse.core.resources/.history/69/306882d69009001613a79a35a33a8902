@@ -1,8 +1,0 @@
-#ifndef RLE_H
-#define RLE_H
-
-int hw_compress(char*, char[][], int);
-int compress(char*, char[][], int);
-int decompress(char*, char*, int);
-
-#endif /*RLE_H*/

@@ -458,7 +458,7 @@ set_location_assignment PIN_Y14 -to FL_ADDR[21]
 # Analysis & Synthesis Assignments
 # ================================
 set_global_assignment -name FAMILY "Cyclone II"
-set_global_assignment -name TOP_LEVEL_ENTITY rle_enc
+set_global_assignment -name TOP_LEVEL_ENTITY DE2_NET
 
 # Fitter Assignments
 # ==================
@@ -518,12 +518,14 @@ set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-
 
 	# Timing Assignments
 	# ==================
+	set_instance_assignment -name CLOCK_SETTINGS CLOCK_50 -to CLOCK_50
+	set_instance_assignment -name CLOCK_SETTINGS CLOCK_27 -to CLOCK_27
 
 # end ENTITY(DE2_NET)
 # --------------------
 
-set_global_assignment -name VERILOG_FILE rle_fifo_8_24.v
 set_global_assignment -name VERILOG_FILE rle_enc.v
+set_global_assignment -name VERILOG_FILE rle_fifo_8_24.v
 set_global_assignment -name VERILOG_FILE Audio_0.v
 set_global_assignment -name VERILOG_FILE AUDIO_DAC_FIFO.v
 set_global_assignment -name VERILOG_FILE Audio_PLL.v
@@ -569,9 +571,5 @@ set_global_assignment -name VERILOG_FILE VGA_0.v
 set_global_assignment -name VERILOG_FILE VGA_Controller.v
 set_global_assignment -name VERILOG_FILE VGA_NIOS_CTRL.v
 set_global_assignment -name VERILOG_FILE VGA_OSD_RAM.v
-set_instance_assignment -name CLOCK_SETTINGS CLOCK_50 -to CLOCK_50
-set_instance_assignment -name CLOCK_SETTINGS CLOCK_27 -to CLOCK_27
-set_global_assignment -name LL_ROOT_REGION ON -entity DE2_NET -section_id "Root Region"
-set_global_assignment -name LL_MEMBER_STATE LOCKED -entity DE2_NET -section_id "Root Region"
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"

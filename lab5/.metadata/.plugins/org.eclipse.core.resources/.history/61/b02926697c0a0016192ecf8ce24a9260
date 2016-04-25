@@ -1,0 +1,8 @@
+#include "fifo_in.h"
+#include "basic_io.h"
+
+void write_in_byte(char byte) {
+    outport(ODATA_PIO_BASE, byte);
+    outport(FIFO_IN_WRITE_REQ_PIO_BASE, 1);
+    outport(FIFO_IN_WRITE_REQ_PIO_BASE, 0);    
+}

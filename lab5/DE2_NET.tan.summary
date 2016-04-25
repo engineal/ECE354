@@ -5,41 +5,151 @@ Timing Analyzer Summary
 Type           : Worst-case tsu
 Slack          : N/A
 Required Time  : None
-Actual Time    : 4.382 ns
-From           : end_of_stream
-To             : state.REQUEST_INPUT
+Actual Time    : 10.689 ns
+From           : SRAM_DQ[1]
+To             : system_0:u0|cpu_0:the_cpu_0|d_readdata_d1[17]
 From Clock     : --
-To Clock       : clk
+To Clock       : CLOCK_50
 Failed Paths   : 0
 
 Type           : Worst-case tco
 Slack          : N/A
 Required Time  : None
-Actual Time    : 7.419 ns
-From           : bit_count[9]
-To             : out_data[9]
-From Clock     : clk
+Actual Time    : 14.685 ns
+From           : I2C_AV_Config:u1|I2C_Controller:u0|SD_COUNTER[3]
+To             : I2C_SCLK
+From Clock     : CLOCK_50
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case tpd
+Slack          : N/A
+Required Time  : None
+Actual Time    : 2.612 ns
+From           : altera_internal_jtag~TDO
+To             : altera_reserved_tdo
+From Clock     : --
 To Clock       : --
 Failed Paths   : 0
 
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
-Actual Time    : 0.612 ns
-From           : rst
-To             : state.WAIT_INPUT
+Actual Time    : 2.357 ns
+From           : system_0:u0|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_jtag_debug_module_wrapper:the_cpu_0_jtag_debug_module_wrapper|sld_virtual_jtag_basic:cpu_0_jtag_debug_module_phy|tdi
+To             : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|PZMU7345:HHRH5434|ATKJ2101[12]
 From Clock     : --
-To Clock       : clk
+To Clock       : altera_internal_jtag~CLKDRUSER
 Failed Paths   : 0
 
-Type           : Clock Setup: 'clk'
+Type           : Clock Setup: 'CLOCK_50'
+Slack          : -0.074 ns
+Required Time  : 50.00 MHz ( period = 20.000 ns )
+Actual Time    : N/A
+From           : system_0:u0|RLE_FLUSH_PIO:the_RLE_FLUSH_PIO|data_out
+To             : rle_enc:rle_machine|state.COUNT_BITS
+From Clock     : SDRAM_PLL:PLL1|altpll:altpll_component|_clk1
+To Clock       : CLOCK_50
+Failed Paths   : 1
+
+Type           : Clock Setup: 'SDRAM_PLL:PLL1|altpll:altpll_component|_clk1'
+Slack          : 1.363 ns
+Required Time  : 100.00 MHz ( period = 10.000 ns )
+Actual Time    : 115.78 MHz ( period = 8.637 ns )
+From           : system_0:u0|cpu_0:the_cpu_0|d_address[20]~reg0
+To             : system_0:u0|cpu_0:the_cpu_0|d_readdata_d1[25]
+From Clock     : SDRAM_PLL:PLL1|altpll:altpll_component|_clk1
+To Clock       : SDRAM_PLL:PLL1|altpll:altpll_component|_clk1
+Failed Paths   : 0
+
+Type           : Clock Setup: 'SDRAM_PLL:PLL1|altpll:altpll_component|_clk2'
+Slack          : 2.115 ns
+Required Time  : 25.00 MHz ( period = 40.000 ns )
+Actual Time    : N/A
+From           : system_0:u0|VGA_0:the_VGA_0|VGA_NIOS_CTRL:the_VGA_NIOS_CTRL|mCursor_X[2]
+To             : system_0:u0|VGA_0:the_VGA_0|VGA_NIOS_CTRL:the_VGA_NIOS_CTRL|VGA_Controller:u0|Cur_Color_B[7]
+From Clock     : SDRAM_PLL:PLL1|altpll:altpll_component|_clk1
+To Clock       : SDRAM_PLL:PLL1|altpll:altpll_component|_clk2
+Failed Paths   : 0
+
+Type           : Clock Setup: 'Audio_PLL:PLL2|altpll:altpll_component|_clk0'
+Slack          : 48.874 ns
+Required Time  : 18.41 MHz ( period = 54.320 ns )
+Actual Time    : 183.62 MHz ( period = 5.446 ns )
+From           : system_0:u0|Audio_0:the_Audio_0|AUDIO_DAC_FIFO:the_AUDIO_DAC_FIFO|FIFO_16_256:u0|dcfifo:dcfifo_component|dcfifo_hlj1:auto_generated|rdptr_g[2]
+To             : system_0:u0|Audio_0:the_Audio_0|AUDIO_DAC_FIFO:the_AUDIO_DAC_FIFO|FIFO_16_256:u0|dcfifo:dcfifo_component|dcfifo_hlj1:auto_generated|a_graycounter_g86:rdptr_g1p|counter7a[6]
+From Clock     : Audio_PLL:PLL2|altpll:altpll_component|_clk0
+To Clock       : Audio_PLL:PLL2|altpll:altpll_component|_clk0
+Failed Paths   : 0
+
+Type           : Clock Setup: 'system_0:u0|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_jtag_debug_module_wrapper:the_cpu_0_jtag_debug_module_wrapper|sld_virtual_jtag_basic:cpu_0_jtag_debug_module_phy|tck'
 Slack          : N/A
 Required Time  : None
-Actual Time    : 165.59 MHz ( period = 6.039 ns )
-From           : shift_buf[0]
-To             : bit_count[20]
-From Clock     : clk
-To Clock       : clk
+Actual Time    : 92.68 MHz ( period = 10.790 ns )
+From           : sld_hub:auto_hub|irsr_reg[6]
+To             : sld_hub:auto_hub|tdo
+From Clock     : system_0:u0|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_jtag_debug_module_wrapper:the_cpu_0_jtag_debug_module_wrapper|sld_virtual_jtag_basic:cpu_0_jtag_debug_module_phy|tck
+To Clock       : system_0:u0|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_jtag_debug_module_wrapper:the_cpu_0_jtag_debug_module_wrapper|sld_virtual_jtag_basic:cpu_0_jtag_debug_module_phy|tck
+Failed Paths   : 0
+
+Type           : Clock Setup: 'altera_internal_jtag~CLKDRUSER'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 413.91 MHz ( period = 2.416 ns )
+From           : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|VELJ8121:JDCF0099|AJQN5180[2]
+To             : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|VELJ8121:JDCF0099|DJFL8584[3]
+From Clock     : altera_internal_jtag~CLKDRUSER
+To Clock       : altera_internal_jtag~CLKDRUSER
+Failed Paths   : 0
+
+Type           : Clock Setup: 'altera_internal_jtag~UPDATEUSER'
+Slack          : N/A
+Required Time  : None
+Actual Time    : Restricted to 500.00 MHz ( period = 2.000 ns )
+From           : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|XWDE0671[2]
+To             : pzdyqx:nabboc|pzdyqx_impl:pzdyqx_impl_inst|XWDE0671[0]
+From Clock     : altera_internal_jtag~UPDATEUSER
+To Clock       : altera_internal_jtag~UPDATEUSER
+Failed Paths   : 0
+
+Type           : Clock Hold: 'SDRAM_PLL:PLL1|altpll:altpll_component|_clk1'
+Slack          : 0.391 ns
+Required Time  : 100.00 MHz ( period = 10.000 ns )
+Actual Time    : N/A
+From           : system_0:u0|system_0_clock_0:the_system_0_clock_0|system_0_clock_0_slave_FSM:slave_FSM|slave_read_request
+To             : system_0:u0|system_0_clock_0:the_system_0_clock_0|system_0_clock_0_slave_FSM:slave_FSM|slave_read_request
+From Clock     : SDRAM_PLL:PLL1|altpll:altpll_component|_clk1
+To Clock       : SDRAM_PLL:PLL1|altpll:altpll_component|_clk1
+Failed Paths   : 0
+
+Type           : Clock Hold: 'SDRAM_PLL:PLL1|altpll:altpll_component|_clk2'
+Slack          : 0.391 ns
+Required Time  : 25.00 MHz ( period = 40.000 ns )
+Actual Time    : N/A
+From           : system_0:u0|VGA_0:the_VGA_0|VGA_NIOS_CTRL:the_VGA_NIOS_CTRL|VGA_Controller:u0|oVGA_V_SYNC
+To             : system_0:u0|VGA_0:the_VGA_0|VGA_NIOS_CTRL:the_VGA_NIOS_CTRL|VGA_Controller:u0|oVGA_V_SYNC
+From Clock     : SDRAM_PLL:PLL1|altpll:altpll_component|_clk2
+To Clock       : SDRAM_PLL:PLL1|altpll:altpll_component|_clk2
+Failed Paths   : 0
+
+Type           : Clock Hold: 'Audio_PLL:PLL2|altpll:altpll_component|_clk0'
+Slack          : 0.391 ns
+Required Time  : 18.41 MHz ( period = 54.320 ns )
+Actual Time    : N/A
+From           : system_0:u0|Audio_0:the_Audio_0|AUDIO_DAC_FIFO:the_AUDIO_DAC_FIFO|LRCK_1X
+To             : system_0:u0|Audio_0:the_Audio_0|AUDIO_DAC_FIFO:the_AUDIO_DAC_FIFO|LRCK_1X
+From Clock     : Audio_PLL:PLL2|altpll:altpll_component|_clk0
+To Clock       : Audio_PLL:PLL2|altpll:altpll_component|_clk0
+Failed Paths   : 0
+
+Type           : Clock Hold: 'CLOCK_50'
+Slack          : 0.391 ns
+Required Time  : 50.00 MHz ( period = 20.000 ns )
+Actual Time    : N/A
+From           : system_0:u0|sdram_0:the_sdram_0|i_cmd[3]
+To             : system_0:u0|sdram_0:the_sdram_0|i_cmd[3]
+From Clock     : CLOCK_50
+To Clock       : CLOCK_50
 Failed Paths   : 0
 
 Type           : Total number of failed paths
@@ -50,7 +160,7 @@ From           :
 To             : 
 From Clock     : 
 To Clock       : 
-Failed Paths   : 0
+Failed Paths   : 1
 
 --------------------------------------------------------------------------------------
 

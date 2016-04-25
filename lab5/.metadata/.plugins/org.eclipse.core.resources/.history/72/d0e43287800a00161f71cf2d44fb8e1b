@@ -1,0 +1,10 @@
+#ifndef FIFO_IN_H
+#define FIFO_IN_H
+
+void write_in_byte(char);
+int fifo_in_full();
+void rle_flush();
+int fifo_out_read_byte();
+int fifo_out_ready()
+
+#endif /*FIFO_IN_H*/

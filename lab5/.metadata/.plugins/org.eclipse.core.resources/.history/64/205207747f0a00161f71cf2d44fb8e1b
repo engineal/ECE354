@@ -1,0 +1,6 @@
+#ifndef FIFO_IN_H
+#define FIFO_IN_H
+
+void write_in_byte(char);
+
+#endif /*FIFO_IN_H*/

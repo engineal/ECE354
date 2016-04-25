@@ -121,7 +121,7 @@ module Audio_0_avalon_slave_0_arbitrator (
   //assign Audio_0_avalon_slave_0_readdata_from_sa = Audio_0_avalon_slave_0_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign Audio_0_avalon_slave_0_readdata_from_sa = Audio_0_avalon_slave_0_readdata;
 
-  assign cpu_0_data_master_requests_Audio_0_avalon_slave_0 = ({cpu_0_data_master_address_to_slave[23 : 2] , 2'b0} == 24'h681174) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  assign cpu_0_data_master_requests_Audio_0_avalon_slave_0 = ({cpu_0_data_master_address_to_slave[23 : 2] , 2'b0} == 24'h681104) & (cpu_0_data_master_read | cpu_0_data_master_write);
   //Audio_0_avalon_slave_0_arb_share_counter set values, which is an e_mux
   assign Audio_0_avalon_slave_0_arb_share_set_values = 1;
 
@@ -399,7 +399,7 @@ module DM9000A_avalon_slave_0_arbitrator (
   //assign DM9000A_avalon_slave_0_readdata_from_sa = DM9000A_avalon_slave_0_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign DM9000A_avalon_slave_0_readdata_from_sa = DM9000A_avalon_slave_0_readdata;
 
-  assign cpu_0_data_master_requests_DM9000A_avalon_slave_0 = ({cpu_0_data_master_address_to_slave[23 : 3] , 3'b0} == 24'h681168) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  assign cpu_0_data_master_requests_DM9000A_avalon_slave_0 = ({cpu_0_data_master_address_to_slave[23 : 3] , 3'b0} == 24'h6810f8) & (cpu_0_data_master_read | cpu_0_data_master_write);
   //DM9000A_avalon_slave_0_arb_share_counter set values, which is an e_mux
   assign DM9000A_avalon_slave_0_arb_share_set_values = 1;
 
@@ -678,7 +678,7 @@ module FIFO_IN_FULL_PIO_s1_arbitrator (
   //assign FIFO_IN_FULL_PIO_s1_readdata_from_sa = FIFO_IN_FULL_PIO_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign FIFO_IN_FULL_PIO_s1_readdata_from_sa = FIFO_IN_FULL_PIO_s1_readdata;
 
-  assign cpu_0_data_master_requests_FIFO_IN_FULL_PIO_s1 = (({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681110) & (cpu_0_data_master_read | cpu_0_data_master_write)) & cpu_0_data_master_read;
+  assign cpu_0_data_master_requests_FIFO_IN_FULL_PIO_s1 = (({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681130) & (cpu_0_data_master_read | cpu_0_data_master_write)) & cpu_0_data_master_read;
   //FIFO_IN_FULL_PIO_s1_arb_share_counter set values, which is an e_mux
   assign FIFO_IN_FULL_PIO_s1_arb_share_set_values = 1;
 
@@ -939,7 +939,7 @@ module FIFO_IN_WRITE_REQ_PIO_s1_arbitrator (
   //assign FIFO_IN_WRITE_REQ_PIO_s1_readdata_from_sa = FIFO_IN_WRITE_REQ_PIO_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign FIFO_IN_WRITE_REQ_PIO_s1_readdata_from_sa = FIFO_IN_WRITE_REQ_PIO_s1_readdata;
 
-  assign cpu_0_data_master_requests_FIFO_IN_WRITE_REQ_PIO_s1 = ({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681100) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  assign cpu_0_data_master_requests_FIFO_IN_WRITE_REQ_PIO_s1 = ({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681120) & (cpu_0_data_master_read | cpu_0_data_master_write);
   //FIFO_IN_WRITE_REQ_PIO_s1_arb_share_counter set values, which is an e_mux
   assign FIFO_IN_WRITE_REQ_PIO_s1_arb_share_set_values = 1;
 
@@ -1207,7 +1207,7 @@ module FIFO_OUT_READ_REQ_PIO_s1_arbitrator (
   //assign FIFO_OUT_READ_REQ_PIO_s1_readdata_from_sa = FIFO_OUT_READ_REQ_PIO_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign FIFO_OUT_READ_REQ_PIO_s1_readdata_from_sa = FIFO_OUT_READ_REQ_PIO_s1_readdata;
 
-  assign cpu_0_data_master_requests_FIFO_OUT_READ_REQ_PIO_s1 = ({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681140) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  assign cpu_0_data_master_requests_FIFO_OUT_READ_REQ_PIO_s1 = ({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681160) & (cpu_0_data_master_read | cpu_0_data_master_write);
   //FIFO_OUT_READ_REQ_PIO_s1_arb_share_counter set values, which is an e_mux
   assign FIFO_OUT_READ_REQ_PIO_s1_arb_share_set_values = 1;
 
@@ -1462,7 +1462,7 @@ module IDATA_PIO_s1_arbitrator (
   //assign IDATA_PIO_s1_readdata_from_sa = IDATA_PIO_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign IDATA_PIO_s1_readdata_from_sa = IDATA_PIO_s1_readdata;
 
-  assign cpu_0_data_master_requests_IDATA_PIO_s1 = (({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681120) & (cpu_0_data_master_read | cpu_0_data_master_write)) & cpu_0_data_master_read;
+  assign cpu_0_data_master_requests_IDATA_PIO_s1 = (({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681140) & (cpu_0_data_master_read | cpu_0_data_master_write)) & cpu_0_data_master_read;
   //IDATA_PIO_s1_arb_share_counter set values, which is an e_mux
   assign IDATA_PIO_s1_arb_share_set_values = 1;
 
@@ -2061,7 +2061,7 @@ module ODATA_PIO_s1_arbitrator (
   //assign ODATA_PIO_s1_readdata_from_sa = ODATA_PIO_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign ODATA_PIO_s1_readdata_from_sa = ODATA_PIO_s1_readdata;
 
-  assign cpu_0_data_master_requests_ODATA_PIO_s1 = ({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h6810f0) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  assign cpu_0_data_master_requests_ODATA_PIO_s1 = ({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681110) & (cpu_0_data_master_read | cpu_0_data_master_write);
   //ODATA_PIO_s1_arb_share_counter set values, which is an e_mux
   assign ODATA_PIO_s1_arb_share_set_values = 1;
 
@@ -2320,7 +2320,7 @@ module RESULT_READY_PIO_s1_arbitrator (
   //assign RESULT_READY_PIO_s1_readdata_from_sa = RESULT_READY_PIO_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign RESULT_READY_PIO_s1_readdata_from_sa = RESULT_READY_PIO_s1_readdata;
 
-  assign cpu_0_data_master_requests_RESULT_READY_PIO_s1 = (({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681130) & (cpu_0_data_master_read | cpu_0_data_master_write)) & cpu_0_data_master_read;
+  assign cpu_0_data_master_requests_RESULT_READY_PIO_s1 = (({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681150) & (cpu_0_data_master_read | cpu_0_data_master_write)) & cpu_0_data_master_read;
   //RESULT_READY_PIO_s1_arb_share_counter set values, which is an e_mux
   assign RESULT_READY_PIO_s1_arb_share_set_values = 1;
 
@@ -2581,7 +2581,7 @@ module RLE_FLUSH_PIO_s1_arbitrator (
   //assign RLE_FLUSH_PIO_s1_readdata_from_sa = RLE_FLUSH_PIO_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign RLE_FLUSH_PIO_s1_readdata_from_sa = RLE_FLUSH_PIO_s1_readdata;
 
-  assign cpu_0_data_master_requests_RLE_FLUSH_PIO_s1 = ({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681150) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  assign cpu_0_data_master_requests_RLE_FLUSH_PIO_s1 = ({cpu_0_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h681170) & (cpu_0_data_master_read | cpu_0_data_master_write);
   //RLE_FLUSH_PIO_s1_arb_share_counter set values, which is an e_mux
   assign RLE_FLUSH_PIO_s1_arb_share_set_values = 1;
 
@@ -3637,7 +3637,7 @@ module SEG7_Display_avalon_slave_0_arbitrator (
 
 
   assign SEG7_Display_avalon_slave_0_begins_xfer = ~d1_reasons_to_wait & ((cpu_0_data_master_qualified_request_SEG7_Display_avalon_slave_0));
-  assign cpu_0_data_master_requests_SEG7_Display_avalon_slave_0 = (({cpu_0_data_master_address_to_slave[23 : 2] , 2'b0} == 24'h681170) & (cpu_0_data_master_read | cpu_0_data_master_write)) & cpu_0_data_master_write;
+  assign cpu_0_data_master_requests_SEG7_Display_avalon_slave_0 = (({cpu_0_data_master_address_to_slave[23 : 2] , 2'b0} == 24'h681100) & (cpu_0_data_master_read | cpu_0_data_master_write)) & cpu_0_data_master_write;
   //SEG7_Display_avalon_slave_0_arb_share_counter set values, which is an e_mux
   assign SEG7_Display_avalon_slave_0_arb_share_set_values = 1;
 
@@ -6467,7 +6467,7 @@ module jtag_uart_0_avalon_jtag_slave_arbitrator (
   //assign jtag_uart_0_avalon_jtag_slave_readdata_from_sa = jtag_uart_0_avalon_jtag_slave_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign jtag_uart_0_avalon_jtag_slave_readdata_from_sa = jtag_uart_0_avalon_jtag_slave_readdata;
 
-  assign cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave = ({cpu_0_data_master_address_to_slave[23 : 3] , 3'b0} == 24'h681160) & (cpu_0_data_master_read | cpu_0_data_master_write);
+  assign cpu_0_data_master_requests_jtag_uart_0_avalon_jtag_slave = ({cpu_0_data_master_address_to_slave[23 : 3] , 3'b0} == 24'h6810f0) & (cpu_0_data_master_read | cpu_0_data_master_write);
   //assign jtag_uart_0_avalon_jtag_slave_dataavailable_from_sa = jtag_uart_0_avalon_jtag_slave_dataavailable so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign jtag_uart_0_avalon_jtag_slave_dataavailable_from_sa = jtag_uart_0_avalon_jtag_slave_dataavailable;
 

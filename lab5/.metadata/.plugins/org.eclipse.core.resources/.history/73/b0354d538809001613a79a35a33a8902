@@ -1,8 +1,0 @@
-#ifndef RLE_H
-#define RLE_H
-
-void hw_compress();
-
-void decompress();
-
-#endif /*RLE_H*/
